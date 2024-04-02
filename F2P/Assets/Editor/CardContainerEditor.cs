@@ -2,18 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using com.isartdigital.f2p.gameplay.card;
 
-[CustomEditor(typeof(CardContainer))]
-public class CardContainerEditor : Editor
+namespace com.isartdigital.f2p.editor 
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(CardContainer))]
+    public class CardContainerEditor : Editor
     {
-        base.OnInspectorGUI();
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
 
-        CardContainer cardContainer = (CardContainer)target;
+            CardContainer cardContainer = (CardContainer)target;
 
-        cardContainer.GetBoxCollider().size = cardContainer.size;
+            Camera cam = Camera.main;
+            float height = cam.orthographicSize * 2;
+            float width = cam.aspect * height;
+            float lXSize = width * cardContainer.size / 10;
 
-        EditorUtility.SetDirty(cardContainer.gameObject);
+            cardContainer.GetBoxCollider().size = new Vector2(lXSize, lXSize * cardContainer.cardRatio);
+            CardContainer.staticSize = cardContainer.size;
+            EditorUtility.SetDirty(cardContainer.gameObject);
+        }
     }
 }

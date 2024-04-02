@@ -2,36 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
-public class CardContainer : MonoBehaviour
+namespace com.isartdigital.f2p.gameplay.card 
 {
-    [HideInInspector] public BoxCollider2D boxCollider;
-
-    [SerializeField]
-    public Vector2 size;
-
-    public static Vector2 staticSize = Vector2.one / 2;
-
-    private void Awake()
+    [RequireComponent(typeof(BoxCollider2D))]
+    public class CardContainer : MonoBehaviour
     {
-        staticSize = Vector2.one;
-    }
+        [HideInInspector] public BoxCollider2D boxCollider;
 
-    public BoxCollider2D GetBoxCollider() 
-    {
-        if(boxCollider == null) boxCollider = GetComponent<BoxCollider2D>();
+        [SerializeField] public float size;
+        [SerializeField] public float cardRatio = 1.39f;
 
-        return boxCollider;
-    }
 
-    void Start()
-    {
-        
-    }
+        public static float staticSize = 1;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Awake()
+        {
+            staticSize = 1;
+        }
+
+        public BoxCollider2D GetBoxCollider() 
+        {
+            if(boxCollider == null) boxCollider = GetComponent<BoxCollider2D>();
+
+            return boxCollider;
+        }
+
     }
 }

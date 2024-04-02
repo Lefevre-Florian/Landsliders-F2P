@@ -99,7 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 6566011723682781884}
-  size: {x: 1, y: 1}
+  size: 2
+  cardRatio: 1.39
 --- !u!61 &6566011723682781884
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143,5 +144,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.92386657, y: 1.2841746}
   m_EdgeRadius: 0
