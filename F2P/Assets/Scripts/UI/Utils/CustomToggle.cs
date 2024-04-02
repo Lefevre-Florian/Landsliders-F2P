@@ -12,12 +12,17 @@ namespace Com.IsartDigital.F2P.UI
         [SerializeField] private Sprite _IconOff = null;
 
         [Header("UI")]
-        [SerializeField] private bool _IsOn = false;
+        [SerializeField] private bool _IsOn = true;
 
         // Variables
         private Image _IconComponent = null;
 
         private Button _ButtonComponents = null;
+
+        #if UNITY_EDITOR
+        // Debug
+        private bool _EditorIsOn = true;
+        #endif
 
         // Events
         private event Action<bool> OnToggleChanged;
@@ -27,15 +32,12 @@ namespace Com.IsartDigital.F2P.UI
             _IconComponent = GetComponent<Image>();
             _ButtonComponents = GetComponent<Button>();
 
-            _ButtonComponents.onClick.AddListener(ChangeIcon);
-
-            ChangeIcon();
+            _ButtonComponents.onClick.AddListener(UpdateToggle);
         }
         
-        private void ChangeIcon()
+        private void UpdateToggle()
         {
             _IsOn = !_IsOn;
-
             if (_IsOn)
                 _IconComponent.sprite = _IconOn;
             else
@@ -44,11 +46,28 @@ namespace Com.IsartDigital.F2P.UI
             OnToggleChanged?.Invoke(_IsOn);
         }
 
-        //private void OnValidate() => ChangeIcon();
+        #if UNITY_EDITOR
+        private void OnValidate()
+        {
+            if (Application.isPlaying)
+                return;
+
+            // Debug
+            if(_EditorIsOn != _IsOn
+               && (_IconOn != null && _IconOff != null))
+            {
+                if (_IsOn)
+                    GetComponent<Image>().sprite = _IconOn;
+                else
+                    GetComponent<Image>().sprite = _IconOff;
+                _EditorIsOn = _IsOn;
+            }
+        }
+        #endif
 
         private void OnDestroy()
         {
-            _ButtonComponents.onClick.RemoveListener(ChangeIcon);
+            _ButtonComponents.onClick.RemoveListener(UpdateToggle);
             _ButtonComponents = null;
 
             _IconComponent = null;
