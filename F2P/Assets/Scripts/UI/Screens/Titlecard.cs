@@ -11,7 +11,7 @@ namespace Com.IsartDigital.F2P.UI.Screens
         [SerializeField] private int _GameBuildIDX = 0;
 
         [Header("Application management")]
-        [SerializeField] private int _TargetedFrameRate = 30;
+        [SerializeField][Range(15, 120)] private int _TargetedFrameRate = 30;
 
         private void Start()
         {

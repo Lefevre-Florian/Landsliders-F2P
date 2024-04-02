@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6366872962648441707}
   - component: {fileID: 5442888427368310543}
   m_Layer: 5
-  m_Name: LoadingScreen
+  m_Name: PRB_LoadingScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
