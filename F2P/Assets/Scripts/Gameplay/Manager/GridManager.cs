@@ -8,14 +8,15 @@ public class GridManager : MonoBehaviour
     [Header("Grid Parameters")]
 
     [SerializeField] private Vector2 _NumCard = Vector2.one * 3;
-    [SerializeField] private GridSize _GridSize;
-    [SerializeField] private Vector3 _Offset;
+    [SerializeField] private Vector2 _GridSizePercent;
+    [SerializeField] private Vector2 _Offset;
 
     [Header("GameObject")]
 
     [SerializeField] private GameObject _CardBackgroundPrefab;
 
     private Vector2 _ScreenSizeInGameUnit;
+    private Vector2 _GridSize;
 
     private void Start()
     {
@@ -25,7 +26,8 @@ public class GridManager : MonoBehaviour
             return;
        }
 
-        _ScreenSizeInGameUnit = Camera.main.ViewportToWorldPoint(Vector2.one) * new Vector2(_GridSize.width, _GridSize.height);
+        _ScreenSizeInGameUnit = Camera.main.ViewportToWorldPoint(Vector2.one);
+        _GridSize = _ScreenSizeInGameUnit * new Vector2(_GridSizePercent.x, _GridSizePercent.y) - CardContainer.staticSize;
 
         int xLoopMin = -(int)Math.Floor(_NumCard.x / 2);
         int xLoopMax = (int)(_NumCard.x - (int)Math.Ceiling(_NumCard.x / 2));
@@ -35,13 +37,13 @@ public class GridManager : MonoBehaviour
 
         for (int x = xLoopMin; x <= xLoopMax; x++)
         {
-            float lXPos = _ScreenSizeInGameUnit.x * x / xLoopMax;
+            float lXPos = _GridSize.x * x / xLoopMax;
 
             for (int y = yLoopMin; y <= yLoopMax; y++)
             {
-                float lYPos = _ScreenSizeInGameUnit.x * y / yLoopMax;
+                float lYPos = _GridSize.y * y / yLoopMax;
 
-                Instantiate(_CardBackgroundPrefab, new Vector3(lXPos, lYPos, 0) + _Offset, Quaternion.identity);
+                Instantiate(_CardBackgroundPrefab, new Vector3(lXPos + _Offset.y, lYPos + _Offset.y, 0), Quaternion.identity);
 
             }
         }
@@ -52,9 +54,3 @@ public class GridManager : MonoBehaviour
     }
 }
 
-[Serializable]
-public struct GridSize
-{
-    [SerializeField] public float height;
-    [SerializeField] public float width;
-}

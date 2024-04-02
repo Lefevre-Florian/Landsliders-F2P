@@ -7,7 +7,15 @@ public class CardContainer : MonoBehaviour
 {
     [HideInInspector] public BoxCollider2D boxCollider;
 
-    [SerializeField] public Vector2 size { get; private set; }
+    [SerializeField]
+    public Vector2 size;
+
+    public static Vector2 staticSize = Vector2.one / 2;
+
+    private void Awake()
+    {
+        staticSize = Vector2.one;
+    }
 
     public BoxCollider2D GetBoxCollider() 
     {
