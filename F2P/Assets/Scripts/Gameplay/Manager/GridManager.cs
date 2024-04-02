@@ -8,7 +8,8 @@ public class GridManager : MonoBehaviour
     [Header("Grid Parameters")]
 
     [SerializeField] private Vector2 _NumCard = Vector2.one * 3;
-    [SerializeField] private GridAnchor _Anchor;
+    [SerializeField] private GridSize _GridSize;
+    [SerializeField] private Vector3 _Offset;
 
     [Header("GameObject")]
 
@@ -24,7 +25,7 @@ public class GridManager : MonoBehaviour
             return;
        }
 
-        _ScreenSizeInGameUnit = Camera.main.ViewportToWorldPoint(Vector2.one);
+        _ScreenSizeInGameUnit = Camera.main.ViewportToWorldPoint(Vector2.one) * new Vector2(_GridSize.width, _GridSize.height);
 
         int xLoopMin = -(int)Math.Floor(_NumCard.x / 2);
         int xLoopMax = (int)(_NumCard.x - (int)Math.Ceiling(_NumCard.x / 2));
@@ -38,9 +39,9 @@ public class GridManager : MonoBehaviour
 
             for (int y = yLoopMin; y <= yLoopMax; y++)
             {
-                float lYPos = _ScreenSizeInGameUnit.y * y / yLoopMax;
+                float lYPos = _ScreenSizeInGameUnit.x * y / yLoopMax;
 
-                Instantiate(_CardBackgroundPrefab, new Vector3(lXPos, lYPos, 0), Quaternion.identity);
+                Instantiate(_CardBackgroundPrefab, new Vector3(lXPos, lYPos, 0) + _Offset, Quaternion.identity);
 
             }
         }
@@ -52,10 +53,8 @@ public class GridManager : MonoBehaviour
 }
 
 [Serializable]
-public struct GridAnchor 
+public struct GridSize
 {
-    [SerializeField] private float _LeftAnchor;
-    [SerializeField] private float _RightAnchor;
-    [SerializeField] private float _DownAnchor;
-    [SerializeField] private float _UpAnchor;
+    [SerializeField] public float height;
+    [SerializeField] public float width;
 }
