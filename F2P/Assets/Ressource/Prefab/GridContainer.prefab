@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NumCard: {x: 3, y: 3}
-  _GridSize:
-    height: 0.3
-    width: 0.5
-  _Offset: {x: 0, y: -1.61, z: 0}
-  _CardBackgroundPrefab: {fileID: 6841856714039061208, guid: 4a808d6f0912baf48b9609abb197ad5e, type: 3}
+  _GridSizePercent: {x: 0, y: 0}
+  _Offset: {x: 0, y: -1.61}
+  _CardBackgroundPrefab: {fileID: 3380951766127524745, guid: fd18193cb9cd61544aa1d4fca20c8bee, type: 3}
+  _ScreenSizeInGameUnit: {x: 0, y: 0}
+  _GridSize: {x: 0, y: 0}
+  _CardSize: 0
+  _CardRatio: 0

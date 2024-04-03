@@ -39,6 +39,8 @@ namespace com.isartdigital.f2p.gameplay.manager
 
         [HideInInspector] public Vector2 _ScreenSizeInGameUnit;
         [HideInInspector] public Vector2 _GridSize;
+        [HideInInspector] public float _CardSize;
+        [HideInInspector] public float _CardRatio;
 
         [HideInInspector] public GameObject[,] _Cards;
 
@@ -58,7 +60,7 @@ namespace com.isartdigital.f2p.gameplay.manager
            }
 
             _ScreenSizeInGameUnit = new Vector2(Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize);
-            _GridSize = _ScreenSizeInGameUnit * new Vector2(_GridSizePercent.x, _GridSizePercent.y) - new Vector2(CardContainer.staticSize, CardContainer.staticSize * 1.39f) / 2;
+            _GridSize = _ScreenSizeInGameUnit * new Vector2(_GridSizePercent.x, _GridSizePercent.y);
 
             int lXArrayIndex = 0;
             for (int x = -1; x <= 1; x++)

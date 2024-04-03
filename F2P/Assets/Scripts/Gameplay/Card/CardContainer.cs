@@ -9,22 +9,16 @@ namespace com.isartdigital.f2p.gameplay.card
     {
         [HideInInspector] public BoxCollider2D boxCollider;
 
-        [SerializeField] public float size;
-        [SerializeField] public float cardRatio = 1.39f;
-
-
-        public static float staticSize = 1;
-
-        private void Awake()
-        {
-            staticSize = 1;
-        }
+        [HideInInspector] public float size;
+        [HideInInspector] public float cardRatio = 1.39f;
 
         public BoxCollider2D GetBoxCollider() 
         {
             if(boxCollider == null) boxCollider = GetComponent<BoxCollider2D>();
 
             return boxCollider;
+
+
         }
 
     }
