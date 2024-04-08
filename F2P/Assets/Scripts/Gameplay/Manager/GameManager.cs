@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    private static GameManager instance;
 
     public static GameManager GetInstance()
     {
@@ -22,7 +22,19 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-
+    [SerializeField] private int _MaxCardStocked = 12;
+    private int _CardStocked = 12;
+    public int cardStocked
+    {
+        get
+        {
+            return _CardStocked;
+        }
+        set
+        {
+            cardStocked = value;
+        }        
+    }
     private int _TurnNumber = 1;
     public bool cardPlayed;
 

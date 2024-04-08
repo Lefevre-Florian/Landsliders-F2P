@@ -10,6 +10,7 @@ public class TEMPCard : MonoBehaviour
     private GameManager _GameManager;
     private bool _Snapable;
     private Vector3 _SnapPos;
+    private GameObject _SnapParent;
     void Start()
     {
         _GameManager = FindObjectOfType<GameManager>();
@@ -34,10 +35,17 @@ public class TEMPCard : MonoBehaviour
             if(_Snapable)
             {
                 transform.position = _SnapPos;
-                HandManager.instance._AvailableCardSlots[handIndex] = true;
+                HandManager.GetInstance()._AvailableCardSlots[handIndex] = true;
                 _GameManager.cardPlayed = true;
+                if (_SnapParent.transform.childCount > 0) 
+                {
+                    Destroy(_SnapParent.transform.GetChild(0).gameObject);
+                }
+                transform.SetParent(_SnapParent.transform, true);
                 Destroy(this);
-                HandManager.instance.DrawCard();
+                HandManager.GetInstance()._CardInHand--;
+                HandManager.GetInstance().DrawCard();
+                
             }
                 
             else
@@ -61,12 +69,15 @@ public class TEMPCard : MonoBehaviour
     {
         _Snapable = true;
         _SnapPos = collision.transform.position;
+        _SnapParent = collision.gameObject;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         _Snapable = false;
-        _SnapPos = HandManager.instance._CardsSlot[handIndex].transform.position;
+        _SnapPos = HandManager.GetInstance()._CardsSlot[handIndex].transform.position;
+        _SnapParent = null;
+       
 
     }
 
@@ -74,6 +85,7 @@ public class TEMPCard : MonoBehaviour
     {
         _Snapable = true;
         _SnapPos = collision.transform.position;
+        _SnapParent = collision.gameObject;
     }
 
 

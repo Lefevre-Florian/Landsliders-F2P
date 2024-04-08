@@ -1,11 +1,13 @@
 using com.isartdigital.f2p.gameplay.manager;
+using Com.IsartDigital.F2P.UI.UIHUD;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HandManager : MonoBehaviour
 {
-    public static HandManager instance;
+    private static HandManager instance;
 
     public static HandManager GetInstance()
     {
@@ -22,8 +24,12 @@ public class HandManager : MonoBehaviour
         }
         instance = this;
     }
+
+
     [SerializeField] private int _MaxCardHold = 4;
     [SerializeField] private int _StartingCardNb = 4;
+    [HideInInspector] public int _CardInHand = 0;
+    
     [Header("Grid Parameters")]
 
 
@@ -41,11 +47,17 @@ public class HandManager : MonoBehaviour
 
     [HideInInspector] public GameObject[] _CardsSlot;
 
+
+    private GameObject[] _Deck;
+    [SerializeField] private GameObject _DeckContainer;
+    [SerializeField] private GameObject _HandContainer;
+
     [HideInInspector] public bool[] _AvailableCardSlots;
 
     private void Start()
     {
         CardSlot();
+        CreateDeck();
         for (int i = 0; i < _StartingCardNb; i++)
         {
             DrawCard();
@@ -54,17 +66,46 @@ public class HandManager : MonoBehaviour
 
     public void DrawCard()
     {
+        if (_Deck.Length >= 1)
+        {
             for (int i = 0; i < _AvailableCardSlots.Length; i++)
             {
                 if (_AvailableCardSlots[i] == true)
                 {
-                    GameObject lcardGO = Instantiate(_CardPrefab, _CardsSlot[i].transform);
+                    GameObject lcardGO = _Deck[0];
+                    lcardGO.SetActive(true);
+                    lcardGO.transform.SetParent(_HandContainer.transform, true);
+                    lcardGO.transform.position = _CardsSlot[i].transform.position;
                     TEMPCard ltempCard = lcardGO.GetComponent<TEMPCard>();
                     ltempCard.handIndex = i;
+                    RemoveAtDeck(0);
                     _AvailableCardSlots[i] = false;
+                    _CardInHand++;
                     return;
                 }
             }
+        }
+        else
+        {
+            if (_CardInHand == 0) Hud.GetInstance().Lose();
+        }
+    }
+
+    public void RemoveAtDeck(int index)
+    {
+        Array.Copy(_Deck, index + 1, _Deck, index, _Deck.Length - index - 1);
+        Array.Resize(ref _Deck, _Deck.Length - 1);
+    }
+
+    private void CreateDeck()
+    {
+        _Deck = new GameObject[GameManager.GetInstance().cardStocked];
+        for (int i = 0; i < _Deck.Length; i++)
+        {
+            _Deck[i] = Instantiate(_CardPrefab);
+            _Deck[i].gameObject.SetActive(false);
+            _Deck[i].transform.SetParent(_DeckContainer.transform, true);
+        }
     }
 
     private void CardSlot()
@@ -74,11 +115,6 @@ public class HandManager : MonoBehaviour
         for (int i = 0; i < _AvailableCardSlots.Length; i++)
         {
             _AvailableCardSlots[i] = true;
-        }
-
-        foreach (Transform child in transform)
-        {
-            Destroy(child.gameObject);
         }
 
         if (_CardSlotPrefab == null)

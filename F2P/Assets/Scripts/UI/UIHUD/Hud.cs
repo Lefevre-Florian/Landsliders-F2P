@@ -19,12 +19,18 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
         private Hud() : base() {}
         #endregion
 
+        [Header("Sub-Button")]
+        [SerializeField] private GameObject _NextTurnButton = null;
+        [SerializeField] private GameObject _PauseButton = null;
         [Header("Sub-screens")]
         [SerializeField] private Transform _PauseScreen = null;
+        [SerializeField] private Transform _LoseScreen = null;
 
         [Header("Scene management")]
         [SerializeField] private int _MainMenuIDX = 0;
         [SerializeField] private bool _UseLoadingScreen = false;
+
+        
 
         private void Awake()
         {
@@ -53,6 +59,13 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
         public void Retry() => LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         public void MainMenu() => LoadScene(_MainMenuIDX);
+
+        public void Lose()
+        {
+            _NextTurnButton.SetActive(false);
+            _PauseButton.SetActive(false);
+            _LoseScreen.gameObject.SetActive(true);
+        }
 
         private void LoadScene(int pSceneIDX)
         {
