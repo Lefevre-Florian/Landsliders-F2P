@@ -41,7 +41,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3380951766127524745}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -99,10 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 6566011723682781884}
-  allCardsParameters:
-  - {fileID: 11400000, guid: 81d3b8bca590ded41accf7ca88d409f0, type: 2}
-  size: 1.8666668
-  cardRatio: 1.5000001
+  size: 2
+  cardRatio: 1.39
 --- !u!61 &6566011723682781884
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,5 +144,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.86255926, y: 1.293839}
+  m_Size: {x: 0.92386657, y: 1.2841746}
   m_EdgeRadius: 0
