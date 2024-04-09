@@ -1,29 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// Author (CR): Elias Dridi
 public class GameManager : MonoBehaviour
 {
-    private static GameManager instance;
+    #region Singleton
+    private static GameManager _Instance;
 
     public static GameManager GetInstance()
     {
-        if (instance == null) instance = new GameManager();
-        return instance;
+        if (_Instance == null) 
+            _Instance = new GameManager();
+        return _Instance;
     }
+
+    private GameManager() : base() { }
+    #endregion
 
     private void Awake()
     {
-        if (instance != null)
+        if (_Instance != null)
         {
-            DestroyImmediate(this);
+            Destroy(this);
             return;
         }
-        instance = this;
+        _Instance = this;
     }
 
     [SerializeField] private int _MaxCardStocked = 12;
+
+    // Variables
     private int _CardStocked = 12;
+
+    private int _TurnNumber = 1;
+
+    public bool cardPlayed;
+
+    private int _CurrentPriority = 1;
+    
+    // Get / Set
+    public int CurrentPriority
+    {
+        get { return _CurrentPriority; }
+    }
     public int cardStocked
     {
         get
@@ -33,15 +51,20 @@ public class GameManager : MonoBehaviour
         set
         {
             cardStocked = value;
-        }        
+        }
     }
-    private int _TurnNumber = 1;
-    public bool cardPlayed;
 
     public void NextTurn()
     {
         _TurnNumber++;
         cardPlayed = false;
     }
-   
+
+    private void OnDestroy()
+    {
+        // Singleton cleaning process
+        if (_Instance == this)
+            _Instance = null;
+    }
+
 }

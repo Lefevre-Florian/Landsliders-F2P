@@ -1,10 +1,11 @@
 using com.isartdigital.f2p.gameplay.card;
+
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
+
 using UnityEngine;
 
+// Author (CR): Paul Vincencini
 namespace com.isartdigital.f2p.gameplay.manager 
 {
     public class GridManager : MonoBehaviour
@@ -55,7 +56,7 @@ namespace com.isartdigital.f2p.gameplay.manager
 
            if(_CardBackgroundPrefab == null) 
            {
-                Debug.Log("GridManager : Champ serialisé _CardBackgroundPrefab non assigné");
+                Debug.Log("GridManager : Champ serialisÃ© _CardBackgroundPrefab non assignÃ©");
                 return;
            }
 
@@ -83,16 +84,19 @@ namespace com.isartdigital.f2p.gameplay.manager
         {
             if(pX > 2 || pX < 0 || pY > 2 || pY < 0) 
             {
-                Debug.Log("Les parametres rentré sont : pX = " + pX.ToString() + ", pY = " + pY.ToString() + "Cependant la fonction a pour intervale x[0,2] et y[0,2]");
+                Debug.Log("Les parametres rentrÃ© sont : pX = " + pX.ToString() + ", pY = " + pY.ToString() + "Cependant la fonction a pour intervale x[0,2] et y[0,2]");
                 return Vector2.zero;
             }
 
             return new Vector2(_GridSize.x * (pX - 1) + _Offset.x, _GridSize.y * (pY - 1) + _Offset.y);
         }
 
+        public GameObject GetCardByGridCoordinate(Vector2 pPosition) => _Cards[(int)pPosition.x, (int)pPosition.y];
+
         private void OnDestroy()
         {
-            if (instance == this) instance = null;
+            if (instance == this) 
+                instance = null;
         }
     }
 }
