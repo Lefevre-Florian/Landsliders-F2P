@@ -99,8 +99,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 4280248130501027881}
-  size: 2
-  cardRatio: 1.39
+  allCardsParameters: []
+  size: 1.8666668
+  cardRatio: 1.5000001
 --- !u!61 &4280248130501027881
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,7 +145,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.92386657, y: 1.2841746}
+  m_Size: {x: 0.86255926, y: 1.293839}
   m_EdgeRadius: 0
 --- !u!1 &2523440598157997503
 GameObject:
@@ -306,8 +307,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 9099556368552884202}
-  size: 2
-  cardRatio: 1.39
+  allCardsParameters: []
+  size: 1.8666668
+  cardRatio: 1.5000001
 --- !u!61 &9099556368552884202
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -351,7 +353,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.92386657, y: 1.2841746}
+  m_Size: {x: 0.86255926, y: 1.293839}
   m_EdgeRadius: 0
 --- !u!1 &5332686387119499155
 GameObject:
@@ -452,8 +454,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 3950555089225330132}
-  size: 2
-  cardRatio: 1.39
+  allCardsParameters: []
+  size: 1.8666668
+  cardRatio: 1.5000001
 --- !u!61 &3950555089225330132
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -497,7 +500,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.92386657, y: 1.2841746}
+  m_Size: {x: 0.86255926, y: 1.293839}
   m_EdgeRadius: 0
 --- !u!1 &6653326898835464927
 GameObject:
@@ -598,8 +601,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 258008470068934316}
-  size: 2
-  cardRatio: 1.39
+  allCardsParameters: []
+  size: 1.8666668
+  cardRatio: 1.5000001
 --- !u!61 &258008470068934316
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -643,7 +647,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.92386657, y: 1.2841746}
+  m_Size: {x: 0.86255926, y: 1.293839}
   m_EdgeRadius: 0
 --- !u!1 &6789983874461630671
 GameObject:
@@ -744,8 +748,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 512698698859325311}
-  size: 2
-  cardRatio: 1.39
+  allCardsParameters: []
+  size: 1.8666668
+  cardRatio: 1.5000001
 --- !u!61 &512698698859325311
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -789,7 +794,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.92386657, y: 1.2841746}
+  m_Size: {x: 0.86255926, y: 1.293839}
   m_EdgeRadius: 0
 --- !u!1 &6863363538277277954
 GameObject:
@@ -890,8 +895,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 8024969631269992310}
-  size: 2
-  cardRatio: 1.39
+  allCardsParameters: []
+  size: 1.8666668
+  cardRatio: 1.5000001
 --- !u!61 &8024969631269992310
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -935,7 +941,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.92386657, y: 1.2841746}
+  m_Size: {x: 0.86255926, y: 1.293839}
   m_EdgeRadius: 0
 --- !u!1 &8018985915167383236
 GameObject:
@@ -1036,8 +1042,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 5012800111613358687}
-  size: 2
-  cardRatio: 1.39
+  allCardsParameters: []
+  size: 1.8666668
+  cardRatio: 1.5000001
 --- !u!61 &5012800111613358687
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1081,7 +1088,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.92386657, y: 1.2841746}
+  m_Size: {x: 0.86255926, y: 1.293839}
   m_EdgeRadius: 0
 --- !u!1 &8689239794477693337
 GameObject:
@@ -1182,8 +1189,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 5614986203355894432}
-  size: 2
-  cardRatio: 1.39
+  allCardsParameters: []
+  size: 1.8666668
+  cardRatio: 1.5000001
 --- !u!61 &5614986203355894432
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1227,7 +1235,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.92386657, y: 1.2841746}
+  m_Size: {x: 0.86255926, y: 1.293839}
   m_EdgeRadius: 0
 --- !u!1 &9036935919510382664
 GameObject:
@@ -1328,8 +1336,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 9134336979828192180}
-  size: 2
-  cardRatio: 1.39
+  allCardsParameters: []
+  size: 1.8666668
+  cardRatio: 1.5000001
 --- !u!61 &9134336979828192180
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1373,5 +1382,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.92386657, y: 1.2841746}
+  m_Size: {x: 0.86255926, y: 1.293839}
   m_EdgeRadius: 0
