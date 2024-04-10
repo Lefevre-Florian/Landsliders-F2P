@@ -25,6 +25,7 @@ public class HandManager : MonoBehaviour
         instance = this;
     }
 
+    [Header("Card Parameters")]
 
     [SerializeField] private int _MaxCardHold = 4;
     [SerializeField] private int _StartingCardNb = 4;
@@ -41,19 +42,19 @@ public class HandManager : MonoBehaviour
     [SerializeField] public GameObject _CardSlotPrefab;
     [SerializeField] public GameObject _CardPrefab;
 
+    [Header("Container")]
+
+    [SerializeField] private GameObject _DeckContainer;
+    [SerializeField] private GameObject _HandContainer;
 
     [HideInInspector] public Vector2 _ScreenSizeInGameUnit;
     [HideInInspector] public Vector2 _GridSize;
 
     [HideInInspector] public GameObject[] _CardsSlot;
-
-
-    private GameObject[] _Deck;
-    [SerializeField] private GameObject _DeckContainer;
-    [SerializeField] private GameObject _HandContainer;
-
     [HideInInspector] public bool[] _AvailableCardSlots;
+    private GameObject[] _Deck;
 
+    
     private void Start()
     {
         CardSlot();
@@ -62,6 +63,7 @@ public class HandManager : MonoBehaviour
         {
             DrawCard();
         }
+        GameManager.CardPlaced.AddListener(CardPlayedThenDraw);
     }
 
     public void DrawCard()
@@ -73,11 +75,11 @@ public class HandManager : MonoBehaviour
                 if (_AvailableCardSlots[i] == true)
                 {
                     GameObject lcardGO = _Deck[0];
-                    lcardGO.SetActive(true);
                     lcardGO.transform.SetParent(_HandContainer.transform, true);
                     lcardGO.transform.position = _CardsSlot[i].transform.position;
                     TEMPCard ltempCard = lcardGO.GetComponent<TEMPCard>();
                     ltempCard.handIndex = i;
+                    ltempCard.SetModeInHand();
                     RemoveAtDeck(0);
                     _AvailableCardSlots[i] = false;
                     _CardInHand++;
@@ -137,9 +139,21 @@ public class HandManager : MonoBehaviour
             lXArrayIndex++;
         }
     }
+
+    public void CardPlayedThenDraw()
+    {
+        _CardInHand--;
+        DrawCard();
+    }
+
+
     private void OnDestroy()
     {
-        if (instance == this) instance = null;
+        if (instance != this) return;
+        instance = null;
+        GameManager.CardPlaced.RemoveListener(CardPlayedThenDraw);
+
+
     }
 }
 
