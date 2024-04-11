@@ -329,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _MaxCardStocked: 12
   _Player: {fileID: 6110220630346872215, guid: fc2c9f220e004af41a39e714ffc80dfa, type: 3}
-  _BasePlayerGridPos: {x: 2, y: 1}
+  _BasePlayerGridPos: {x: 1, y: 1}
   cardPlayed: 0
   playerMoved: 0
   playerCanMove: 0
