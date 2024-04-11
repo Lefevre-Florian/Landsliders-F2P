@@ -5,18 +5,31 @@ using UnityEngine;
 public class TEMPCard : MonoBehaviour
 {
     private SpriteRenderer rend;
+    private BoxCollider2D _Collider2D;
     private Color newColor;
     public int handIndex;
-    private GameManager _GameManager;
+
+
     private bool _Snapable;
     private Vector3 _SnapPos;
     private GameObject _SnapParent;
+
+
+    private State _CurrentState;
+
+    public enum State
+    {
+        InHand,
+        Moving,
+        Played
+    }
     void Start()
     {
-        _GameManager = FindObjectOfType<GameManager>();
+        _Collider2D = GetComponent<BoxCollider2D>();
         rend = GetComponentInChildren<SpriteRenderer>();
         RandomColor();
         rend.color = newColor;
+        _SnapPos = HandManager.GetInstance()._CardsSlot[handIndex].transform.position;
     }
 
     private void RandomColor()
@@ -25,29 +38,26 @@ public class TEMPCard : MonoBehaviour
         float g = Random.value;
         float b = Random.value;
 
-        newColor = new Color(r, g, b,255);
+        newColor = new Color(r, g, b);
     }
 
     private void OnMouseUp()
     {
-        if (!_GameManager.cardPlayed)
+        if (GameManager.GetInstance().currentState == GameManager.State.MovingCard)
         {
-            if(_Snapable)
+            if(_Snapable && _CurrentState == State.Moving)
             {
                 transform.position = _SnapPos;
                 HandManager.GetInstance()._AvailableCardSlots[handIndex] = true;
-                _GameManager.cardPlayed = true;
                 if (_SnapParent.transform.childCount > 0) 
                 {
                     Destroy(_SnapParent.transform.GetChild(0).gameObject);
                 }
                 transform.SetParent(_SnapParent.transform, true);
-                Destroy(this);
-                HandManager.GetInstance()._CardInHand--;
-                HandManager.GetInstance().DrawCard();
+                GameManager.CardPlaced.Invoke();
+                SetModePlayed();
                 
             }
-                
             else
             {
                 transform.position = _SnapPos;
@@ -57,10 +67,11 @@ public class TEMPCard : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (!_GameManager.cardPlayed)
+        if (GameManager.GetInstance().currentState == GameManager.State.MovingCard && _CurrentState != State.Played)
         {
             Vector3 positionSourisPixels = Input.mousePosition;
             transform.position = Camera.main.ScreenToWorldPoint(positionSourisPixels + new Vector3(0,0,2));
+            _CurrentState = State.Moving;
             
         }
     }
@@ -86,6 +97,23 @@ public class TEMPCard : MonoBehaviour
         _Snapable = true;
         _SnapPos = collision.transform.position;
         _SnapParent = collision.gameObject;
+    }
+
+    public void SetModeInHand()
+    {
+        _CurrentState = State.InHand;
+        gameObject.SetActive(true);
+    }
+
+    public void SetModeMoving()
+    {
+        _CurrentState = State.Moving;
+    }
+
+    public void SetModePlayed()
+    {
+        _CurrentState |= State.Played;
+        _Collider2D.enabled = false;
     }
 
 

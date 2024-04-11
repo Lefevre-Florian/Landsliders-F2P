@@ -6,21 +6,21 @@ using System.Collections;
 using UnityEngine;
 
 // Author (CR): Paul Vincencini
-namespace com.isartdigital.f2p.gameplay.manager 
+namespace com.isartdigital.f2p.gameplay.manager
 {
     public class GridManager : MonoBehaviour
     {
         private static GridManager instance;
 
-        public static GridManager GetInstance() 
+        public static GridManager GetInstance()
         {
-            if(instance == null) instance = new GridManager(); 
+            if(instance == null) instance = new GridManager();
             return instance;
         }
 
         private void Awake()
         {
-            if(instance != null) 
+            if(instance != null)
             {
                 DestroyImmediate(this);
                 return;
@@ -49,12 +49,12 @@ namespace com.isartdigital.f2p.gameplay.manager
         {
             _Cards = new GameObject[(int)_NumCard.x, (int)_NumCard.y];
 
-            foreach (Transform child in transform) 
+            foreach (Transform child in transform)
             {
                 Destroy(child.gameObject);
             }
 
-           if(_CardBackgroundPrefab == null) 
+           if(_CardBackgroundPrefab == null)
            {
                 Debug.Log("GridManager : Champ serialisé _CardBackgroundPrefab non assigné");
                 return;
@@ -74,15 +74,17 @@ namespace com.isartdigital.f2p.gameplay.manager
                     float lYPos = _GridSize.y * y;
 
                     _Cards[lXArrayIndex, lYArrayIndex] = Instantiate(_CardBackgroundPrefab, new Vector3(lXPos + _Offset.x, lYPos + _Offset.y, 0), Quaternion.identity, transform);
+                    CardContainer lCard = _Cards[lXArrayIndex,lYArrayIndex].GetComponent<CardContainer>();
+                    lCard.gridPosition = new Vector2(lXArrayIndex, lYArrayIndex);
                     lYArrayIndex++;
                 }
                 lXArrayIndex++;
             }
         }
 
-        public Vector2 GetIndexCoordonate(int pX, int pY) 
+        public Vector2 GetIndexCoordonate(int pX, int pY)
         {
-            if(pX > 2 || pX < 0 || pY > 2 || pY < 0) 
+            if(pX > 2 || pX < 0 || pY > 2 || pY < 0)
             {
                 Debug.Log("Les parametres rentré sont : pX = " + pX.ToString() + ", pY = " + pY.ToString() + "Cependant la fonction a pour intervale x[0,2] et y[0,2]");
                 return Vector2.zero;
@@ -95,9 +97,8 @@ namespace com.isartdigital.f2p.gameplay.manager
 
         private void OnDestroy()
         {
-            if (instance == this) 
+            if (instance == this)
                 instance = null;
         }
     }
 }
-

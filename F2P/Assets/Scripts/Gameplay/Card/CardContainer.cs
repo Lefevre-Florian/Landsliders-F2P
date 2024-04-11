@@ -12,6 +12,10 @@ namespace com.isartdigital.f2p.gameplay.card
         [HideInInspector] public float size;
         [HideInInspector] public float cardRatio = 1.39f;
 
+        [HideInInspector] public Vector2 gridPosition;
+
+       
+
         public BoxCollider2D GetBoxCollider() 
         {
             if(boxCollider == null) boxCollider = GetComponent<BoxCollider2D>();
