@@ -9,7 +9,15 @@ namespace Com.IsartDigital.F2P.Biomes
 {
     public class BiomeSurrondingAnalysis : MonoBehaviour
     {
-        private const float NB_SAMPLE = 4f;
+        private enum GridAngle
+        {
+            AllDirection = 8,
+            CrossDirection = 4,
+            NextDirection = 2
+        }
+
+        [Header("Design")]
+        [SerializeField] private GridAngle _GridDirection = GridAngle.CrossDirection;
 
         // Variables
         private GridManager _GridManager = null;
@@ -34,18 +42,24 @@ namespace Com.IsartDigital.F2P.Biomes
                     }
                 }
             }
+
+            Debug.Log("Position : " + _GridPosition);
+            GetSurrounding();
         }
 
         public GameObject[] GetSurrounding()
         {
             List<GameObject> lSurroundingBiomes = new List<GameObject>();
-
-            float lQuaterOfCircle = Mathf.PI / 2f * Mathf.Rad2Deg;
             Vector2 lSamplePosition = default;
 
-            for (int i = 0; i < NB_SAMPLE; i++)
+            int lLength = (int)_GridDirection;
+            float lAngle = ((Mathf.PI * 2f) / (int)_GridDirection) * Mathf.Rad2Deg;
+
+            for (int i = 0; i < lLength; i++)
             {
-                lSamplePosition = _GridPosition + (Vector2)(Quaternion.AngleAxis(lQuaterOfCircle * i, Vector3.forward) * Vector3.up);
+                lSamplePosition = _GridPosition + (Vector2)(Quaternion.AngleAxis(lAngle * i, Vector3.forward) * Vector3.up);
+                lSamplePosition.x = Mathf.RoundToInt(lSamplePosition.x);
+                lSamplePosition.y = Mathf.RoundToInt(lSamplePosition.y);
 
                 // Check out of bound
                 if (lSamplePosition.x >= 0f
