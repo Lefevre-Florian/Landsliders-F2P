@@ -10,7 +10,7 @@ namespace Com.IsartDigital.F2P.Biomes
     {
         [Header("Design - Settings")]
         [SerializeField][Range(0, 10)] private int _Timer = 0;
-        [SerializeField] private List<UnityEvent<int>> _TimedEvents = new List<UnityEvent<int>>();
+        [SerializeField] private Action _Action = null;
 
         [Header("Render")]
         [SerializeField] private TextMeshProUGUI _Label = null;
@@ -35,7 +35,6 @@ namespace Com.IsartDigital.F2P.Biomes
 
             if (_Label != null)
                 _Label.text = _InternalTimer.ToString();
-
         }
 
         private void OnDestroy()

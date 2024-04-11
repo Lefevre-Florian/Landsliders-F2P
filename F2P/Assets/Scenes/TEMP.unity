@@ -777,7 +777,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Timer: 0
-  _TimedEvents: []
   _Label: {fileID: 0}
 --- !u!4 &1860979051
 Transform:
