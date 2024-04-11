@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 // Author (CR): Elias Dridi
@@ -54,10 +55,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Events
+    public event Action OnTurnPassed;
+
     public void NextTurn()
     {
         _TurnNumber++;
         cardPlayed = false;
+
+        OnTurnPassed?.Invoke();
     }
 
     private void OnDestroy()
