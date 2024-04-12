@@ -27,10 +27,6 @@ namespace Com.IsartDigital.F2P.Biomes
         private void Start()
         {
             _GridManager = GridManager.GetInstance();
-
-            Vector2 lLength = _GridManager._NumCard;
-            GameObject[,] lGrid = _GridManager._Cards;
-
             _GridPosition = _GridManager.GetGridCoordinate(transform.position);
         }
 
@@ -48,8 +44,6 @@ namespace Com.IsartDigital.F2P.Biomes
                 lSamplePosition.x = Mathf.RoundToInt(lSamplePosition.x);
                 lSamplePosition.y = Mathf.RoundToInt(lSamplePosition.y);
 
-                Debug.Log(lSamplePosition);
-
                 // Check out of bound
                 if (lSamplePosition.x >= 0f
                     && lSamplePosition.x < _GridManager._NumCard.x
@@ -62,8 +56,6 @@ namespace Com.IsartDigital.F2P.Biomes
             }
             return lSurroundingBiomes.ToArray();
         }
-
-        public void Echo() => Debug.Log("ok");
 
         private void OnDestroy() => _GridManager = null;
     }
