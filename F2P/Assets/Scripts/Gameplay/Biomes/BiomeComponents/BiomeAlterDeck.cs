@@ -36,6 +36,8 @@ namespace Com.IsartDigital.F2P.Biomes
 
         public void StopContinuous() => _GameManager.OnTurnPassed -= UpdateTime;
 
+        public void SetNbCardAffected(int pNb) => _NbAffected = pNb;
+
         private void UpdateTime()
         {
             if (--_Timer <= _NbTurn)

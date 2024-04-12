@@ -94,6 +94,14 @@ namespace com.isartdigital.f2p.gameplay.manager
             return new Vector2(_GridSize.x * (pX - 1) + _Offset.x, _GridSize.y * (pY - 1) + _Offset.y);
         }
 
+        public Vector2 GetGridCoordinate(int pX, int pY) => GetGridCoordinate(new Vector2(pX, pY));
+
+        public Vector2 GetGridCoordinate(Vector2 pWorldPosition)
+        {
+            return new Vector2((pWorldPosition.x - _Offset.x) / _GridSize.x,
+                               (pWorldPosition.y - _Offset.y) / _GridSize.y);
+        }
+
         public GameObject GetCardByGridCoordinate(Vector2 pPosition) => _Cards[(int)pPosition.x, (int)pPosition.y];
 
         private void OnDestroy()

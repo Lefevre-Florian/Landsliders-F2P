@@ -31,17 +31,7 @@ namespace Com.IsartDigital.F2P.Biomes
             Vector2 lLength = _GridManager._NumCard;
             GameObject[,] lGrid = _GridManager._Cards;
 
-            for (int i = 0; i < lLength.x; i++)
-            {
-                for (int j = 0; j < lLength.y; j++)
-                {
-                    if (lGrid[i, j].transform == transform.parent)
-                    {
-                        _GridPosition = new Vector2(i, j);
-                        break;
-                    }
-                }
-            }
+            _GridPosition = _GridManager.GetGridCoordinate(transform.position);
         }
 
         public GameObject[] GetSurrounding()

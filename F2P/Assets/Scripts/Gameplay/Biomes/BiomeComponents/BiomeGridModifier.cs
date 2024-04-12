@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using UnityEngine;
 
+// Author (CR): Lefevre Florian
 namespace Com.IsartDigital.F2P.Biomes
 {
     [RequireComponent(typeof(BiomeSurrondingAnalysis))]
