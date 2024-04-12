@@ -8,9 +8,17 @@ namespace Com.IsartDigital.F2P.Biomes
 {
     public class BiomeTimer : MonoBehaviour
     {
+        [Serializable]
+        public struct TupleActionTime
+        {
+            public float time;
+            public UnityEvent method;
+        }
+
+
         [Header("Design - Settings")]
         [SerializeField][Range(0, 10)] private int _Timer = 0;
-        [SerializeField] private Action _Action = null;
+        [SerializeField] private TupleActionTime[] _TimedActions = new TupleActionTime[0];
 
         [Header("Render")]
         [SerializeField] private TextMeshProUGUI _Label = null;
@@ -23,13 +31,20 @@ namespace Com.IsartDigital.F2P.Biomes
         private void Start()
         {
             _GameManager = GameManager.GetInstance();
-
-            ///TODO : connect to event turn passed to update timer
+            _GameManager.OnTurnPassed += ClockTicking;
         }
 
         private void ClockTicking()
         {
             --_InternalTimer;
+
+            int lLength = 0;
+            for (int i = 0; i < lLength; i++)
+            {
+                if (_TimedActions[i].time == _InternalTimer)
+                    _TimedActions[i].method.Invoke();
+            }
+
             if (_InternalTimer == 0)
                 _InternalTimer = _Timer;
 
@@ -39,6 +54,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void OnDestroy()
         {
+            _GameManager.OnTurnPassed -= ClockTicking;
             _GameManager = null;
         }
 

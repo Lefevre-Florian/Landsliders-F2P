@@ -65,7 +65,10 @@ namespace Com.IsartDigital.F2P.Biomes
                     && lSamplePosition.x < _GridManager._NumCard.x
                     && lSamplePosition.y >= 0f
                     && lSamplePosition.y < _GridManager._NumCard.y)
+                {
                     lSurroundingBiomes.Add(_GridManager.GetCardByGridCoordinate(lSamplePosition));
+                }
+                    
             }
             return lSurroundingBiomes.ToArray();
         }
