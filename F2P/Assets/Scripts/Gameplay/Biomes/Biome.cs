@@ -1,30 +1,39 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Com.IsartDigital.F2P.Biomes
 {
     public class Biome : MonoBehaviour
     {
+        [Header("Design")]
+        [SerializeField][Min(0)] private int _Priority = 1;
+        [SerializeField] private UnityEvent _OnTriggered = null;
+
+        [Space(2)]
+        [SerializeField] private BiomeType _Type = BiomeType.grassland;
+
         // Variables
-        private int _Priority = 0;
+        private GameManager _GameManager = null;
 
-        // Membres
-        protected GameManager m_GameManager = null;
-
-        protected virtual void Start()
+        private void Start()
         {
-            m_GameManager = GameManager.GetInstance();
+            _GameManager = GameManager.GetInstance();
+            if(_Priority != 0)
+            {
+
+            }
         }
 
-        protected virtual void PlayEffect(int pGameCurrentPriority)
-        {
-            if (pGameCurrentPriority != _Priority)
-                return;
-        }
+        private void TriggerPriority() => _OnTriggered.Invoke();
 
-        protected virtual void OnDestroy()
+        private void OnDestroy()
         {
-            m_GameManager = null;
-        }
+            if(_Priority != 0)
+            {
 
+            }
+            _OnTriggered = null;
+            _GameManager = null;
+        }
     }
 }
