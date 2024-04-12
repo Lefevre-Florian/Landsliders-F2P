@@ -52,12 +52,19 @@ public class GameManager : MonoBehaviour
     [Header("Player Starting GridPosition")]
     [SerializeField] private Vector2 _BasePlayerGridPos;
 
+    [Header("Game flow")]
+    [SerializeField][Range(0.1f, 1f)] private float _SecondsBetweenEachPriorityExecution = 0.5f;
+
     // Variables
     private int _CurrentPriority = 1;
+    private int _MaxPriority = 12; // Temp value will be reduce to 1
+
     private int _TurnNumber = 1;
     private int _CardStocked = 12;
 
     private Vector3 _BasePlayerGridPosToPixel;
+
+    private Coroutine _EffectTimer = null;
 
     [HideInInspector] public bool cardPlayed;
     [HideInInspector] public bool playerMoved;
@@ -85,6 +92,7 @@ public class GameManager : MonoBehaviour
 
     // Events
     public event Action OnTurnPassed;
+    public event Action<int> OnEffectPlayed;
 
     private void Start()
     {
@@ -103,6 +111,8 @@ public class GameManager : MonoBehaviour
 
         SetModeMovingCard();
     }
+
+    #region States
 
     public void SetModeMovingCard()
     {
@@ -123,7 +133,37 @@ public class GameManager : MonoBehaviour
         playerCanMove = false;
         playerMoved = true;
         cardPlayed = false;
+
+        if (_EffectTimer != null)
+            StopCoroutine(_EffectTimer);
+        _EffectTimer = StartCoroutine(EffectTurnByTurn());
     }
+    #endregion
+
+    #region Utilities
+    private void SetMaxPriority(int pPriority)
+    {
+
+    }
+
+    private IEnumerator EffectTurnByTurn()
+    {
+        while (_CurrentPriority != _MaxPriority)
+        {
+            OnEffectPlayed?.Invoke(_CurrentPriority);
+            _CurrentPriority += 1;
+
+            yield return new WaitForSeconds(_SecondsBetweenEachPriorityExecution);
+        }
+        _CurrentPriority = 1;
+
+        if(_EffectTimer != null)
+        {
+            StopCoroutine(_EffectTimer);
+            _EffectTimer = null;
+        }
+    }
+    #endregion
 
     public static UnityEvent CardPlaced = new UnityEvent();
     public static UnityEvent PlayerMoved = new UnityEvent();
@@ -133,6 +173,10 @@ public class GameManager : MonoBehaviour
     {
         if (_Instance == this)
           _Instance = null;
+
+        StopAllCoroutines();
+        _EffectTimer = null;
+
         GameManager.CardPlaced.RemoveAllListeners();
         GameManager.PlayerMoved.RemoveAllListeners();
     }

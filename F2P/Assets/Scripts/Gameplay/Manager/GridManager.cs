@@ -10,22 +10,23 @@ namespace com.isartdigital.f2p.gameplay.manager
 {
     public class GridManager : MonoBehaviour
     {
-        private static GridManager instance;
+        private static GridManager _Instance;
 
         public static GridManager GetInstance()
         {
-            if(instance == null) instance = new GridManager();
-            return instance;
+            if(_Instance == null) 
+                _Instance = new GridManager();
+            return _Instance;
         }
 
         private void Awake()
         {
-            if(instance != null)
+            if(_Instance != null)
             {
                 DestroyImmediate(this);
                 return;
             }
-            instance = this;
+            _Instance = this;
         }
 
         [Header("Grid Parameters")]
@@ -97,8 +98,8 @@ namespace com.isartdigital.f2p.gameplay.manager
 
         private void OnDestroy()
         {
-            if (instance == this)
-                instance = null;
+            if (_Instance == this)
+                _Instance = null;
         }
     }
 }
