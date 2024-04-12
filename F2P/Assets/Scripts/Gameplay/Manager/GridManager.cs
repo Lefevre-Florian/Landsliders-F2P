@@ -83,6 +83,13 @@ namespace com.isartdigital.f2p.gameplay.manager
             }
         }
 
+        #region Utils
+        /// <summary>
+        /// Get the world position of an element based on the grid position
+        /// </summary>
+        /// <param name="pX"></param>
+        /// <param name="pY"></param>
+        /// <returns></returns>
         public Vector2 GetIndexCoordonate(int pX, int pY)
         {
             if(pX > 2 || pX < 0 || pY > 2 || pY < 0)
@@ -94,15 +101,33 @@ namespace com.isartdigital.f2p.gameplay.manager
             return new Vector2(_GridSize.x * (pX - 1) + _Offset.x, _GridSize.y * (pY - 1) + _Offset.y);
         }
 
+        /// <summary>
+        /// Get the index position of an element based on the world position
+        /// </summary>
+        /// <param name="pX"></param>
+        /// <param name="pY"></param>
+        /// <returns></returns>
         public Vector2 GetGridCoordinate(int pX, int pY) => GetGridCoordinate(new Vector2(pX, pY));
 
+        /// <summary>
+        /// Get the index position of an element based on the world position
+        /// </summary>
+        /// <param name="pX"></param>
+        /// <param name="pY"></param>
+        /// <returns></returns>
         public Vector2 GetGridCoordinate(Vector2 pWorldPosition)
         {
             return new Vector2((pWorldPosition.x - _Offset.x) / _GridSize.x,
                                (pWorldPosition.y - _Offset.y) / _GridSize.y);
         }
 
+        /// <summary>
+        /// Get the card at the specified position (in grid position)
+        /// </summary>
+        /// <param name="pPosition">Grid position format</param>
+        /// <returns></returns>
         public GameObject GetCardByGridCoordinate(Vector2 pPosition) => _Cards[(int)pPosition.x, (int)pPosition.y];
+        #endregion
 
         private void OnDestroy()
         {

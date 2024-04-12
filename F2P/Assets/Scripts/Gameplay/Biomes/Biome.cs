@@ -24,6 +24,8 @@ namespace Com.IsartDigital.F2P.Biomes
         public bool CanBeRemoved { get { return _CanBeRemoved; } }
         public bool IsWalkable { get { return _IsWalkable; } }
 
+        public BiomeType Type { get { return _Type; } }
+
         private void Start()
         {
             _GameManager = GameManager.GetInstance();

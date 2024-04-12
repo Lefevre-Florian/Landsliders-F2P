@@ -17,7 +17,6 @@ namespace Com.IsartDigital.F2P.Biomes
         [SerializeField][Range(0f, 100f)] private float _ChanceOfModification = 50f;
         [SerializeField][Range(0f, 100f)] private float _ChangeRatio = 100f;
         [SerializeField] private BiomeType _Biome;
-        [SerializeField] private bool _IsReplacementForced = true;
 
         // Variables
         private BiomeSurrondingAnalysis _SurroundingComponent = null;
@@ -33,8 +32,8 @@ namespace Com.IsartDigital.F2P.Biomes
             if (lRnd > _ChanceOfModification)
                 return;
 
-            List<GameObject> lCards = _SurroundingComponent.GetSurrounding()
-                                                           .ToList<GameObject>();
+            List<Biome> lCards = _SurroundingComponent.GetSurrounding()
+                                                      .ToList();
             int lLength = lCards.Count;
             int lRatio = Mathf.RoundToInt(lLength * _ChangeRatio / 100f);
             int lIdx = 0;
