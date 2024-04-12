@@ -1,4 +1,5 @@
 using System;
+
 using UnityEngine;
 
 namespace Com.IsartDigital.F2P.Biomes
@@ -21,6 +22,7 @@ namespace Com.IsartDigital.F2P.Biomes
         private int _Timer = 0;
 
         private GameManager _GameManager = null;
+        private HandManager _HandManager = null;
 
         private void Start() => _GameManager = GameManager.GetInstance();
 
@@ -42,13 +44,20 @@ namespace Com.IsartDigital.F2P.Biomes
                 UpdateDeck();
         }
 
-        private void UpdateDeck() => _GameManager.cardStocked += (_IsRemoving) ? -_NbAffected : _NbAffected;
+        private void UpdateDeck()
+        {
+            if (_IsRemoving)
+                _HandManager.BurnCard(_NbAffected);
+            else
+                _HandManager.AddCardToDeck(_NbAffected);
+        }
 
         private void OnDestroy()
         {
             if (_Type == AffectingType.Continuious)
                 StopContinuous();
 
+            _HandManager = null;
             _GameManager = null;
         }
     }

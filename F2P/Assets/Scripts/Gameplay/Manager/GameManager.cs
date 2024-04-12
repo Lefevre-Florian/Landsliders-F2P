@@ -3,9 +3,6 @@ using com.isartdigital.f2p.gameplay.manager;
 
 using System;
 using System.Collections;
-using System.Collections.Generic;
-
-using TMPro.EditorUtilities;
 
 using UnityEngine;
 using UnityEngine.Events;
@@ -40,7 +37,8 @@ public class GameManager : MonoBehaviour
     {
         MovingCard,
         MovingPlayer,
-        FieldEffect
+        FieldEffect,
+        GameEnd
     }
 
     [Header("Card Parameters")]
@@ -137,6 +135,14 @@ public class GameManager : MonoBehaviour
         if (_EffectTimer != null)
             StopCoroutine(_EffectTimer);
         _EffectTimer = StartCoroutine(EffectTurnByTurn());
+    }
+
+    public void SetModeGameover()
+    {
+        currentState = State.GameEnd;
+        playerCanMove = false;
+        
+        ///TODO Trigger popup
     }
     #endregion
 
