@@ -47,6 +47,8 @@ public class Player : MonoBehaviour
 
     private Action DoAction;
 
+    public bool isProtected = false;
+
     // Get / Set
     public Vector2 GridPosition { get { return _ActualGridPos; } }
     public Vector2 PreviousGridPosition { get { return _PreviousGridPos; } }

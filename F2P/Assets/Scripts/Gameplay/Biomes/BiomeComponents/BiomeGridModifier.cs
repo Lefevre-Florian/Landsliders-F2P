@@ -47,6 +47,8 @@ namespace Com.IsartDigital.F2P.Biomes
             else
                 lCards = _SurroundingComponent.GetSurroundingOnlyFiltered(_BiomeTypeToReplace).ToList();
 
+            lCards.RemoveAll(x => !x.CanBeRemoved);
+
             int lLength = lCards.Count;
             int lRatio = Mathf.RoundToInt(lLength * _ChangeRatio / 100f);
             
