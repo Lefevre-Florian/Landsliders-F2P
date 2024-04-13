@@ -1,6 +1,7 @@
 using System;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Com.IsartDigital.F2P.Biomes
 {
@@ -15,7 +16,6 @@ namespace Com.IsartDigital.F2P.Biomes
         [Header("Design")]
         [SerializeField][Min(1)] private int _NbAffected = 1;
         [SerializeField] private bool _IsRemoving = true;
-        [SerializeField] private AffectingType _Type = AffectingType.Immediate;
         [SerializeField][Range(0, 10)] private int _NbTurn = 0;
 
         // Variables
@@ -29,8 +29,7 @@ namespace Com.IsartDigital.F2P.Biomes
         public void StartContinous()
         {
             _Timer = _NbTurn;
-            if (_Type == AffectingType.Continuious)
-                _GameManager.OnTurnPassed += UpdateTime;
+            _GameManager.OnTurnPassed += UpdateTime;
             UpdateTime();
         }
 
@@ -56,8 +55,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void OnDestroy()
         {
-            if (_Type == AffectingType.Continuious)
-                StopContinuous();
+            _GameManager.OnTurnPassed -= UpdateTime;
 
             _HandManager = null;
             _GameManager = null;

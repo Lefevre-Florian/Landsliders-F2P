@@ -10,7 +10,7 @@ namespace Com.IsartDigital.F2P.Biomes
         [SerializeField][Min(0)] private int _Priority = 1;
         [SerializeField][Range(0f, 100f)] private float _EventProcChance = 50f;
 
-        [SerializeField] private UnityEvent _OnTriggered = null;
+        [SerializeField] public UnityEvent onTriggered = null;
 
         [Space(2)]
         [SerializeField] private BiomeType _Type = BiomeType.grassland;
@@ -44,7 +44,7 @@ namespace Com.IsartDigital.F2P.Biomes
         private void TriggerPriority(int pGamePriority) 
         {
             if(pGamePriority != _Priority)
-                _OnTriggered?.Invoke(); 
+                onTriggered?.Invoke(); 
         }
 
         private void OnDestroy()
@@ -52,7 +52,7 @@ namespace Com.IsartDigital.F2P.Biomes
             if(_Priority != 0)
                 _GameManager.OnEffectPlayed -= TriggerPriority;
 
-            _OnTriggered = null;
+            onTriggered = null;
             _GameManager = null;
         }
     }

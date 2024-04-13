@@ -39,6 +39,9 @@ namespace com.isartdigital.f2p.gameplay.manager
         [SerializeField] public Vector2 _GridSizePercent;
         [SerializeField] public Vector2 _Offset;
 
+        [Space(2)]
+        [SerializeField] private bool _IsGridPredefined = false;
+
         [Header("GameObject")]
 
         [SerializeField] public GameObject _CardBackgroundPrefab;
@@ -64,7 +67,7 @@ namespace com.isartdigital.f2p.gameplay.manager
 
            if(_CardBackgroundPrefab == null)
            {
-                Debug.Log("GridManager : Champ serialisé _CardBackgroundPrefab non assigné");
+                Debug.LogError("GridManager : Champ serialisé _CardBackgroundPrefab non assigné");
                 return;
            }
 
@@ -82,12 +85,13 @@ namespace com.isartdigital.f2p.gameplay.manager
                     float lYPos = _GridSize.y * y;
 
                     _Cards[lXArrayIndex, lYArrayIndex] = Instantiate(_CardBackgroundPrefab, new Vector3(lXPos + _Offset.x, lYPos + _Offset.y, 0), Quaternion.identity, transform);
-                    CardContainer lCard = _Cards[lXArrayIndex,lYArrayIndex].GetComponent<CardContainer>();
+                    CardContainer lCard = _Cards[lXArrayIndex, lYArrayIndex].GetComponent<CardContainer>();
                     lCard.gridPosition = new Vector2(lXArrayIndex, lYArrayIndex);
                     lYArrayIndex++;
                 }
                 lXArrayIndex++;
             }
+
         }
 
         #region Coordinates Utils

@@ -384,6 +384,10 @@ PrefabInstance:
       value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 6796236801355939684, guid: ddc7a0c9470b72144b00fbc095576ba5, type: 3}
+      propertyPath: _IsGridPredefined
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6796236801355939684, guid: ddc7a0c9470b72144b00fbc095576ba5, type: 3}
       propertyPath: _GridSizePercent.x
       value: 0.5
       objectReference: {fileID: 0}

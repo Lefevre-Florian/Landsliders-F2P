@@ -6,6 +6,7 @@ using UnityEngine.Events;
 // Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.Biomes
 {
+    [RequireComponent(typeof(Biome))]
     public class BiomePlayerContact : MonoBehaviour
     {
         [Header("Architecture")]
@@ -16,13 +17,16 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private Vector2 _GridPosition;
 
+        private Biome _Biome = null;
+
         private void Start()
         {
+            _Biome = GetComponent<Biome>();
+            _Biome.onTriggered.AddListener(ComputeCollision);
+
             _GridPosition = GridManager.GetInstance()
                                        .GetGridCoordinate(transform.position);
-
             _Player = Player.GetInstance();
-            GameManager.PlayerMoved.AddListener(ComputeCollision);
         }
 
         private void ComputeCollision()
@@ -34,8 +38,10 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void OnDestroy()
         {
+            _Biome.onTriggered.RemoveListener(ComputeCollision);
+            _Biome = null;
+
             _Player = null;
-            GameManager.PlayerMoved.RemoveListener(ComputeCollision);
         }
     }
 }
