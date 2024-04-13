@@ -73,6 +73,8 @@ namespace com.isartdigital.f2p.gameplay.manager
                     float lYPos = _GridSize.y * y;
 
                     _Cards[lXArrayIndex, lYArrayIndex] = Instantiate(_CardBackgroundPrefab, new Vector3(lXPos + _Offset.x, lYPos + _Offset.y, 0), Quaternion.identity, transform);
+                    CardContainer lCard = _Cards[lXArrayIndex,lYArrayIndex].GetComponent<CardContainer>();
+                    lCard.gridPosition = new Vector2(lXArrayIndex, lYArrayIndex);
                     lYArrayIndex++;
                 }
                 lXArrayIndex++;
@@ -89,6 +91,8 @@ namespace com.isartdigital.f2p.gameplay.manager
 
             return new Vector2(_GridSize.x * (pX - 1) + _Offset.x, _GridSize.y * (pY - 1) + _Offset.y);
         }
+
+
 
         private void OnDestroy()
         {
