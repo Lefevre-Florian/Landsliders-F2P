@@ -2,7 +2,7 @@ using com.isartdigital.f2p.gameplay.card;
 
 using System;
 using System.Collections;
-
+using UnityEditor;
 using UnityEngine;
 
 // Author (CR): Paul Vincencini
@@ -10,6 +10,7 @@ namespace com.isartdigital.f2p.gameplay.manager
 {
     public class GridManager : MonoBehaviour
     {
+        #region Singleton
         private static GridManager _Instance;
 
         public static GridManager GetInstance()
@@ -18,6 +19,7 @@ namespace com.isartdigital.f2p.gameplay.manager
                 _Instance = new GridManager();
             return _Instance;
         }
+        #endregion
 
         private void Awake()
         {
@@ -28,6 +30,8 @@ namespace com.isartdigital.f2p.gameplay.manager
             }
             _Instance = this;
         }
+
+        private const string BIOMES_PATH = "Assets/Ressource/Prefab/Gameplay/Biomes";
 
         [Header("Grid Parameters")]
 
@@ -45,6 +49,9 @@ namespace com.isartdigital.f2p.gameplay.manager
         [HideInInspector] public float _CardRatio;
 
         [HideInInspector] public GameObject[,] _Cards;
+
+        [Header("Biomes")]
+        [SerializeField] private Transform[] _BiomePrefabs = null;
 
         private void Start()
         {
@@ -83,7 +90,7 @@ namespace com.isartdigital.f2p.gameplay.manager
             }
         }
 
-        #region Utils
+        #region Coordinates Utils
         /// <summary>
         /// Get the world position of an element based on the grid position
         /// </summary>
@@ -128,6 +135,8 @@ namespace com.isartdigital.f2p.gameplay.manager
         /// <returns></returns>
         public GameObject GetCardByGridCoordinate(Vector2 pPosition) => _Cards[(int)pPosition.x, (int)pPosition.y];
         #endregion
+
+        public Transform GetRandomBiome() => _BiomePrefabs[UnityEngine.Random.Range(0, _BiomePrefabs.Length)];
 
         private void OnDestroy()
         {

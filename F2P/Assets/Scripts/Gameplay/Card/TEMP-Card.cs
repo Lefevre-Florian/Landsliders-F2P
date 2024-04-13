@@ -1,19 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+using com.isartdigital.f2p.gameplay.manager;
 using UnityEngine;
 
+// Author (CR) : Paul Vincencini
 public class TEMPCard : MonoBehaviour
 {
+    // Variables
     private SpriteRenderer rend;
     private BoxCollider2D _Collider2D;
     private Color newColor;
     public int handIndex;
 
-
     private bool _Snapable;
     private Vector3 _SnapPos;
     private GameObject _SnapParent;
-
 
     private State _CurrentState;
 
@@ -23,6 +22,10 @@ public class TEMPCard : MonoBehaviour
         Moving,
         Played
     }
+
+    // Get / Set
+    public Vector2 GridPosition { get { return GridManager.GetInstance().GetGridCoordinate(transform.position); } }
+
     void Start()
     {
         _Collider2D = GetComponent<BoxCollider2D>();
@@ -56,7 +59,6 @@ public class TEMPCard : MonoBehaviour
                 transform.SetParent(_SnapParent.transform, true);
                 GameManager.CardPlaced.Invoke();
                 SetModePlayed();
-                
             }
             else
             {
@@ -88,8 +90,6 @@ public class TEMPCard : MonoBehaviour
         _Snapable = false;
         _SnapPos = HandManager.GetInstance()._CardsSlot[handIndex].transform.position;
         _SnapParent = null;
-       
-
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -114,9 +114,17 @@ public class TEMPCard : MonoBehaviour
     {
         _CurrentState |= State.Played;
         _Collider2D.enabled = false;
+
+
     }
 
+    public void Remove()
+    {
+        GridManager lGrid = GridManager.GetInstance();
+        Vector2 lPos = GridPosition;
+        lGrid._Cards[(int)lPos.x, (int)lPos.y] = null;
 
-
+        Destroy(gameObject);
+    }
 
 }
