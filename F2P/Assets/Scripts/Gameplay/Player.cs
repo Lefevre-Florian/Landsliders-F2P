@@ -88,7 +88,8 @@ public class Player : MonoBehaviour
                     {
                         if (Mathf.Abs(_ActualGridPos.x - _GridPosSelected.x) <= 1 && Mathf.Abs(_ActualGridPos.y - _GridPosSelected.y) <= 1)
                         {
-                            _WorldPosSelected = GridManager.GetInstance().GetIndexCoordonate((int)_GridPosSelected.x, (int)_GridPosSelected.y);
+                            _WorldPosSelected = GridManager.GetInstance()
+                                                           .GetIndexCoordonate((int)_GridPosSelected.x, (int)_GridPosSelected.y);
                             SetModeMove();
                         }
                     }
@@ -117,7 +118,7 @@ public class Player : MonoBehaviour
         StartCoroutine(DelayedStateMovable());
     }
 
-    private void SetModeMove()
+    public void SetModeMove()
     {
         _CurrentState = State.Moving;
         DoAction = DoActionMove;
@@ -127,7 +128,9 @@ public class Player : MonoBehaviour
     {
         _LerpTimer += Time.deltaTime;
         float t = Mathf.Clamp01(_LerpTimer / _LerpDuration);
-        transform.position = Vector3.Lerp(GridManager.GetInstance().GetIndexCoordonate((int)_ActualGridPos.x, (int)_ActualGridPos.y), GridManager.GetInstance().GetIndexCoordonate((int)_GridPosSelected.x, (int)_GridPosSelected.y), t);
+        transform.position = Vector3.Lerp(GridManager.GetInstance().GetIndexCoordonate((int)_ActualGridPos.x, (int)_ActualGridPos.y), 
+                                          GridManager.GetInstance().GetIndexCoordonate((int)_GridPosSelected.x, (int)_GridPosSelected.y), 
+                                          t);
         if (t >= 1f)
         {
             _LerpTimer = 0f;
@@ -137,6 +140,8 @@ public class Player : MonoBehaviour
         }
     }
     #endregion
+
+    public void SetNextPosition(Vector2 pPosition) => _GridPosSelected = pPosition;
 
     private void OnDestroy()
     {
