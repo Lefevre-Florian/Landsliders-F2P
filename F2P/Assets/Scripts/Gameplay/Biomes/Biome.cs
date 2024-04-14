@@ -1,3 +1,5 @@
+using com.isartdigital.f2p.gameplay.manager;
+
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -41,9 +43,19 @@ namespace Com.IsartDigital.F2P.Biomes
 
         public void PreciseSwitchRemovabilityState(bool pState) => _CanBeRemoved = pState;
 
+        public void Remove()
+        {
+            GridManager lGrid = GridManager.GetInstance();
+            Vector2 lPos = GridManager.GetInstance()
+                                      .GetGridCoordinate(transform.position);
+            lGrid._Cards[(int)lPos.x, (int)lPos.y] = null;
+
+            Destroy(gameObject);
+        }
+
         private void TriggerPriority(int pGamePriority) 
         {
-            if(pGamePriority != _Priority)
+            if(pGamePriority == _Priority)
                 onTriggered?.Invoke(); 
         }
 

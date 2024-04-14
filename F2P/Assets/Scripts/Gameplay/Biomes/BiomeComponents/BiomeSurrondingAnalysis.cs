@@ -65,9 +65,9 @@ namespace Com.IsartDigital.F2P.Biomes
                     && lSamplePosition.y < _GridManager._NumCard.y)
                 {
                     lBiome = _GridManager.GetCardByGridCoordinate(lSamplePosition).GetComponent<Biome>();
-
+                    
                     // Check next card is a biome (avoid crash)
-                    if(lBiome != null)
+                    if (lBiome != null)
                         lSurroundingBiomes.Add(lBiome);
                 }
                     

@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     {
         MovingCard,
         MovingPlayer,
-        FieldEffect,
+        BiomeEffect,
         GameEnd
     }
 
@@ -125,9 +125,9 @@ public class GameManager : MonoBehaviour
         playerCanMove = true;
     }
 
-    public void SetModeFieldEffect()
+    public void SetModeBiomeEffect()
     {
-        currentState = State.FieldEffect;
+        currentState = State.BiomeEffect;
         playerCanMove = false;
         playerMoved = true;
         cardPlayed = false;

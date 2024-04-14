@@ -23,9 +23,6 @@ public class TEMPCard : MonoBehaviour
         Played
     }
 
-    // Get / Set
-    public Vector2 GridPosition { get { return GridManager.GetInstance().GetGridCoordinate(transform.position); } }
-
     void Start()
     {
         _Collider2D = GetComponent<BoxCollider2D>();
@@ -114,17 +111,6 @@ public class TEMPCard : MonoBehaviour
     {
         _CurrentState |= State.Played;
         _Collider2D.enabled = false;
-
-
-    }
-
-    public void Remove()
-    {
-        GridManager lGrid = GridManager.GetInstance();
-        Vector2 lPos = GridPosition;
-        lGrid._Cards[(int)lPos.x, (int)lPos.y] = null;
-
-        Destroy(gameObject);
     }
 
 }

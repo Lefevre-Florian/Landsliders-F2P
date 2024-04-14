@@ -46,13 +46,13 @@ namespace Com.IsartDigital.F2P.Biomes
                 lCards = _SurroundingComponent.GetSurrounding().ToList();
             else
                 lCards = _SurroundingComponent.GetSurroundingOnlyFiltered(_BiomeTypeToReplace).ToList();
-
+   
             lCards.RemoveAll(x => !x.CanBeRemoved);
 
             int lLength = lCards.Count;
-            int lRatio = Mathf.RoundToInt(lLength * _ChangeRatio / 100f);
-            
-            TEMPCard lCard = null;
+            int lRatio = Mathf.RoundToInt((_SurroundingComponent.NbDirectionToCheck) * (_ChangeRatio / 100f));
+
+            Biome lCard = null;
             Transform lTile;
             int lIdx = 0;
 
@@ -61,17 +61,20 @@ namespace Com.IsartDigital.F2P.Biomes
             {
                 lIdx = UnityEngine.Random.Range(0, lCards.Count - 1);
 
-                lCard = lCards[lIdx].GetComponent<TEMPCard>();
+                lCard = lCards[lIdx].GetComponent<Biome>();
                 lTile = lCard.transform.parent;
-
-                if (_IsRandomReplace)
-                    Instantiate(transform, lTile);
-                else
-                    Instantiate(_GridManager.GetRandomBiome(), lTile);
 
                 lCard.Remove();
                 lCards.RemoveAt(lIdx);
+
+                print("Replaced : " + lCard.name);
+
+                if (!_IsRandomReplace)
+                    Instantiate(transform, lTile);
+                else
+                    Instantiate(_GridManager.GetRandomBiome(), lTile);
             }
+            print(transform.name);
         }
 
         private void OnDestroy()

@@ -134,10 +134,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Priority: 0
-  _OnTriggered:
+  _EventProcChance: 50
+  onTriggered:
     m_PersistentCalls:
       m_Calls: []
   _Type: 0
+  _CanBeRemoved: 1
+  _IsWalkable: 1
 --- !u!1 &7646986577398426315
 GameObject:
   m_ObjectHideFlags: 0

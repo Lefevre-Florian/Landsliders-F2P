@@ -11,7 +11,7 @@ namespace com.isartdigital.f2p.gameplay.manager
     public class GridManager : MonoBehaviour
     {
         #region Singleton
-        private static GridManager _Instance;
+        private static GridManager _Instance = null;
 
         public static GridManager GetInstance()
         {
@@ -20,16 +20,6 @@ namespace com.isartdigital.f2p.gameplay.manager
             return _Instance;
         }
         #endregion
-
-        private void Awake()
-        {
-            if(_Instance != null)
-            {
-                DestroyImmediate(this);
-                return;
-            }
-            _Instance = this;
-        }
 
         private const string BIOMES_PATH = "Assets/Ressource/Prefab/Gameplay/Biomes";
 
@@ -56,42 +46,67 @@ namespace com.isartdigital.f2p.gameplay.manager
         [Header("Biomes")]
         [SerializeField] private Transform[] _BiomePrefabs = null;
 
-        private void Start()
+        private void Awake()
         {
-            _Cards = new GameObject[(int)_NumCard.x, (int)_NumCard.y];
-
-            foreach (Transform child in transform)
+            if (_Instance != null)
             {
-                Destroy(child.gameObject);
-            }
-
-           if(_CardBackgroundPrefab == null)
-           {
-                Debug.LogError("GridManager : Champ serialisé _CardBackgroundPrefab non assigné");
+                DestroyImmediate(this);
                 return;
-           }
+            }
+            _Instance = this;
+
+            _Cards = new GameObject[(int)_NumCard.x, (int)_NumCard.y];
 
             _ScreenSizeInGameUnit = new Vector2(Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize);
             _GridSize = _ScreenSizeInGameUnit * new Vector2(_GridSizePercent.x, _GridSizePercent.y);
 
-            int lXArrayIndex = 0;
-            for (int x = -1; x <= 1; x++)
+            if (_IsGridPredefined)
             {
-                float lXPos = _GridSize.x * x;
-
-                int lYArrayIndex = 0;
-                for (int y = -1; y <= 1; y++)
+                CardContainer lContainer = null;
+                int lLinearIdx = 0;
+                for (int i = 0; i < (int)_NumCard.x; i++)
                 {
-                    float lYPos = _GridSize.y * y;
+                    for (int j = 0; j < (int)_NumCard.y; j++)
+                    {
+                        lContainer = transform.GetChild(lLinearIdx).GetComponent<CardContainer>();
+                        lContainer.gridPosition = new Vector2(i, j);
 
-                    _Cards[lXArrayIndex, lYArrayIndex] = Instantiate(_CardBackgroundPrefab, new Vector3(lXPos + _Offset.x, lYPos + _Offset.y, 0), Quaternion.identity, transform);
-                    CardContainer lCard = _Cards[lXArrayIndex, lYArrayIndex].GetComponent<CardContainer>();
-                    lCard.gridPosition = new Vector2(lXArrayIndex, lYArrayIndex);
-                    lYArrayIndex++;
+                        _Cards[i, j] = lContainer.transform.GetChild(0).gameObject;
+                        Debug.Log(_Cards[i, j].transform.name);
+
+                        lLinearIdx++;
+                    }
                 }
-                lXArrayIndex++;
             }
+            else
+            {
+                foreach (Transform child in transform)
+                    Destroy(child.gameObject);
 
+                if (_CardBackgroundPrefab == null)
+                {
+                    Debug.LogError("GridManager : Champ serialisé _CardBackgroundPrefab non assigné");
+                    return;
+                }
+
+                int lXArrayIndex = 0;
+                for (int x = -1; x <= 1; x++)
+                {
+                    float lXPos = _GridSize.x * x;
+
+                    int lYArrayIndex = 0;
+                    for (int y = -1; y <= 1; y++)
+                    {
+                        float lYPos = _GridSize.y * y;
+
+                        _Cards[lXArrayIndex, lYArrayIndex] = Instantiate(_CardBackgroundPrefab, new Vector3(lXPos + _Offset.x, lYPos + _Offset.y, 0), Quaternion.identity, transform);
+                        CardContainer lCard = _Cards[lXArrayIndex, lYArrayIndex].GetComponent<CardContainer>();
+                        lCard.gridPosition = new Vector2(lXArrayIndex, lYArrayIndex);
+                        lYArrayIndex++;
+                    }
+                    lXArrayIndex++;
+                }
+            }
         }
 
         #region Coordinates Utils
@@ -128,8 +143,17 @@ namespace com.isartdigital.f2p.gameplay.manager
         /// <returns></returns>
         public Vector2 GetGridCoordinate(Vector2 pWorldPosition)
         {
-            return new Vector2((pWorldPosition.x - _Offset.x) / _GridSize.x,
-                               (pWorldPosition.y - _Offset.y) / _GridSize.y);
+            for (int i = 0; i < _NumCard.x; i++)
+            {
+                for (int j = 0; j < _NumCard.y; j++)
+                {
+                    if (pWorldPosition == (Vector2)_Cards[i, j].transform.position)
+                        return new Vector2(i, j);
+                }
+            }
+            return Vector2.one * -1f;
+           /* return new Vector2((int)((pWorldPosition.x - _Offset.x) / _GridSize.x),
+                               (int)((pWorldPosition.y - _Offset.y) / _GridSize.y));*/
         }
 
         /// <summary>
