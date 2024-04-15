@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7341c466c6f40e04b946a8bc6fca078d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseGridPos: {x: 0, y: 0}
+  baseGridPos: {x: 1, y: 1}
   _LerpDuration: 1
 --- !u!61 &1663775179575542501
 BoxCollider2D:

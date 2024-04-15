@@ -1,0 +1,224 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &835507405319731839
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1303455310275192841, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303455310275192841, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9722905
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303455310275192841, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6666666
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: m_Name
+      value: FlyingIlsands
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295392945309103686, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _Type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295392945309103686, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _Priority
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -9082546691183770853}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1834280640119364373}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8551979568917725734}
+  m_SourcePrefab: {fileID: 100100000, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+--- !u!1 &3845447295816968044 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+  m_PrefabInstance: {fileID: 835507405319731839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-9082546691183770853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845447295816968044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ed8dabae54ead4f9c2ce048b99c425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _OnPlayerCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8685040561702587449}
+        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.Biome, Assembly-CSharp
+        m_MethodName: PreciseSwitchReplacabilityState
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8551979568917725734}
+        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeProtection, Assembly-CSharp
+        m_MethodName: EnablePlayerProtection
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1834280640119364373}
+        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeTimer, Assembly-CSharp
+        m_MethodName: StartTicking
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &1834280640119364373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845447295816968044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81319e495f8ba7243a9d365efb7f3978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _AlwaysStart: 0
+  _Timer: 2
+  _TimedActions:
+  - time: 0
+    method:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8685040561702587449}
+          m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.Biome, Assembly-CSharp
+          m_MethodName: PreciseSwitchReplacabilityState
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1834280640119364373}
+          m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeTimer, Assembly-CSharp
+          m_MethodName: StopTicking
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8551979568917725734}
+          m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeProtection,
+            Assembly-CSharp
+          m_MethodName: DisablePlayerProtection
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  _Label: {fileID: 0}
+--- !u!114 &8551979568917725734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845447295816968044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 115fe0cd81f01d543b6de30ad55ba04d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8685040561702587449 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8295392945309103686, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+  m_PrefabInstance: {fileID: 835507405319731839}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3845447295816968044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8f5b350aecf584fb5e845adb339412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

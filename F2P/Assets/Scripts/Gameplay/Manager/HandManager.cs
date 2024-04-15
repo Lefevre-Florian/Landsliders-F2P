@@ -1,28 +1,30 @@
-using com.isartdigital.f2p.gameplay.manager;
 using Com.IsartDigital.F2P.UI.UIHUD;
+
 using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
+// Author (CR) : Elias Dridi
 public class HandManager : MonoBehaviour
 {
-    private static HandManager instance;
+    #region Singleton
+    private static HandManager _Instance;
 
     public static HandManager GetInstance()
     {
-        if (instance == null) instance = new HandManager();
-        return instance;
+        if (_Instance == null) _Instance = new HandManager();
+        return _Instance;
     }
+    #endregion
 
     private void Awake()
     {
-        if (instance != null)
+        if (_Instance != null)
         {
             DestroyImmediate(this);
             return;
         }
-        instance = this;
+        _Instance = this;
     }
 
     [Header("Card Parameters")]
@@ -93,6 +95,37 @@ public class HandManager : MonoBehaviour
         }
     }
 
+    public void BurnCard(int pNbCards = 1)
+    {
+        int lRemainingCardToRemove = pNbCards;
+        if (lRemainingCardToRemove < _Deck.Length)
+            Array.Resize(ref _Deck, _Deck.Length - lRemainingCardToRemove);
+        else
+        {
+            lRemainingCardToRemove -= _Deck.Length;
+            _Deck = new GameObject[0];
+
+            if (lRemainingCardToRemove > _CardInHand)
+                GameManager.GetInstance().SetModeGameover();
+            else
+            {
+                for (int i = 0; i < lRemainingCardToRemove; i++)
+                    Destroy(_HandContainer.transform.GetChild(UnityEngine.Random.Range(0, _HandContainer.transform.childCount)));
+                _CardInHand -= lRemainingCardToRemove;
+            }
+        }
+    }
+
+    public void AddCardToDeck(int pNbCards)
+    {
+        int lStartIdx = _Deck.Length - 1;
+        Array.Resize(ref _Deck, _Deck.Length + pNbCards);
+
+        int lLength = _Deck.Length;
+        for (int i = lStartIdx; i < lLength; i++)
+            _Deck[i] = CreateCard();
+    }
+
     public void RemoveAtDeck(int index)
     {
         Array.Copy(_Deck, index + 1, _Deck, index, _Deck.Length - index - 1);
@@ -103,11 +136,16 @@ public class HandManager : MonoBehaviour
     {
         _Deck = new GameObject[GameManager.GetInstance().cardStocked];
         for (int i = 0; i < _Deck.Length; i++)
-        {
-            _Deck[i] = Instantiate(_CardPrefab);
-            _Deck[i].gameObject.SetActive(false);
-            _Deck[i].transform.SetParent(_DeckContainer.transform, true);
-        }
+            _Deck[i] = CreateCard();
+    }
+
+    private GameObject CreateCard()
+    {
+        GameObject lCard = Instantiate(_CardPrefab);
+        lCard.SetActive(false);
+        lCard.transform.SetParent(_DeckContainer.transform, true);
+
+        return lCard;
     }
 
     private void CardSlot()
@@ -121,7 +159,7 @@ public class HandManager : MonoBehaviour
 
         if (_CardSlotPrefab == null)
         {
-            Debug.Log("GridManager : Champ serialisé _CardPrefab non assigné");
+            Debug.Log("GridManager : Champ serialisÃ© _CardPrefab non assignÃ©");
             return;
         }
 
@@ -149,11 +187,11 @@ public class HandManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (instance != this) return;
-        instance = null;
+        if (_Instance == this) 
+            return;
+        
+        _Instance = null;
         GameManager.CardPlaced.RemoveListener(CardPlayedThenDraw);
-
-
     }
 }
 
