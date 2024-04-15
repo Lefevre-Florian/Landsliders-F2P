@@ -32,6 +32,8 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void Start()
         {
+            _InternalTimer = _Timer;
+
             //GetComponent<TEMPCard>().OnPlaced += Enable;
             Enable();
         }
@@ -56,11 +58,11 @@ namespace Com.IsartDigital.F2P.Biomes
         {
             --_InternalTimer;
 
-            int lLength = 0;
+            int lLength = _TimedActions.Length;
             for (int i = 0; i < lLength; i++)
             {
                 if (_TimedActions[i].time == _InternalTimer)
-                    _TimedActions[i].method.Invoke();
+                    _TimedActions[i].method.Invoke();        
             }
 
             if (_InternalTimer == 0)
