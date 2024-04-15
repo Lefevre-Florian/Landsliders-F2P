@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 namespace Com.IsartDigital.F2P.Biomes
 {
+    [RequireComponent(typeof(Biome))]
     public class BiomeTimer : MonoBehaviour
     {
         [Serializable]

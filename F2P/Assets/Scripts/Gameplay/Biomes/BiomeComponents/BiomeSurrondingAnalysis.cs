@@ -1,12 +1,15 @@
 using com.isartdigital.f2p.gameplay.manager;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using UnityEngine;
 
 // Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.Biomes
 {
+    [RequireComponent(typeof(Biome))]
     public class BiomeSurrondingAnalysis : MonoBehaviour
     {
         private enum GridAngle
@@ -22,8 +25,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
         // Variables
         private GridManager _GridManager = null;
-
-        private Vector2 _GridPosition = Vector2.zero;
+        private Biome _Biome = null;
 
         // Get / Set
         public int NbDirectionToCheck { get { return (int)_GridDirection; } }
@@ -31,7 +33,7 @@ namespace Com.IsartDigital.F2P.Biomes
         private void Start()
         {
             _GridManager = GridManager.GetInstance();
-            _GridPosition = _GridManager.GetGridCoordinate(transform.position);
+            _Biome = GetComponent<Biome>();
 
             // Clamp to max grid size
             if (_Range > _GridManager._GridSize.x && _Range > _GridManager._GridSize.y)
@@ -54,7 +56,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
             for (int i = 0; i < lLength; i++)
             {
-                lSamplePosition = _GridPosition + (Vector2)(Quaternion.AngleAxis(lAngle * i, Vector3.forward * _Range) * Vector3.up);
+                lSamplePosition = _Biome.GridPosition + (Vector2)(Quaternion.AngleAxis(lAngle * i, Vector3.forward * _Range) * Vector3.up);
                 lSamplePosition.x = Mathf.RoundToInt(lSamplePosition.x);
                 lSamplePosition.y = Mathf.RoundToInt(lSamplePosition.y);
 
@@ -64,8 +66,7 @@ namespace Com.IsartDigital.F2P.Biomes
                     && lSamplePosition.y >= 0f
                     && lSamplePosition.y < _GridManager._NumCard.y)
                 {
-                    lBiome = _GridManager.GetCardByGridCoordinate(lSamplePosition).GetComponent<Biome>();
-                    
+                    lBiome = _GridManager.GetCardByGridCoordinate(lSamplePosition);
                     // Check next card is a biome (avoid crash)
                     if (lBiome != null)
                         lSurroundingBiomes.Add(lBiome);

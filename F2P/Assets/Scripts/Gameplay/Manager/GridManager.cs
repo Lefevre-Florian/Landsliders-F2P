@@ -1,5 +1,5 @@
 using com.isartdigital.f2p.gameplay.card;
-
+using Com.IsartDigital.F2P.Biomes;
 using System;
 using System.Collections;
 using UnityEditor;
@@ -72,7 +72,6 @@ namespace com.isartdigital.f2p.gameplay.manager
                         lContainer.gridPosition = new Vector2(i, j);
 
                         _Cards[i, j] = lContainer.transform.GetChild(0).gameObject;
-                        Debug.Log(_Cards[i, j].transform.name);
 
                         lLinearIdx++;
                     }
@@ -152,8 +151,8 @@ namespace com.isartdigital.f2p.gameplay.manager
                 }
             }
             return Vector2.one * -1f;
-           /* return new Vector2((int)((pWorldPosition.x - _Offset.x) / _GridSize.x),
-                               (int)((pWorldPosition.y - _Offset.y) / _GridSize.y));*/
+            /* return new Vector2((int)((pWorldPosition.x - _Offset.x / _GridSize.x),
+                                (int)((pWorldPosition.y - _Offset.y / _GridSize.y));*/
         }
 
         /// <summary>
@@ -161,7 +160,7 @@ namespace com.isartdigital.f2p.gameplay.manager
         /// </summary>
         /// <param name="pPosition">Grid position format</param>
         /// <returns></returns>
-        public GameObject GetCardByGridCoordinate(Vector2 pPosition) => _Cards[(int)pPosition.x, (int)pPosition.y];
+        public Biome GetCardByGridCoordinate(Vector2 pPosition) => _Cards[(int)pPosition.x, (int)pPosition.y].GetComponent<Biome>();
         #endregion
 
         public Transform GetRandomBiome() => _BiomePrefabs[UnityEngine.Random.Range(0, _BiomePrefabs.Length)];

@@ -14,9 +14,6 @@ namespace Com.IsartDigital.F2P.Biomes
 
         // Variables
         private Player _Player = null;
-
-        private Vector2 _GridPosition;
-
         private Biome _Biome = null;
 
         private void Start()
@@ -24,15 +21,13 @@ namespace Com.IsartDigital.F2P.Biomes
             _Biome = GetComponent<Biome>();
             _Biome.onTriggered.AddListener(ComputeCollision);
 
-            _GridPosition = GridManager.GetInstance()
-                                       .GetGridCoordinate(transform.position);
             _Player = Player.GetInstance();
         }
 
         private void ComputeCollision()
         {
             // Collision
-            if (_GridPosition == _Player.GridPosition)
+            if (_Biome.GridPosition == _Player.GridPosition)
                 _OnPlayerCollision?.Invoke();
         }
 

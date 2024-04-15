@@ -22,14 +22,20 @@ namespace Com.IsartDigital.F2P.Biomes
         // Variables
         private GameManager _GameManager = null;
 
+        private Vector2 _GridPosition = new Vector2();
+
         // Get / Set
         public bool CanBeRemoved { get { return _CanBeRemoved; } }
         public bool IsWalkable { get { return _IsWalkable; } }
+
+        public Vector2 GridPosition { get { return _GridPosition; } }
 
         public BiomeType Type { get { return _Type; } }
 
         private void Start()
         {
+            _GridPosition = GridManager.GetInstance().GetGridCoordinate(transform.position);
+
             _GameManager = GameManager.GetInstance();
             if(_Priority != 0)
                 _GameManager.OnEffectPlayed += TriggerPriority;

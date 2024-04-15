@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
 
     public bool isProtected = false;
 
+    private GridManager _GridManager = null;
+
     // Get / Set
     public Vector2 GridPosition { get { return _ActualGridPos; } }
     public Vector2 PreviousGridPosition { get { return _PreviousGridPos; } }
@@ -69,6 +71,8 @@ public class Player : MonoBehaviour
         _PreviousGridPos = baseGridPos;
         GameManager.CardPlaced.AddListener(SetModeMovable);
         GameManager.PlayerMoved.AddListener(SetModeFixed);
+
+        _GridManager = GridManager.GetInstance();
     }
 
     private void Update()
@@ -88,9 +92,9 @@ public class Player : MonoBehaviour
                     {
                         if (Mathf.Abs(_ActualGridPos.x - _GridPosSelected.x) <= 1 && Mathf.Abs(_ActualGridPos.y - _GridPosSelected.y) <= 1)
                         {
-                            _WorldPosSelected = GridManager.GetInstance()
-                                                           .GetIndexCoordonate((int)_GridPosSelected.x, (int)_GridPosSelected.y);
-                            SetModeMove();
+                            _WorldPosSelected = _GridManager.GetIndexCoordonate((int)_GridPosSelected.x, (int)_GridPosSelected.y);
+                            if(_GridManager.GetCardByGridCoordinate(_GridPosSelected).IsWalkable)
+                                SetModeMove();
                         }
                     }
                 }
@@ -128,8 +132,8 @@ public class Player : MonoBehaviour
     {
         _LerpTimer += Time.deltaTime;
         float t = Mathf.Clamp01(_LerpTimer / _LerpDuration);
-        transform.position = Vector3.Lerp(GridManager.GetInstance().GetIndexCoordonate((int)_ActualGridPos.x, (int)_ActualGridPos.y), 
-                                          GridManager.GetInstance().GetIndexCoordonate((int)_GridPosSelected.x, (int)_GridPosSelected.y), 
+        transform.position = Vector3.Lerp(_GridManager.GetIndexCoordonate((int)_ActualGridPos.x, (int)_ActualGridPos.y),
+                                          _GridManager.GetIndexCoordonate((int)_GridPosSelected.x, (int)_GridPosSelected.y), 
                                           t);
         if (t >= 1f)
         {
