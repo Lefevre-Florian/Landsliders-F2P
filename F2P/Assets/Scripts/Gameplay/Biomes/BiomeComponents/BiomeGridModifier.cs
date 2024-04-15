@@ -42,7 +42,6 @@ namespace Com.IsartDigital.F2P.Biomes
             int lRatio = Mathf.RoundToInt(NbDirectionToCheck * (_ChangeRatio / 100f));
 
             Biome lCard = null;
-            Transform lTile;
             int lIdx = 0;
 
             lRatio = (lRatio > lLength) ? lLength : lRatio;
@@ -51,15 +50,12 @@ namespace Com.IsartDigital.F2P.Biomes
                 lIdx = UnityEngine.Random.Range(0, lCards.Count - 1);
 
                 lCard = lCards[lIdx].GetComponent<Biome>();
-                lTile = lCard.transform.parent;
-
-                lCard.Remove();
                 lCards.RemoveAt(lIdx);
 
                 if (!_IsRandomReplace)
-                    Instantiate(_SubstitutionBiome, lTile);
+                    m_GridManager.ReplaceAtIndex(lCard.GridPosition, _SubstitutionBiome);
                 else
-                    Instantiate(m_GridManager.GetRandomBiome(), lTile);
+                    m_GridManager.ReplaceAtIndex(lCard.GridPosition, m_GridManager.GetRandomBiome());
             }
         }
     }

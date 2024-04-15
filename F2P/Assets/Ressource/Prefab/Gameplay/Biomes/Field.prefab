@@ -146,6 +146,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6703583478349585595}
+        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.Biome, Assembly-CSharp
+        m_MethodName: Replace
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &602880695641508344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,3 +188,14 @@ MonoBehaviour:
   _NbAffected: 1
   _IsRemoving: 0
   _NbTurn: 0
+--- !u!114 &6703583478349585595 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8295392945309103686, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+  m_PrefabInstance: {fileID: 3321631528925686525}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215226676069808110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8f5b350aecf584fb5e845adb339412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

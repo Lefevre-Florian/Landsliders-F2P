@@ -163,7 +163,20 @@ namespace com.isartdigital.f2p.gameplay.manager
         public Biome GetCardByGridCoordinate(Vector2 pPosition) => _Cards[(int)pPosition.x, (int)pPosition.y].GetComponent<Biome>();
         #endregion
 
+        #region Biome related
+        public void ReplaceAtIndex(Vector2 pGridPosition, Transform pTransform) 
+        {
+            int x = (int)pGridPosition.x;
+            int y = (int)pGridPosition.y;
+
+            Biome lBiome = Instantiate(pTransform, _Cards[x, y].transform.parent).GetComponent<Biome>();
+            _Cards[x, y] = lBiome.gameObject;
+        }
+
+        public void RemoveAtIndex(Vector2 pGridPosition) => _Cards[(int)pGridPosition.x, (int)pGridPosition.y] = null;
+
         public Transform GetRandomBiome() => _BiomePrefabs[UnityEngine.Random.Range(0, _BiomePrefabs.Length)];
+        #endregion
 
         private void OnDestroy()
         {

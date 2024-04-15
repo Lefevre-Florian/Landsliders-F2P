@@ -49,11 +49,13 @@ namespace Com.IsartDigital.F2P.Biomes
 
         public void Remove()
         {
-            GridManager lGrid = GridManager.GetInstance();
-            Vector2 lPos = GridManager.GetInstance()
-                                      .GetGridCoordinate(transform.position);
-            lGrid._Cards[(int)lPos.x, (int)lPos.y] = null;
+            GridManager.GetInstance().RemoveAtIndex(_GridPosition);
+            Destroy(gameObject);
+        }
 
+        public void Replace(Transform pSubsitutionBiome)
+        {
+            GridManager.GetInstance().ReplaceAtIndex(_GridPosition, pSubsitutionBiome);
             Destroy(gameObject);
         }
 
