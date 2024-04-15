@@ -74,31 +74,21 @@ namespace Com.IsartDigital.F2P.Biomes
             return lSurroundingBiomes.ToArray();
         }
 
-        protected Biome[] GetSurroundingRemoveFiltered(BiomeType[] pFilter, int pRange = 1)
+        protected Biome[] GetSurroundingOnlyFiltered(BiomeType[] pFilter, int pRange = 1)
         {
             Biome[] lSurroundingBiomes = GetSurrounding(pRange);
+            List<Biome> lBiomes = new List<Biome>();
 
             int lLength = lSurroundingBiomes.Length;
             if (lLength == 0)
                 return lSurroundingBiomes;
 
-            lLength = pFilter.Length;
             for (int i = 0; i < lLength; i++)
-                lSurroundingBiomes.ToList().RemoveAll(x => x.Type == pFilter[i]);
-
-            return lSurroundingBiomes.ToArray();
-        }
-
-        protected Biome[] GetSurroundingOnlyFiltered(BiomeType[] pFiler, int pRange = 1)
-        {
-            List<BiomeType> lExcludeFilter = new List<BiomeType>();
-            foreach (BiomeType lItem in Enum.GetValues(typeof(BiomeType)))
             {
-                if (!pFiler.Contains(lItem))
-                    lExcludeFilter.Add(lItem);
+                if (pFilter.Contains(lSurroundingBiomes[i].Type))
+                    lBiomes.Add(lSurroundingBiomes[i]);
             }
-
-            return GetSurroundingRemoveFiltered(lExcludeFilter.ToArray(), pRange);
+            return lBiomes.ToArray();
         }
 
         protected virtual void OnDestroy() => m_GridManager = null;

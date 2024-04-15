@@ -161,6 +161,7 @@ namespace com.isartdigital.f2p.gameplay.manager
             int y = (int)pGridPosition.y;
 
             Biome lBiome = Instantiate(pTransform, _Cards[x, y].transform.parent).GetComponent<Biome>();
+            _Cards[x, y].GetComponent<Biome>().Remove();
             _Cards[x, y] = lBiome.gameObject;
         }
 

@@ -76,7 +76,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void OnDestroy()
         {
-            if(_Priority != 0)
+            if(_Priority != 0 && _GameManager != null)
                 _GameManager.OnEffectPlayed -= TriggerPriority;
 
             onTriggered = null;

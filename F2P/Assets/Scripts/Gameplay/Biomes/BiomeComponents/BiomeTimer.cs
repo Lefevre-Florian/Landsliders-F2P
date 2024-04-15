@@ -47,7 +47,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
         public void StartTicking()
         {
-            if (_AlwaysStart)
+            if (_AlwaysStart || _InternalTimer != _Timer)
                 return;
             _GameManager.OnTurnPassed += ClockTicking;
         }
