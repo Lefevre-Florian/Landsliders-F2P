@@ -65,6 +65,10 @@ PrefabInstance:
       value: Field
       objectReference: {fileID: 0}
     - target: {fileID: 8295392945309103686, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8295392945309103686, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: _Priority
       value: 3
       objectReference: {fileID: 0}
@@ -132,8 +136,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3978990809736323693}
         m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeAlterDeck, Assembly-CSharp
-        m_MethodName: SetNbCardAffected
-        m_Mode: 3
+        m_MethodName: ImmediateAlterationBasedOnBonuses
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -170,5 +174,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NbAffected: 1
-  _IsRemoving: 1
+  _IsRemoving: 0
   _NbTurn: 0

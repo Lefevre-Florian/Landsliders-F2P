@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Com.IsartDigital.F2P.Biomes
 {
     [RequireComponent(typeof(Biome))]
-    public class BiomeChain : BiomeSurrondingAnalysis
+    public class BiomeChain : BiomeSurrondingAnalysis, IBiomeEnumerator
     {
         [Header("Design")]
         [SerializeField][Min(1)] private int _ChainMaxLength = int.MaxValue;
@@ -22,7 +22,9 @@ namespace Com.IsartDigital.F2P.Biomes
             _Type = GetComponent<Biome>().Type;
         }
 
-        public int GetChainLength()
+        public int GetEnumertation() => GetChainLength();
+
+        private int GetChainLength()
         {
             int lStep = 0;
             _ShortMemory = new List<Biome>
@@ -60,8 +62,11 @@ namespace Com.IsartDigital.F2P.Biomes
 
         protected override void OnDestroy()
         {
-            _ShortMemory.Clear();
-            _ShortMemory = null;
+            if(_ShortMemory != null && _ShortMemory.Count > 0)
+            {
+                _ShortMemory.Clear();
+                _ShortMemory = null;
+            }
 
             base.OnDestroy();
         }

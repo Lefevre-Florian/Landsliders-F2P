@@ -1,7 +1,6 @@
 using System;
 
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Com.IsartDigital.F2P.Biomes
 {
@@ -40,6 +39,12 @@ namespace Com.IsartDigital.F2P.Biomes
         public void StopContinuous() => _GameManager.OnTurnPassed -= UpdateTime;
 
         public void ImmediateAlteration() => UpdateDeck();
+
+        public void ImmediateAlterationBasedOnBonuses()
+        {
+            _NbAffected = GetComponent<IBiomeEnumerator>().GetEnumertation();
+            UpdateDeck();
+        }
 
         private void UpdateTime()
         {
