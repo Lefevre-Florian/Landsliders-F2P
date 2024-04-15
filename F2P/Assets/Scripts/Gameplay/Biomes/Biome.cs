@@ -34,11 +34,8 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void Start()
         {
-            _GridPosition = GridManager.GetInstance().GetGridCoordinate(transform.position);
-
-            _GameManager = GameManager.GetInstance();
-            if(_Priority != 0)
-                _GameManager.OnEffectPlayed += TriggerPriority;
+            //GetComponent<TEMPCard>().OnPlaced += Enable;
+            Enable();
         }
 
         public void SwitchWalkableState() => _IsWalkable = !_IsWalkable;
@@ -57,6 +54,15 @@ namespace Com.IsartDigital.F2P.Biomes
             lGrid._Cards[(int)lPos.x, (int)lPos.y] = null;
 
             Destroy(gameObject);
+        }
+
+        private void Enable()
+        {
+            _GridPosition = GridManager.GetInstance().GetGridCoordinate(transform.position);
+
+            _GameManager = GameManager.GetInstance();
+            if (_Priority != 0)
+                _GameManager.OnEffectPlayed += TriggerPriority;
         }
 
         private void TriggerPriority(int pGamePriority) 

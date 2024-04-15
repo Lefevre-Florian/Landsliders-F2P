@@ -1,13 +1,13 @@
 using com.isartdigital.f2p.gameplay.manager;
+using Com.IsartDigital.F2P.Biomes;
+using System;
 using UnityEngine;
 
 // Author (CR) : Paul Vincencini
 public class TEMPCard : MonoBehaviour
 {
     // Variables
-    private SpriteRenderer rend;
     private BoxCollider2D _Collider2D;
-    private Color newColor;
     public int handIndex;
 
     private bool _Snapable;
@@ -15,6 +15,9 @@ public class TEMPCard : MonoBehaviour
     private GameObject _SnapParent;
 
     private State _CurrentState;
+
+    // Event
+    public event Action OnPlaced;
 
     public enum State
     {
@@ -26,19 +29,7 @@ public class TEMPCard : MonoBehaviour
     void Start()
     {
         _Collider2D = GetComponent<BoxCollider2D>();
-        rend = GetComponentInChildren<SpriteRenderer>();
-        RandomColor();
-        rend.color = newColor;
         _SnapPos = HandManager.GetInstance()._CardsSlot[handIndex].transform.position;
-    }
-
-    private void RandomColor()
-    {
-        float r = Random.value;
-        float g = Random.value;
-        float b = Random.value;
-
-        newColor = new Color(r, g, b);
     }
 
     private void OnMouseUp()
@@ -111,6 +102,8 @@ public class TEMPCard : MonoBehaviour
     {
         _CurrentState |= State.Played;
         _Collider2D.enabled = false;
+
+        OnPlaced?.Invoke();
     }
 
 }

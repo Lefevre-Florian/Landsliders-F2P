@@ -140,6 +140,7 @@ public class Player : MonoBehaviour
             _LerpTimer = 0f;
             _PreviousGridPos = _ActualGridPos;
             _ActualGridPos = _GridPosSelected;
+            Debug.Log(GridPosition);
             GameManager.PlayerMoved.Invoke();
         }
     }

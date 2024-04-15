@@ -24,7 +24,11 @@ namespace Com.IsartDigital.F2P.Biomes
         private GameManager _GameManager = null;
         private HandManager _HandManager = null;
 
-        private void Start() => _GameManager = GameManager.GetInstance();
+        private void Start()
+        {
+            _HandManager = HandManager.GetInstance();
+            _GameManager = GameManager.GetInstance();
+        }
 
         public void StartContinous()
         {
@@ -39,7 +43,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void UpdateTime()
         {
-            if (--_Timer <= _NbTurn)
+            if (--_Timer <= 0)
                 _Timer = 0;
             else
                 UpdateDeck();
@@ -47,9 +51,9 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void UpdateDeck()
         {
-            if (_IsRemoving)
-                _HandManager.BurnCard(_NbAffected);
-            else
+            if (_IsRemoving && !Player.GetInstance().isProtected)
+                _HandManager.BurnCard(_NbAffected);  
+            else if(!_IsRemoving)
                 _HandManager.AddCardToDeck(_NbAffected);
         }
 

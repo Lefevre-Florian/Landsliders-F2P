@@ -92,6 +92,9 @@ public class GameManager : MonoBehaviour
     public event Action OnTurnPassed;
     public event Action<int> OnEffectPlayed;
 
+    public static UnityEvent CardPlaced = new UnityEvent();
+    public static UnityEvent PlayerMoved = new UnityEvent();
+
     private void Start()
     {
         _BasePlayerGridPosToPixel = GridManager.GetInstance().GetIndexCoordonate((int)_BasePlayerGridPos.x, (int)_BasePlayerGridPos.y);
@@ -99,6 +102,7 @@ public class GameManager : MonoBehaviour
         _Player.GetComponent<Player>().baseGridPos = _BasePlayerGridPos;
 
         CardPlaced.AddListener(SetModeMovingPlayer);
+        PlayerMoved.AddListener(SetModeBiomeEffect);
     }
 
     public void NextTurn()
@@ -170,10 +174,6 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-
-    public static UnityEvent CardPlaced = new UnityEvent();
-    public static UnityEvent PlayerMoved = new UnityEvent();
-
 
     private void OnDestroy()
     {
