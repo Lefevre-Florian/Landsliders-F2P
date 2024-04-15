@@ -142,17 +142,8 @@ namespace com.isartdigital.f2p.gameplay.manager
         /// <returns></returns>
         public Vector2 GetGridCoordinate(Vector2 pWorldPosition)
         {
-            for (int i = 0; i < _NumCard.x; i++)
-            {
-                for (int j = 0; j < _NumCard.y; j++)
-                {
-                    if (pWorldPosition == (Vector2)_Cards[i, j].transform.position)
-                        return new Vector2(i, j);
-                }
-            }
-            return Vector2.one * -1f;
-            /* return new Vector2((int)((pWorldPosition.x - _Offset.x / _GridSize.x),
-                                (int)((pWorldPosition.y - _Offset.y / _GridSize.y));*/
+            return new Vector2((int)((pWorldPosition.x - _Offset.x + _GridSize.x) / _GridSize.x), 
+                               (int)((pWorldPosition.y - _Offset.y + _GridSize.y) / _GridSize.y));
         }
 
         /// <summary>
@@ -160,7 +151,7 @@ namespace com.isartdigital.f2p.gameplay.manager
         /// </summary>
         /// <param name="pPosition">Grid position format</param>
         /// <returns></returns>
-        public Biome GetCardByGridCoordinate(Vector2 pPosition) => _Cards[(int)pPosition.x, (int)pPosition.y].GetComponent<Biome>();
+        public Biome GetCardByGridCoordinate(Vector2 pPosition) => _Cards[(int)pPosition.x, (int)pPosition.y]?.GetComponent<Biome>();
         #endregion
 
         #region Biome related
