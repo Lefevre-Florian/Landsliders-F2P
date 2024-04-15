@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private Player() : base() { }
     #endregion
 
-    private const string _CARDCONTAINERTAG = "CardContainer";
+    private const string CARD_CONTAINER_TAG = "CardContainer";
 
     public enum State
     {
@@ -81,22 +81,17 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && _CurrentState == State.Movable)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            if (!hit) return;
-            else
+            if(hit && hit.collider.CompareTag(CARD_CONTAINER_TAG))
             {
-                if (hit.collider.tag == _CARDCONTAINERTAG)
-                {
-                    _GridPosSelected = hit.collider.GetComponent<CardContainer>().gridPosition;
+                _GridPosSelected = hit.collider.GetComponent<CardContainer>().gridPosition;
 
-                    if(_GridPosSelected !=_ActualGridPos && _GridPosSelected != _PreviousGridPos)
-                    {
-                        if (Mathf.Abs(_ActualGridPos.x - _GridPosSelected.x) <= 1 && Mathf.Abs(_ActualGridPos.y - _GridPosSelected.y) <= 1)
-                        {
-                            _WorldPosSelected = _GridManager.GetIndexCoordonate((int)_GridPosSelected.x, (int)_GridPosSelected.y);
-                            if(_GridManager.GetCardByGridCoordinate(_GridPosSelected).IsWalkable)
-                                SetModeMove();
-                        }
-                    }
+                if (_GridPosSelected != _ActualGridPos && _GridPosSelected != _PreviousGridPos
+                    && (Mathf.Abs(_ActualGridPos.x - _GridPosSelected.x) <= 1 && Mathf.Abs(_ActualGridPos.y - _GridPosSelected.y) <= 1))
+                {
+                    _WorldPosSelected = _GridManager.GetIndexCoordonate((int)_GridPosSelected.x, (int)_GridPosSelected.y);
+                    if (_GridManager.GetCardByGridCoordinate(_GridPosSelected).IsWalkable)
+                        SetModeMove();
+
                 }
             }
         }

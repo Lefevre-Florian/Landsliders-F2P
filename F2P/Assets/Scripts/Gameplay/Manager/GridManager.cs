@@ -46,6 +46,20 @@ namespace com.isartdigital.f2p.gameplay.manager
         [Header("Biomes")]
         [SerializeField] private Transform[] _BiomePrefabs = null;
 
+        // Get / Set 
+        public Biome[,] Biomes {
+            get
+            {
+                Biome[,] lBiomes = new Biome[(int)_NumCard.x, (int)_NumCard.y];
+                for (int i = 0; i < (int)_NumCard.x; i++)
+                {
+                    for (int j = 0; j < (int)_NumCard.y; j++)
+                        lBiomes[i, j] = _Cards[i, j].GetComponent<Biome>();
+                }
+                return lBiomes;
+            }
+        }
+
         private void Awake()
         {
             if (_Instance != null)
