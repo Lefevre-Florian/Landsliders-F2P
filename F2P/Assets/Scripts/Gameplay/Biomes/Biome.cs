@@ -16,7 +16,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
         [Space(2)]
         [SerializeField] private BiomeType _Type = BiomeType.grassland;
-        [SerializeField] private bool _CanBeRemoved = true;
+        [SerializeField] private bool _CanBeReplaced = true;
         [SerializeField] private bool _IsWalkable = true;
 
         // Variables
@@ -24,9 +24,12 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private Vector2 _GridPosition = new Vector2();
 
+        private bool _CanBeRemoved = true;
+
         // Get / Set
-        public bool CanBeRemoved { get { return _CanBeRemoved; } }
+        public bool CanBeReplaced { get { return _CanBeReplaced; } }
         public bool IsWalkable { get { return _IsWalkable; } }
+        public bool CanBeRemoved { get { return _CanBeRemoved; } }
 
         public Vector2 GridPosition { get { return _GridPosition; } }
 
@@ -38,13 +41,11 @@ namespace Com.IsartDigital.F2P.Biomes
             Enable();
         }
 
-        public void SwitchWalkableState() => _IsWalkable = !_IsWalkable;
-
-        public void SwitchRemovabilityState() => _CanBeRemoved = !_CanBeRemoved;
-
         public void PreciseSwitchWalkableState(bool pState) => _IsWalkable = pState;
 
-        public void PreciseSwitchRemovabilityState(bool pState) => _CanBeRemoved = pState;
+        public void PreciseSwitchReplacabilityState(bool pState) => _CanBeReplaced = pState;
+
+        public void PreciseSwitchRemoveByHandState(bool pState) => _CanBeRemoved = pState;
 
         public void Remove()
         {

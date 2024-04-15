@@ -22,6 +22,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
         [Space(2)]
         [SerializeField] private bool _IsRandomReplace = true;
+        [SerializeField] private Transform _SubstitutionBiome = null;
 
         public void UpdateGrid()
         {
@@ -35,7 +36,7 @@ namespace Com.IsartDigital.F2P.Biomes
             else
                 lCards = GetSurroundingOnlyFiltered(_BiomeTypeToReplace).ToList();
    
-            lCards.RemoveAll(x => !x.CanBeRemoved);
+            lCards.RemoveAll(x => !x.CanBeReplaced);
 
             int lLength = lCards.Count;
             int lRatio = Mathf.RoundToInt(NbDirectionToCheck * (_ChangeRatio / 100f));
@@ -56,7 +57,7 @@ namespace Com.IsartDigital.F2P.Biomes
                 lCards.RemoveAt(lIdx);
 
                 if (!_IsRandomReplace)
-                    Instantiate(transform, lTile);
+                    Instantiate(_SubstitutionBiome, lTile);
                 else
                     Instantiate(m_GridManager.GetRandomBiome(), lTile);
             }

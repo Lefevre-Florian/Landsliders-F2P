@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Com.IsartDigital.F2P.Biomes
 {
     [RequireComponent(typeof(Biome))]
-    public class BiomeSurrondingAnalysis : MonoBehaviour
+    public abstract class BiomeSurrondingAnalysis : MonoBehaviour
     {
         private enum GridAngle
         {
