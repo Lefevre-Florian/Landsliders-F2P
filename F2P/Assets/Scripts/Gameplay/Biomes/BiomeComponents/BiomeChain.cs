@@ -45,7 +45,7 @@ namespace Com.IsartDigital.F2P.Biomes
                 return;
             pStep += 1;
 
-            Biome[] lBiomes = GetSurroundingOnlyFiltered(new BiomeType[] { _Type });
+            Biome[] lBiomes = GetSurroundingOnlyFiltered(new BiomeType[] { _Type }, 1);
             int lLength = lBiomes.Length;
 
             for (int i = 0; i < lLength; i++)

@@ -18,6 +18,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
 
         [Header("Design - Settings")]
+        [SerializeField] private bool _AlwaysStart = true;
         [SerializeField][Range(0, 10)] private int _Timer = 0;
         [SerializeField] private TupleActionTime[] _TimedActions = new TupleActionTime[0];
 
@@ -31,9 +32,25 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void Start()
         {
+            //GetComponent<TEMPCard>().OnPlaced += Enable;
+            Enable();
+        }
+
+        private void Enable()
+        {
             _GameManager = GameManager.GetInstance();
+            if (_AlwaysStart)
+                _GameManager.OnTurnPassed += ClockTicking;
+        }
+
+        public void StartTicking()
+        {
+            if (_AlwaysStart)
+                return;
             _GameManager.OnTurnPassed += ClockTicking;
         }
+
+        public void StopTicking() => _GameManager.OnTurnPassed -= ClockTicking;
 
         private void ClockTicking()
         {
@@ -55,9 +72,9 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void OnDestroy()
         {
-            _GameManager.OnTurnPassed -= ClockTicking;
+            //GetComponent<TEMPCard>().OnPlaced -= Enable;
+            StopTicking();
             _GameManager = null;
         }
-
     }
 }

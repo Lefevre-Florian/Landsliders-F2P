@@ -24,7 +24,7 @@ namespace Com.IsartDigital.F2P.Biomes
         [SerializeField] private bool _IsRandomReplace = true;
         [SerializeField] private Transform _SubstitutionBiome = null;
 
-        public void UpdateGrid()
+        public void UpdateNeigbourhood(int pRange)
         {
             float lRnd = UnityEngine.Random.Range(MIN, MAX);
             if (lRnd > _ChanceOfModification)
@@ -32,9 +32,9 @@ namespace Com.IsartDigital.F2P.Biomes
 
             List<Biome> lCards;
             if (_BiomeTypeToReplace.Length == Enum.GetValues(typeof(BiomeType)).Length)
-                lCards = GetSurrounding().ToList();
+                lCards = GetSurrounding(pRange).ToList();
             else
-                lCards = GetSurroundingOnlyFiltered(_BiomeTypeToReplace).ToList();
+                lCards = GetSurroundingOnlyFiltered(_BiomeTypeToReplace, pRange).ToList();
    
             lCards.RemoveAll(x => !x.CanBeReplaced);
 
