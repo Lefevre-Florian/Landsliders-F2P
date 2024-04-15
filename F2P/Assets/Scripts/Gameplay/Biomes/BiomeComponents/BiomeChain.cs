@@ -1,6 +1,3 @@
-using com.isartdigital.f2p.gameplay.manager;
-
-using System;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -8,24 +5,21 @@ using UnityEngine;
 // Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.Biomes
 {
-    [RequireComponent(typeof(BiomeSurrondingAnalysis),
-                      typeof(Biome))]
-    public class BiomeChain : MonoBehaviour
+    [RequireComponent(typeof(Biome))]
+    public class BiomeChain : BiomeSurrondingAnalysis
     {
         [Header("Design")]
-        [SerializeField][Min(1)] private int _Range = int.MaxValue;
+        [SerializeField][Min(1)] private int _ChainMaxLength = int.MaxValue;
 
         // Variables
         private List<Biome> _ShortMemory = null;
 
         private BiomeType _Type = default;
 
-        private BiomeSurrondingAnalysis _BiomeSurroundingAnalyser = null;
-
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _Type = GetComponent<Biome>().Type;
-            _BiomeSurroundingAnalyser = GetComponent<BiomeSurrondingAnalysis>();
         }
 
         public int GetChainLength()
@@ -36,7 +30,7 @@ namespace Com.IsartDigital.F2P.Biomes
                 GetComponent<Biome>()
             };
 
-            int lLength = _BiomeSurroundingAnalyser.NbDirectionToCheck;
+            int lLength = NbDirectionToCheck;
             for (int i = 0; i < lLength; i++)
                 RecursiveAnalysis(lStep);
 
@@ -45,11 +39,11 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void RecursiveAnalysis(int pStep)
         {
-            if (pStep >= _Range)
+            if (pStep >= _ChainMaxLength)
                 return;
             pStep += 1;
 
-            Biome[] lBiomes = _BiomeSurroundingAnalyser.GetSurroundingOnlyFiltered(new BiomeType[] { _Type });
+            Biome[] lBiomes = GetSurroundingOnlyFiltered(new BiomeType[] { _Type });
             int lLength = lBiomes.Length;
 
             for (int i = 0; i < lLength; i++)
@@ -64,11 +58,12 @@ namespace Com.IsartDigital.F2P.Biomes
             return;
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
             _ShortMemory.Clear();
             _ShortMemory = null;
-        }
 
+            base.OnDestroy();
+        }
     }
 }

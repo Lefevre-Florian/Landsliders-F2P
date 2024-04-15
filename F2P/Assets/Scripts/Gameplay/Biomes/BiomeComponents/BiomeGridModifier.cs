@@ -1,4 +1,3 @@
-using com.isartdigital.f2p.gameplay.manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +7,8 @@ using UnityEngine;
 // Author (CR): Lefevre Florian
 namespace Com.IsartDigital.F2P.Biomes
 {
-    [RequireComponent(typeof(BiomeSurrondingAnalysis))]
-    public class BiomeGridModifier : MonoBehaviour
+    [RequireComponent(typeof(Biome))]
+    public class BiomeGridModifier : BiomeSurrondingAnalysis
     {
         private const float MAX = 100f;
         private const float MIN = 0f;
@@ -24,17 +23,6 @@ namespace Com.IsartDigital.F2P.Biomes
         [Space(2)]
         [SerializeField] private bool _IsRandomReplace = true;
 
-        // Variables
-        private BiomeSurrondingAnalysis _SurroundingComponent = null;
-
-        private GridManager _GridManager = null;
-
-        private void Start()
-        {
-            _GridManager = GridManager.GetInstance();
-            _SurroundingComponent = GetComponent<BiomeSurrondingAnalysis>();
-        }
-
         public void UpdateGrid()
         {
             float lRnd = UnityEngine.Random.Range(MIN, MAX);
@@ -43,14 +31,14 @@ namespace Com.IsartDigital.F2P.Biomes
 
             List<Biome> lCards;
             if (_BiomeTypeToReplace.Length == Enum.GetValues(typeof(BiomeType)).Length)
-                lCards = _SurroundingComponent.GetSurrounding().ToList();
+                lCards = GetSurrounding().ToList();
             else
-                lCards = _SurroundingComponent.GetSurroundingOnlyFiltered(_BiomeTypeToReplace).ToList();
+                lCards = GetSurroundingOnlyFiltered(_BiomeTypeToReplace).ToList();
    
             lCards.RemoveAll(x => !x.CanBeRemoved);
 
             int lLength = lCards.Count;
-            int lRatio = Mathf.RoundToInt((_SurroundingComponent.NbDirectionToCheck) * (_ChangeRatio / 100f));
+            int lRatio = Mathf.RoundToInt(NbDirectionToCheck * (_ChangeRatio / 100f));
 
             Biome lCard = null;
             Transform lTile;
@@ -67,21 +55,11 @@ namespace Com.IsartDigital.F2P.Biomes
                 lCard.Remove();
                 lCards.RemoveAt(lIdx);
 
-                print("Replaced : " + lCard.name);
-
                 if (!_IsRandomReplace)
                     Instantiate(transform, lTile);
                 else
-                    Instantiate(_GridManager.GetRandomBiome(), lTile);
+                    Instantiate(m_GridManager.GetRandomBiome(), lTile);
             }
-            print(transform.name);
         }
-
-        private void OnDestroy()
-        {
-            _GridManager = null;
-            _SurroundingComponent = null;
-        }
-
     }
 }

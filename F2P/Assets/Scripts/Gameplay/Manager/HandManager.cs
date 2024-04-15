@@ -97,7 +97,6 @@ public class HandManager : MonoBehaviour
 
     public void BurnCard(int pNbCards = 1)
     {
-        Debug.Log("Before" + _Deck.Length);
         int lRemainingCardToRemove = pNbCards;
         if (lRemainingCardToRemove < _Deck.Length)
             Array.Resize(ref _Deck, _Deck.Length - lRemainingCardToRemove);
@@ -115,8 +114,6 @@ public class HandManager : MonoBehaviour
                 _CardInHand -= lRemainingCardToRemove;
             }
         }
-
-        Debug.Log("After" + _Deck.Length);
     }
 
     public void AddCardToDeck(int pNbCards)
