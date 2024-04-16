@@ -84,7 +84,7 @@ PrefabInstance:
       addedObject: {fileID: 1834280640119364373}
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8551979568917725734}
+      addedObject: {fileID: 2867720193359730958}
   m_SourcePrefab: {fileID: 100100000, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
 --- !u!1 &3845447295816968044 stripped
 GameObject:
@@ -118,9 +118,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8551979568917725734}
-        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeProtection, Assembly-CSharp
-        m_MethodName: EnablePlayerProtection
+      - m_Target: {fileID: 2867720193359730958}
+        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeSanctuary, Assembly-CSharp
+        m_MethodName: EnableSanctuary
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -185,10 +185,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 8551979568917725734}
-          m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeProtection,
-            Assembly-CSharp
-          m_MethodName: DisablePlayerProtection
+        - m_Target: {fileID: 2867720193359730958}
+          m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeSanctuary, Assembly-CSharp
+          m_MethodName: DisableSanctuary
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -199,7 +198,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   _Label: {fileID: 0}
---- !u!114 &8551979568917725734
+--- !u!114 &2867720193359730958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,7 +207,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3845447295816968044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 115fe0cd81f01d543b6de30ad55ba04d, type: 3}
+  m_Script: {fileID: 11500000, guid: d1ef96e54fd3af34eac0ffe631c9a838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8685040561702587449 stripped
