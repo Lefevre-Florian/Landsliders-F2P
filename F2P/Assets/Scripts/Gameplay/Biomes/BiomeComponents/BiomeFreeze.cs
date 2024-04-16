@@ -6,10 +6,10 @@ using System.Linq;
 
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Com.IsartDigital.F2P.Biomes
 {
+    [RequireComponent(typeof(Biome))]
     public class BiomeFreeze : MonoBehaviour
     {
         [Header("Design")]
@@ -21,21 +21,13 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private Vector2 _GridPosition = new Vector2();
 
+        private Biome _Biome = null;
 
         private void Start()
         {
             _GridManager = GridManager.GetInstance();
-
-            // Remove later
-            Enable();
-        }
-
-        private void Enable()
-        {
-            _Player = Player.GetInstance();
-            GameManager.PlayerMoved.AddListener(Contact);
-
-            _GridPosition = _GridManager.GetGridCoordinate(transform.position);
+            _Biome = GetComponent<Biome>();
+            _Biome.OnReady += Enable;
         }
 
         public void Spread()
@@ -46,10 +38,24 @@ namespace Com.IsartDigital.F2P.Biomes
 
             lBiomes.RemoveAll(x => !x.CanBeReplaced);
             lBiomes.Remove(_GridManager.GetCardByGridCoordinate(_Player.GridPosition));
-            lBiomes.RemoveAll(x => x.Type == GetComponent<Biome>().Type);
+            lBiomes.RemoveAll(x => x.Type == _Biome.Type);
 
             int lIdx = UnityEngine.Random.Range(0, lBiomes.Count);
             lBiomes[lIdx].AddComponent<BiomeFreeze>();
+        }
+
+        private void Enable()
+        {
+            _Player = Player.GetInstance();
+            GameManager.PlayerMoved.AddListener(Contact);
+
+            _GridPosition = _GridManager.GetGridCoordinate(transform.position);
+        }
+
+        private void Contact()
+        {
+            if (_GridPosition == _Player.GridPosition)
+                Slide();
         }
 
         private void Slide()
@@ -75,21 +81,18 @@ namespace Com.IsartDigital.F2P.Biomes
             }
         }
 
-        private void Contact()
-        {
-            if (_GridPosition == _Player.GridPosition)
-                Slide();
-        }
-
         private void OnDestroy()
         {
-            GameManager.PlayerMoved.RemoveListener(Contact);
-
-            _GridManager = null;
-            if(_Player != null)
+            if(_Biome != null)
             {
-                _Player = null;
+                _Biome.OnReady -= Enable;
+                _Biome = null;
             }
+
+            GameManager.PlayerMoved.RemoveListener(Contact);
+            _GridManager = null;
+
+            _Player = null;
         }
     }
 }

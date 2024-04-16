@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3794540079045137233}
   - component: {fileID: 1670292805084634038}
   - component: {fileID: 3156987593860903009}
-  - component: {fileID: 6198094587579357104}
+  - component: {fileID: -2707025486543356891}
   - component: {fileID: 8295392945309103686}
   m_Layer: 0
-  m_Name: Card
+  m_Name: Biome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,14 +108,14 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6198094587579357104
+--- !u!114 &-2707025486543356891
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4523184677986655507}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b13c2533bfcbdf1418a23eebbd723b01, type: 3}
   m_Name: 
@@ -139,7 +139,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _Type: 0
-  _CanBeRemoved: 1
+  _CanBeReplaced: 1
   _IsWalkable: 1
 --- !u!1 &7646986577398426315
 GameObject:

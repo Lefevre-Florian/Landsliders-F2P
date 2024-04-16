@@ -1,5 +1,3 @@
-using com.isartdigital.f2p.gameplay.manager;
-
 using UnityEngine;
 using UnityEngine.Events;
 
