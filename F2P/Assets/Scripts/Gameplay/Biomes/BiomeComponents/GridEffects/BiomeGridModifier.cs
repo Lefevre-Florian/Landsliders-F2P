@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
+using UnityEngine.UIElements;
 
 // Author (CR): Lefevre Florian
 namespace Com.IsartDigital.F2P.Biomes
@@ -35,16 +36,15 @@ namespace Com.IsartDigital.F2P.Biomes
                 lCards = GetSurrounding(pRange).ToList();
             else
                 lCards = GetSurroundingOnlyFiltered(_BiomeTypeToReplace, pRange).ToList();
-   
+
             lCards.RemoveAll(x => !x.CanBeReplaced);
 
-            int lLength = lCards.Count;
             int lRatio = Mathf.RoundToInt(NbDirectionToCheck * (_ChangeRatio / 100f));
+            lRatio = (lRatio > lCards.Count) ? lCards.Count : lRatio;
 
             Biome lCard = null;
             int lIdx = 0;
 
-            lRatio = (lRatio > lLength) ? lLength : lRatio;
             for (int i = 0; i < lRatio; i++)
             {
                 lIdx = UnityEngine.Random.Range(0, lCards.Count - 1);
@@ -52,10 +52,38 @@ namespace Com.IsartDigital.F2P.Biomes
                 lCard = lCards[lIdx].GetComponent<Biome>();
                 lCards.RemoveAt(lIdx);
 
-                if (!_IsRandomReplace)
-                    m_GridManager.ReplaceAtIndex(lCard.GridPosition, _SubstitutionBiome);
-                else
-                    m_GridManager.ReplaceAtIndex(lCard.GridPosition, m_GridManager.GetRandomBiome());
+                m_GridManager.ReplaceAtIndex(lCard.GridPosition,(_IsRandomReplace) ? m_GridManager.GetRandomBiome() : _SubstitutionBiome);
+            }
+        }
+
+        public void UpdateBetweenTypeNeighbour(int pRange = 2)
+        {
+            float lRnd = UnityEngine.Random.Range(MIN, MAX);
+            if (lRnd > _ChanceOfModification)
+                return;
+
+            if(pRange <= 1)
+            {
+                Debug.LogError("The range must be superior or equal at 2");
+                return;
+            }
+
+            List<Biome> lCards = GetSurroundingOnlyFiltered(new BiomeType[] { m_Biome.Type }, pRange).ToList();
+            int lLength = lCards.Count;
+
+            Vector2 lDirection = default;
+            Vector2 lNextPosition = default;
+
+            for (int i = 0; i < lLength; i++)
+            {
+                lDirection = (lCards[i].GridPosition - m_Biome.GridPosition).normalized;
+                for (int j = 1; j < pRange; j++)
+                {
+                    lNextPosition = m_Biome.GridPosition + lDirection * j;
+                    Debug.Log("Replace at " + lNextPosition);
+
+                    m_GridManager.ReplaceAtIndex(lNextPosition, (_IsRandomReplace) ? m_GridManager.GetRandomBiome() : _SubstitutionBiome);
+                }
             }
         }
     }

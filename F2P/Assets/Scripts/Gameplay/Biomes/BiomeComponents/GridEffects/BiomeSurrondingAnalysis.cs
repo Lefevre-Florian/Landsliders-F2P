@@ -41,8 +41,8 @@ namespace Com.IsartDigital.F2P.Biomes
         /// <returns>Array[Biome] => All neighbour biomes</returns>
         protected Biome[] GetSurrounding(int pRange)
         {
-            if (pRange > m_GridManager._GridSize.x || pRange > m_GridManager._GridSize.y)
-                pRange = (int)Mathf.Min(m_GridManager._GridSize.x, m_GridManager._GridSize.y);
+            if (pRange > m_GridManager._NumCard.x || pRange > m_GridManager._NumCard.y)
+                pRange = (int)Mathf.Min(m_GridManager._NumCard.x, m_GridManager._NumCard.y);
 
             List<Biome> lSurroundingBiomes = new List<Biome>();
             Biome lBiome = null;
@@ -54,7 +54,8 @@ namespace Com.IsartDigital.F2P.Biomes
 
             for (int i = 0; i < lLength; i++)
             {
-                lSamplePosition = m_Biome.GridPosition + (Vector2)(Quaternion.AngleAxis(lAngle * i, Vector3.forward * pRange) * Vector3.up);
+                lSamplePosition = m_Biome.GridPosition + (Vector2)(Quaternion.AngleAxis(lAngle * i, Vector3.forward) * (Vector3.up * pRange));
+                
                 lSamplePosition.x = Mathf.RoundToInt(lSamplePosition.x);
                 lSamplePosition.y = Mathf.RoundToInt(lSamplePosition.y);
 

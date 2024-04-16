@@ -186,7 +186,7 @@ namespace com.isartdigital.f2p.gameplay.manager
 
         public void RemoveAtIndex(Vector2 pGridPosition) => _Cards[(int)pGridPosition.x, (int)pGridPosition.y] = null;
 
-        public Transform GetRandomBiome() => _BiomePrefabs[UnityEngine.Random.Range(0, _BiomePrefabs.Length)];
+        public Transform GetRandomBiome() => _BiomePrefabs[Random.Range(0, _BiomePrefabs.Length)];
         #endregion
 
         private void OnDestroy()
