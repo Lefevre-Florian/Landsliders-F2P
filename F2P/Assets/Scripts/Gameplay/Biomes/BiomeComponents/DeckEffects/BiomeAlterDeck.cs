@@ -40,10 +40,17 @@ namespace Com.IsartDigital.F2P.Biomes
 
         public void ImmediateAlteration() => UpdateDeck();
 
-        public void ImmediateAlterationBasedOnBonuses()
+        public void ImmmediateAlteration(MonoBehaviour pBonus)
         {
-            _NbAffected = GetComponent<IBiomeEnumerator>().GetEnumertation();
-            UpdateDeck();
+            if(pBonus is IBiomeEnumerator)
+            {
+                _NbAffected = (pBonus as IBiomeEnumerator).GetEnumertation();
+                UpdateDeck();
+            }
+            else
+            {
+                Debug.LogError("Must be an" + typeof(IBiomeEnumerator));
+            }
         }
 
         private void UpdateTime()

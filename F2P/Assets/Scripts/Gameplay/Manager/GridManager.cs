@@ -1,8 +1,8 @@
 using com.isartdigital.f2p.gameplay.card;
 using Com.IsartDigital.F2P.Biomes;
-using System;
-using System.Collections;
-using UnityEditor;
+
+using System.Collections.Generic;
+
 using UnityEngine;
 
 // Author (CR): Paul Vincencini
@@ -20,8 +20,6 @@ namespace com.isartdigital.f2p.gameplay.manager
             return _Instance;
         }
         #endregion
-
-        private const string BIOMES_PATH = "Assets/Ressource/Prefab/Gameplay/Biomes";
 
         [Header("Grid Parameters")]
 
@@ -45,6 +43,20 @@ namespace com.isartdigital.f2p.gameplay.manager
 
         [Header("Biomes")]
         [SerializeField] private Transform[] _BiomePrefabs = null;
+
+        // Get / Set 
+        public List<Biome> Biomes {
+            get
+            {
+                List<Biome> lBiomes = new List<Biome>();
+                for (int i = 0; i < (int)_NumCard.x; i++)
+                {
+                    for (int j = 0; j < (int)_NumCard.y; j++)
+                        lBiomes.Add(_Cards[i, j].GetComponent<Biome>());
+                }
+                return lBiomes;
+            }
+        }
 
         private void Awake()
         {
@@ -115,7 +127,7 @@ namespace com.isartdigital.f2p.gameplay.manager
         /// <param name="pX"></param>
         /// <param name="pY"></param>
         /// <returns></returns>
-        public Vector2 GetIndexCoordonate(int pX, int pY)
+        public Vector2 GetWorldCoordinate(int pX, int pY)
         {
             if(pX > 2 || pX < 0 || pY > 2 || pY < 0)
             {
@@ -125,6 +137,13 @@ namespace com.isartdigital.f2p.gameplay.manager
 
             return new Vector2(_GridSize.x * (pX - 1) + _Offset.x, _GridSize.y * (pY - 1) + _Offset.y);
         }
+
+        /// <summary>
+        /// Get the world position of an element based on the grid position
+        /// </summary>
+        /// <param name="pGridPosition"></param>
+        /// <returns></returns>
+        public Vector2 GetWorldCoordinate(Vector2 pGridPosition) => GetWorldCoordinate((int)pGridPosition.x, (int)pGridPosition.y);
 
         /// <summary>
         /// Get the index position of an element based on the world position
@@ -161,12 +180,13 @@ namespace com.isartdigital.f2p.gameplay.manager
             int y = (int)pGridPosition.y;
 
             Biome lBiome = Instantiate(pTransform, _Cards[x, y].transform.parent).GetComponent<Biome>();
+            _Cards[x, y].GetComponent<Biome>().Remove();
             _Cards[x, y] = lBiome.gameObject;
         }
 
         public void RemoveAtIndex(Vector2 pGridPosition) => _Cards[(int)pGridPosition.x, (int)pGridPosition.y] = null;
 
-        public Transform GetRandomBiome() => _BiomePrefabs[UnityEngine.Random.Range(0, _BiomePrefabs.Length)];
+        public Transform GetRandomBiome() => _BiomePrefabs[Random.Range(0, _BiomePrefabs.Length)];
         #endregion
 
         private void OnDestroy()

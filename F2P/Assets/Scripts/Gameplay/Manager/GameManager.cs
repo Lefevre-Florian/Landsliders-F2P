@@ -1,4 +1,3 @@
-using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.manager;
 
 using System;
@@ -97,7 +96,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _BasePlayerGridPosToPixel = GridManager.GetInstance().GetIndexCoordonate((int)_BasePlayerGridPos.x, (int)_BasePlayerGridPos.y);
+        _BasePlayerGridPosToPixel = GridManager.GetInstance().GetWorldCoordinate((int)_BasePlayerGridPos.x, (int)_BasePlayerGridPos.y);
         Instantiate(_Player, _BasePlayerGridPosToPixel, Quaternion.identity);
         _Player.GetComponent<Player>().baseGridPos = _BasePlayerGridPos;
 
@@ -183,7 +182,7 @@ public class GameManager : MonoBehaviour
         StopAllCoroutines();
         _EffectTimer = null;
 
-        GameManager.CardPlaced.RemoveAllListeners();
-        GameManager.PlayerMoved.RemoveAllListeners();
+        CardPlaced.RemoveAllListeners();
+        PlayerMoved.RemoveAllListeners();
     }
 }

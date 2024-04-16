@@ -1,5 +1,3 @@
-using com.isartdigital.f2p.gameplay.manager;
-using Com.IsartDigital.F2P.Biomes;
 using System;
 using UnityEngine;
 
@@ -16,6 +14,8 @@ public class TEMPCard : MonoBehaviour
 
     private State _CurrentState;
 
+    private HandManager _HandManager = HandManager.GetInstance();
+
     // Event
     public event Action OnPlaced;
 
@@ -28,8 +28,12 @@ public class TEMPCard : MonoBehaviour
 
     void Start()
     {
+        _HandManager = HandManager.GetInstance();
+
         _Collider2D = GetComponent<BoxCollider2D>();
-        _SnapPos = HandManager.GetInstance()._CardsSlot[handIndex].transform.position;
+        _Collider2D.enabled = true;
+
+        _SnapPos = _HandManager._CardsSlot[handIndex].transform.position;
     }
 
     private void OnMouseUp()
@@ -39,13 +43,14 @@ public class TEMPCard : MonoBehaviour
             if(_Snapable && _CurrentState == State.Moving)
             {
                 transform.position = _SnapPos;
-                HandManager.GetInstance()._AvailableCardSlots[handIndex] = true;
+                _HandManager._AvailableCardSlots[handIndex] = true;
+
                 if (_SnapParent.transform.childCount > 0) 
-                {
                     Destroy(_SnapParent.transform.GetChild(0).gameObject);
-                }
+
                 transform.SetParent(_SnapParent.transform, true);
                 GameManager.CardPlaced.Invoke();
+
                 SetModePlayed();
             }
             else
@@ -76,7 +81,10 @@ public class TEMPCard : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         _Snapable = false;
-        _SnapPos = HandManager.GetInstance()._CardsSlot[handIndex].transform.position;
+
+        if(_HandManager != null)
+            _SnapPos = _HandManager._CardsSlot[handIndex].transform.position;
+        
         _SnapParent = null;
     }
 
@@ -104,6 +112,6 @@ public class TEMPCard : MonoBehaviour
         _Collider2D.enabled = false;
 
         OnPlaced?.Invoke();
+        enabled = false;
     }
-
 }
