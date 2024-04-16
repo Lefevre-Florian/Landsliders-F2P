@@ -2,6 +2,7 @@ using com.isartdigital.f2p.gameplay.card;
 using Com.IsartDigital.F2P.Biomes;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -20,8 +21,6 @@ namespace com.isartdigital.f2p.gameplay.manager
             return _Instance;
         }
         #endregion
-
-        private const string BIOMES_PATH = "Assets/Ressource/Prefab/Gameplay/Biomes";
 
         [Header("Grid Parameters")]
 
@@ -47,14 +46,14 @@ namespace com.isartdigital.f2p.gameplay.manager
         [SerializeField] private Transform[] _BiomePrefabs = null;
 
         // Get / Set 
-        public Biome[,] Biomes {
+        public List<Biome> Biomes {
             get
             {
-                Biome[,] lBiomes = new Biome[(int)_NumCard.x, (int)_NumCard.y];
+                List<Biome> lBiomes = new List<Biome>();
                 for (int i = 0; i < (int)_NumCard.x; i++)
                 {
                     for (int j = 0; j < (int)_NumCard.y; j++)
-                        lBiomes[i, j] = _Cards[i, j].GetComponent<Biome>();
+                        lBiomes.Add(_Cards[i, j].GetComponent<Biome>());
                 }
                 return lBiomes;
             }

@@ -1,9 +1,12 @@
 using com.isartdigital.f2p.gameplay.manager;
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Com.IsartDigital.F2P.Biomes
 {
@@ -17,6 +20,7 @@ namespace Com.IsartDigital.F2P.Biomes
         private GridManager _GridManager = null;
 
         private Vector2 _GridPosition = new Vector2();
+
 
         private void Start()
         {
@@ -36,11 +40,16 @@ namespace Com.IsartDigital.F2P.Biomes
 
         public void Spread()
         {
-            Biome[,] lBiomes = _GridManager.Biomes;
-            if (lBiomes.Length == 0)
+            List<Biome> lBiomes = _GridManager.Biomes;
+            if (lBiomes.Count == 0)
                 return;
 
-            ///TODO : Spread on random excluding me and other frozen biomes
+            lBiomes.RemoveAll(x => !x.CanBeReplaced);
+            lBiomes.Remove(_GridManager.GetCardByGridCoordinate(_Player.GridPosition));
+            lBiomes.RemoveAll(x => x.Type == GetComponent<Biome>().Type);
+
+            int lIdx = UnityEngine.Random.Range(0, lBiomes.Count);
+            lBiomes[lIdx].AddComponent<BiomeFreeze>();
         }
 
         private void Slide()
@@ -66,12 +75,6 @@ namespace Com.IsartDigital.F2P.Biomes
             }
         }
 
-        private void Defrost()
-        {
-            GameManager.PlayerMoved.RemoveListener(Contact);
-            Destroy(this);
-        }
-
         private void Contact()
         {
             if (_GridPosition == _Player.GridPosition)
@@ -80,6 +83,8 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void OnDestroy()
         {
+            GameManager.PlayerMoved.RemoveListener(Contact);
+
             _GridManager = null;
             if(_Player != null)
             {
