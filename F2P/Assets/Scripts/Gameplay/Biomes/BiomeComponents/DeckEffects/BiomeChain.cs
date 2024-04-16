@@ -35,7 +35,7 @@ namespace Com.IsartDigital.F2P.Biomes
             int lLength = NbDirectionToCheck;
             for (int i = 0; i < lLength; i++)
                 RecursiveAnalysis(lStep, this);
-            return _ShortMemory.Count;
+            return _ShortMemory.Count - 1;
         }
 
         private void RecursiveAnalysis(int pStep, BiomeChain pChain)

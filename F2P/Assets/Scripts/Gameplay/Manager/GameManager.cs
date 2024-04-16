@@ -1,4 +1,3 @@
-using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.manager;
 
 using System;
