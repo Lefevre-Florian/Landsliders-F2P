@@ -127,7 +127,7 @@ namespace com.isartdigital.f2p.gameplay.manager
         /// <param name="pX"></param>
         /// <param name="pY"></param>
         /// <returns></returns>
-        public Vector2 GetIndexCoordonate(int pX, int pY)
+        public Vector2 GetWorldCoordinate(int pX, int pY)
         {
             if(pX > 2 || pX < 0 || pY > 2 || pY < 0)
             {
@@ -137,6 +137,13 @@ namespace com.isartdigital.f2p.gameplay.manager
 
             return new Vector2(_GridSize.x * (pX - 1) + _Offset.x, _GridSize.y * (pY - 1) + _Offset.y);
         }
+
+        /// <summary>
+        /// Get the world position of an element based on the grid position
+        /// </summary>
+        /// <param name="pGridPosition"></param>
+        /// <returns></returns>
+        public Vector2 GetWorldCoordinate(Vector2 pGridPosition) => GetWorldCoordinate((int)pGridPosition.x, (int)pGridPosition.y);
 
         /// <summary>
         /// Get the index position of an element based on the world position

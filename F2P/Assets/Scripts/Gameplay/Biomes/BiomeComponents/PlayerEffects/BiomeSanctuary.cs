@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.Biomes
 {
     public class BiomeSanctuary : MonoBehaviour

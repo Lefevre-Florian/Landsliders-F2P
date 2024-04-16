@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         DoAction?.Invoke();
+
         if (Input.GetMouseButtonUp(0) && _CurrentState == State.Movable)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
@@ -85,13 +86,14 @@ public class Player : MonoBehaviour
             {
                 _GridPosSelected = hit.collider.GetComponent<CardContainer>().gridPosition;
 
-                if (_GridPosSelected != _ActualGridPos && _GridPosSelected != _PreviousGridPos
-                    && (Mathf.Abs(_ActualGridPos.x - _GridPosSelected.x) <= 1 && Mathf.Abs(_ActualGridPos.y - _GridPosSelected.y) <= 1))
+                if (_GridPosSelected != _ActualGridPos && _GridPosSelected != _PreviousGridPos)
                 {
-                    _WorldPosSelected = _GridManager.GetIndexCoordonate((int)_GridPosSelected.x, (int)_GridPosSelected.y);
-                    if (_GridManager.GetCardByGridCoordinate(_GridPosSelected).IsWalkable)
-                        SetModeMove();
-
+                    if(Mathf.Abs(_ActualGridPos.x - _GridPosSelected.x) <= 1 && Mathf.Abs(_ActualGridPos.y - _GridPosSelected.y) <= 1)
+                    {
+                        _WorldPosSelected = _GridManager.GetWorldCoordinate((int)_GridPosSelected.x, (int)_GridPosSelected.y);
+                        if (_GridManager.GetCardByGridCoordinate(_GridPosSelected).IsWalkable)
+                            SetModeMove();
+                    }
                 }
             }
         }
@@ -117,6 +119,8 @@ public class Player : MonoBehaviour
         StartCoroutine(DelayedStateMovable());
     }
 
+    public void SetModeVoid() => DoAction = null;
+
     public void SetModeMove()
     {
         _CurrentState = State.Moving;
@@ -127,21 +131,30 @@ public class Player : MonoBehaviour
     {
         _LerpTimer += Time.deltaTime;
         float t = Mathf.Clamp01(_LerpTimer / _LerpDuration);
-        transform.position = Vector3.Lerp(_GridManager.GetIndexCoordonate((int)_ActualGridPos.x, (int)_ActualGridPos.y),
-                                          _GridManager.GetIndexCoordonate((int)_GridPosSelected.x, (int)_GridPosSelected.y), 
+        transform.position = Vector3.Lerp(_GridManager.GetWorldCoordinate((int)_ActualGridPos.x, (int)_ActualGridPos.y),
+                                          _GridManager.GetWorldCoordinate((int)_GridPosSelected.x, (int)_GridPosSelected.y), 
                                           t);
         if (t >= 1f)
         {
             _LerpTimer = 0f;
             _PreviousGridPos = _ActualGridPos;
             _ActualGridPos = _GridPosSelected;
-            Debug.Log(GridPosition);
+
             GameManager.PlayerMoved.Invoke();
+            SetModeVoid();
         }
     }
-    #endregion
 
-    public void SetNextPosition(Vector2 pPosition) => _GridPosSelected = pPosition;
+    /// TEMPORARY METHOD WILL BE CHANGED
+    public void SetModeSlide(Vector2 pPosition)
+    {
+        _PreviousGridPos = _ActualGridPos;
+        _ActualGridPos = pPosition;
+        transform.position = _GridManager.GetWorldCoordinate(pPosition);
+
+        GameManager.PlayerMoved.Invoke();
+    }
+    #endregion
 
     private void OnDestroy()
     {
@@ -153,5 +166,4 @@ public class Player : MonoBehaviour
         GameManager.CardPlaced.RemoveListener(SetModeMovable);
         GameManager.PlayerMoved.RemoveListener(SetModeFixed);
     }
-
 }

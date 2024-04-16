@@ -31,6 +31,8 @@ public class TEMPCard : MonoBehaviour
         _HandManager = HandManager.GetInstance();
 
         _Collider2D = GetComponent<BoxCollider2D>();
+        _Collider2D.enabled = true;
+
         _SnapPos = _HandManager._CardsSlot[handIndex].transform.position;
     }
 

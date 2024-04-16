@@ -16,7 +16,6 @@ namespace Com.IsartDigital.F2P.Biomes
         [SerializeField] private BiomeType[] _StoppingBiome = new BiomeType[] { BiomeType.Canyon };
 
         // Variables
-        private Player _Player = null;
         private GridManager _GridManager = null;
 
         private Vector2 _GridPosition = new Vector2();
@@ -37,7 +36,7 @@ namespace Com.IsartDigital.F2P.Biomes
                 return;
 
             lBiomes.RemoveAll(x => !x.CanBeReplaced);
-            lBiomes.Remove(_GridManager.GetCardByGridCoordinate(_Player.GridPosition));
+            lBiomes.Remove(_GridManager.GetCardByGridCoordinate(Player.GetInstance().GridPosition));
             lBiomes.RemoveAll(x => x.Type == _Biome.Type);
 
             int lIdx = UnityEngine.Random.Range(0, lBiomes.Count);
@@ -46,22 +45,22 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void Enable()
         {
-            _Player = Player.GetInstance();
             GameManager.PlayerMoved.AddListener(Contact);
-
-            _GridPosition = _GridManager.GetGridCoordinate(transform.position);
+            _GridPosition = _Biome.GridPosition;
         }
 
         private void Contact()
         {
-            if (_GridPosition == _Player.GridPosition)
+            Vector2 lPlayerPosition = Player.GetInstance().GridPosition;
+            if (_GridPosition == lPlayerPosition)
                 Slide();
         }
 
         private void Slide()
         {
-            Vector2 lDirection = (_Player.PreviousGridPosition - _Player.GridPosition).normalized;
-            Vector2 lNextPosition = new Vector2(_Player.GridPosition.x + lDirection.x, _Player.GridPosition.y + lDirection.y);
+            Player lPlayer = Player.GetInstance();
+            Vector2 lDirection = (lPlayer.GridPosition - lPlayer.PreviousGridPosition).normalized;
+            Vector2 lNextPosition = new Vector2(lPlayer.GridPosition.x + lDirection.x, lPlayer.GridPosition.y + lDirection.y);
 
             // Check if the next position is valid
             if (lNextPosition.x > _GridManager._GridSize.x
@@ -72,13 +71,8 @@ namespace Com.IsartDigital.F2P.Biomes
 
             Biome lNextBiome = _GridManager.GetCardByGridCoordinate(lNextPosition);
             if(lNextBiome != null 
-                && !_StoppingBiome.Contains(lNextBiome.Type)
-                && lNextBiome.GetComponent<BiomeFreeze>() != null)
-            {
-                Debug.Log(lNextPosition);
-                _Player.SetNextPosition(lNextPosition);
-                _Player.SetModeMove();
-            }
+                && !_StoppingBiome.Contains(lNextBiome.Type))
+                lPlayer.SetModeSlide(lNextPosition);
         }
 
         private void OnDestroy()
@@ -91,8 +85,6 @@ namespace Com.IsartDigital.F2P.Biomes
 
             GameManager.PlayerMoved.RemoveListener(Contact);
             _GridManager = null;
-
-            _Player = null;
         }
     }
 }
