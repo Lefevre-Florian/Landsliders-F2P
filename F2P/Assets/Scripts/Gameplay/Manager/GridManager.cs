@@ -21,6 +21,8 @@ namespace com.isartdigital.f2p.gameplay.manager
         }
         #endregion
 
+        private const string ERR_CARDBACKGROUNDPREFAB_SERIALIZED = "GridManager : Champ serialisé _CardBackgroundPrefab non assigné";
+
         [Header("Grid Parameters")]
 
         [HideInInspector] public Vector2 _NumCard = Vector2.one * 3;
@@ -40,9 +42,6 @@ namespace com.isartdigital.f2p.gameplay.manager
         [HideInInspector] public float _CardRatio;
 
         [HideInInspector] public GameObject[,] _Cards;
-
-        [Header("Biomes")]
-        [SerializeField] private Transform[] _BiomePrefabs = null;
 
         // Get / Set 
         public List<Biome> Biomes {
@@ -77,7 +76,7 @@ namespace com.isartdigital.f2p.gameplay.manager
 
             if (_CardBackgroundPrefab == null)
             {
-                Debug.LogError("GridManager : Champ serialisé _CardBackgroundPrefab non assigné");
+                Debug.LogError(ERR_CARDBACKGROUNDPREFAB_SERIALIZED);
                 return;
             }
 
@@ -153,7 +152,7 @@ namespace com.isartdigital.f2p.gameplay.manager
         public Biome GetCardByGridCoordinate(Vector2 pPosition) => _Cards[(int)pPosition.x, (int)pPosition.y]?.GetComponent<Biome>();
         #endregion
 
-        #region Biome related
+        #region Grid management
         public void ReplaceAtIndex(Vector2 pGridPosition, Transform pTransform) 
         {
             int x = (int)pGridPosition.x;
@@ -165,8 +164,6 @@ namespace com.isartdigital.f2p.gameplay.manager
         }
 
         public void RemoveAtIndex(Vector2 pGridPosition) => _Cards[(int)pGridPosition.x, (int)pGridPosition.y] = null;
-
-        public Transform GetRandomBiome() => _BiomePrefabs[Random.Range(0, _BiomePrefabs.Length)];
         #endregion
 
         private void OnDestroy()
