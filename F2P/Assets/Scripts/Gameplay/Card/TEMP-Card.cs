@@ -42,6 +42,11 @@ public class TEMPCard : MonoBehaviour
         {
             if(_Snapable && _CurrentState == State.Moving)
             {
+                /*
+                    TODO : remplacer le snap parent actuel par la carte en main en récupérant les paramètre : position; gridPosition
+                    Après Destroy
+                */
+
                 transform.position = _SnapPos;
                 _HandManager._AvailableCardSlots[handIndex] = true;
 
@@ -71,6 +76,9 @@ public class TEMPCard : MonoBehaviour
         }
     }
 
+    /*
+      TODO : faire une liste des colliders actuels et vérifier quel est le plus proche 
+    */
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _Snapable = true;

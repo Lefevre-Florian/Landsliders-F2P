@@ -72,51 +72,31 @@ namespace com.isartdigital.f2p.gameplay.manager
             _ScreenSizeInGameUnit = new Vector2(Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize);
             _GridSize = _ScreenSizeInGameUnit * new Vector2(_GridSizePercent.x, _GridSizePercent.y);
 
-            if (_IsGridPredefined)
+            foreach (Transform child in transform)
+                Destroy(child.gameObject);
+
+            if (_CardBackgroundPrefab == null)
             {
-                CardContainer lContainer = null;
-                int lLinearIdx = 0;
-                for (int i = 0; i < (int)_NumCard.x; i++)
-                {
-                    for (int j = 0; j < (int)_NumCard.y; j++)
-                    {
-                        lContainer = transform.GetChild(lLinearIdx).GetComponent<CardContainer>();
-                        lContainer.gridPosition = new Vector2(i, j);
-
-                        _Cards[i, j] = lContainer.transform.GetChild(0).gameObject;
-
-                        lLinearIdx++;
-                    }
-                }
+                Debug.LogError("GridManager : Champ serialisé _CardBackgroundPrefab non assigné");
+                return;
             }
-            else
+
+            int lXArrayIndex = 0;
+            for (int x = -1; x <= 1; x++)
             {
-                foreach (Transform child in transform)
-                    Destroy(child.gameObject);
+                float lXPos = _GridSize.x * x;
 
-                if (_CardBackgroundPrefab == null)
+                int lYArrayIndex = 0;
+                for (int y = -1; y <= 1; y++)
                 {
-                    Debug.LogError("GridManager : Champ serialisé _CardBackgroundPrefab non assigné");
-                    return;
+                    float lYPos = _GridSize.y * y;
+
+                    _Cards[lXArrayIndex, lYArrayIndex] = Instantiate(_CardBackgroundPrefab, new Vector3(lXPos + _Offset.x, lYPos + _Offset.y, 0), Quaternion.identity, transform);
+                    CardContainer lCard = _Cards[lXArrayIndex, lYArrayIndex].GetComponent<CardContainer>();
+                    lCard.gridPosition = new Vector2(lXArrayIndex, lYArrayIndex);
+                    lYArrayIndex++;
                 }
-
-                int lXArrayIndex = 0;
-                for (int x = -1; x <= 1; x++)
-                {
-                    float lXPos = _GridSize.x * x;
-
-                    int lYArrayIndex = 0;
-                    for (int y = -1; y <= 1; y++)
-                    {
-                        float lYPos = _GridSize.y * y;
-
-                        _Cards[lXArrayIndex, lYArrayIndex] = Instantiate(_CardBackgroundPrefab, new Vector3(lXPos + _Offset.x, lYPos + _Offset.y, 0), Quaternion.identity, transform);
-                        CardContainer lCard = _Cards[lXArrayIndex, lYArrayIndex].GetComponent<CardContainer>();
-                        lCard.gridPosition = new Vector2(lXArrayIndex, lYArrayIndex);
-                        lYArrayIndex++;
-                    }
-                    lXArrayIndex++;
-                }
+                lXArrayIndex++;
             }
         }
 

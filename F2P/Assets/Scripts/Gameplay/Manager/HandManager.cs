@@ -141,7 +141,7 @@ public class HandManager : MonoBehaviour
 
     private GameObject CreateCard()
     {
-        GameObject lCard = Instantiate(_CardPrefab);
+        GameObject lCard = Instantiate(CardPrefabDic.GetRandomPrefab());
         lCard.GetComponent<TEMPCard>().enabled = true;
         lCard.SetActive(false);
         lCard.transform.SetParent(_DeckContainer.transform, true);
