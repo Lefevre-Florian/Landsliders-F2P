@@ -42,17 +42,17 @@ namespace Com.IsartDigital.F2P.Biomes
         {
             _GameManager = GameManager.GetInstance();
             if (_AlwaysStart)
-                _GameManager.OnTurnPassed += ClockTicking;
+                _GameManager.OnTurnPassed.AddListener(ClockTicking);
         }
 
         public void StartTicking()
         {
             if (_AlwaysStart || _InternalTimer != _Timer)
                 return;
-            _GameManager.OnTurnPassed += ClockTicking;
+            _GameManager.OnTurnPassed.AddListener(ClockTicking);
         }
 
-        public void StopTicking() => _GameManager.OnTurnPassed -= ClockTicking;
+        public void StopTicking() => _GameManager.OnTurnPassed.RemoveListener(ClockTicking);
 
         private void ClockTicking()
         {
@@ -74,10 +74,13 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void OnDestroy()
         {
-            _Biome.OnReady -= Enable;
-            _Biome = null;
+            if(_Biome != null)
+                _Biome.OnReady -= Enable;
 
-            StopTicking();
+            if(_GameManager != null)
+                StopTicking();
+
+            _Biome = null;
             _GameManager = null;
         }
     }

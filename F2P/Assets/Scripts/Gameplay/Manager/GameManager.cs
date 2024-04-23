@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Events
-    public event Action OnTurnPassed;
+    public UnityEvent OnTurnPassed = new UnityEvent();
     public event Action<int> OnEffectPlayed;
 
     public static UnityEvent CardPlaced = new UnityEvent();

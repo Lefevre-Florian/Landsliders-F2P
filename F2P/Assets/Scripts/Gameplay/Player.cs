@@ -1,6 +1,6 @@
 using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.manager;
-
+using Com.IsartDigital.F2P.Biomes;
 using System;
 using System.Collections;
 
@@ -86,14 +86,12 @@ public class Player : MonoBehaviour
             {
                 _GridPosSelected = hit.collider.GetComponent<CardContainer>().gridPosition;
 
-                if (_GridPosSelected != _ActualGridPos && _GridPosSelected != _PreviousGridPos)
+                if (_GridPosSelected != _ActualGridPos && _GridPosSelected != _PreviousGridPos
+                    && (Mathf.Abs(_ActualGridPos.x - _GridPosSelected.x) <= 1 && Mathf.Abs(_ActualGridPos.y - _GridPosSelected.y) <= 1))
                 {
-                    if(Mathf.Abs(_ActualGridPos.x - _GridPosSelected.x) <= 1 && Mathf.Abs(_ActualGridPos.y - _GridPosSelected.y) <= 1)
-                    {
-                        _WorldPosSelected = _GridManager.GetWorldCoordinate((int)_GridPosSelected.x, (int)_GridPosSelected.y);
-                        if (_GridManager.GetCardByGridCoordinate(_GridPosSelected).IsWalkable)
-                            SetModeMove();
-                    }
+                    _WorldPosSelected = _GridManager.GetWorldCoordinate((int)_GridPosSelected.x, (int)_GridPosSelected.y);
+                    if (_GridManager.GetCardByGridCoordinate(_GridPosSelected).IsWalkable)
+                        SetModeMove();
                 }
             }
         }
