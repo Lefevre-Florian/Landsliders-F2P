@@ -43,10 +43,10 @@ namespace Com.IsartDigital.F2P.Biomes
         private void Start()
         {
             TEMPCard lCard = GetComponent<TEMPCard>();
-            if (!lCard.isActiveAndEnabled)
-                Enable();
-            else
-                lCard.OnPlaced += Enable;
+            //if (!lCard.isActiveAndEnabled)
+            //    Enable();
+            //else
+            //    lCard.OnPlaced += Enable;
         }
 
         public void PreciseSwitchWalkableState(bool pState) => _IsWalkable = pState;

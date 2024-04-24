@@ -81,6 +81,7 @@ public class HandManager : MonoBehaviour
                     lcardGO.transform.position = _CardsSlot[i].transform.position;
                     TEMPCard ltempCard = lcardGO.GetComponent<TEMPCard>();
                     ltempCard.handIndex = i;
+                    ltempCard.snapPos = _CardsSlot[i].transform.position;
                     ltempCard.SetModeInHand();
                     RemoveAtDeck(0);
                     _AvailableCardSlots[i] = false;
