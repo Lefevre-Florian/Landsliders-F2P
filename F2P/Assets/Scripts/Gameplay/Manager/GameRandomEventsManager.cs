@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Com.IsartDigital.F2P
+namespace Com.IsartDigital.F2P.Gameplay.Manager
 {
     public enum GameEventType { Etheral_Rift = 0, Dragon_Lair = 1, Witch = 2, Wisp = 3, Goblin_Treasure = 4, Mist = 5}
     public class GameRandomEventsManager : MonoBehaviour
@@ -104,6 +104,7 @@ namespace Com.IsartDigital.F2P
                 if (_RandomValue < _GameEventChance)
                 {
                     _GameEventSelected = _Eventdeck[_Eventdeck.Count - 1];
+                    _Eventdeck.RemoveAt(_Eventdeck.Count - 1);
                     InstantiateGameEvent(_GameEventSelected);
                     _GameEventsCount += 1;
                 }
