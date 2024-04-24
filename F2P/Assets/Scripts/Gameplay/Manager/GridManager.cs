@@ -163,9 +163,12 @@ namespace com.isartdigital.f2p.gameplay.manager
             int x = (int)pGridPosition.x;
             int y = (int)pGridPosition.y;
 
+            Vector3 lWorldPosition = _Cards[x, y].transform.position;
+
             Biome lBiome = Instantiate(pTransform, _Cards[x, y].transform.parent).GetComponent<Biome>();
             _Cards[x, y].GetComponent<Biome>().Remove();
             _Cards[x, y] = lBiome.gameObject;
+            _Cards[x, y].transform.position = lWorldPosition;
         }
 
         public void RemoveAtIndex(Vector2 pGridPosition) => _Cards[(int)pGridPosition.x, (int)pGridPosition.y] = null;
