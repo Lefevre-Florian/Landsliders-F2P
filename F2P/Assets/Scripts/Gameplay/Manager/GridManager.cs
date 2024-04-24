@@ -2,7 +2,7 @@ using com.isartdigital.f2p.gameplay.card;
 using Com.IsartDigital.F2P.Biomes;
 
 using System.Collections.Generic;
-
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Author (CR): Paul Vincencini
@@ -40,6 +40,7 @@ namespace com.isartdigital.f2p.gameplay.manager
         [HideInInspector] public Vector2 _GridSize;
         [HideInInspector] public float _CardSize;
         [HideInInspector] public float _CardRatio;
+        private const string CARDPLAYED_TAG = "CardPlayed";
 
         [HideInInspector] public GameObject[,] _Cards;
 
@@ -93,6 +94,10 @@ namespace com.isartdigital.f2p.gameplay.manager
                     _Cards[lXArrayIndex, lYArrayIndex] = Instantiate(_CardBackgroundPrefab, new Vector3(lXPos + _Offset.x, lYPos + _Offset.y, 0), Quaternion.identity, transform);
                     CardContainer lCard = _Cards[lXArrayIndex, lYArrayIndex].GetComponent<CardContainer>();
                     lCard.gridPosition = new Vector2(lXArrayIndex, lYArrayIndex);
+                    _Cards[lXArrayIndex, lYArrayIndex].GetComponent<TEMPCard>().currentState = TEMPCard.State.Played;
+                    _Cards[lXArrayIndex, lYArrayIndex].tag = CARDPLAYED_TAG;
+                    _Cards[lXArrayIndex, lYArrayIndex].GetComponent<TEMPCard>().enabled = false;
+                    
                     lYArrayIndex++;
                 }
                 lXArrayIndex++;

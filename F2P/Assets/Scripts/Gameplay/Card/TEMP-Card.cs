@@ -1,20 +1,29 @@
+using com.isartdigital.f2p.gameplay.card;
+using com.isartdigital.f2p.gameplay.manager;
 using System;
 using UnityEngine;
 
 // Author (CR) : Paul Vincencini
 public class TEMPCard : MonoBehaviour
 {
+
+    RaycastHit2D _Hit;
     // Variables
-    private BoxCollider2D _Collider2D;
     public int handIndex;
 
     private bool _Snapable;
-    private Vector3 _SnapPos;
+    [HideInInspector]
+    public Vector3 snapPos;
     private GameObject _SnapParent;
 
-    private State _CurrentState;
+    [HideInInspector]
+    public State currentState;
+    private Vector3 _GridPlacement;
+
+    private const string CARDPLAYED_TAG = "CardPlayed";
 
     private HandManager _HandManager = HandManager.GetInstance();
+    private Action DoAction;
 
     // Event
     public event Action OnPlaced;
@@ -28,53 +37,14 @@ public class TEMPCard : MonoBehaviour
 
     void Start()
     {
-        _HandManager = HandManager.GetInstance();
-
-        _Collider2D = GetComponent<BoxCollider2D>();
-        _Collider2D.enabled = true;
-
-        _SnapPos = _HandManager._CardsSlot[handIndex].transform.position;
+        _HandManager = HandManager.GetInstance();      
     }
 
-    private void OnMouseUp()
+    private void Update()
     {
-        if (GameManager.GetInstance().currentState == GameManager.State.MovingCard)
-        {
-            if(_Snapable && _CurrentState == State.Moving)
-            {
-                /*
-                    TODO : remplacer le snap parent actuel par la carte en main en récupérant les paramètre : position; gridPosition
-                    Après Destroy
-                */
-
-                transform.position = _SnapPos;
-                _HandManager._AvailableCardSlots[handIndex] = true;
-
-                if (_SnapParent.transform.childCount > 0) 
-                    Destroy(_SnapParent.transform.GetChild(0).gameObject);
-
-                transform.SetParent(_SnapParent.transform, true);
-                GameManager.CardPlaced.Invoke();
-
-                SetModePlayed();
-            }
-            else
-            {
-                transform.position = _SnapPos;
-            }
-        }
+      if(DoAction!=null)   DoAction();
     }
-
-    private void OnMouseDrag()
-    {
-        if (GameManager.GetInstance().currentState == GameManager.State.MovingCard && _CurrentState != State.Played)
-        {
-            Vector3 positionSourisPixels = Input.mousePosition;
-            transform.position = Camera.main.ScreenToWorldPoint(positionSourisPixels + new Vector3(0,0,2));
-            _CurrentState = State.Moving;
-            
-        }
-    }
+    
 
     /*
       TODO : faire une liste des colliders actuels et vérifier quel est le plus proche 
@@ -82,7 +52,7 @@ public class TEMPCard : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _Snapable = true;
-        _SnapPos = collision.transform.position;
+        snapPos = collision.transform.position;
         _SnapParent = collision.gameObject;
     }
 
@@ -91,34 +61,66 @@ public class TEMPCard : MonoBehaviour
         _Snapable = false;
 
         if(_HandManager != null)
-            _SnapPos = _HandManager._CardsSlot[handIndex].transform.position;
-        
+            snapPos = _HandManager._CardsSlot[handIndex].transform.position;
+      
         _SnapParent = null;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         _Snapable = true;
-        _SnapPos = collision.transform.position;
+        snapPos = collision.transform.position;
         _SnapParent = collision.gameObject;
     }
 
     public void SetModeInHand()
     {
-        _CurrentState = State.InHand;
+        currentState = State.InHand;
         gameObject.SetActive(true);
+        DoAction = DoActionInHand;        
+    }
+
+    private void DoActionInHand()
+    {
+         _Hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        if (!_Hit) return;
+        if (Input.GetMouseButtonDown(0) && _Hit.collider.transform == transform)
+        {
+            SetModeMoving();
+        }
     }
 
     public void SetModeMoving()
     {
-        _CurrentState = State.Moving;
+        currentState = State.Moving;
+        DoAction = DoActionMoving;
     }
 
+    private void DoActionMoving()
+    {
+        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + Vector3.forward * 2);
+        if (Input.GetMouseButtonUp(0) && _Snapable)
+        {
+            _GridPlacement = _SnapParent.GetComponent<CardContainer>().gridPosition;
+            transform.position = snapPos;
+            _HandManager._AvailableCardSlots[handIndex] = true;
+            GetComponent<CardContainer>().gridPosition = _SnapParent.GetComponent<CardContainer>().gridPosition;
+            GridManager.GetInstance()._Cards[(int)GetComponent<CardContainer>().gridPosition.x,(int) GetComponent<CardContainer>().gridPosition.y] = gameObject;
+            Destroy(_SnapParent.transform.gameObject);
+            transform.SetParent(GridManager.GetInstance().transform);
+            GameManager.CardPlaced.Invoke();
+            tag = CARDPLAYED_TAG;
+            SetModePlayed();
+        }
+        else if (Input.GetMouseButtonUp(0) && !_Snapable) 
+        {
+            transform.position = snapPos;
+            SetModeInHand();
+        }
+    }
     public void SetModePlayed()
     {
-        _CurrentState |= State.Played;
-        _Collider2D.enabled = false;
-
+        currentState |= State.Played;
         OnPlaced?.Invoke();
         enabled = false;
     }
