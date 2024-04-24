@@ -116,7 +116,10 @@ public class Player : MonoBehaviour
 
     public void SetModeMovable()
     {
-        StartCoroutine(DelayedStateMovable());
+        if (!isProtected)
+            StartCoroutine(DelayedStateMovable());
+        else
+            GameManager.PlayerMoved.Invoke();
     }
 
     public void SetModeVoid() => DoAction = null;
