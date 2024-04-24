@@ -32,11 +32,11 @@ namespace Com.IsartDigital.F2P.Biomes
         public void StartContinous()
         {
             _Timer = _NbTurn;
-            _GameManager.OnTurnPassed.AddListener(UpdateTime);
+            _GameManager.OnTurnPassed += UpdateTime;
             UpdateTime();
         }
 
-        public void StopContinuous() => _GameManager.OnTurnPassed.RemoveListener(UpdateTime);
+        public void StopContinuous() => _GameManager.OnTurnPassed -= UpdateTime;
 
         public void ImmediateAlteration() => UpdateDeck();
 

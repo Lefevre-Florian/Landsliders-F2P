@@ -1,6 +1,6 @@
 using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.manager;
-using Com.IsartDigital.F2P.Biomes;
+
 using System;
 using System.Collections;
 
@@ -116,7 +116,10 @@ public class Player : MonoBehaviour
 
     public void SetModeMovable()
     {
-        StartCoroutine(DelayedStateMovable());
+        if (!isProtected)
+            StartCoroutine(DelayedStateMovable());
+        else
+            GameManager.PlayerMoved.Invoke();
     }
 
     public void SetModeVoid() => DoAction = null;

@@ -1,6 +1,7 @@
 using System;
-using System.Collections.Generic;
+
 using TMPro;
+
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -42,17 +43,18 @@ namespace Com.IsartDigital.F2P.Biomes
         {
             _GameManager = GameManager.GetInstance();
             if (_AlwaysStart)
-                _GameManager.OnTurnPassed.AddListener(ClockTicking);
+                _GameManager.OnTurnPassed += ClockTicking;
         }
 
         public void StartTicking()
         {
             if (_AlwaysStart || _InternalTimer != _Timer)
                 return;
-            _GameManager.OnTurnPassed.AddListener(ClockTicking);
+
+            _GameManager.OnTurnPassed += ClockTicking;
         }
 
-        public void StopTicking() => _GameManager.OnTurnPassed.RemoveListener(ClockTicking);
+        public void StopTicking() => _GameManager.OnTurnPassed -= ClockTicking;
 
         private void ClockTicking()
         {
