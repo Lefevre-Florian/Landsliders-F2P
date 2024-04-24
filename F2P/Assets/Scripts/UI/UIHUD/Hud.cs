@@ -20,7 +20,6 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
         #endregion
 
         [Header("Sub-Button")]
-        [SerializeField] private GameObject _NextTurnButton = null;
         [SerializeField] private GameObject _PauseButton = null;
         [Header("Sub-screens")]
         [SerializeField] private Transform _PauseScreen = null;
@@ -62,7 +61,6 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
 
         public void Lose()
         {
-            _NextTurnButton.SetActive(false);
             _PauseButton.SetActive(false);
             _LoseScreen.gameObject.SetActive(true);
         }
