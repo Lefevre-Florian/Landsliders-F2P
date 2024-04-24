@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3794540079045137233}
+  - component: {fileID: -2707025486543356891}
   - component: {fileID: 1670292805084634038}
   - component: {fileID: 3156987593860903009}
-  - component: {fileID: 6198094587579357104}
   - component: {fileID: 8295392945309103686}
+  - component: {fileID: 8649781941472835880}
   m_Layer: 0
-  m_Name: Card
+  m_Name: Biome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,6 +37,19 @@ Transform:
   - {fileID: 2577380140345524551}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2707025486543356891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4523184677986655507}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b13c2533bfcbdf1418a23eebbd723b01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handIndex: 0
 --- !u!61 &1670292805084634038
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -43,7 +57,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4523184677986655507}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -79,7 +93,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.1368421, y: 1.1747369}
   m_EdgeRadius: 0
 --- !u!50 &3156987593860903009
 Rigidbody2D:
@@ -108,19 +122,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6198094587579357104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4523184677986655507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b13c2533bfcbdf1418a23eebbd723b01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handIndex: 0
 --- !u!114 &8295392945309103686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,8 +140,24 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _Type: 0
-  _CanBeRemoved: 1
+  _CanBeReplaced: 1
   _IsWalkable: 1
+--- !u!114 &8649781941472835880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4523184677986655507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef0fffaf18bf9440a3119fcd0b2a01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 1670292805084634038}
+  size: 2.4
+  cardRatio: 1.0333333
+  gridPosition: {x: 0, y: 0}
 --- !u!1 &7646986577398426315
 GameObject:
   m_ObjectHideFlags: 0

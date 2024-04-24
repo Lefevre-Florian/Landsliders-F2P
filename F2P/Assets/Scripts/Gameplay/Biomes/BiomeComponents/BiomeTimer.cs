@@ -29,30 +29,30 @@ namespace Com.IsartDigital.F2P.Biomes
         private int _InternalTimer = 0;
 
         private GameManager _GameManager = null;
+        private Biome _Biome = null;
 
         private void Start()
         {
             _InternalTimer = _Timer;
-
-            //GetComponent<TEMPCard>().OnPlaced += Enable;
-            Enable();
+            _Biome = GetComponent<Biome>();
+            _Biome.OnReady += Enable;
         }
 
         private void Enable()
         {
             _GameManager = GameManager.GetInstance();
             if (_AlwaysStart)
-                _GameManager.OnTurnPassed += ClockTicking;
+                _GameManager.OnTurnPassed.AddListener(ClockTicking);
         }
 
         public void StartTicking()
         {
-            if (_AlwaysStart)
+            if (_AlwaysStart || _InternalTimer != _Timer)
                 return;
-            _GameManager.OnTurnPassed += ClockTicking;
+            _GameManager.OnTurnPassed.AddListener(ClockTicking);
         }
 
-        public void StopTicking() => _GameManager.OnTurnPassed -= ClockTicking;
+        public void StopTicking() => _GameManager.OnTurnPassed.RemoveListener(ClockTicking);
 
         private void ClockTicking()
         {
@@ -74,8 +74,13 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void OnDestroy()
         {
-            //GetComponent<TEMPCard>().OnPlaced -= Enable;
-            StopTicking();
+            if(_Biome != null)
+                _Biome.OnReady -= Enable;
+
+            if(_GameManager != null)
+                StopTicking();
+
+            _Biome = null;
             _GameManager = null;
         }
     }

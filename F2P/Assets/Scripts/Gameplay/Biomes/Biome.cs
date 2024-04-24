@@ -1,5 +1,7 @@
 using com.isartdigital.f2p.gameplay.manager;
 
+using System;
+
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -35,10 +37,16 @@ namespace Com.IsartDigital.F2P.Biomes
 
         public BiomeType Type { get { return _Type; } }
 
+        // Events
+        public event Action OnReady;
+
         private void Start()
         {
-            //GetComponent<TEMPCard>().OnPlaced += Enable;
-            Enable();
+            TEMPCard lCard = GetComponent<TEMPCard>();
+            if (!lCard.isActiveAndEnabled)
+                Enable();
+            else
+                lCard.OnPlaced += Enable;
         }
 
         public void PreciseSwitchWalkableState(bool pState) => _IsWalkable = pState;
@@ -61,22 +69,32 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void Enable()
         {
-            _GridPosition = GridManager.GetInstance().GetGridCoordinate(transform.position);
+            GetComponent<TEMPCard>().OnPlaced -= Enable;
+
+            _GridPosition = GridManager.GetInstance()
+                                       .GetGridCoordinate(transform.position);
 
             _GameManager = GameManager.GetInstance();
             if (_Priority != 0)
                 _GameManager.OnEffectPlayed += TriggerPriority;
+
+            OnReady?.Invoke();
         }
 
         private void TriggerPriority(int pGamePriority) 
         {
             if(pGamePriority == _Priority)
+            {
+                print("Play event : " + gameObject.name);
                 onTriggered?.Invoke(); 
+            }
         }
 
         private void OnDestroy()
         {
-            if(_Priority != 0)
+            GetComponent<TEMPCard>().OnPlaced -= Enable;
+
+            if(_Priority != 0 && _GameManager != null)
                 _GameManager.OnEffectPlayed -= TriggerPriority;
 
             onTriggered = null;

@@ -5,28 +5,34 @@ using UnityEngine;
 
 public enum CardType
 {
-    NONE,
-    Plaine,
-    Montagne
+    Canyon,
+    Desert,
+    Field,
+    FlyingIsland,
+    Glacier,
+    Grassland,
+    Swamp,
+    Volcan,
+    Vortex
 }
 
 public class CardPrefabDic : MonoBehaviour
 {
     [SerializeField] CTGODic test;
-    private Dictionary<CardType, GameObject> prefabDic;
-    private List<GameObject> prefabList;
+    private static Dictionary<CardType, GameObject> prefabDic;
+    private static List<GameObject> prefabList;
     private void Awake()
     {
         prefabDic = test.ToDic();
         prefabList = test.ToList();
     }
 
-    private GameObject GetRandomPrefab() 
+    public static GameObject GetRandomPrefab() 
     {
         return prefabList[UnityEngine.Random.Range(0, prefabList.Count)];
     }
 
-    private GameObject GetPrefab(CardType type)
+    public static GameObject GetPrefab(CardType type)
     {
         return prefabDic[type];
     }

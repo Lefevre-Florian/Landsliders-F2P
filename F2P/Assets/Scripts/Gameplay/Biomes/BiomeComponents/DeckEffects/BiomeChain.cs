@@ -34,30 +34,30 @@ namespace Com.IsartDigital.F2P.Biomes
 
             int lLength = NbDirectionToCheck;
             for (int i = 0; i < lLength; i++)
-                RecursiveAnalysis(lStep);
-
+                RecursiveAnalysis(lStep, this);
             return _ShortMemory.Count - 1;
         }
 
-        private void RecursiveAnalysis(int pStep)
+        private void RecursiveAnalysis(int pStep, BiomeChain pChain)
         {
             if (pStep >= _ChainMaxLength)
                 return;
             pStep += 1;
 
-            Biome[] lBiomes = GetSurroundingOnlyFiltered(new BiomeType[] { _Type }, 1);
+            Biome[] lBiomes = pChain.GetSurroundingOnlyFiltered(new BiomeType[] { _Type }, 1);
             int lLength = lBiomes.Length;
+            
+            if (lLength == 0)
+                return;
 
             for (int i = 0; i < lLength; i++)
             {
                 if (!_ShortMemory.Contains(lBiomes[i]))
                 {
                     _ShortMemory.Add(lBiomes[i]);
-                    RecursiveAnalysis(pStep);
+                    RecursiveAnalysis(pStep, lBiomes[i].GetComponent<BiomeChain>());
                 }
             }
-
-            return;
         }
 
         protected override void OnDestroy()

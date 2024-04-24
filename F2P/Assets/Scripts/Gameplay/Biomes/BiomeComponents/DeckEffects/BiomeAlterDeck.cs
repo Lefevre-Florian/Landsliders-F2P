@@ -32,18 +32,25 @@ namespace Com.IsartDigital.F2P.Biomes
         public void StartContinous()
         {
             _Timer = _NbTurn;
-            _GameManager.OnTurnPassed += UpdateTime;
+            _GameManager.OnTurnPassed.AddListener(UpdateTime);
             UpdateTime();
         }
 
-        public void StopContinuous() => _GameManager.OnTurnPassed -= UpdateTime;
+        public void StopContinuous() => _GameManager.OnTurnPassed.RemoveListener(UpdateTime);
 
         public void ImmediateAlteration() => UpdateDeck();
 
-        public void ImmediateAlterationBasedOnBonuses()
+        public void ImmmediateAlteration(MonoBehaviour pBonus)
         {
-            _NbAffected = GetComponent<IBiomeEnumerator>().GetEnumertation();
-            UpdateDeck();
+            if(pBonus is IBiomeEnumerator)
+            {
+                _NbAffected = (pBonus as IBiomeEnumerator).GetEnumertation();
+                UpdateDeck();
+            }
+            else
+            {
+                Debug.LogError("Must be an" + typeof(IBiomeEnumerator));
+            }
         }
 
         private void UpdateTime()
@@ -64,7 +71,8 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void OnDestroy()
         {
-            _GameManager.OnTurnPassed -= UpdateTime;
+            if (_GameManager != null)
+                StopContinuous();
 
             _HandManager = null;
             _GameManager = null;

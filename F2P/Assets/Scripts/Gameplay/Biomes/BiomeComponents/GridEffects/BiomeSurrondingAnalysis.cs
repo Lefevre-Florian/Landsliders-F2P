@@ -41,12 +41,12 @@ namespace Com.IsartDigital.F2P.Biomes
         /// <returns>Array[Biome] => All neighbour biomes</returns>
         protected Biome[] GetSurrounding(int pRange)
         {
-            if (pRange > m_GridManager._GridSize.x || pRange > m_GridManager._GridSize.y)
-                pRange = (int)Mathf.Min(m_GridManager._GridSize.x, m_GridManager._GridSize.y);
+            if (pRange > m_GridManager._NumCard.x || pRange > m_GridManager._NumCard.y)
+                pRange = (int)Mathf.Min(m_GridManager._NumCard.x, m_GridManager._NumCard.y);
 
             List<Biome> lSurroundingBiomes = new List<Biome>();
+            
             Biome lBiome = null;
-
             Vector2 lSamplePosition = default;
 
             int lLength = (int)_GridDirection;
@@ -54,7 +54,8 @@ namespace Com.IsartDigital.F2P.Biomes
 
             for (int i = 0; i < lLength; i++)
             {
-                lSamplePosition = m_Biome.GridPosition + (Vector2)(Quaternion.AngleAxis(lAngle * i, Vector3.forward * pRange) * Vector3.up);
+                lSamplePosition = m_Biome.GridPosition + (Vector2)(Quaternion.AngleAxis(lAngle * i, Vector3.forward) * (Vector3.up * pRange));
+
                 lSamplePosition.x = Mathf.RoundToInt(lSamplePosition.x);
                 lSamplePosition.y = Mathf.RoundToInt(lSamplePosition.y);
 
@@ -74,31 +75,21 @@ namespace Com.IsartDigital.F2P.Biomes
             return lSurroundingBiomes.ToArray();
         }
 
-        protected Biome[] GetSurroundingRemoveFiltered(BiomeType[] pFilter, int pRange = 1)
+        protected Biome[] GetSurroundingOnlyFiltered(BiomeType[] pFilter, int pRange = 1)
         {
             Biome[] lSurroundingBiomes = GetSurrounding(pRange);
+            List<Biome> lBiomes = new List<Biome>();
 
             int lLength = lSurroundingBiomes.Length;
             if (lLength == 0)
                 return lSurroundingBiomes;
 
-            lLength = pFilter.Length;
             for (int i = 0; i < lLength; i++)
-                lSurroundingBiomes.ToList().RemoveAll(x => x.Type == pFilter[i]);
-
-            return lSurroundingBiomes.ToArray();
-        }
-
-        protected Biome[] GetSurroundingOnlyFiltered(BiomeType[] pFiler, int pRange = 1)
-        {
-            List<BiomeType> lExcludeFilter = new List<BiomeType>();
-            foreach (BiomeType lItem in Enum.GetValues(typeof(BiomeType)))
             {
-                if (!pFiler.Contains(lItem))
-                    lExcludeFilter.Add(lItem);
+                if (pFilter.Contains(lSurroundingBiomes[i].Type))
+                    lBiomes.Add(lSurroundingBiomes[i]);
             }
-
-            return GetSurroundingRemoveFiltered(lExcludeFilter.ToArray(), pRange);
+            return lBiomes.ToArray();
         }
 
         protected virtual void OnDestroy() => m_GridManager = null;

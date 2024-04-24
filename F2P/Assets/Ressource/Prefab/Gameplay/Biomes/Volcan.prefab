@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81319e495f8ba7243a9d365efb7f3978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _AlwaysStart: 1
   _Timer: 3
   _TimedActions:
   - time: 2
