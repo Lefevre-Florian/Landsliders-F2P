@@ -24,24 +24,35 @@ namespace Com.IsartDigital.F2P.UI
         private bool _EditorIsOn = true;
         #endif
 
+        // Get / Set
+        public bool IsOn { get { return _IsOn; } }
+
         // Events
         private event Action<bool> OnToggleChanged;
 
-        private void Start()
+        private void Awake()
         {
             _IconComponent = GetComponent<Image>();
             _ButtonComponents = GetComponent<Button>();
 
             _ButtonComponents.onClick.AddListener(UpdateToggle);
         }
-        
-        private void UpdateToggle()
+
+
+        private void UpdateToggle() => SetToggle(_IsOn = !_IsOn);
+
+        private void UpdateRenderer()
         {
-            _IsOn = !_IsOn;
             if (_IsOn)
                 _IconComponent.sprite = _IconOn;
             else
                 _IconComponent.sprite = _IconOff;
+        }
+
+        public void SetToggle(bool pStatus)
+        {
+            _IsOn = pStatus;
+            UpdateRenderer();
 
             OnToggleChanged?.Invoke(_IsOn);
         }

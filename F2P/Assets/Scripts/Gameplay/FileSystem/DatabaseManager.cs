@@ -29,7 +29,7 @@ namespace Com.IsartDigital.F2P.Database
         /// SQL Command Line
         private const string SELECT_PLAYER = "SELECT (id, musicVolume, soundVolume, softcurrency, hardcurrency) FROM PLAYER";
 
-        public PlayerSave _PlayerSave = null;
+        public static PlayerSave playerSave = null;
 
         private void Awake()
         {
@@ -39,11 +39,8 @@ namespace Com.IsartDigital.F2P.Database
                 return;
             }
             _Instance = this;
-        }
 
-        private void Start()
-        {
-            
+            ReadDataFromSaveFile();
         }
 
         private void GetValues()
@@ -75,10 +72,10 @@ namespace Com.IsartDigital.F2P.Database
         {
             string lPath = Application.persistentDataPath + FILE_NAME;
 
-            if (!File.Exists(lPath))
-                return;
-
-            _PlayerSave = JsonUtility.FromJson<PlayerSave>(File.ReadAllText(lPath));
+            if (File.Exists(lPath))
+                playerSave = JsonUtility.FromJson<PlayerSave>(File.ReadAllText(lPath));
+            else
+                playerSave = new PlayerSave();
         }
 
         public void WriteDataToSaveFile()
@@ -88,7 +85,7 @@ namespace Com.IsartDigital.F2P.Database
             if (!File.Exists(lPath))
                 File.Create(lPath);
 
-            File.WriteAllText(lPath, JsonUtility.ToJson(_PlayerSave));
+            File.WriteAllText(lPath, JsonUtility.ToJson(playerSave));
         }
 
         private void OnDestroy()
