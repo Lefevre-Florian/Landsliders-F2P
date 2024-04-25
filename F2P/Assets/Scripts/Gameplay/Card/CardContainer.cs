@@ -14,16 +14,11 @@ namespace com.isartdigital.f2p.gameplay.card
 
         public Vector2 gridPosition;
 
-       
-
         public BoxCollider2D GetBoxCollider() 
         {
             if(boxCollider == null) boxCollider = GetComponent<BoxCollider2D>();
 
             return boxCollider;
-
-
         }
-
     }
 }

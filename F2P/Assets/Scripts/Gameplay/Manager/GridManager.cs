@@ -176,6 +176,16 @@ namespace com.isartdigital.f2p.gameplay.manager
             Vector3 lWorldPosition = _Cards[x, y].transform.position;
 
             Biome lBiome = Instantiate(pTransform, _Cards[x, y].transform.parent).GetComponent<Biome>();
+            TEMPCard lCard = lBiome.GetComponent<TEMPCard>();
+            
+            lCard.SetModePlayed();
+
+            lCard.tag = CARDPLAYED_TAG;
+            lCard.currentState = TEMPCard.State.Played;
+            lCard.enabled = false;
+
+            lCard.GetComponent<CardContainer>().gridPosition = new Vector2(x, y);
+
             _Cards[x, y].GetComponent<Biome>().Remove();
             _Cards[x, y] = lBiome.gameObject;
             _Cards[x, y].transform.position = lWorldPosition;
