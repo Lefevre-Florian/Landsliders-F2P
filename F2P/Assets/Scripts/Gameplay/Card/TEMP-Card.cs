@@ -21,6 +21,7 @@ public class TEMPCard : MonoBehaviour
     private Vector3 _GridPlacement;
 
     private const string CARDPLAYED_TAG = "CardPlayed";
+    private const string PLAYER_NAME = "Player";
 
     private HandManager _HandManager = HandManager.GetInstance();
     private Action DoAction;
@@ -51,9 +52,13 @@ public class TEMPCard : MonoBehaviour
     */
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _Snapable = true;
-        snapPos = collision.transform.position;
-        _SnapParent = collision.gameObject;
+        if (collision.name != "Player" && collision.GetComponent<TEMPCard>().currentState != State.InHand  )
+        {
+            _Snapable = true;
+            snapPos = collision.transform.position;
+            _SnapParent = collision.gameObject;
+        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -68,9 +73,14 @@ public class TEMPCard : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        _Snapable = true;
-        snapPos = collision.transform.position;
-        _SnapParent = collision.gameObject;
+        
+        if (collision.name != "Player" && collision.GetComponent<TEMPCard>().currentState != State.InHand)
+        {
+            _Snapable = true;
+            snapPos = collision.transform.position;
+            _SnapParent = collision.gameObject;
+        }
+        
     }
 
     public void SetModeInHand()
