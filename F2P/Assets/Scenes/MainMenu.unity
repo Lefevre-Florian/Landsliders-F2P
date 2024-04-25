@@ -232,6 +232,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3686924374083157324, guid: 9f1bec447a2e6d4409657e9e3e2c6af8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3686924374083157324, guid: 9f1bec447a2e6d4409657e9e3e2c6af8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1404452511}
@@ -1404,6 +1408,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1008727814256329649, guid: 478d4c030b26b4a4688f8053081f74cd, type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1008727814256329649, guid: 478d4c030b26b4a4688f8053081f74cd, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 1246408562054333411, guid: 478d4c030b26b4a4688f8053081f74cd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1536,6 +1548,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4480469331648460118, guid: 478d4c030b26b4a4688f8053081f74cd, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6886792
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480469331648460118, guid: 478d4c030b26b4a4688f8053081f74cd, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6886792
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480469331648460118, guid: 478d4c030b26b4a4688f8053081f74cd, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6886792
+      objectReference: {fileID: 0}
     - target: {fileID: 4554781009586449359, guid: 478d4c030b26b4a4688f8053081f74cd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -1620,6 +1644,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: Com.IsartDigital.F2P.UI.Screen, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 4811686739203310398, guid: 478d4c030b26b4a4688f8053081f74cd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1404452511}
     - target: {fileID: 6088475266255058064, guid: 478d4c030b26b4a4688f8053081f74cd, type: 3}
       propertyPath: m_Name
       value: PRB_TitleScreen
