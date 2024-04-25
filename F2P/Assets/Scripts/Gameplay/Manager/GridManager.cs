@@ -94,7 +94,6 @@ namespace com.isartdigital.f2p.gameplay.manager
                 {
                     float lYPos = _GridSize.y * y;
 
-                    Debug.Log(_Cards[lXArrayIndex, lYArrayIndex]);
                     GameObject lPrefabToInstantiate = _Cards[lXArrayIndex, lYArrayIndex] == null ? CardPrefabDic.GetRandomPrefab() :
                                                                                                    _Cards[lXArrayIndex, lYArrayIndex];
 
