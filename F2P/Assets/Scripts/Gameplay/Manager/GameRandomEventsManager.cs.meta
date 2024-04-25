@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 480c46f3cec5c43489b081ea94bebe08
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _EtheralRift: {fileID: 8149821949770973124, guid: 806f15beba4f9e04eb9bd269db15f90f, type: 3}
+  - _DragonLair: {fileID: 6087476990557836528, guid: 32c0595fe4bed8144b59f4e1c9421115, type: 3}
+  - _Witch: {fileID: 1284007911230468281, guid: e33e8248a04cd5642a3d41315b9fb62b, type: 3}
+  - _Wisp: {fileID: 7100505260429275719, guid: d7ba279bed5d1ca44a6f7716a67c93f5, type: 3}
+  - _GoblinTreasure: {fileID: 6956311438354313730, guid: aa830714b7b17d945a7b1e4c0d885b38, type: 3}
+  - _Mist: {fileID: 4857646458243004221, guid: ea2578a30c4a6404e90de53066c8cc48, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

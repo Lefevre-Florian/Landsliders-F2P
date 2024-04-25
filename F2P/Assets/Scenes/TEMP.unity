@@ -1715,6 +1715,7 @@ MonoBehaviour:
   playerMoved: 0
   playerCanMove: 0
   currentState: 0
+  _LastCardPlayed: {fileID: 0}
 --- !u!114 &1061210646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1729,22 +1730,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Biomes:
     _Dict:
-    - key: 0
-      value: {fileID: 3307112218122664447, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
-    - key: 1
-      value: {fileID: 1215226676069808110, guid: 6d8af7ce6b1c1004ca1bee3ff37e99b0, type: 3}
-    - key: 2
-      value: {fileID: 8817954561399897485, guid: d9dd62ae092e4504ba99f2f8f7402a37, type: 3}
-    - key: 3
-      value: {fileID: 3912905057911434000, guid: b7c09bb64cb724242bd2bb46530aabf3, type: 3}
-    - key: 4
-      value: {fileID: 7305934453097383714, guid: e09688d49f55b4447bec5e0f20188ea6, type: 3}
-    - key: 5
-      value: {fileID: 3845447295816968044, guid: cabda8db273493547a1ab69986d4547e, type: 3}
     - key: 6
       value: {fileID: 3667428915726666856, guid: 37b3550ff5da1ee40930d0a99045357d, type: 3}
+    - key: 2
+      value: {fileID: 8817954561399897485, guid: d9dd62ae092e4504ba99f2f8f7402a37, type: 3}
+    - key: 1
+      value: {fileID: 1215226676069808110, guid: 6d8af7ce6b1c1004ca1bee3ff37e99b0, type: 3}
+    - key: 5
+      value: {fileID: 3845447295816968044, guid: cabda8db273493547a1ab69986d4547e, type: 3}
     - key: 7
       value: {fileID: 5478805542897906924, guid: d50be3e04851a7f40b73d8ab2fdb972b, type: 3}
+    - key: 0
+      value: {fileID: 3307112218122664447, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+    - key: 4
+      value: {fileID: 7305934453097383714, guid: e09688d49f55b4447bec5e0f20188ea6, type: 3}
+    - key: 3
+      value: {fileID: 3912905057911434000, guid: b7c09bb64cb724242bd2bb46530aabf3, type: 3}
     - key: 8
       value: {fileID: 5267400807792268099, guid: 8b1748598685e9f418137255580bcde3, type: 3}
 --- !u!114 &1061210647
