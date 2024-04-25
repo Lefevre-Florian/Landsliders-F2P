@@ -43,8 +43,8 @@ public class TEMPCard : MonoBehaviour
             if(_Snapable && _CurrentState == State.Moving)
             {
                 /*
-                    TODO : remplacer le snap parent actuel par la carte en main en récupérant les paramètre : position; gridPosition
-                    Après Destroy
+                    TODO : remplacer le snap parent actuel par la carte en main en rÃ©cupÃ©rant les paramÃ¨tre : position; gridPosition
+                    AprÃ¨s Destroy
                 */
 
                 transform.position = _SnapPos;
@@ -54,6 +54,7 @@ public class TEMPCard : MonoBehaviour
                     Destroy(_SnapParent.transform.GetChild(0).gameObject);
 
                 transform.SetParent(_SnapParent.transform, true);
+                GameManager.GetInstance()._LastCardPlayed = gameObject;
                 GameManager.CardPlaced.Invoke();
 
                 SetModePlayed();
@@ -77,7 +78,7 @@ public class TEMPCard : MonoBehaviour
     }
 
     /*
-      TODO : faire une liste des colliders actuels et vérifier quel est le plus proche 
+      TODO : faire une liste des colliders actuels et vÃ©rifier quel est le plus proche 
     */
     private void OnTriggerEnter2D(Collider2D collision)
     {

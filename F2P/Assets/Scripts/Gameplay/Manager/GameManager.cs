@@ -69,6 +69,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]public State currentState;
 
+    [HideInInspector] public GameObject _LastCardPlayed;
+
     // Get / Set
     public int CurrentPriority
     {

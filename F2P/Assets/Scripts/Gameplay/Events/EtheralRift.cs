@@ -1,13 +1,36 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using com.isartdigital.f2p.gameplay.manager;
+using Com.IsartDigital.F2P.Biomes;
 using UnityEngine;
 
 namespace Com.IsartDigital.F2P.Gameplay.Events
 {
-    public class EtheralRift : MonoBehaviour
+    public class EtheralRift : GameRandomEvent
     {
-        private void Start()
+        //private List<BiomeType> _BiomeTypeToReplace = Enum.GetValues(typeof(BiomeType)).Cast<BiomeType>().ToList();
+        private List<BiomeType> _BiomeTypeToReplace = new List<BiomeType>();
+        protected override IEnumerator PlayRandomEventEffect()
         {
-            
+            foreach (Biome lBiome in GridManager.GetInstance().Biomes)
+            {
+                if(_GridManager.GetGridCoordinate(lBiome.transform.position).y == _GridPosition.y)
+                {
+                    _BiomeTypeToReplace = Enum.GetValues(typeof(BiomeType)).Cast<BiomeType>().ToList();
+
+                    if (lBiome.transform.position == Player.GetInstance().transform.position)
+                    {
+                        _BiomeTypeToReplace.Remove(BiomeType.Canyon);
+                        BiomeType lRandomType = _BiomeTypeToReplace[UnityEngine.Random.Range(0, _BiomeTypeToReplace.Count - 1)];
+                        //CardPrefabDic.GetPrefab(lRandomType);
+                        Transform lRandomBiome = _GridManager.GetRandomBiome();
+                        lBiome.Replace(lRandomBiome);
+                    }
+                }
+            }
+            return null;
         }
     }
 }

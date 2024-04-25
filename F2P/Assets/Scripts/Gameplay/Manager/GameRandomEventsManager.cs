@@ -59,6 +59,8 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
 
         private GameEventType _GameEventSelected;
 
+        private GameObject _InstantiatedGameEvent;
+
         private void Start()
         {
             AddToEventDeckList(_MaxEtheralRiftsNumber, GameEventType.Etheral_Rift);
@@ -116,20 +118,28 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
             switch (pGameEvenType)
             {
                 case GameEventType.Etheral_Rift:
-                    return Instantiate(_EtheralRift);
+                    return PlaceGameEvent(_EtheralRift);
                 case GameEventType.Dragon_Lair:
-                    return Instantiate(_DragonLair);
+                    return PlaceGameEvent(_DragonLair);
                 case GameEventType.Witch:
-                    return Instantiate(_Witch);
+                    return PlaceGameEvent(_Witch);
                 case GameEventType.Wisp:
-                    return Instantiate(_Wisp);
+                    return PlaceGameEvent(_Wisp);
                 case GameEventType.Goblin_Treasure:
-                    return Instantiate(_GoblinTreasure);
+                    return PlaceGameEvent(_GoblinTreasure);
                 case GameEventType.Mist:
-                    return Instantiate(_Mist);
+                    return PlaceGameEvent(_Mist);
                 default:
                     return null;
             }
+        }
+
+        private GameObject PlaceGameEvent(GameObject pGameObject)
+        {
+            _InstantiatedGameEvent = Instantiate(pGameObject);
+            pGameObject.transform.SetParent(GameManager.GetInstance()._LastCardPlayed.transform);
+            pGameObject.transform.localPosition = Vector3.zero;
+            return _InstantiatedGameEvent;
         }
     }
 }
