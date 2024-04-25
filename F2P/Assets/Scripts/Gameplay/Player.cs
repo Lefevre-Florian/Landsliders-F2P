@@ -33,9 +33,10 @@ public class Player : MonoBehaviour
     
     public Vector2 baseGridPos;
     [SerializeField] private float _LerpDuration;
-    
+
     // Variables
-    private Vector2 _ActualGridPos;
+    [HideInInspector]
+    public Vector2 _ActualGridPos;
     private Vector2 _PreviousGridPos;
 
     private Vector2 _GridPosSelected;
