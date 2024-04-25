@@ -39,7 +39,7 @@ namespace com.isartdigital.f2p.gameplay.manager
         [HideInInspector] public float _CardSize;
         [HideInInspector] public float _CardRatio;
 
-        [HideInInspector] public GameObject[,] _Cards;
+        [HideInInspector] public GameObject[,] _Cards = new GameObject[3,3];
 
         [Header("Biomes")]
         [SerializeField] private Transform[] _BiomePrefabs = null;
@@ -67,8 +67,11 @@ namespace com.isartdigital.f2p.gameplay.manager
             }
             _Instance = this;
 
-            _Cards = new GameObject[(int)_NumCard.x, (int)_NumCard.y];
+            GameFlowManager.InitGrid.AddListener(Init);
+        }
 
+        public void Init()
+        {
             _ScreenSizeInGameUnit = new Vector2(Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize);
             _GridSize = _ScreenSizeInGameUnit * new Vector2(_GridSizePercent.x, _GridSizePercent.y);
 
@@ -91,7 +94,15 @@ namespace com.isartdigital.f2p.gameplay.manager
                 {
                     float lYPos = _GridSize.y * y;
 
-                    _Cards[lXArrayIndex, lYArrayIndex] = Instantiate(_CardBackgroundPrefab, new Vector3(lXPos + _Offset.x, lYPos + _Offset.y, 0), Quaternion.identity, transform);
+                    Debug.Log(_Cards[lXArrayIndex, lYArrayIndex]);
+                    GameObject lPrefabToInstantiate = _Cards[lXArrayIndex, lYArrayIndex] == null ? CardPrefabDic.GetRandomPrefab() :
+                                                                                                   _Cards[lXArrayIndex, lYArrayIndex];
+
+                    _Cards[lXArrayIndex, lYArrayIndex] = Instantiate( lPrefabToInstantiate,
+                                                                     new Vector3(lXPos + _Offset.x, lYPos + _Offset.y, 0),
+                                                                     Quaternion.identity,
+                                                                     transform);
+
                     CardContainer lCard = _Cards[lXArrayIndex, lYArrayIndex].GetComponent<CardContainer>();
                     lCard.gridPosition = new Vector2(lXArrayIndex, lYArrayIndex);
                     lYArrayIndex++;
@@ -172,7 +183,10 @@ namespace com.isartdigital.f2p.gameplay.manager
         private void OnDestroy()
         {
             if (_Instance == this)
+            {
                 _Instance = null;
+                GameFlowManager.InitGrid.RemoveListener(Init);
+            }
         }
     }
 }

@@ -93,7 +93,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1368421, y: 1.1747369}
+  m_Size: {x: 1.1789474, y: 1.5522809}
   m_EdgeRadius: 0
 --- !u!50 &3156987593860903009
 Rigidbody2D:
@@ -155,8 +155,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 1670292805084634038}
-  size: 2.4
-  cardRatio: 1.0333333
+  size: 2.488889
+  cardRatio: 1.3166667
   gridPosition: {x: 0, y: 0}
 --- !u!1 &7646986577398426315
 GameObject:
