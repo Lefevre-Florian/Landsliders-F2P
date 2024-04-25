@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
             _PreviousGridPos = _ActualGridPos;
             _ActualGridPos = _GridPosSelected;
 
-            GameManager.PlayerMoved.Invoke();
+            GameManager.PlayerMoved?.Invoke();
             SetModeVoid();
         }
     }
@@ -155,7 +155,7 @@ public class Player : MonoBehaviour
         _ActualGridPos = pPosition;
         transform.position = _GridManager.GetWorldCoordinate(pPosition);
 
-        GameManager.PlayerMoved.Invoke();
+        GameManager.PlayerMoved?.Invoke();
     }
     #endregion
 

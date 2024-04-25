@@ -1,45 +1,45 @@
 using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.manager;
 using Com.IsartDigital.F2P.Biomes;
+
 using System;
 using System.Collections.Generic;
+
 using UnityEngine;
 
-// Author (CR) : Paul Vincencini
+// Author (CR) : Elias Dridi
 public class TEMPCard : MonoBehaviour
 {
-
-    RaycastHit2D _Hit;
-    // Variables
-    public int handIndex;
-
-    private bool _Snapable;
-    [HideInInspector]
-    public Vector3 snapPos;
-    private GameObject _SnapParent;
-    private GameObject _ClosestSnapParent;
-
-    
-    public State currentState;
-    private Vector3 _GridPlacement;
-
-    private const string CARDPLAYED_TAG = "CardPlayed";
-    private const string PLAYER_NAME = "Player";
-
-    private HandManager _HandManager = HandManager.GetInstance();
-    private Action DoAction;
-
-    private List<Collider2D> _CollidingObjects = new List<Collider2D>();
-
-    // Event
-    public event Action OnPlaced;
-
     public enum State
     {
         InHand,
         Moving,
         Played
     }
+    
+    private const string CARDPLAYED_TAG = "CardPlayed";
+    private const string PLAYER_NAME = "Player";
+    
+    // Variables
+    public int handIndex;
+    public State currentState;
+    
+    private RaycastHit2D _Hit;
+
+    private bool _Snapable;
+    [HideInInspector]public Vector3 snapPos;
+    private GameObject _SnapParent;
+    private GameObject _ClosestSnapParent;
+
+    private Vector3 _GridPlacement;
+
+    private HandManager _HandManager = null;
+    private Action DoAction = null;
+
+    private List<Collider2D> _CollidingObjects = new List<Collider2D>();
+
+    // Event
+    public event Action OnPlaced;
 
     void Start()
     {
@@ -53,7 +53,9 @@ public class TEMPCard : MonoBehaviour
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name != "Player" && collision.GetComponent<TEMPCard>().currentState != State.InHand && collision.GetComponent<Biome>().Type != GetComponent<Biome>().Type)
+        if (collision.name != PLAYER_NAME 
+            && collision.GetComponent<TEMPCard>().currentState != State.InHand 
+            && collision.GetComponent<Biome>().Type != GetComponent<Biome>().Type)
         {
             _CollidingObjects.Add(collision);
             _Snapable = true;
@@ -76,7 +78,9 @@ public class TEMPCard : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.name != "Player" && collision.GetComponent<TEMPCard>().currentState != State.InHand && collision.GetComponent<Biome>().Type != GetComponent<Biome>().Type)
+        if (collision.name != PLAYER_NAME
+            && collision.GetComponent<TEMPCard>().currentState != State.InHand 
+            && collision.GetComponent<Biome>().Type != GetComponent<Biome>().Type)
         {
             if (_CollidingObjects.Count > 1)
             {
@@ -116,11 +120,11 @@ public class TEMPCard : MonoBehaviour
     {
         if (GameManager.GetInstance().currentState != GameManager.State.MovingCard) return;
          _Hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        
         if (!_Hit) return;
+
         if (Input.GetMouseButtonDown(0) && _Hit.collider.transform == transform)
-        {
             SetModeMoving();
-        }
     }
 
     public void SetModeMoving()
@@ -132,18 +136,27 @@ public class TEMPCard : MonoBehaviour
     private void DoActionMoving()
     {
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + Vector3.forward * 2);
-        if (Input.GetMouseButtonUp(0) && _Snapable && _SnapParent.GetComponent<Biome>().Type != GetComponent<Biome>().Type)
+        if (Input.GetMouseButtonUp(0) 
+            && _Snapable 
+            && _SnapParent.GetComponent<Biome>().Type != GetComponent<Biome>().Type
+            && _SnapParent.GetComponent<Biome>().CanBeRemoved)
         {
+            CardContainer lContainer = GetComponent<CardContainer>();
+            GridManager lGridManager = GridManager.GetInstance();
+
             _GridPlacement = _SnapParent.GetComponent<CardContainer>().gridPosition;
             transform.position = snapPos;
             _HandManager._AvailableCardSlots[handIndex] = true;
-            GetComponent<CardContainer>().gridPosition = _SnapParent.GetComponent<CardContainer>().gridPosition;
-            GridManager.GetInstance()._Cards[(int)GetComponent<CardContainer>().gridPosition.x,(int) GetComponent<CardContainer>().gridPosition.y] = gameObject;
+            lContainer.gridPosition = _SnapParent.GetComponent<CardContainer>().gridPosition;
+            lGridManager._Cards[(int)lContainer.gridPosition.x,(int)lContainer.gridPosition.y] = gameObject;
             Destroy(_SnapParent.transform.gameObject);
             transform.SetParent(GridManager.GetInstance().transform);
             GameManager.GetInstance()._LastCardPlayed = transform.gameObject;
+            transform.SetParent(lGridManager.transform);
+            
             GameManager.CardPlaced.Invoke();
             tag = CARDPLAYED_TAG;
+            
             SetModePlayed();
         }
         else if (Input.GetMouseButtonUp(0) && !_Snapable) 
