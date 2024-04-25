@@ -23,11 +23,13 @@ namespace Com.IsartDigital.F2P.Database
         #endregion
 
         /// Constant path
-        private const string DATABASE_PATH = "URI:GameDatabase.db";
+        private const string DATABASE_SOURCE = "URI=file:";
+        private const string DATABASE_NAME = "/scopa.db";
         private const string FILE_NAME = "Save.json";
 
-        /// SQL Command Line
-        private const string SELECT_PLAYER = "SELECT (id, musicVolume, soundVolume, softcurrency, hardcurrency) FROM PLAYER";
+        /// SQL Command lines
+        private const string SELECT_PACK = "SELECT price,name FROM PACK ORDER BY price DESC";
+        private const string SELECT_FRAGMENT = "SELECT biome.name, fragment.rarity FROM fragment LEFT JOIN biome ON biome.id = fragment.fk_biome ORDER BY fragment.rarity ASC";
 
         public static PlayerSave playerSave = null;
 
@@ -41,23 +43,25 @@ namespace Com.IsartDigital.F2P.Database
             _Instance = this;
 
             ReadDataFromSaveFile();
+
+            //TEMP
+            GetValues();
         }
 
         private void GetValues()
         {
-            SqliteConnection lDb = new SqliteConnection(DATABASE_PATH);
+            Debug.Log(DATABASE_SOURCE + Application.persistentDataPath + DATABASE_NAME);
+
+            SqliteConnection lDb = new SqliteConnection(DATABASE_SOURCE + Application.persistentDataPath + DATABASE_NAME);
             lDb.Open();
 
             if (lDb.State == ConnectionState.Open)
             {
-                SqliteCommand lCommandLine = lDb.CreateCommand();
-                lCommandLine.CommandText = SELECT_PLAYER;
-
-                IDataReader lReader = lCommandLine.ExecuteReader();
-                while (lReader.Read())
-                {
-                    Debug.Log(lReader["softcurrency"]);
-                }
+                SqliteCommand lQuery = lDb.CreateCommand();
+                lQuery.CommandText = "SELECT name FROM biome";
+                object lResult = lQuery.ExecuteScalar();
+                print(lResult);
+                Debug.Log("Connection established !");
             }
 
             lDb.Close();
