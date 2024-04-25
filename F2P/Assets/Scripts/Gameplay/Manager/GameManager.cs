@@ -10,7 +10,7 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     #region Singleton
-    private static GameManager _Instance;
+    private static GameManager _Instance = null;
 
     public static GameManager GetInstance()
     {

@@ -20,18 +20,17 @@ namespace Com.IsartDigital.F2P.Biomes
         [SerializeField] private BiomeType _Type = BiomeType.grassland;
         [SerializeField] private bool _CanBeReplaced = true;
         [SerializeField] private bool _IsWalkable = true;
+        [SerializeField] private bool _CanBeRemoved = true;
 
         // Variables
         private GameManager _GameManager = null;
 
         private Vector2 _GridPosition = new Vector2();
 
-        private bool _CanBeRemoved = true;
-
         // Get / Set
-        public bool CanBeReplaced { get { return _CanBeReplaced; } }
-        public bool IsWalkable { get { return _IsWalkable; } }
-        public bool CanBeRemoved { get { return _CanBeRemoved; } }
+        public bool CanBeReplaced { get { return _CanBeReplaced; } }                        // Dfine if a card can be change by another biome or event
+        public bool IsWalkable { get { return _IsWalkable; } }                              // Define if the player can move on it
+        public bool CanBeRemoved { get { return _CanBeRemoved; } }                          // Define if the biome can be remove by the a card in the hand
 
         public Vector2 GridPosition { get { return _GridPosition; } }
 
