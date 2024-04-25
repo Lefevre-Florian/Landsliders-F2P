@@ -48,7 +48,8 @@ public class TEMPCard : MonoBehaviour
 
     private void Update()
     {
-      if(DoAction!=null)   DoAction();
+      if(DoAction!=null)   
+        DoAction();
     }
    
     private void OnTriggerEnter2D(Collider2D collision)
