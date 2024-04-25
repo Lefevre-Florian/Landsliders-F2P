@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
-using UnityEngine.UIElements;
 
 // Author (CR): Lefevre Florian
 namespace Com.IsartDigital.F2P.Biomes
@@ -13,6 +12,8 @@ namespace Com.IsartDigital.F2P.Biomes
     {
         private const float MAX = 100f;
         private const float MIN = 0f;
+
+        private const string ERR_BETWEEN_RANGE = "The range must be superior or equal at 2";
 
         [Header("Design")]
         [SerializeField][Range(0f, 100f)] private float _ChanceOfModification = 50f;
@@ -52,7 +53,7 @@ namespace Com.IsartDigital.F2P.Biomes
                 lCard = lCards[lIdx].GetComponent<Biome>();
                 lCards.RemoveAt(lIdx);
 
-                m_GridManager.ReplaceAtIndex(lCard.GridPosition,(_IsRandomReplace) ? m_GridManager.GetRandomBiome() : _SubstitutionBiome);
+                m_GridManager.ReplaceAtIndex(lCard.GridPosition,(_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform : _SubstitutionBiome);
             }
         }
 
@@ -64,7 +65,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
             if(pRange <= 1)
             {
-                Debug.LogError("The range must be superior or equal at 2");
+                Debug.LogError(ERR_BETWEEN_RANGE);
                 return;
             }
 
@@ -80,9 +81,7 @@ namespace Com.IsartDigital.F2P.Biomes
                 for (int j = 1; j < pRange; j++)
                 {
                     lNextPosition = m_Biome.GridPosition + lDirection * j;
-                    Debug.Log("Replace at " + lNextPosition);
-
-                    m_GridManager.ReplaceAtIndex(lNextPosition, (_IsRandomReplace) ? m_GridManager.GetRandomBiome() : _SubstitutionBiome);
+                    m_GridManager.ReplaceAtIndex(lNextPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform : _SubstitutionBiome);
                 }
             }
         }

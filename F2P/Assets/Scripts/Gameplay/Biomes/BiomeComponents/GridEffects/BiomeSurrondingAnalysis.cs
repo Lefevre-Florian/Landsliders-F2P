@@ -45,8 +45,8 @@ namespace Com.IsartDigital.F2P.Biomes
                 pRange = (int)Mathf.Min(m_GridManager._NumCard.x, m_GridManager._NumCard.y);
 
             List<Biome> lSurroundingBiomes = new List<Biome>();
+            
             Biome lBiome = null;
-
             Vector2 lSamplePosition = default;
 
             int lLength = (int)_GridDirection;
@@ -55,7 +55,7 @@ namespace Com.IsartDigital.F2P.Biomes
             for (int i = 0; i < lLength; i++)
             {
                 lSamplePosition = m_Biome.GridPosition + (Vector2)(Quaternion.AngleAxis(lAngle * i, Vector3.forward) * (Vector3.up * pRange));
-                
+
                 lSamplePosition.x = Mathf.RoundToInt(lSamplePosition.x);
                 lSamplePosition.y = Mathf.RoundToInt(lSamplePosition.y);
 

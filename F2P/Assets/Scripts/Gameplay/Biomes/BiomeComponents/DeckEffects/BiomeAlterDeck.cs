@@ -71,7 +71,8 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void OnDestroy()
         {
-            _GameManager.OnTurnPassed -= UpdateTime;
+            if (_GameManager != null)
+                StopContinuous();
 
             _HandManager = null;
             _GameManager = null;

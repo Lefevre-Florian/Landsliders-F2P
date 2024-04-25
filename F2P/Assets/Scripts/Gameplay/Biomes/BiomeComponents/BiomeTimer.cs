@@ -1,6 +1,7 @@
 using System;
-using System.Collections.Generic;
+
 using TMPro;
+
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -49,6 +50,7 @@ namespace Com.IsartDigital.F2P.Biomes
         {
             if (_AlwaysStart || _InternalTimer != _Timer)
                 return;
+
             _GameManager.OnTurnPassed += ClockTicking;
         }
 
@@ -74,10 +76,13 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void OnDestroy()
         {
-            _Biome.OnReady -= Enable;
-            _Biome = null;
+            if(_Biome != null)
+                _Biome.OnReady -= Enable;
 
-            StopTicking();
+            if(_GameManager != null)
+                StopTicking();
+
+            _Biome = null;
             _GameManager = null;
         }
     }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e698c00c832f5d2438736a2e9b0cc53e, type: 3}
   m_Name: CardShapeData
   m_EditorClassIdentifier: 
-  size: 2.488889
-  ratio: 1.3166667
+  size: 0
+  ratio: 0
