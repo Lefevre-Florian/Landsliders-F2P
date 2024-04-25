@@ -137,8 +137,8 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
         private GameObject PlaceGameEvent(GameObject pGameObject)
         {
             _InstantiatedGameEvent = Instantiate(pGameObject);
-            pGameObject.transform.SetParent(GameManager.GetInstance()._LastCardPlayed.transform);
-            pGameObject.transform.localPosition = Vector3.zero;
+            _InstantiatedGameEvent.transform.SetParent(GameManager.GetInstance()._LastCardPlayed.transform);
+            _InstantiatedGameEvent.transform.localPosition = Vector3.zero;
             return _InstantiatedGameEvent;
         }
     }

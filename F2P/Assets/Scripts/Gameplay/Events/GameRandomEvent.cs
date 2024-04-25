@@ -11,7 +11,7 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
         protected Vector2 _GridPosition;
         protected GridManager _GridManager = GridManager.GetInstance();
 
-        protected void Start()
+        protected virtual void Start()
         {
             GameManager.GetInstance().OnEffectPlayed += OnRandomEventTriggered;
             _GridPosition = GridManager.GetInstance().GetGridCoordinate(transform.position);
