@@ -21,6 +21,8 @@ public class CardPrefabDic : MonoBehaviour
     public static GameObject GetRandomPrefab() 
     {
         return prefabList[UnityEngine.Random.Range(0, prefabList.Count)];
+
+        
     }
 
     public static GameObject GetPrefab(BiomeType type)
