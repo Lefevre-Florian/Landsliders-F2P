@@ -10,7 +10,7 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     #region Singleton
-    private static GameManager _Instance;
+    private static GameManager _Instance = null;
 
     public static GameManager GetInstance()
     {
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool playerMoved;
     [HideInInspector] public bool playerCanMove;
 
-    [HideInInspector]public State currentState;
+    [HideInInspector] public State currentState;
 
     // Get / Set
     public int cardStocked
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
             cardStocked = value;
         }
     }
-
+    public int Turn { get { return _TurnNumber; } }
     // Events
     public event Action OnTurnPassed;
     public event Action<int> OnEffectPlayed;

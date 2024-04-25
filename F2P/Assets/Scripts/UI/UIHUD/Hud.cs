@@ -29,8 +29,6 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
         [SerializeField] private int _MainMenuIDX = 0;
         [SerializeField] private bool _UseLoadingScreen = false;
 
-        
-
         private void Awake()
         {
             if(_Instance != null)
