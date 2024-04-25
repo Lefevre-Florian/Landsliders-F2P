@@ -38,7 +38,7 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
 
 
         [Header("Chance of event on card played")]
-        [SerializeField]private float _GameEventChance = 0.3f;
+        [SerializeField][Range(0f,1f)]private float _GameEventChance = 0.3f;
         private float _RandomValue;
 
         [SerializeField] private int _MaxEtheralRiftsNumber = 4;
