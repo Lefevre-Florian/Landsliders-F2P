@@ -3,6 +3,7 @@ using Mono.Data.Sqlite;
 using System.Data;
 using System;
 using System.IO;
+using TMPro;
 
 // Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.Database
@@ -33,6 +34,9 @@ namespace Com.IsartDigital.F2P.Database
 
         public static PlayerSave playerSave = null;
 
+        [Header("Debug")]
+        [SerializeField] private TextMeshProUGUI _DatabaseLabelDebug = null;
+
         private void Awake()
         {
             if(_Instance != null)
@@ -50,9 +54,15 @@ namespace Com.IsartDigital.F2P.Database
 
         private void GetValues()
         {
-            Debug.Log(DATABASE_SOURCE + Application.persistentDataPath + DATABASE_NAME);
+            string lPath = "";
+            
+            #if UNITY_EDITOR
+            lPath = DATABASE_SOURCE + Application.dataPath + "/StreamingAssets/Database" + DATABASE_NAME;
+            #elif UNITY_ANDROID || UNITY_IOS
+            lPath = DATABASE_SOURCE + Application.streamingAssetsPath + "/StreamingAssets/Database" + DATABASE_NAME;
+            #endif
 
-            SqliteConnection lDb = new SqliteConnection(DATABASE_SOURCE + Application.persistentDataPath + DATABASE_NAME);
+            SqliteConnection lDb = new SqliteConnection(lPath);
             lDb.Open();
 
             if (lDb.State == ConnectionState.Open)
@@ -60,16 +70,15 @@ namespace Com.IsartDigital.F2P.Database
                 SqliteCommand lQuery = lDb.CreateCommand();
                 lQuery.CommandText = "SELECT name FROM biome";
                 object lResult = lQuery.ExecuteScalar();
-                print(lResult);
+                _DatabaseLabelDebug.text = lResult.ToString();
                 Debug.Log("Connection established !");
+            }
+            else
+            {
+                _DatabaseLabelDebug.text = "No database found! ";
             }
 
             lDb.Close();
-        }
-
-        private void SetValues()
-        {
-
         }
 
         public void ReadDataFromSaveFile()
