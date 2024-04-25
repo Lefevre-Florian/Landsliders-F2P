@@ -10,7 +10,6 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
 {
     public class EtheralRift : GameRandomEvent
     {
-        //private List<BiomeType> _BiomeTypeToReplace = Enum.GetValues(typeof(BiomeType)).Cast<BiomeType>().ToList();
         private List<BiomeType> _BiomeTypeToReplace = new List<BiomeType>();
         protected override IEnumerator PlayRandomEventEffect()
         {
@@ -23,11 +22,9 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
                     if (lBiome.transform.position == Player.GetInstance().transform.position)
                     {
                         _BiomeTypeToReplace.Remove(BiomeType.Canyon);
-                        BiomeType lRandomType = _BiomeTypeToReplace[UnityEngine.Random.Range(0, _BiomeTypeToReplace.Count - 1)];
-                        //CardPrefabDic.GetPrefab(lRandomType);
-                        Transform lRandomBiome = _GridManager.GetRandomBiome();
-                        lBiome.Replace(lRandomBiome);
                     }
+                    BiomeType lRandomType = _BiomeTypeToReplace[UnityEngine.Random.Range(0, _BiomeTypeToReplace.Count - 1)];
+                    lBiome.Replace(CardPrefabDic.GetPrefab(lRandomType).transform);
                 }
             }
             return null;

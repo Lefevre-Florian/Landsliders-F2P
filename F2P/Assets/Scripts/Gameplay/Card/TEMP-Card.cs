@@ -118,6 +118,7 @@ public class TEMPCard : MonoBehaviour
             GridManager.GetInstance()._Cards[(int)GetComponent<CardContainer>().gridPosition.x,(int) GetComponent<CardContainer>().gridPosition.y] = gameObject;
             Destroy(_SnapParent.transform.gameObject);
             transform.SetParent(GridManager.GetInstance().transform);
+            GameManager.GetInstance()._LastCardPlayed = gameObject;
             GameManager.CardPlaced.Invoke();
             tag = CARDPLAYED_TAG;
             SetModePlayed();
