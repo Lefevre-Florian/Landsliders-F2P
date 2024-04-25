@@ -1,6 +1,8 @@
 using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.manager;
+using Com.IsartDigital.F2P.Biomes;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 // Author (CR) : Paul Vincencini
@@ -15,8 +17,9 @@ public class TEMPCard : MonoBehaviour
     [HideInInspector]
     public Vector3 snapPos;
     private GameObject _SnapParent;
+    private GameObject _ClosestSnapParent;
 
-    [HideInInspector]
+    
     public State currentState;
     private Vector3 _GridPlacement;
 
@@ -25,6 +28,8 @@ public class TEMPCard : MonoBehaviour
 
     private HandManager _HandManager = HandManager.GetInstance();
     private Action DoAction;
+
+    private List<Collider2D> _CollidingObjects = new List<Collider2D>();
 
     // Event
     public event Action OnPlaced;
@@ -45,15 +50,12 @@ public class TEMPCard : MonoBehaviour
     {
       if(DoAction!=null)   DoAction();
     }
-    
-
-    /*
-      TODO : faire une liste des colliders actuels et vérifier quel est le plus proche 
-    */
+   
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name != "Player" && collision.GetComponent<TEMPCard>().currentState != State.InHand  )
+        if (collision.name != "Player" && collision.GetComponent<TEMPCard>().currentState != State.InHand && collision.GetComponent<Biome>().Type != GetComponent<Biome>().Type)
         {
+            _CollidingObjects.Add(collision);
             _Snapable = true;
             snapPos = collision.transform.position;
             _SnapParent = collision.gameObject;
@@ -63,6 +65,7 @@ public class TEMPCard : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        _CollidingObjects.Remove(collision);
         _Snapable = false;
 
         if(_HandManager != null)
@@ -73,14 +76,33 @@ public class TEMPCard : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        
-        if (collision.name != "Player" && collision.GetComponent<TEMPCard>().currentState != State.InHand)
+        if (collision.name != "Player" && collision.GetComponent<TEMPCard>().currentState != State.InHand && collision.GetComponent<Biome>().Type != GetComponent<Biome>().Type)
         {
-            _Snapable = true;
-            snapPos = collision.transform.position;
-            _SnapParent = collision.gameObject;
+            if (_CollidingObjects.Count > 1)
+            {
+                for (int i = 0; i < _CollidingObjects.Count; i++)
+                {
+                    if (i > 1)
+                    {
+                        if (Vector2.Distance(_CollidingObjects[i].transform.position, transform.position) < Vector2.Distance(_ClosestSnapParent.transform.position, transform.position))
+                        {
+                            _ClosestSnapParent = _CollidingObjects[i].gameObject;
+                        }
+                    }
+                    else _ClosestSnapParent = _CollidingObjects[i].gameObject;
+
+                }
+                _Snapable = true;
+                snapPos = _ClosestSnapParent.transform.position;
+                _SnapParent = _ClosestSnapParent.gameObject;
+            }
+            else
+            {
+                _Snapable = true;
+                snapPos = collision.transform.position;
+                _SnapParent = collision.gameObject;
+            }
         }
-        
     }
 
     public void SetModeInHand()
@@ -92,6 +114,7 @@ public class TEMPCard : MonoBehaviour
 
     private void DoActionInHand()
     {
+        if (GameManager.GetInstance().currentState != GameManager.State.MovingCard) return;
          _Hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         if (!_Hit) return;
         if (Input.GetMouseButtonDown(0) && _Hit.collider.transform == transform)
@@ -109,7 +132,7 @@ public class TEMPCard : MonoBehaviour
     private void DoActionMoving()
     {
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + Vector3.forward * 2);
-        if (Input.GetMouseButtonUp(0) && _Snapable)
+        if (Input.GetMouseButtonUp(0) && _Snapable && _SnapParent.GetComponent<Biome>().Type != GetComponent<Biome>().Type)
         {
             _GridPlacement = _SnapParent.GetComponent<CardContainer>().gridPosition;
             transform.position = snapPos;
