@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3756919447971423051}
   - component: {fileID: 2806813639658834540}
   - component: {fileID: 1663775179575542501}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseGridPos: {x: 1, y: 1}
   _LerpDuration: 1
+  isProtected: 0
 --- !u!61 &1663775179575542501
 BoxCollider2D:
   m_ObjectHideFlags: 0

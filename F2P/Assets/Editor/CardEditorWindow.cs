@@ -19,22 +19,15 @@ namespace com.isartdigital.f2p.editor
 
         private static CardShapeData data;
 
-        // This method will be called on load or recompile
         [InitializeOnLoadMethod]
         private static void OnLoad()
         {
-            // if no data exists yet create and reference a new instance
             if (!data)
             {
-                // as first option check if maybe there is an instance already
-                // and only the reference got lost
-                // won't work ofcourse if you moved it elsewhere ...
                 data = AssetDatabase.LoadAssetAtPath<CardShapeData>("Assets/Editor/CardShapeData.asset");
 
-                // if that was successful we are done
                 if (data) return;
 
-                // otherwise create and reference a new instance
                 data = CreateInstance<CardShapeData>();
 
                 AssetDatabase.CreateAsset(data, "Assets/Editor/CardShapeData.asset");
@@ -46,7 +39,7 @@ namespace com.isartdigital.f2p.editor
         {
             GUI.Label(new Rect(0, 0, 100, 30), "Card Size");
 
-            var serializedObject = new SerializedObject(data);
+            SerializedObject serializedObject = new SerializedObject(data);
             serializedObject.Update();
 
             var lSize = serializedObject.FindProperty("size");

@@ -1,18 +1,18 @@
 using Com.IsartDigital.F2P.UI.UIHUD;
-
 using System;
-
 using UnityEngine;
+using System.Collections.Generic;
 
 // Author (CR) : Elias Dridi
 public class HandManager : MonoBehaviour
 {
     #region Singleton
-    private static HandManager _Instance;
+    private static HandManager _Instance = null;
 
     public static HandManager GetInstance()
     {
-        if (_Instance == null) _Instance = new HandManager();
+        if (_Instance == null) 
+            _Instance = new HandManager();
         return _Instance;
     }
     #endregion
@@ -81,6 +81,7 @@ public class HandManager : MonoBehaviour
                     lcardGO.transform.position = _CardsSlot[i].transform.position;
                     TEMPCard ltempCard = lcardGO.GetComponent<TEMPCard>();
                     ltempCard.handIndex = i;
+                    ltempCard.snapPos = _CardsSlot[i].transform.position;
                     ltempCard.SetModeInHand();
                     RemoveAtDeck(0);
                     _AvailableCardSlots[i] = false;

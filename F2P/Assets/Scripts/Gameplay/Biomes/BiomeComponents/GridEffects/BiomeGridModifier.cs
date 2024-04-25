@@ -53,7 +53,7 @@ namespace Com.IsartDigital.F2P.Biomes
                 lCard = lCards[lIdx].GetComponent<Biome>();
                 lCards.RemoveAt(lIdx);
 
-                m_GridManager.ReplaceAtIndex(lCard.GridPosition,(_IsRandomReplace) ? m_GridManager.GetRandomBiome() : _SubstitutionBiome);
+                m_GridManager.ReplaceAtIndex(lCard.GridPosition,(_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform : _SubstitutionBiome);
             }
         }
 
@@ -81,7 +81,7 @@ namespace Com.IsartDigital.F2P.Biomes
                 for (int j = 1; j < pRange; j++)
                 {
                     lNextPosition = m_Biome.GridPosition + lDirection * j;
-                    m_GridManager.ReplaceAtIndex(lNextPosition, (_IsRandomReplace) ? m_GridManager.GetRandomBiome() : _SubstitutionBiome);
+                    m_GridManager.ReplaceAtIndex(lNextPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform : _SubstitutionBiome);
                 }
             }
         }

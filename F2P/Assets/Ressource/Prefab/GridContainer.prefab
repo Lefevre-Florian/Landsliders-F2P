@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1583379108595261290}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8125, y: 0, z: 0}
+  m_LocalPosition: {x: 2.368421, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 4280248130501027881}
-  size: 2.4
-  cardRatio: 1.0333333
+  size: 2.488889
+  cardRatio: 1.3166667
   gridPosition: {x: 0, y: 0}
 --- !u!61 &4280248130501027881
 BoxCollider2D:
@@ -145,7 +145,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1368421, y: 1.1747369}
+  m_Size: {x: 1.1789474, y: 1.5522809}
   m_EdgeRadius: 0
 --- !u!1 &2523440598157997503
 GameObject:
@@ -205,8 +205,8 @@ MonoBehaviour:
   _Offset: {x: 0, y: 0}
   _IsGridPredefined: 0
   _CardBackgroundPrefab: {fileID: 3380951766127524745, guid: fd18193cb9cd61544aa1d4fca20c8bee, type: 3}
-  _ScreenSizeInGameUnit: {x: 2.8125, y: 5}
-  _GridSize: {x: 2.8125, y: 0}
+  _ScreenSizeInGameUnit: {x: 2.368421, y: 5}
+  _GridSize: {x: 2.368421, y: 0}
   _CardSize: 0
   _CardRatio: 0
   _BiomePrefabs: []
@@ -238,7 +238,7 @@ Transform:
   m_GameObject: {fileID: 4642753369078820197}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8125, y: 0, z: 0}
+  m_LocalPosition: {x: -2.368421, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -309,8 +309,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 9099556368552884202}
-  size: 2.4
-  cardRatio: 1.0333333
+  size: 2.488889
+  cardRatio: 1.3166667
   gridPosition: {x: 0, y: 0}
 --- !u!61 &9099556368552884202
 BoxCollider2D:
@@ -355,7 +355,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1368421, y: 1.1747369}
+  m_Size: {x: 1.1789474, y: 1.5522809}
   m_EdgeRadius: 0
 --- !u!1 &5332686387119499155
 GameObject:
@@ -385,7 +385,7 @@ Transform:
   m_GameObject: {fileID: 5332686387119499155}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8125, y: 0, z: 0}
+  m_LocalPosition: {x: -2.368421, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -456,8 +456,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 3950555089225330132}
-  size: 2.4
-  cardRatio: 1.0333333
+  size: 2.488889
+  cardRatio: 1.3166667
   gridPosition: {x: 0, y: 0}
 --- !u!61 &3950555089225330132
 BoxCollider2D:
@@ -502,7 +502,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1368421, y: 1.1747369}
+  m_Size: {x: 1.1789474, y: 1.5522809}
   m_EdgeRadius: 0
 --- !u!1 &6653326898835464927
 GameObject:
@@ -603,8 +603,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 258008470068934316}
-  size: 2.4
-  cardRatio: 1.0333333
+  size: 2.488889
+  cardRatio: 1.3166667
   gridPosition: {x: 0, y: 0}
 --- !u!61 &258008470068934316
 BoxCollider2D:
@@ -649,7 +649,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1368421, y: 1.1747369}
+  m_Size: {x: 1.1789474, y: 1.5522809}
   m_EdgeRadius: 0
 --- !u!1 &6789983874461630671
 GameObject:
@@ -750,8 +750,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 512698698859325311}
-  size: 2.4
-  cardRatio: 1.0333333
+  size: 2.488889
+  cardRatio: 1.3166667
   gridPosition: {x: 0, y: 0}
 --- !u!61 &512698698859325311
 BoxCollider2D:
@@ -796,7 +796,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1368421, y: 1.1747369}
+  m_Size: {x: 1.1789474, y: 1.5522809}
   m_EdgeRadius: 0
 --- !u!1 &6863363538277277954
 GameObject:
@@ -826,7 +826,7 @@ Transform:
   m_GameObject: {fileID: 6863363538277277954}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8125, y: 0, z: 0}
+  m_LocalPosition: {x: -2.368421, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -897,8 +897,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 8024969631269992310}
-  size: 2.4
-  cardRatio: 1.0333333
+  size: 2.488889
+  cardRatio: 1.3166667
   gridPosition: {x: 0, y: 0}
 --- !u!61 &8024969631269992310
 BoxCollider2D:
@@ -943,7 +943,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1368421, y: 1.1747369}
+  m_Size: {x: 1.1789474, y: 1.5522809}
   m_EdgeRadius: 0
 --- !u!1 &8018985915167383236
 GameObject:
@@ -973,7 +973,7 @@ Transform:
   m_GameObject: {fileID: 8018985915167383236}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8125, y: 0, z: 0}
+  m_LocalPosition: {x: 2.368421, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1044,8 +1044,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 5012800111613358687}
-  size: 2.4
-  cardRatio: 1.0333333
+  size: 2.488889
+  cardRatio: 1.3166667
   gridPosition: {x: 0, y: 0}
 --- !u!61 &5012800111613358687
 BoxCollider2D:
@@ -1090,7 +1090,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1368421, y: 1.1747369}
+  m_Size: {x: 1.1789474, y: 1.5522809}
   m_EdgeRadius: 0
 --- !u!1 &8689239794477693337
 GameObject:
@@ -1191,8 +1191,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 5614986203355894432}
-  size: 2.4
-  cardRatio: 1.0333333
+  size: 2.488889
+  cardRatio: 1.3166667
   gridPosition: {x: 0, y: 0}
 --- !u!61 &5614986203355894432
 BoxCollider2D:
@@ -1237,7 +1237,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1368421, y: 1.1747369}
+  m_Size: {x: 1.1789474, y: 1.5522809}
   m_EdgeRadius: 0
 --- !u!1 &9036935919510382664
 GameObject:
@@ -1267,7 +1267,7 @@ Transform:
   m_GameObject: {fileID: 9036935919510382664}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8125, y: 0, z: 0}
+  m_LocalPosition: {x: 2.368421, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1338,8 +1338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 9134336979828192180}
-  size: 2.4
-  cardRatio: 1.0333333
+  size: 2.488889
+  cardRatio: 1.3166667
   gridPosition: {x: 0, y: 0}
 --- !u!61 &9134336979828192180
 BoxCollider2D:
@@ -1384,5 +1384,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1368421, y: 1.1747369}
+  m_Size: {x: 1.1789474, y: 1.5522809}
   m_EdgeRadius: 0

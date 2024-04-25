@@ -1,6 +1,6 @@
 using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.manager;
-using Com.IsartDigital.F2P.Biomes;
+
 using System;
 using System.Collections;
 
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private Player() : base() { }
     #endregion
 
-    private const string CARD_CONTAINER_TAG = "CardContainer";
+    private const string CARDPLAYED_TAG = "CardPlayed";
 
     public enum State
     {
@@ -82,16 +82,18 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && _CurrentState == State.Movable)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            if(hit && hit.collider.CompareTag(CARD_CONTAINER_TAG))
+            if(hit && hit.collider.CompareTag(CARDPLAYED_TAG))
             {
                 _GridPosSelected = hit.collider.GetComponent<CardContainer>().gridPosition;
-
                 if (_GridPosSelected != _ActualGridPos && _GridPosSelected != _PreviousGridPos
                     && (Mathf.Abs(_ActualGridPos.x - _GridPosSelected.x) <= 1 && Mathf.Abs(_ActualGridPos.y - _GridPosSelected.y) <= 1))
                 {
                     _WorldPosSelected = _GridManager.GetWorldCoordinate((int)_GridPosSelected.x, (int)_GridPosSelected.y);
                     if (_GridManager.GetCardByGridCoordinate(_GridPosSelected).IsWalkable)
-                        SetModeMove();
+                    {
+                        SetModeMove();   
+                    }
+                        
                 }
             }
         }
@@ -108,13 +110,16 @@ public class Player : MonoBehaviour
 
     private IEnumerator DelayedStateMovable()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         _CurrentState = State.Movable;
     }
 
     public void SetModeMovable()
     {
-        StartCoroutine(DelayedStateMovable());
+        if (!isProtected)
+            StartCoroutine(DelayedStateMovable());
+        else
+            GameManager.PlayerMoved.Invoke();
     }
 
     public void SetModeVoid() => DoAction = null;

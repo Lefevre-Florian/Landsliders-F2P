@@ -72,11 +72,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public GameObject _LastCardPlayed;
 
     // Get / Set
-    public int CurrentPriority
-    {
-        get { return _CurrentPriority; }
-    }
-
     public int cardStocked
     {
         get
@@ -90,7 +85,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Events
-    public UnityEvent OnTurnPassed = new UnityEvent();
+    public event Action OnTurnPassed;
     public event Action<int> OnEffectPlayed;
 
     public static UnityEvent CardPlaced = new UnityEvent();
@@ -152,11 +147,6 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Utilities
-    private void SetMaxPriority(int pPriority)
-    {
-
-    }
-
     private IEnumerator EffectTurnByTurn()
     {
         while (_CurrentPriority != _MaxPriority)
@@ -173,6 +163,8 @@ public class GameManager : MonoBehaviour
             StopCoroutine(_EffectTimer);
             _EffectTimer = null;
         }
+
+        NextTurn();
     }
     #endregion
 

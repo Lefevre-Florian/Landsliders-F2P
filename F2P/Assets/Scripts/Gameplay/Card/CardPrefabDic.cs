@@ -1,38 +1,31 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Com.IsartDigital.F2P.Biomes;
 
-public enum CardType
-{
-    Canyon,
-    Desert,
-    Field,
-    FlyingIsland,
-    Glacier,
-    Grassland,
-    Swamp,
-    Volcan,
-    Vortex
-}
+using System;
+using System.Collections.Generic;
+
+using UnityEngine;
 
 public class CardPrefabDic : MonoBehaviour
 {
-    [SerializeField] CTGODic test;
-    private static Dictionary<CardType, GameObject> prefabDic;
+    [SerializeField] CTGODic _Biomes;
+
+    private static Dictionary<BiomeType, GameObject> prefabDic;
     private static List<GameObject> prefabList;
+
     private void Awake()
     {
-        prefabDic = test.ToDic();
-        prefabList = test.ToList();
+        prefabDic = _Biomes.ToDic();
+        prefabList = _Biomes.ToList();
     }
 
     public static GameObject GetRandomPrefab() 
     {
         return prefabList[UnityEngine.Random.Range(0, prefabList.Count)];
+
+        
     }
 
-    public static GameObject GetPrefab(CardType type)
+    public static GameObject GetPrefab(BiomeType type)
     {
         return prefabDic[type];
     }
@@ -41,13 +34,13 @@ public class CardPrefabDic : MonoBehaviour
 [Serializable]
 public class CTGODic
 {
-    [SerializeField] CTGOItem[] dic;
+    [SerializeField] CTGOItem[] _Dict;
 
-    public Dictionary<CardType, GameObject> ToDic()
+    public Dictionary<BiomeType, GameObject> ToDic()
     {
-        Dictionary<CardType, GameObject> newDic = new Dictionary<CardType, GameObject>();
+        Dictionary<BiomeType, GameObject> newDic = new Dictionary<BiomeType, GameObject>();
 
-        foreach (CTGOItem item in dic)
+        foreach (CTGOItem item in _Dict)
         {
             newDic.Add(item.key, item.value);
         }
@@ -59,7 +52,7 @@ public class CTGODic
     {
         List<GameObject> newList = new List<GameObject>();
 
-        foreach (CTGOItem item in dic)
+        foreach (CTGOItem item in _Dict)
         {
             newList.Add(item.value);
         }
@@ -72,7 +65,8 @@ public class CTGODic
 public class CTGOItem
 {
     [SerializeField]
-    public CardType key;
+    public BiomeType key;
+
     [SerializeField]
     public GameObject value;
 }

@@ -84,10 +84,7 @@ namespace Com.IsartDigital.F2P.Biomes
         private void TriggerPriority(int pGamePriority) 
         {
             if(pGamePriority == _Priority)
-            {
-                print("Play event : " + gameObject.name);
                 onTriggered?.Invoke(); 
-            }
         }
 
         private void OnDestroy()

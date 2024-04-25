@@ -2,7 +2,7 @@ using com.isartdigital.f2p.gameplay.card;
 using Com.IsartDigital.F2P.Biomes;
 
 using System.Collections.Generic;
-
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Author (CR): Paul Vincencini
@@ -21,6 +21,8 @@ namespace com.isartdigital.f2p.gameplay.manager
         }
         #endregion
 
+        private const string ERR_CARDBACKGROUNDPREFAB_SERIALIZED = "GridManager : Champ serialisé _CardBackgroundPrefab non assigné";
+
         [Header("Grid Parameters")]
 
         [HideInInspector] public Vector2 _NumCard = Vector2.one * 3;
@@ -38,11 +40,9 @@ namespace com.isartdigital.f2p.gameplay.manager
         [HideInInspector] public Vector2 _GridSize;
         [HideInInspector] public float _CardSize;
         [HideInInspector] public float _CardRatio;
+        private const string CARDPLAYED_TAG = "CardPlayed";
 
-        [HideInInspector] public GameObject[,] _Cards;
-
-        [Header("Biomes")]
-        [SerializeField] private Transform[] _BiomePrefabs = null;
+        [HideInInspector] public GameObject[,] _Cards = new GameObject[3,3];
 
         // Get / Set 
         public List<Biome> Biomes {
@@ -67,8 +67,11 @@ namespace com.isartdigital.f2p.gameplay.manager
             }
             _Instance = this;
 
-            _Cards = new GameObject[(int)_NumCard.x, (int)_NumCard.y];
+            GameFlowManager.InitGrid.AddListener(Init);
+        }
 
+        public void Init()
+        {
             _ScreenSizeInGameUnit = new Vector2(Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize);
             _GridSize = _ScreenSizeInGameUnit * new Vector2(_GridSizePercent.x, _GridSizePercent.y);
 
@@ -77,7 +80,7 @@ namespace com.isartdigital.f2p.gameplay.manager
 
             if (_CardBackgroundPrefab == null)
             {
-                Debug.LogError("GridManager : Champ serialisé _CardBackgroundPrefab non assigné");
+                Debug.LogError(ERR_CARDBACKGROUNDPREFAB_SERIALIZED);
                 return;
             }
 
@@ -91,9 +94,20 @@ namespace com.isartdigital.f2p.gameplay.manager
                 {
                     float lYPos = _GridSize.y * y;
 
-                    _Cards[lXArrayIndex, lYArrayIndex] = Instantiate(_CardBackgroundPrefab, new Vector3(lXPos + _Offset.x, lYPos + _Offset.y, 0), Quaternion.identity, transform);
+                    GameObject lPrefabToInstantiate = _Cards[lXArrayIndex, lYArrayIndex] == null ? CardPrefabDic.GetRandomPrefab() :
+                                                                                                   _Cards[lXArrayIndex, lYArrayIndex];
+
+                    _Cards[lXArrayIndex, lYArrayIndex] = Instantiate( lPrefabToInstantiate,
+                                                                     new Vector3(lXPos + _Offset.x, lYPos + _Offset.y, 0),
+                                                                     Quaternion.identity,
+                                                                     transform);
+
                     CardContainer lCard = _Cards[lXArrayIndex, lYArrayIndex].GetComponent<CardContainer>();
                     lCard.gridPosition = new Vector2(lXArrayIndex, lYArrayIndex);
+                    _Cards[lXArrayIndex, lYArrayIndex].GetComponent<TEMPCard>().currentState = TEMPCard.State.Played;
+                    _Cards[lXArrayIndex, lYArrayIndex].tag = CARDPLAYED_TAG;
+                    _Cards[lXArrayIndex, lYArrayIndex].GetComponent<TEMPCard>().enabled = false;
+                    
                     lYArrayIndex++;
                 }
                 lXArrayIndex++;
@@ -153,26 +167,30 @@ namespace com.isartdigital.f2p.gameplay.manager
         public Biome GetCardByGridCoordinate(Vector2 pPosition) => _Cards[(int)pPosition.x, (int)pPosition.y]?.GetComponent<Biome>();
         #endregion
 
-        #region Biome related
+        #region Grid management
         public void ReplaceAtIndex(Vector2 pGridPosition, Transform pTransform) 
         {
             int x = (int)pGridPosition.x;
             int y = (int)pGridPosition.y;
 
+            Vector3 lWorldPosition = _Cards[x, y].transform.position;
+
             Biome lBiome = Instantiate(pTransform, _Cards[x, y].transform.parent).GetComponent<Biome>();
             _Cards[x, y].GetComponent<Biome>().Remove();
             _Cards[x, y] = lBiome.gameObject;
+            _Cards[x, y].transform.position = lWorldPosition;
         }
 
         public void RemoveAtIndex(Vector2 pGridPosition) => _Cards[(int)pGridPosition.x, (int)pGridPosition.y] = null;
-
-        public Transform GetRandomBiome() => _BiomePrefabs[Random.Range(0, _BiomePrefabs.Length)];
         #endregion
 
         private void OnDestroy()
         {
             if (_Instance == this)
+            {
                 _Instance = null;
+                GameFlowManager.InitGrid.RemoveListener(Init);
+            }
         }
     }
 }
