@@ -32,7 +32,7 @@ namespace Com.IsartDigital.F2P.Biomes
         private GameManager _GameManager = null;
         private Biome _Biome = null;
 
-        private void Start()
+        private void Awake()
         {
             _InternalTimer = _Timer;
             _Biome = GetComponent<Biome>();
