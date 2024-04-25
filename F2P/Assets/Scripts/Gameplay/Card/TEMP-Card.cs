@@ -150,7 +150,6 @@ public class TEMPCard : MonoBehaviour
             lContainer.gridPosition = _SnapParent.GetComponent<CardContainer>().gridPosition;
             lGridManager._Cards[(int)lContainer.gridPosition.x,(int)lContainer.gridPosition.y] = gameObject;
             Destroy(_SnapParent.transform.gameObject);
-            transform.SetParent(GridManager.GetInstance().transform);
             GameManager.GetInstance()._LastCardPlayed = transform.gameObject;
             transform.SetParent(lGridManager.transform);
             
