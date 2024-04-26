@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using com.isartdigital.f2p.gameplay.manager;
+using Com.IsartDigital.F2P.Gameplay.Manager;
 using UnityEngine;
 
 namespace Com.IsartDigital.F2P.Gameplay.Events
@@ -33,6 +34,10 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
         protected void OnDestroy()
         {
             GameManager.GetInstance().OnEffectPlayed -= OnRandomEventTriggered;
+            if (GameRandomEventsManager.GetInstance().GameEventCount > 0)
+            {
+                GameRandomEventsManager.GetInstance().GameEventCount -= 1;
+            }
         }
     }
 }
