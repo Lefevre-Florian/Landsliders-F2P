@@ -9,8 +9,8 @@ public class CardPrefabDic : MonoBehaviour
 {
     [SerializeField] CTGODic _Biomes;
 
-    private static Dictionary<BiomeType, GameObject> prefabDic;
-    private static List<GameObject> prefabList;
+    private static Dictionary<BiomeType, Card> prefabDic;
+    private static List<Card> prefabList;
 
     private void Awake()
     {
@@ -20,14 +20,14 @@ public class CardPrefabDic : MonoBehaviour
 
     public static GameObject GetRandomPrefab() 
     {
-        return prefabList[UnityEngine.Random.Range(0, prefabList.Count)];
+        return prefabList[UnityEngine.Random.Range(0, prefabList.Count)].GO;
 
         
     }
 
     public static GameObject GetPrefab(BiomeType type)
     {
-        return prefabDic[type];
+        return prefabDic[type].GO;
     }
 }
 
@@ -36,9 +36,9 @@ public class CTGODic
 {
     [SerializeField] CTGOItem[] _Dict;
 
-    public Dictionary<BiomeType, GameObject> ToDic()
+    public Dictionary<BiomeType, Card> ToDic()
     {
-        Dictionary<BiomeType, GameObject> newDic = new Dictionary<BiomeType, GameObject>();
+        Dictionary<BiomeType, Card> newDic = new Dictionary<BiomeType, Card>();
 
         foreach (CTGOItem item in _Dict)
         {
@@ -48,9 +48,9 @@ public class CTGODic
         return newDic;
     }
 
-    public List<GameObject> ToList()
+    public List<Card> ToList()
     {
-        List<GameObject> newList = new List<GameObject>();
+        List<Card> newList = new List<Card>();
 
         foreach (CTGOItem item in _Dict)
         {
@@ -68,5 +68,12 @@ public class CTGOItem
     public BiomeType key;
 
     [SerializeField]
-    public GameObject value;
+    public Card value;
+}
+
+[Serializable]
+public struct Card
+{
+    public GameObject GO;
+    public float chanceToSpawn;
 }
