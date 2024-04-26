@@ -12,27 +12,34 @@ public class QuestManager : MonoBehaviour
 
     public static QuestsEnum currentQuest;
 
+    [SerializeField] private QuestsEnum currentQuestDebug;
+
     public enum QuestsEnum
     {
         NONE,
         VolcanQuest,
         CanyonQuest,
         FieldQuest,
-        FlyingIslandQuest
+        FlyingIslandQuest,
+        CardQuest
     }
 
     private void Awake()
     {
+        currentQuest = currentQuestDebug;
         GameFlowManager.LoadMap.AddListener(Init);
         _QuestDic = questsDic.ToDic();
     }
 
     private void Init()
     {
-        string[] lQuestsArray = Enum.GetNames(typeof(QuestsEnum));
-        int rand = UnityEngine.Random.Range(1, lQuestsArray.Length);
+        if(currentQuestDebug == QuestsEnum.NONE)
+        {
+            string[] lQuestsArray = Enum.GetNames(typeof(QuestsEnum));
+            int rand = UnityEngine.Random.Range(1, lQuestsArray.Length);
 
-        currentQuest = (QuestsEnum)Enum.Parse(typeof(QuestsEnum), lQuestsArray[rand]);
+            currentQuest = (QuestsEnum)Enum.Parse(typeof(QuestsEnum), lQuestsArray[rand]);
+        }
 
         if(_QuestDic.ContainsKey(currentQuest)) gameObject.AddComponent(_QuestDic[currentQuest].GetClass());
 
