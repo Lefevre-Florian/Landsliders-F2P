@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldQuest : Quests
+namespace com.isartdigital.f2p.gameplay.quest
 {
-    public void CheckWin(int nbCardGive)
+    public class FieldQuest : Quests
     {
-        if (nbCardGive < 6) return;
-        Debug.Log("t'as gagné gars t'es le meilleur");
+        public void CheckWin(int nbCardGive)
+        {
+            if (nbCardGive < 6) return;
+            Debug.Log("t'as gagné gars t'es le meilleur");
+        }
     }
 }

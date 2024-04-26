@@ -3,16 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VolcanQuest : Quests
+namespace com.isartdigital.f2p.gameplay.quest
 {
-    public void ValidQuest()
+    public class VolcanQuest : Quests
     {
-        if(GetComponent<CardContainer>().gridPosition == Vector2.one) StartCoroutine(WaitBurn());
-    }
+        public void ValidQuest()
+        {
+            if (GetComponent<CardContainer>().gridPosition == Vector2.one) StartCoroutine(WaitBurn());
+        }
 
-    IEnumerator WaitBurn()
-    {
-        yield return new WaitForEndOfFrame();
-        if(HandManager.GetInstance()._CardInHand > 0) Debug.Log("T'as win");
+        IEnumerator WaitBurn()
+        {
+            yield return new WaitForEndOfFrame();
+            if (HandManager.GetInstance()._CardInHand > 0) Debug.Log("T'as win");
+        }
     }
 }

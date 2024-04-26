@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CanyonQuest : MonoBehaviour
+namespace com.isartdigital.f2p.gameplay.quest
 {
-    public static UnityEvent ValidSignal = new UnityEvent();
-
-    private void Start()
+    public class CanyonQuest : MonoBehaviour
     {
-        ValidSignal.AddListener(ValidQuest);
-    }
+        public static UnityEvent ValidSignal = new UnityEvent();
 
-    private void ValidQuest()
-    {
-        Debug.Log("Win");
-    }
+        private void Start()
+        {
+            ValidSignal.AddListener(ValidQuest);
+        }
 
-    private void OnDestroy()
-    {
-        ValidSignal.RemoveListener(ValidQuest);
-    }
+        private void ValidQuest()
+        {
+            Debug.Log("Win");
+        }
 
+        private void OnDestroy()
+        {
+            ValidSignal.RemoveListener(ValidQuest);
+        }
+
+    }
 }

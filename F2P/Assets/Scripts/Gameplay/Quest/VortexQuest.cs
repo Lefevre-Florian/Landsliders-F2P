@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VortexQuest : Quests
+namespace com.isartdigital.f2p.gameplay.quest
 {
-    public void ValidQuest(Vector2 replaceIndex)
+    public class VortexQuest : Quests
     {
-        if (replaceIndex == Player.GetInstance().GridPosition) Debug.Log("WIN");
+        public void ValidQuest(Vector2 replaceIndex)
+        {
+            if (replaceIndex == Player.GetInstance().GridPosition) Debug.Log("WIN");
+        }
     }
 }

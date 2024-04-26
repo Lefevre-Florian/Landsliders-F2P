@@ -2,6 +2,7 @@ using Com.IsartDigital.F2P.UI.UIHUD;
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using com.isartdigital.f2p.gameplay.quest;
 
 // Author (CR) : Elias Dridi
 public class HandManager : MonoBehaviour

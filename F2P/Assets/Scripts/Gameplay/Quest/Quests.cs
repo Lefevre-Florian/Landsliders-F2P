@@ -1,16 +1,20 @@
+using com.isartdigital.f2p.manager;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Quests : MonoBehaviour
+namespace com.isartdigital.f2p.gameplay.quest
 {
-    [SerializeField] private QuestManager.QuestsEnum myQuest;
-
-    private void Awake()
+    public class Quests : MonoBehaviour
     {
-        if (myQuest != QuestManager.currentQuest) DestroyImmediate(this);
-    }
+        [SerializeField] private QuestManager.QuestsEnum myQuest;
 
-    
+        private void Awake()
+        {
+            if (myQuest != QuestManager.currentQuest) DestroyImmediate(this);
+        }
+
+
+    }
 }
