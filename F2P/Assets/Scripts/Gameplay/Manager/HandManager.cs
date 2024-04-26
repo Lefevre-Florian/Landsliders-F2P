@@ -122,6 +122,8 @@ public class HandManager : MonoBehaviour
         int lStartIdx = _Deck.Length - 1;
         Array.Resize(ref _Deck, _Deck.Length + pNbCards);
 
+        if(TryGetComponent<CardQuest>(out CardQuest cd)) cd.AddCard(pNbCards);
+
         int lLength = _Deck.Length;
         for (int i = lStartIdx; i < lLength; i++)
             _Deck[i] = CreateCard();
