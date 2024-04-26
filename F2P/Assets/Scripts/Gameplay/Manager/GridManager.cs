@@ -84,6 +84,7 @@ namespace com.isartdigital.f2p.gameplay.manager
                 return;
             }
 
+            TEMPCard lCard = null;
             int lXArrayIndex = 0;
             for (int x = -1; x <= 1; x++)
             {
@@ -94,20 +95,25 @@ namespace com.isartdigital.f2p.gameplay.manager
                 {
                     float lYPos = _GridSize.y * y;
 
-                    GameObject lPrefabToInstantiate = _Cards[lXArrayIndex, lYArrayIndex] == null ? CardPrefabDic.GetRandomPrefab() :
-                                                                                                   _Cards[lXArrayIndex, lYArrayIndex];
+                    GameObject lPrefabToInstantiate = _Cards[lXArrayIndex, lYArrayIndex] == null ? CardPrefabDic.GetRandomPrefab() : _Cards[lXArrayIndex, lYArrayIndex];
 
                     _Cards[lXArrayIndex, lYArrayIndex] = Instantiate( lPrefabToInstantiate,
                                                                      new Vector3(lXPos + _Offset.x, lYPos + _Offset.y, 0),
                                                                      Quaternion.identity,
                                                                      transform);
 
-                    CardContainer lCard = _Cards[lXArrayIndex, lYArrayIndex].GetComponent<CardContainer>();
-                    lCard.gridPosition = new Vector2(lXArrayIndex, lYArrayIndex);
-                    _Cards[lXArrayIndex, lYArrayIndex].GetComponent<TEMPCard>().currentState = TEMPCard.State.Played;
-                    _Cards[lXArrayIndex, lYArrayIndex].tag = CARDPLAYED_TAG;
-                    _Cards[lXArrayIndex, lYArrayIndex].GetComponent<TEMPCard>().enabled = false;
+                    CardContainer lContainer = _Cards[lXArrayIndex, lYArrayIndex].GetComponent<CardContainer>();
+                    lContainer.gridPosition = new Vector2(lXArrayIndex, lYArrayIndex);
+
+                    lCard = _Cards[lXArrayIndex, lYArrayIndex].GetComponent<TEMPCard>();
+
+                    lCard.SetModePlayed();
+
+                    lCard.currentState = TEMPCard.State.Played;
+                    lCard.GetComponent<TEMPCard>().enabled = false;
                     
+                    _Cards[lXArrayIndex, lYArrayIndex].tag = CARDPLAYED_TAG;
+
                     lYArrayIndex++;
                 }
                 lXArrayIndex++;

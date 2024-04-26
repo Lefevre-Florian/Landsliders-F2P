@@ -48,14 +48,14 @@ public class TEMPCard : MonoBehaviour
 
     private void Update()
     {
-      if(DoAction!=null)   DoAction();
+      if(DoAction!=null)   
+        DoAction();
     }
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name != PLAYER_NAME 
-            && collision.GetComponent<TEMPCard>().currentState != State.InHand 
-            && collision.GetComponent<Biome>().Type != GetComponent<Biome>().Type)
+        if (collision.name != PLAYER_NAME && collision.GetComponent<TEMPCard>().currentState != State.InHand && collision.GetComponent<Biome>().Type != GetComponent<Biome>().Type && 
+            collision.GetComponent<Biome>().Type != BiomeType.Canyon && collision.GetComponent<CardContainer>().gridPosition != Player.GetInstance()._ActualGridPos)
         {
             _CollidingObjects.Add(collision);
             _Snapable = true;
@@ -78,9 +78,8 @@ public class TEMPCard : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.name != PLAYER_NAME
-            && collision.GetComponent<TEMPCard>().currentState != State.InHand 
-            && collision.GetComponent<Biome>().Type != GetComponent<Biome>().Type)
+        if (collision.name != PLAYER_NAME && collision.GetComponent<TEMPCard>().currentState != State.InHand && collision.GetComponent<Biome>().Type != GetComponent<Biome>().Type
+            && collision.GetComponent<Biome>().Type != BiomeType.Canyon && collision.GetComponent<CardContainer>().gridPosition != Player.GetInstance()._ActualGridPos)
         {
             if (_CollidingObjects.Count > 1)
             {

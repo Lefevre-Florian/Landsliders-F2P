@@ -22,12 +22,13 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private Biome _Biome = null;
 
-        private void Start()
+        private void Awake()
         {
-            _GridManager = GridManager.GetInstance();
             _Biome = GetComponent<Biome>();
             _Biome.OnReady += Enable;
         }
+
+        private void Start() => _GridManager = GridManager.GetInstance();
 
         public void Spread()
         {
