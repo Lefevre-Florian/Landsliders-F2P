@@ -1,4 +1,5 @@
 using com.isartdigital.f2p.gameplay.card;
+using com.isartdigital.f2p.gameplay.quest;
 using Com.IsartDigital.F2P.Biomes;
 
 using System.Collections.Generic;
@@ -192,6 +193,7 @@ namespace com.isartdigital.f2p.gameplay.manager
 
             lCard.GetComponent<CardContainer>().gridPosition = new Vector2(x, y);
 
+            if (_Cards[x, y].GetComponent<Biome>().Type == BiomeType.Canyon) CanyonQuest.ValidSignal.Invoke();
             _Cards[x, y].GetComponent<Biome>().Remove();
             _Cards[x, y] = lBiome.gameObject;
             _Cards[x, y].transform.position = lWorldPosition;

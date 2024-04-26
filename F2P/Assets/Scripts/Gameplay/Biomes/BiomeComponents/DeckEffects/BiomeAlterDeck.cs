@@ -1,3 +1,4 @@
+using com.isartdigital.f2p.gameplay.quest;
 using System;
 
 using UnityEngine;
@@ -65,8 +66,11 @@ namespace Com.IsartDigital.F2P.Biomes
         {
             if (_IsRemoving && !Player.GetInstance().isProtected)
                 _HandManager.BurnCard(_NbAffected);  
-            else if(!_IsRemoving)
+            else if (!_IsRemoving)
+            {
                 _HandManager.AddCardToDeck(_NbAffected);
+                if (TryGetComponent<FieldQuest>(out FieldQuest fq)) fq.CheckWin(_NbAffected);
+            }
         }
 
         private void OnDestroy()

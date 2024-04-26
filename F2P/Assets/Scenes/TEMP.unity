@@ -1681,6 +1681,7 @@ GameObject:
   - component: {fileID: 1061210647}
   - component: {fileID: 1061210648}
   - component: {fileID: 1061210649}
+  - component: {fileID: 1061210650}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1768,7 +1769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c32f52816a393f419a2634e48bf8a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _predifinedMap: {fileID: 0}
+  _predifinedMap: {fileID: 11400000, guid: d42b261b91da47e439f571e4e4dddfbd, type: 2}
 --- !u!114 &1061210648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1794,7 +1795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MaxGameEventsNumber: 3
-  _GameEventChance: 1
+  _GameEventChance: 0
   _MaxEtheralRiftsNumber: 4
   _MaxDragonLairsNumber: 0
   _MaxWitchesNumber: 0
@@ -1807,6 +1808,23 @@ MonoBehaviour:
   _Wisp: {fileID: 7100505260429275719, guid: d7ba279bed5d1ca44a6f7716a67c93f5, type: 3}
   _GoblinTreasure: {fileID: 6956311438354313730, guid: aa830714b7b17d945a7b1e4c0d885b38, type: 3}
   _Mist: {fileID: 4857646458243004221, guid: ea2578a30c4a6404e90de53066c8cc48, type: 3}
+--- !u!114 &1061210650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061210643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17aa8ce40a699244e9239b52f0866cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questsDic:
+    questArray:
+    - key: 2
+      value: {fileID: 11500000, guid: 6236697caef784145a3238610f9d3c43, type: 3}
+  currentQuestDebug: 0
 --- !u!1001 &1087800625
 PrefabInstance:
   m_ObjectHideFlags: 0

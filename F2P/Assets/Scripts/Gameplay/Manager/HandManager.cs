@@ -2,6 +2,7 @@ using Com.IsartDigital.F2P.UI.UIHUD;
 using System;
 using UnityEngine;
 using System.Collections.Generic;
+using com.isartdigital.f2p.gameplay.quest;
 
 // Author (CR) : Elias Dridi
 public class HandManager : MonoBehaviour
@@ -121,6 +122,8 @@ public class HandManager : MonoBehaviour
     {
         int lStartIdx = _Deck.Length - 1;
         Array.Resize(ref _Deck, _Deck.Length + pNbCards);
+
+        if(TryGetComponent<CardQuest>(out CardQuest cd)) cd.AddCard(pNbCards);
 
         int lLength = _Deck.Length;
         for (int i = lStartIdx; i < lLength; i++)

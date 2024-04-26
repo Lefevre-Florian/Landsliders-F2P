@@ -50,8 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handIndex: 0
-  snapPos: {x: 0, y: 0, z: 0}
   currentState: 0
+  snapPos: {x: 0, y: 0, z: 0}
 --- !u!61 &1670292805084634038
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -144,6 +144,7 @@ MonoBehaviour:
   _Type: 0
   _CanBeReplaced: 1
   _IsWalkable: 1
+  _CanBeRemoved: 1
 --- !u!114 &8649781941472835880
 MonoBehaviour:
   m_ObjectHideFlags: 0
