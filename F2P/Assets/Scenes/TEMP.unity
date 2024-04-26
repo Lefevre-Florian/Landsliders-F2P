@@ -1824,7 +1824,7 @@ MonoBehaviour:
     questArray:
     - key: 2
       value: {fileID: 11500000, guid: 6236697caef784145a3238610f9d3c43, type: 3}
-  currentQuestDebug: 6
+  currentQuestDebug: 0
 --- !u!1001 &1087800625
 PrefabInstance:
   m_ObjectHideFlags: 0
