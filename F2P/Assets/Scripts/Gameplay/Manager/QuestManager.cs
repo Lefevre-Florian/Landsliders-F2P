@@ -21,7 +21,8 @@ public class QuestManager : MonoBehaviour
         CanyonQuest,
         FieldQuest,
         FlyingIslandQuest,
-        CardQuest
+        CardQuest,
+        VortexQuest
     }
 
     private void Awake()
