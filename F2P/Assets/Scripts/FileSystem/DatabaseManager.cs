@@ -6,6 +6,7 @@ using System.IO;
 using System.Collections;
 
 using TMPro;
+using System.Text;
 
 // Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.FileSystem
@@ -30,11 +31,13 @@ namespace Com.IsartDigital.F2P.FileSystem
         #if UNITY_EDITOR
         private const string DATABASE_PATH = "/StreamingAssets";
         #endif
-
+        
+        /// Database related const
         private const string DATABASE_SOURCE = "URI=file:";
         private const string DATABASE_NAME = "/scopa.db";
 
-        private const string FILE_NAME = "Save.json";
+        /// JSON Save file related const
+        private const string FILE_NAME = "/Save.json";
 
         /// Save system
         public static PlayerSave playerSave = null;
@@ -43,8 +46,6 @@ namespace Com.IsartDigital.F2P.FileSystem
         [SerializeField] private TextMeshProUGUI _DatabaseLabelDebug = null;
 
         // Variables
-        private SqliteConnection _Database = null;
-
         private Coroutine _Session = null;
 
         private void Awake()
@@ -56,8 +57,7 @@ namespace Com.IsartDigital.F2P.FileSystem
             }
             _Instance = this;
 
-            //ReadDataFromSaveFile();
-            OpenDatabase();
+            ReadDataFromSaveFile();
         }
 
         #region Database & Cache
@@ -94,6 +94,7 @@ namespace Com.IsartDigital.F2P.FileSystem
 
         /// <summary>
         /// Copy the database from StreamingAssets to PersistentPath on Android in order to use the database 
+        /// (Operation done only when the user start the application for the first time)
         /// </summary>
         /// <returns></returns>
         private IEnumerator CopyDatabase()
@@ -125,25 +126,20 @@ namespace Com.IsartDigital.F2P.FileSystem
         public void ReadDataFromSaveFile()
         {
             string lPath = Application.persistentDataPath + FILE_NAME;
-
+            print(lPath);
             if (File.Exists(lPath))
                 playerSave = JsonUtility.FromJson<PlayerSave>(File.ReadAllText(lPath));
             else
             {
                 playerSave = new PlayerSave();
                 WriteDataToSaveFile();
-            }
-                
+            }   
         }
 
         public void WriteDataToSaveFile()
         {
             string lPath = Application.persistentDataPath + FILE_NAME;
-
-            if (!File.Exists(lPath))
-                File.Create(lPath);
-
-            File.WriteAllText(lPath, JsonUtility.ToJson(playerSave));
+            File.WriteAllText(lPath, JsonUtility.ToJson(playerSave), Encoding.UTF8);
         }
         #endregion
 
