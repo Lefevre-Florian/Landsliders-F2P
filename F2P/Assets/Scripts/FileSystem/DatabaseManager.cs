@@ -33,7 +33,7 @@ namespace Com.IsartDigital.F2P.FileSystem
 
         private const string DATABASE_SOURCE = "URI=file:";
         private const string DATABASE_NAME = "/scopa.db";
-        
+
         private const string FILE_NAME = "Save.json";
 
         /// Save system
@@ -55,20 +55,61 @@ namespace Com.IsartDigital.F2P.FileSystem
                 return;
             }
             _Instance = this;
-            
-            ReadDataFromSaveFile();
+
+            //ReadDataFromSaveFile();
+            OpenDatabase();
         }
 
         #region Database & Cache
-        private IEnumerator OpenDatabase()
+        /// <summary>
+        /// Return an open sql connection to the database
+        /// </summary>
+        /// <returns></returns>
+        private SqliteConnection OpenDatabase()
         {
             string lPath;
             #if UNITY_EDITOR
             lPath = Application.dataPath + DATABASE_PATH + DATABASE_NAME;
+            #elif UNITY_ANDROID
+            lPath = Application.persistentDataPath + DATABASE_NAME;
+            
+            if (!File.Exists(lPath))
+            {
+                _Session = StartCoroutine(CopyDatabase());
+            }
             #endif
 
-            _Database = new SqliteConnection(DATABASE_SOURCE + lPath);
-            _Database.Open();
+            SqliteConnection lDB = new SqliteConnection(DATABASE_SOURCE + lPath);
+            lDB.Open();
+
+            return lDB;
+        }
+
+        private void CloseDatabase(SqliteConnection pDB)
+        {
+            if(pDB != null 
+               && pDB.State != System.Data.ConnectionState.Closed)
+                pDB.Close();
+        }
+
+        /// <summary>
+        /// Copy the database from StreamingAssets to PersistentPath on Android in order to use the database 
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator CopyDatabase()
+        {
+            string lPath = Application.streamingAssetsPath + DATABASE_NAME;
+            byte[] lContent;
+
+            // Require reading in the .jar compressed file
+            WWW lWWWByteReader = new WWW(lPath);
+            while(!lWWWByteReader.isDone)
+                yield return null;
+
+            lContent = lWWWByteReader.bytes;
+
+            // Copy to the persistent app storage location
+            File.WriteAllBytes(Application.persistentDataPath + DATABASE_NAME, lContent);
 
             if(_Session != null)
             {
@@ -77,15 +118,6 @@ namespace Com.IsartDigital.F2P.FileSystem
             }
 
             yield return null;
-        }
-
-        private void CloseDatabase()
-        {
-            if(_Database != null)
-            {
-                _Database.Close();
-                _Database = null;
-            }
         }
         #endregion
 
@@ -121,9 +153,7 @@ namespace Com.IsartDigital.F2P.FileSystem
             {
                 _Instance = null;
 
-                CloseDatabase();
                 StopAllCoroutines();
-
                 _Session = null;
             }
         }
