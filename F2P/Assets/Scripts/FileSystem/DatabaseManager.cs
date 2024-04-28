@@ -1,12 +1,17 @@
 using UnityEngine;
+using UnityEngine.Networking;
+
 using Mono.Data.Sqlite;
+
 using System.Data;
 using System;
 using System.IO;
+using System.Collections;
+
 using TMPro;
 
 // Author (CR) : Lefevre Florian
-namespace Com.IsartDigital.F2P.Database
+namespace Com.IsartDigital.F2P.FileSystem
 {
     public class DatabaseManager : MonoBehaviour
     {
@@ -29,9 +34,10 @@ namespace Com.IsartDigital.F2P.Database
         private const string FILE_NAME = "Save.json";
 
         /// SQL Command lines
-        private const string SELECT_PACK = "SELECT price,name FROM PACK ORDER BY price DESC";
+        private const string SELECT_BIOMES = "SELECT name, description, expUnlocked FROM BIOME WHERE fk_upgrade IS NOT NULL";
         private const string SELECT_FRAGMENT = "SELECT biome.name, fragment.rarity FROM fragment LEFT JOIN biome ON biome.id = fragment.fk_biome ORDER BY fragment.rarity ASC";
 
+        /// Save system
         public static PlayerSave playerSave = null;
 
         [Header("Debug")]
@@ -47,40 +53,50 @@ namespace Com.IsartDigital.F2P.Database
             _Instance = this;
 
             ReadDataFromSaveFile();
-
-            //TEMP
-            GetValues();
         }
 
+        #region Database & Cache
         private void GetValues()
         {
             string lPath = "";
             
             #if UNITY_EDITOR
-            lPath = DATABASE_SOURCE + Application.dataPath + "/StreamingAssets/Database" + DATABASE_NAME;
-            #elif UNITY_ANDROID || UNITY_IOS
-            lPath = DATABASE_SOURCE + Application.streamingAssetsPath + "/StreamingAssets/Database" + DATABASE_NAME;
+            lPath = Application.dataPath + "/StreamingAssets/Database" + DATABASE_NAME;
+            #elif UNITY_ANDROID
+            lPath = Application.streamingAssetsPath + DATABASE_NAME;
             #endif
 
-            SqliteConnection lDb = new SqliteConnection(lPath);
+            /*SqliteConnection lDb = new SqliteConnection(lPath);
+
             lDb.Open();
 
             if (lDb.State == ConnectionState.Open)
             {
                 SqliteCommand lQuery = lDb.CreateCommand();
-                lQuery.CommandText = "SELECT name FROM biome";
-                object lResult = lQuery.ExecuteScalar();
-                _DatabaseLabelDebug.text = lResult.ToString();
-                Debug.Log("Connection established !");
+                lQuery.CommandText = SELECT_BIOMES;
+                SqliteDataReader lReader = lQuery.ExecuteReader();
+                int lLength = lReader.FieldCount;
             }
             else
             {
                 _DatabaseLabelDebug.text = "No database found! ";
             }
 
-            lDb.Close();
+            lDb.Close();*/
         }
 
+        private IEnumerator GetDatabase()
+        {
+            string lPath = Application.streamingAssetsPath + "/scopa.db";
+            UnityWebRequest www = UnityWebRequest.Get(lPath);
+            string lResult = www.downloadHandler.text;
+            print(lResult);
+
+            yield return null;
+        }
+        #endregion
+
+        #region Save system
         public void ReadDataFromSaveFile()
         {
             string lPath = Application.persistentDataPath + FILE_NAME;
@@ -88,7 +104,11 @@ namespace Com.IsartDigital.F2P.Database
             if (File.Exists(lPath))
                 playerSave = JsonUtility.FromJson<PlayerSave>(File.ReadAllText(lPath));
             else
+            {
                 playerSave = new PlayerSave();
+                WriteDataToSaveFile();
+            }
+                
         }
 
         public void WriteDataToSaveFile()
@@ -100,6 +120,7 @@ namespace Com.IsartDigital.F2P.Database
 
             File.WriteAllText(lPath, JsonUtility.ToJson(playerSave));
         }
+        #endregion
 
         private void OnDestroy()
         {

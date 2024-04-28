@@ -1,4 +1,4 @@
-using Com.IsartDigital.F2P.Database;
+using Com.IsartDigital.F2P.FileSystem;
 
 using UnityEngine;
 
@@ -18,21 +18,6 @@ namespace Com.IsartDigital.F2P.UI
         private void Start()
         {
             _SaveSystem = DatabaseManager.GetInstance();
-
-            _SoundToggle.SetToggle(DatabaseManager.playerSave.soundStatus);
-            _MusicToggle.SetToggle(DatabaseManager.playerSave.musicStatus);
-        }
-
-        public void UpdateSound(CustomToggle pToggle)
-        {
-            DatabaseManager.playerSave.soundStatus = pToggle.IsOn;
-            CallForModification();
-        }
-
-        public void UpdateMusic(CustomToggle pToggle)
-        {
-            DatabaseManager.playerSave.musicStatus = pToggle.IsOn;
-            CallForModification();
         }
 
         private void CallForModification() => _WasModified = true;
