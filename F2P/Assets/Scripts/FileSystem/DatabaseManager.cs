@@ -1,10 +1,7 @@
 using UnityEngine;
-using UnityEngine.Networking;
 
 using Mono.Data.Sqlite;
 
-using System.Data;
-using System;
 using System.IO;
 using System.Collections;
 
@@ -29,19 +26,26 @@ namespace Com.IsartDigital.F2P.FileSystem
         #endregion
 
         /// Constant path
+
+        #if UNITY_EDITOR
+        private const string DATABASE_PATH = "/StreamingAssets";
+        #endif
+
         private const string DATABASE_SOURCE = "URI=file:";
         private const string DATABASE_NAME = "/scopa.db";
+        
         private const string FILE_NAME = "Save.json";
-
-        /// SQL Command lines
-        private const string SELECT_BIOMES = "SELECT name, description, expUnlocked FROM BIOME WHERE fk_upgrade IS NOT NULL";
-        private const string SELECT_FRAGMENT = "SELECT biome.name, fragment.rarity FROM fragment LEFT JOIN biome ON biome.id = fragment.fk_biome ORDER BY fragment.rarity ASC";
 
         /// Save system
         public static PlayerSave playerSave = null;
 
         [Header("Debug")]
         [SerializeField] private TextMeshProUGUI _DatabaseLabelDebug = null;
+
+        // Variables
+        private SqliteConnection _Database = null;
+
+        private Coroutine _Session = null;
 
         private void Awake()
         {
@@ -51,48 +55,37 @@ namespace Com.IsartDigital.F2P.FileSystem
                 return;
             }
             _Instance = this;
-
+            
             ReadDataFromSaveFile();
         }
 
         #region Database & Cache
-        private void GetValues()
+        private IEnumerator OpenDatabase()
         {
-            string lPath = "";
-            
+            string lPath;
             #if UNITY_EDITOR
-            lPath = Application.dataPath + "/StreamingAssets/Database" + DATABASE_NAME;
-            #elif UNITY_ANDROID
-            lPath = Application.streamingAssetsPath + DATABASE_NAME;
+            lPath = Application.dataPath + DATABASE_PATH + DATABASE_NAME;
             #endif
 
-            /*SqliteConnection lDb = new SqliteConnection(lPath);
+            _Database = new SqliteConnection(DATABASE_SOURCE + lPath);
+            _Database.Open();
 
-            lDb.Open();
-
-            if (lDb.State == ConnectionState.Open)
+            if(_Session != null)
             {
-                SqliteCommand lQuery = lDb.CreateCommand();
-                lQuery.CommandText = SELECT_BIOMES;
-                SqliteDataReader lReader = lQuery.ExecuteReader();
-                int lLength = lReader.FieldCount;
+                StopCoroutine(_Session);
+                _Session = null;
             }
-            else
-            {
-                _DatabaseLabelDebug.text = "No database found! ";
-            }
-
-            lDb.Close();*/
-        }
-
-        private IEnumerator GetDatabase()
-        {
-            string lPath = Application.streamingAssetsPath + "/scopa.db";
-            UnityWebRequest www = UnityWebRequest.Get(lPath);
-            string lResult = www.downloadHandler.text;
-            print(lResult);
 
             yield return null;
+        }
+
+        private void CloseDatabase()
+        {
+            if(_Database != null)
+            {
+                _Database.Close();
+                _Database = null;
+            }
         }
         #endregion
 
@@ -127,6 +120,11 @@ namespace Com.IsartDigital.F2P.FileSystem
             if(_Instance == this)
             {
                 _Instance = null;
+
+                CloseDatabase();
+                StopAllCoroutines();
+
+                _Session = null;
             }
         }
     }
