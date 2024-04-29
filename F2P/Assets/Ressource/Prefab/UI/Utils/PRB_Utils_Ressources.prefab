@@ -430,6 +430,7 @@ GameObject:
   - component: {fileID: 2065302439961376088}
   - component: {fileID: 7291930245422086949}
   - component: {fileID: 2106724118956382197}
+  - component: {fileID: 5146518788033438001}
   m_Layer: 5
   m_Name: PRB_Utils_Ressources
   m_TagString: Untagged
@@ -492,6 +493,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &5146518788033438001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2346201246891586484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc022f5641958f44846969baf469903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _UISoftCurrencyLabel: {fileID: 6773693885954360792}
+  _UIHardCurrencyLabel: {fileID: 2338000611059505179}
 --- !u!1 &2509985761214689270
 GameObject:
   m_ObjectHideFlags: 0
