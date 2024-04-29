@@ -705,6 +705,7 @@ MonoBehaviour:
   _IsUsingLoadingScreen: 0
   _GameBuildIDX: 1
   _TargetedFrameRate: 30
+  _ExpLevelLabel: {fileID: 6575564077005786946}
 --- !u!1 &7822701107710646735
 GameObject:
   m_ObjectHideFlags: 0

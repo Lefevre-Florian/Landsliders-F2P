@@ -2,8 +2,6 @@ using UnityEngine;
 
 using Mono.Data.Sqlite;
 
-using TMPro;
-
 using System;
 using System.Text;
 using System.IO;
