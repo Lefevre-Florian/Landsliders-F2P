@@ -20,14 +20,33 @@ public class CardPrefabDic : MonoBehaviour
 
     public static GameObject GetRandomPrefab() 
     {
-        return prefabList[UnityEngine.Random.Range(0, prefabList.Count)].GO;
+        float lTotalWeight = GetTotalWeight();
 
-        
+        float lRand = UnityEngine.Random.Range(0, lTotalWeight);
+
+        float lCurrentProp = 0;
+
+        for (int i = 0; i < prefabList.Count; i++)
+        {
+            lCurrentProp += prefabList[i].chanceToSpawn;
+            if (lRand < lCurrentProp) return prefabList[i].GO;
+        }
+
+        return null;
     }
 
     public static GameObject GetPrefab(BiomeType type)
     {
         return prefabDic[type].GO;
+    }
+
+    private static float GetTotalWeight()
+    {
+        float ret = 0;
+        foreach (Card pCard in prefabList)
+            ret += pCard.chanceToSpawn;
+
+        return ret;
     }
 }
 
