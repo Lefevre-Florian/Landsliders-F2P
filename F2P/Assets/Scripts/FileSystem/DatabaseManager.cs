@@ -2,11 +2,14 @@ using UnityEngine;
 
 using Mono.Data.Sqlite;
 
+using TMPro;
+
+using System;
+using System.Text;
 using System.IO;
 using System.Collections;
+using System.Collections.Generic;
 
-using TMPro;
-using System.Text;
 
 // Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.FileSystem
@@ -35,6 +38,9 @@ namespace Com.IsartDigital.F2P.FileSystem
         /// Database related const
         private const string DATABASE_SOURCE = "URI=file:";
         private const string DATABASE_NAME = "/scopa.db";
+
+        /// Database cmd
+        private const string SELECT_ALL_BIOME_IDS = "SELECT id FROM BIOME WHERE level = 1";
 
         /// JSON Save file related const
         private const string FILE_NAME = "/Save.json";
@@ -120,18 +126,64 @@ namespace Com.IsartDigital.F2P.FileSystem
 
             yield return null;
         }
+        
+        public List<List<object>> GetRows(string pCmdText)
+        {
+            List<List<object>> lResult = new List<List<object>>();
+
+            SqliteConnection lDB = OpenDatabase();
+
+            SqliteCommand lCmd = lDB.CreateCommand();
+            lCmd.CommandText = pCmdText;
+
+            SqliteDataReader lReader = lCmd.ExecuteReader();
+
+            // Get the data set
+            int lFieldCount = 0;
+            List<object> lRow = null;
+
+            while (lReader.Read())
+            {
+                lFieldCount = lReader.FieldCount;
+                lRow = new List<object>();
+
+                for (int i = 0; i < lFieldCount; i++)
+                    lRow.Add(lReader.GetValue(i));
+
+                lResult.Add(lRow);
+            }
+
+            CloseDatabase(lDB);
+            return lResult;
+        }
+        
         #endregion
 
         #region Save system
         public void ReadDataFromSaveFile()
         {
             string lPath = Application.persistentDataPath + FILE_NAME;
-            print(lPath);
+
             if (File.Exists(lPath))
                 playerSave = JsonUtility.FromJson<PlayerSave>(File.ReadAllText(lPath));
             else
             {
+                // New save
                 playerSave = new PlayerSave();
+                
+                List<int> lCardIDs = new List<int>();
+                List<List<object>> lRawDatas = GetRows(SELECT_ALL_BIOME_IDS);
+
+                int lLength = lRawDatas.Count;
+                for (int i = 0; i < lLength; i++)
+                    lCardIDs.Add(Convert.ToInt32(lRawDatas[i][0])); 
+
+                lRawDatas.Clear();
+                lRawDatas = null;
+
+                // Reprensting every IDs of unlocked cards
+                playerSave.cards = lCardIDs.ToArray(); 
+
                 WriteDataToSaveFile();
             }   
         }
