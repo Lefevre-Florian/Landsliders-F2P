@@ -600,7 +600,7 @@ GameObject:
   - component: {fileID: 1424759256172226460}
   - component: {fileID: 5001758625398944888}
   m_Layer: 0
-  m_Name: Canyon 1
+  m_Name: PRB_Canyon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
