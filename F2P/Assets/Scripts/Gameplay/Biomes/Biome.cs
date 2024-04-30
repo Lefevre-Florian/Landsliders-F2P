@@ -1,4 +1,5 @@
 using com.isartdigital.f2p.gameplay.manager;
+using Com.IsartDigital.F2P.Cards;
 
 using System;
 
@@ -27,6 +28,8 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private Vector2 _GridPosition = new Vector2();
 
+        private CardRenderer _Renderer = null;
+
         // Get / Set
         public bool CanBeReplaced { get { return _CanBeReplaced; } }                        // Dfine if a card can be change by another biome or event
         public bool IsWalkable { get { return _IsWalkable; } }                              // Define if the player can move on it
@@ -42,6 +45,7 @@ namespace Com.IsartDigital.F2P.Biomes
         private void Start()
         {
             TEMPCard lCard = GetComponent<TEMPCard>();
+
             if (!lCard.isActiveAndEnabled)
                 Enable();
             else
@@ -76,6 +80,10 @@ namespace Com.IsartDigital.F2P.Biomes
             _GameManager = GameManager.GetInstance();
             if (_Priority != 0)
                 _GameManager.OnEffectPlayed += TriggerPriority;
+
+            _Renderer = transform.GetChild(0)
+                                 .GetComponent<CardRenderer>();
+            _Renderer.EnableAnimation();
 
             OnReady?.Invoke();
         }

@@ -17,43 +17,34 @@ namespace Com.IsartDigital.F2P.Cards
 
         // Variables
         private Animator _Animator = null;
-
         private Coroutine _Tween = null;
 
-        private void Start()
+        private void Awake()
         {
             _Animator = GetComponent<Animator>();
-
             DisableAnimation();
         }
 
-
         public void EnableAnimation()
-        {
+        {            
             _Animator.enabled = true;
             _Animator.Play(_AnimationTitle);
         }
 
-        public void DisableAnimation()
-        {
-            _Animator.enabled = false;
-        }
+        public void DisableAnimation() => _Animator.enabled = false;
 
         public void FlipCard()
         {
-            if (_Animator.enabled)
-                DisableAnimation();
-            else
-                EnableAnimation();
+            _Tween = StartCoroutine(FlipAnimation(_Animator.enabled));
 
-            _Tween = StartCoroutine(FlipAnimation());
+            DisableAnimation();
         }
 
         /// ------------------------ ///
         /// Coroutine for the moment ///
         /// ------------------------ ///
 
-        private IEnumerator FlipAnimation()
+        private IEnumerator FlipAnimation(bool pAnimationStatus = false)
         {
             Quaternion lOrigin = transform.rotation;
             Quaternion lTarget = Quaternion.AngleAxis(FLIP_ANGLE, Vector3.up) * transform.rotation;
@@ -73,6 +64,9 @@ namespace Com.IsartDigital.F2P.Cards
                 StopCoroutine(_Tween);
                 _Tween = null;
             }
+
+            if (pAnimationStatus)
+                EnableAnimation();
         }
 
         private void OnDestroy()

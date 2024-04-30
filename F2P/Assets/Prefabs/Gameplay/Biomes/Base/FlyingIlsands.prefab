@@ -101,8 +101,12 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7646986577398426315, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8777590319752045493}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
@@ -266,6 +270,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myQuest: 4
+--- !u!4 &4553345476396427566 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+  m_PrefabInstance: {fileID: 835507405319731839}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8685040561702587449 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8295392945309103686, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
@@ -277,3 +286,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c8f5b350aecf584fb5e845adb339412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &6754053283141871559
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4553345476396427566}
+    m_Modifications:
+    - target: {fileID: 2624319089702667378, guid: c7fe55b811c96bb4aa485c51cff6226d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624319089702667378, guid: c7fe55b811c96bb4aa485c51cff6226d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624319089702667378, guid: c7fe55b811c96bb4aa485c51cff6226d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624319089702667378, guid: c7fe55b811c96bb4aa485c51cff6226d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624319089702667378, guid: c7fe55b811c96bb4aa485c51cff6226d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624319089702667378, guid: c7fe55b811c96bb4aa485c51cff6226d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624319089702667378, guid: c7fe55b811c96bb4aa485c51cff6226d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624319089702667378, guid: c7fe55b811c96bb4aa485c51cff6226d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624319089702667378, guid: c7fe55b811c96bb4aa485c51cff6226d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624319089702667378, guid: c7fe55b811c96bb4aa485c51cff6226d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624319089702667378, guid: c7fe55b811c96bb4aa485c51cff6226d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624319089702667378, guid: c7fe55b811c96bb4aa485c51cff6226d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624319089702667378, guid: c7fe55b811c96bb4aa485c51cff6226d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726773598233486793, guid: c7fe55b811c96bb4aa485c51cff6226d, type: 3}
+      propertyPath: m_Name
+      value: PRB_FlyingIsland
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c7fe55b811c96bb4aa485c51cff6226d, type: 3}
+--- !u!4 &8777590319752045493 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2624319089702667378, guid: c7fe55b811c96bb4aa485c51cff6226d, type: 3}
+  m_PrefabInstance: {fileID: 6754053283141871559}
+  m_PrefabAsset: {fileID: 0}
