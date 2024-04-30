@@ -432,7 +432,7 @@ GameObject:
   - component: {fileID: 4662347926332463566}
   - component: {fileID: 6874041756183182724}
   m_Layer: 0
-  m_Name: PRB_Canyon
+  m_Name: PRB_FlyingIsland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
