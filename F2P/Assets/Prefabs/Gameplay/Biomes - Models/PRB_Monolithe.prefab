@@ -515,6 +515,7 @@ GameObject:
   - component: {fileID: 6121180895905824814}
   - component: {fileID: 5585828368329348520}
   - component: {fileID: 1499404661789296799}
+  - component: {fileID: -1554560783464051374}
   m_Layer: 0
   m_Name: PRB_Monolithe
   m_TagString: Untagged
@@ -530,8 +531,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5800320018575603870}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 26.79, y: 1.4343318, z: 0.36}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -547,7 +548,7 @@ Transform:
   - {fileID: 6333078978226426577}
   - {fileID: 1388845212077784430}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!331 &5585828368329348520
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -620,6 +621,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-1554560783464051374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5800320018575603870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2383dd7b5de1cfc4987028bef8cd1abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _AnimationTitle: Animated
+  _DepthAnimationDuration: 0.25
+  _FlipAnimationSpeed: 1.5
+  _DepthMagnifier: 2
 --- !u!1 &6553819149187186399
 GameObject:
   m_ObjectHideFlags: 0
