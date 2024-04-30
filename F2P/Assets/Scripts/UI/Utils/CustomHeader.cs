@@ -1,5 +1,3 @@
-using Com.IsartDigital.F2P.FileSystem;
-
 using TMPro;
 
 using UnityEngine;
@@ -24,8 +22,8 @@ namespace Com.IsartDigital.F2P.UI.Screens
         /// </summary>
         private void UpdateHeader()
         {
-            _UISoftCurrencyLabel.text = DatabaseManager.playerSave.softcurrency.ToString();
-            _UIHardCurrencyLabel.text = DatabaseManager.playerSave.hardcurrency.ToString();
+            _UISoftCurrencyLabel.text = Save.data.softcurrency.ToString();
+            _UIHardCurrencyLabel.text = Save.data.hardcurrency.ToString();
         }
 
         private void OnDestroy() { }

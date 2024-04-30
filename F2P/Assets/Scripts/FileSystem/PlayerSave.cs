@@ -1,7 +1,13 @@
 using System;
+using UnityEngine;
 
 namespace Com.IsartDigital.F2P
 {
+    public static class Save
+    {
+        public static PlayerSave data = null;
+    }
+
     [Serializable]
     public class PlayerSave
     {
@@ -17,5 +23,8 @@ namespace Com.IsartDigital.F2P
         public bool soundStatus = true;
         public float musicVolume = 0f;
         public float sfxVolume = 0f;
+
+        // Non-serializable
+        [NonSerialized] public GameObject[] cardPrefabs;            // Only a session variable won't be include in save file
     }
 }
