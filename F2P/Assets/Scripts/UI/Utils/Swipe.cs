@@ -1,6 +1,7 @@
 using System;
 
 using UnityEngine;
+using UnityEngine.Device;
 
 // Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.UI
@@ -8,18 +9,20 @@ namespace Com.IsartDigital.F2P.UI
     public class Swipe : MonoBehaviour
     {
         [Header("Screens")]
-        [SerializeField] private Screen[] _ScreenNavigation = null;
+        [SerializeField] private Transform _SwipeContainer = null;
         [Space(5)]
         [SerializeField] private Screen[] _LockScreen = null;
 
         [Header("Settings")]
-        [SerializeField] private float _SwipeMinSize = 5f;
+        [SerializeField][Range(.1f, .8f)] private float _SwipeMinPercent = .25f;
 
         // Variables
-        private Vector2 _StartPosition = default;
+        private float _StartPosition = 0f;
         private int _CurrentScreenIdx = 0;
 
         private Action _Action = null;
+        
+        private Screen[] _ScreenNavigation = null;
 
         private void Start()
         {
@@ -31,14 +34,15 @@ namespace Com.IsartDigital.F2P.UI
             }
 
             //Check which screen is open
-            lLength = _ScreenNavigation.Length;
+            lLength = _SwipeContainer.childCount;
+            _ScreenNavigation = new Screen[lLength];
+
             for (int i = 0; i < lLength; i++)
             {
+                _ScreenNavigation[i] = _SwipeContainer.GetChild(i)
+                                                      .GetComponent<Screen>();
                 if (_ScreenNavigation[i].isActiveAndEnabled)
-                {
                     _CurrentScreenIdx = i;
-                    break;
-                }
             }
 
             SetModeTrack();
@@ -54,7 +58,7 @@ namespace Com.IsartDigital.F2P.UI
 
         private void SetModeTrack()
         {
-            _StartPosition = Vector2.zero;
+            _StartPosition = 0f;
             _Action = DoActionTrack;
         }
 
@@ -64,7 +68,7 @@ namespace Com.IsartDigital.F2P.UI
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _StartPosition = Input.mousePosition;
+                _StartPosition = Input.mousePosition.x / UnityEngine.Device.Screen.width;
                 SetModeSwipe();
             }
         }
@@ -73,10 +77,10 @@ namespace Com.IsartDigital.F2P.UI
         {
             if (Input.GetMouseButtonUp(0))
             {
-                Vector2 lDirection = _StartPosition - (Vector2)Input.mousePosition;
-                if(lDirection.magnitude >= _SwipeMinSize)
+                float lSize = _StartPosition - (Input.mousePosition.x / UnityEngine.Device.Screen.width);
+                if(Mathf.Abs(lSize) >= _SwipeMinPercent)
                 {
-                    int lSide = (int)Mathf.Sign(lDirection.normalized.x);
+                    int lSide = (int)Mathf.Sign(lSize);
                     if(_CurrentScreenIdx + lSide >= 0 && _CurrentScreenIdx + lSide < _ScreenNavigation.Length)
                     {
                         _ScreenNavigation[_CurrentScreenIdx].Close();

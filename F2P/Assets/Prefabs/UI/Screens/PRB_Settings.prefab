@@ -430,6 +430,9 @@ MonoBehaviour:
   _IconOn: {fileID: 21300000, guid: 3e582cd575db5a545b29d07237934acd, type: 3}
   _IconOff: {fileID: 21300000, guid: 705b215283a81eb4b8007d23093c37ba, type: 3}
   _IsOn: 1
+  onToggleChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1870912403083755419
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,6 +492,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85003a982b2e8e248885d40086fe3533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _SFXSlider: {fileID: 6445752505279082194}
+  _MusicSlider: {fileID: 4557786929326541684}
+  _GlobalSoundToggle: {fileID: 1245624991856223295}
 --- !u!1 &2680060353400122213
 GameObject:
   m_ObjectHideFlags: 0
