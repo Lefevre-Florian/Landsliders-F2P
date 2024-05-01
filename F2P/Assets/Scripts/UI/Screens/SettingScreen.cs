@@ -52,7 +52,7 @@ namespace Com.IsartDigital.F2P.UI
 
         private void OnDisable()
         {
-            if (_WasModified)
+            if (_WasModified && Save.data != null)
             {
                 DatabaseManager.GetInstance()
                                .WriteDataToSaveFile();
