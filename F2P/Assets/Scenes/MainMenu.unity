@@ -360,7 +360,7 @@ MonoBehaviour:
   _SwipeContainer: {fileID: 1663519122}
   _LockScreen:
   - {fileID: 809401218}
-  _SwipeMinSize: 5
+  _SwipeMinPercent: 0.25
 --- !u!4 &750167805
 Transform:
   m_ObjectHideFlags: 0
