@@ -122,19 +122,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Com.IsartDigital.F2P.UI.Screen, Assembly-CSharp
-        m_MethodName: Open
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: Com.IsartDigital.F2P.UI.Screen, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.UI.Screen, Assembly-CSharp
-        m_MethodName: Close
+        m_MethodName: Navigate
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -263,7 +251,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1308590885128737817}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.UI.Screen, Assembly-CSharp
+        m_MethodName: Navigate
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: Com.IsartDigital.F2P.UI.Screen, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3516961291414608368
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,19 +386,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Com.IsartDigital.F2P.UI.Screen, Assembly-CSharp
-        m_MethodName: Open
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: Com.IsartDigital.F2P.UI.Screen, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.UI.Screen, Assembly-CSharp
-        m_MethodName: Close
+        m_MethodName: Navigate
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

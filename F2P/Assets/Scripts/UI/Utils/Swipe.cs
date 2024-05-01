@@ -8,7 +8,7 @@ namespace Com.IsartDigital.F2P.UI
     public class Swipe : MonoBehaviour
     {
         [Header("Screens")]
-        [SerializeField] private Screen[] _ScreenNavigation = null;
+        [SerializeField] private Transform _SwipeContainer = null;
         [Space(5)]
         [SerializeField] private Screen[] _LockScreen = null;
 
@@ -20,6 +20,8 @@ namespace Com.IsartDigital.F2P.UI
         private int _CurrentScreenIdx = 0;
 
         private Action _Action = null;
+        
+        private Screen[] _ScreenNavigation = null;
 
         private void Start()
         {
@@ -31,14 +33,15 @@ namespace Com.IsartDigital.F2P.UI
             }
 
             //Check which screen is open
-            lLength = _ScreenNavigation.Length;
+            lLength = _SwipeContainer.childCount;
+            _ScreenNavigation = new Screen[lLength];
+
             for (int i = 0; i < lLength; i++)
             {
+                _ScreenNavigation[i] = _SwipeContainer.GetChild(i)
+                                                      .GetComponent<Screen>();
                 if (_ScreenNavigation[i].isActiveAndEnabled)
-                {
                     _CurrentScreenIdx = i;
-                    break;
-                }
             }
 
             SetModeTrack();
@@ -74,9 +77,10 @@ namespace Com.IsartDigital.F2P.UI
             if (Input.GetMouseButtonUp(0))
             {
                 Vector2 lDirection = _StartPosition - (Vector2)Input.mousePosition;
+
                 if(lDirection.magnitude >= _SwipeMinSize)
                 {
-                    int lSide = (int)Mathf.Sign(lDirection.normalized.x);
+                    int lSide = (int)Mathf.Sign(lDirection.x);
                     if(_CurrentScreenIdx + lSide >= 0 && _CurrentScreenIdx + lSide < _ScreenNavigation.Length)
                     {
                         _ScreenNavigation[_CurrentScreenIdx].Close();
