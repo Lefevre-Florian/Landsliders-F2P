@@ -30,6 +30,8 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private CardRenderer _Renderer = null;
 
+        [HideInInspector] public bool locked = false;
+
         // Get / Set
         public bool CanBeReplaced { get { return _CanBeReplaced; } }                        // Dfine if a card can be change by another biome or event
         public bool IsWalkable { get { return _IsWalkable; } }                              // Define if the player can move on it
@@ -38,6 +40,8 @@ namespace Com.IsartDigital.F2P.Biomes
         public Vector2 GridPosition { get { return _GridPosition; } }
 
         public BiomeType Type { get { return _Type; } }
+
+        public bool IsReady { get { return !GetComponent<TEMPCard>().isActiveAndEnabled; } }
 
         // Events
         public event Action OnReady;
@@ -90,7 +94,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void TriggerPriority(int pGamePriority) 
         {
-            if(pGamePriority == _Priority)
+            if(pGamePriority == _Priority && !locked)
                 onTriggered?.Invoke(); 
         }
 

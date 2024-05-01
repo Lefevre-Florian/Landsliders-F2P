@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     // Variables
     private int _CurrentPriority = 1;
-    private int _MaxPriority = 12; // Temp value will be reduce to 1
+    private int _MaxPriority = 12;
 
     private int _TurnNumber = 1;
     private int _CardStocked = 12;
@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
     #region Utilities
     private IEnumerator EffectTurnByTurn()
     {
-        while (_CurrentPriority != _MaxPriority)
+        while (_CurrentPriority != _MaxPriority + 1)
         {
             OnEffectPlayed?.Invoke(_CurrentPriority);
             _CurrentPriority += 1;

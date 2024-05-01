@@ -209,3 +209,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _StoppingBiome: 06000000
+  _VFXFrozen: {fileID: 8518150010312492001, guid: b875958f313e6c346831e389d29ee288, type: 3}

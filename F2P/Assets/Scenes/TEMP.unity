@@ -372,6 +372,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grassland (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5282190044756121801, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+      propertyPath: currentState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -678,7 +682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c32f52816a393f419a2634e48bf8a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _predifinedMap: {fileID: 11400000, guid: d42b261b91da47e439f571e4e4dddfbd, type: 2}
+  _predifinedMap: {fileID: 11400000, guid: e829f269d621a7f4a9178bd000b15b96, type: 2}
 --- !u!114 &1061210648
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ namespace Com.IsartDigital.F2P.Cards
 
         [Header("Animation")]
         [SerializeField] private string _AnimationTitle = "Animated";
+        [SerializeField][Range(.01f, 1.0f)] private float _AnimationSpeedRatio = 0.5f;
 
         [Header("Juiciness")]
         [SerializeField] private float _FlipAnimationSpeed = 0.25f;
@@ -29,6 +30,7 @@ namespace Com.IsartDigital.F2P.Cards
         {            
             _Animator.enabled = true;
             _Animator.Play(_AnimationTitle);
+            _Animator.speed = _AnimationSpeedRatio;
         }
 
         public void DisableAnimation() => _Animator.enabled = false;
