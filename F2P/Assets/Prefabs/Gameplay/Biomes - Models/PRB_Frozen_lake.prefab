@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6274546229157288716}
   - component: {fileID: 6797035453927375738}
   - component: {fileID: 7466497141083247571}
+  - component: {fileID: 2513711040575933580}
   m_Layer: 0
   m_Name: PRB_Frozen_lake
   m_TagString: Untagged
@@ -26,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 247360424770754571}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 36.67, y: 1.4343318, z: 0.61}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38,7 +39,7 @@ Transform:
   - {fileID: 7587604005950486711}
   - {fileID: 797341309758729671}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!331 &6797035453927375738
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -111,6 +112,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2513711040575933580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247360424770754571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2383dd7b5de1cfc4987028bef8cd1abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _AnimationTitle: Animated
+  _DepthAnimationDuration: 0.25
+  _FlipAnimationSpeed: 1.5
+  _DepthMagnifier: 2
 --- !u!1 &5134175819233201494
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,9 @@ namespace Com.IsartDigital.F2P.Biomes
         [Header("Design")]
         [SerializeField] private BiomeType[] _StoppingBiome = new BiomeType[] { BiomeType.Canyon };
 
+        [Header("Feedback & Juiciness")]
+        [SerializeField] private Transform _VFXFrozen = null;
+
         // Variables
         private GridManager _GridManager = null;
 
@@ -22,13 +25,16 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private Biome _Biome = null;
 
-        private void Awake()
+        private void Start()
         {
             _Biome = GetComponent<Biome>();
-            _Biome.OnReady += Enable;
-        }
+            if (!_Biome.IsReady)
+                _Biome.OnReady += Enable;
+            else
+                Enable();
 
-        private void Start() => _GridManager = GridManager.GetInstance();
+            _GridManager = GridManager.GetInstance();
+        }
 
         public void Spread()
         {
@@ -36,12 +42,22 @@ namespace Com.IsartDigital.F2P.Biomes
             if (lBiomes.Count == 0)
                 return;
 
+            // Add condition to the spread
             lBiomes.RemoveAll(x => !x.CanBeReplaced);
             lBiomes.Remove(_GridManager.GetCardByGridCoordinate(Player.GetInstance().GridPosition));
             lBiomes.RemoveAll(x => x.Type == _Biome.Type);
+            lBiomes.RemoveAll(x => x.GetComponent<BiomeFreeze>() != null);
+
+            // Recheck biomes states after every conditions were applied
+            if (lBiomes.Count == 0)
+                return;
 
             int lIdx = UnityEngine.Random.Range(0, lBiomes.Count);
+            
             lBiomes[lIdx].AddComponent<BiomeFreeze>();
+            lBiomes[lIdx].GetComponent<Biome>().locked = true;
+
+            Instantiate(_VFXFrozen, lBiomes[lIdx].transform);
         }
 
         private void Enable()
@@ -61,7 +77,8 @@ namespace Com.IsartDigital.F2P.Biomes
         {
             Player lPlayer = Player.GetInstance();
             Vector2 lDirection = (lPlayer.GridPosition - lPlayer.PreviousGridPosition).normalized;
-            Vector2 lNextPosition = new Vector2(lPlayer.GridPosition.x + lDirection.x, lPlayer.GridPosition.y + lDirection.y);
+            Vector2 lNextPosition = new Vector2(Mathf.RoundToInt(lPlayer.GridPosition.x + lDirection.x), 
+                                                Mathf.RoundToInt(lPlayer.GridPosition.y + lDirection.y));
 
             // Check if the next position is valid
             if (lNextPosition.x > _GridManager._GridSize.x

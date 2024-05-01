@@ -431,6 +431,7 @@ GameObject:
   - component: {fileID: 3874999040335630836}
   - component: {fileID: 3644003106827585584}
   - component: {fileID: 6178111819901523013}
+  - component: {fileID: -5757976192441388872}
   m_Layer: 0
   m_Name: PRB_Grassland
   m_TagString: Untagged
@@ -446,8 +447,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3906732064872561063}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 6.26, y: -5, z: 3.18}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -461,7 +462,7 @@ Transform:
   - {fileID: 7736521247465071725}
   - {fileID: 4581525012838903021}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!331 &3644003106827585584
 SpriteMask:
   m_ObjectHideFlags: 0
@@ -534,6 +535,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5757976192441388872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3906732064872561063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2383dd7b5de1cfc4987028bef8cd1abd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _AnimationTitle: Animated
+  _DepthAnimationDuration: 0.25
+  _FlipAnimationSpeed: 1.5
+  _DepthMagnifier: 2
 --- !u!1 &6867072634593543464
 GameObject:
   m_ObjectHideFlags: 0
