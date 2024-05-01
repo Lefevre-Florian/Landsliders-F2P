@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 // Author (CR) : Lefevre Florian
@@ -28,7 +29,7 @@ namespace Com.IsartDigital.F2P.UI
         public bool IsOn { get { return _IsOn; } }
 
         // Events
-        private event Action<bool> OnToggleChanged;
+        public UnityEvent<bool> onToggleChanged = new UnityEvent<bool>();
 
         private void Awake()
         {
@@ -54,7 +55,7 @@ namespace Com.IsartDigital.F2P.UI
             _IsOn = pStatus;
             UpdateRenderer();
 
-            OnToggleChanged?.Invoke(_IsOn);
+            onToggleChanged.Invoke(_IsOn);
         }
 
         #if UNITY_EDITOR
