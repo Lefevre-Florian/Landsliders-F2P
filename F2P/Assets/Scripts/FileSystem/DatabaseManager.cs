@@ -3,8 +3,8 @@ using UnityEngine;
 using Mono.Data.Sqlite;
 
 using System;
-using System.Text;
 using System.IO;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -38,13 +38,11 @@ namespace Com.IsartDigital.F2P.FileSystem
         private const string DATABASE_NAME = "/scopa.db";
 
         /// Database cmd
-        private const string SELECT_ALL_BIOME_IDS = "SELECT id FROM BIOME WHERE level = 1";
+        private const string SELECT_ALL_BIOME_IDS_PATH = "SELECT id, prefabPath FROM BIOME WHERE level = 1";
+        private const string SELECT_ALL_BIOMES_RESOURCES_WHERE = "SELECT prefabPath FROM BIOME WHERE id IN ";
 
         /// JSON Save file related const
         private const string FILE_NAME = "/Save.json";
-
-        /// Save system
-        public static PlayerSave playerSave = null;
 
         // Variables
         private Coroutine _Session = null;
@@ -151,7 +149,24 @@ namespace Com.IsartDigital.F2P.FileSystem
             CloseDatabase(lDB);
             return lResult;
         }
-        
+
+        public List<List<object>> GetRowsWhereIN<T>(string pCmdText, T[] pParams)
+        {
+            int lLength = pParams.Length;
+            string lCmdParam = "(";
+            for (int i = 0; i < lLength; i++)
+            {
+                lCmdParam += pParams[i].ToString();
+
+                if (i == lLength - 1)
+                    lCmdParam += ')';
+                else
+                    lCmdParam += ',';
+            }
+
+            return GetRows(pCmdText + lCmdParam);
+        }
+
         #endregion
 
         #region Save system
@@ -160,24 +175,38 @@ namespace Com.IsartDigital.F2P.FileSystem
             string lPath = Application.persistentDataPath + FILE_NAME;
 
             if (File.Exists(lPath))
-                playerSave = JsonUtility.FromJson<PlayerSave>(File.ReadAllText(lPath));
+            {
+                Save.data = JsonUtility.FromJson<PlayerSave>(File.ReadAllText(lPath));
+
+                List<List<object>> lResult = GetRowsWhereIN(SELECT_ALL_BIOMES_RESOURCES_WHERE, Save.data.cards);
+                Save.data.cardPrefabs = new GameObject[lResult.Count];
+
+                int lLength = lResult.Count;
+                for (int i = 0; i < lResult.Count; i++)
+                    Save.data.cardPrefabs[i] = Resources.Load<GameObject>(lResult[i][0].ToString());
+            }
             else
             {
                 // New save
-                playerSave = new PlayerSave();
+                Save.data = new PlayerSave();
                 
                 List<int> lCardIDs = new List<int>();
-                List<List<object>> lRawDatas = GetRows(SELECT_ALL_BIOME_IDS);
+                List<GameObject> lCardsPrefabs = new List<GameObject>();
+
+                List<List<object>> lRawDatas = GetRows(SELECT_ALL_BIOME_IDS_PATH);
 
                 int lLength = lRawDatas.Count;
                 for (int i = 0; i < lLength; i++)
-                    lCardIDs.Add(Convert.ToInt32(lRawDatas[i][0])); 
+                {
+                    lCardIDs.Add(Convert.ToInt32(lRawDatas[i][0]));
+                    lCardsPrefabs.Add(Resources.Load<GameObject>(lRawDatas[i][1].ToString()));
+                }
 
                 lRawDatas.Clear();
                 lRawDatas = null;
 
                 // Reprensting every IDs of unlocked cards
-                playerSave.cards = lCardIDs.ToArray(); 
+                Save.data.cards = lCardIDs.ToArray(); 
 
                 WriteDataToSaveFile();
             }   
@@ -186,7 +215,7 @@ namespace Com.IsartDigital.F2P.FileSystem
         public void WriteDataToSaveFile()
         {
             string lPath = Application.persistentDataPath + FILE_NAME;
-            File.WriteAllText(lPath, JsonUtility.ToJson(playerSave), Encoding.UTF8);
+            File.WriteAllText(lPath, JsonUtility.ToJson(Save.data), Encoding.UTF8);
         }
         #endregion
 

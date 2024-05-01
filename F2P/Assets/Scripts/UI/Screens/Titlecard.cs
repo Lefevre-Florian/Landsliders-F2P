@@ -1,5 +1,3 @@
-using Com.IsartDigital.F2P.FileSystem;
-
 using TMPro;
 
 using UnityEngine;
@@ -27,7 +25,7 @@ namespace Com.IsartDigital.F2P.UI.Screens
             // Reset timescale (in case)
             Time.timeScale = 1f;
 
-            _ExpLevelLabel.text = DatabaseManager.playerSave.exp.ToString();
+            _ExpLevelLabel.text = Save.data.exp.ToString();
         }
 
         public void Play()
