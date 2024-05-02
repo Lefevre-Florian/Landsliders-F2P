@@ -150,6 +150,25 @@ namespace Com.IsartDigital.F2P.FileSystem
             return lResult;
         }
 
+        public List<object> GetRow(string pCmdText)
+        {
+            List<object> lResult = new List<object>();
+
+            SqliteConnection lDB = OpenDatabase();
+
+            SqliteCommand lCmd = lDB.CreateCommand();
+            lCmd.CommandText = pCmdText;
+
+            SqliteDataReader lReader = lCmd.ExecuteReader();
+
+            int lLength = lReader.FieldCount;
+            for (int i = 0; i < lLength; i++)
+                lResult.Add(lReader.GetValue(i));
+
+            CloseDatabase(lDB);
+            return lResult;
+        }
+
         public List<List<object>> GetRowsWhereIN<T>(string pCmdText, T[] pParams)
         {
             int lLength = pParams.Length;
@@ -167,6 +186,10 @@ namespace Com.IsartDigital.F2P.FileSystem
             return GetRows(pCmdText + lCmdParam);
         }
 
+        public List<object> GetRowWhere<T>(string pCmdText, T pParam)
+        {
+            return GetRow(pCmdText + pParam.ToString());
+        }
         #endregion
 
         #region Save system
