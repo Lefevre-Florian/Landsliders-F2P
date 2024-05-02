@@ -190,24 +190,23 @@ namespace Com.IsartDigital.F2P.FileSystem
                 // New save
                 Save.data = new PlayerSave();
                 
-                List<int> lCardIDs = new List<int>();
                 List<GameObject> lCardsPrefabs = new List<GameObject>();
 
                 List<List<object>> lRawDatas = GetRows(SELECT_ALL_BIOME_IDS_PATH);
 
                 int lLength = lRawDatas.Count;
+                Save.data.cards = new int[lLength];
+                Save.data.fragments = new Fragment[lLength];
+
                 for (int i = 0; i < lLength; i++)
                 {
-                    lCardIDs.Add(Convert.ToInt32(lRawDatas[i][0]));
+                    Save.data.cards[i] = Convert.ToInt32(lRawDatas[i][0]);
+                    Save.data.fragments[i] = new Fragment(Save.data.cards[i], 0);
+
                     lCardsPrefabs.Add(Resources.Load<GameObject>(lRawDatas[i][1].ToString()));
                 }
 
                 lRawDatas.Clear();
-                lRawDatas = null;
-
-                // Reprensting every IDs of unlocked cards
-                Save.data.cards = lCardIDs.ToArray(); 
-
                 WriteDataToSaveFile();
             }   
         }
