@@ -10,7 +10,6 @@ namespace Com.IsartDigital.F2P.Cards
         private const float FLIP_ANGLE = 180f;
 
         [Header("Animation")]
-        [SerializeField] private string _AnimationTitle = "Animated";
         [SerializeField][Range(.01f, 1.0f)] private float _AnimationSpeedRatio = 0.5f;
 
         [Header("Juiciness")]
@@ -27,13 +26,17 @@ namespace Com.IsartDigital.F2P.Cards
         }
 
         public void EnableAnimation()
-        {            
+        {
             _Animator.enabled = true;
-            _Animator.Play(_AnimationTitle);
             _Animator.speed = _AnimationSpeedRatio;
         }
 
-        public void DisableAnimation() => _Animator.enabled = false;
+        public void DisableAnimation()
+        {
+            if (_Animator == null)
+                return;
+            _Animator.enabled = false;
+        }
 
         public void FlipCard()
         {
@@ -41,10 +44,6 @@ namespace Com.IsartDigital.F2P.Cards
 
             DisableAnimation();
         }
-
-        /// ------------------------ ///
-        /// Coroutine for the moment ///
-        /// ------------------------ ///
 
         private IEnumerator FlipAnimation(bool pAnimationStatus = false)
         {
