@@ -19,6 +19,8 @@ namespace Com.IsartDigital.F2P
 
         public int[] cards = null;
 
+        public Fragment[] fragments = null;
+
         // Settings
         public bool soundStatus = true;
         public float musicVolume = 0f;
@@ -26,5 +28,30 @@ namespace Com.IsartDigital.F2P
 
         // Non-serializable
         [NonSerialized] public GameObject[] cardPrefabs;            // Only a session variable won't be include in save file
+    }
+
+    [Serializable]
+    public class Fragment
+    {
+        public int id;
+        public int fragment;
+
+        [NonSerialized] public float rarity;
+
+        public Fragment() { }
+
+        public Fragment(int pId, int pFragmentCount)
+        {
+            id = pId;
+            fragment = pFragmentCount;
+        }
+
+        public Fragment(int pId, int pFragmentCount, float pRarity)
+        {
+            id = pId;
+            fragment = pFragmentCount;
+
+            rarity = pRarity;
+        }
     }
 }
