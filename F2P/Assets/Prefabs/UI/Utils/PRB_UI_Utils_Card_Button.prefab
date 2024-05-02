@@ -169,7 +169,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: -75}
-  m_SizeDelta: {x: 0, y: 300}
+  m_SizeDelta: {x: 0, y: 400}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &82840968329398941
 CanvasRenderer:
@@ -223,7 +223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &279314247137672568
 RectTransform:
   m_ObjectHideFlags: 0
@@ -396,7 +396,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 310, y: 415}
+  m_SizeDelta: {x: 465, y: 622.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2683739045908749459
 CanvasRenderer:
@@ -448,6 +448,7 @@ MonoBehaviour:
   _DefaultStateOverlay: {fileID: 279314247137672568}
   _UpgradeStateOverlay: {fileID: 8951941318091263806}
   _LockedStateOverlay: {fileID: 7874289478958262477}
+  _FragReqLabel: {fileID: 5380680324712192592}
 --- !u!1 &8452510009270496839
 GameObject:
   m_ObjectHideFlags: 0
