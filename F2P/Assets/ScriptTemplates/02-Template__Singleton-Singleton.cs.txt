@@ -1,0 +1,43 @@
+using System;
+using UnityEngine;
+
+namespace Com.IsartDigital.F2P
+{
+    public class #SCRIPTNAME# : MonoBehaviour
+    {
+        #region Singleton
+        private static #SCRIPTNAME# _Instance = null;
+
+        public static #SCRIPTNAME# GetInstance()
+        {
+            if(_Instance == null) 
+				_Instance = new #SCRIPTNAME#();
+            return _Instance;
+        }
+
+        private #SCRIPTNAME#() : base() {}
+        #endregion
+
+        private void Awake()
+        {
+            if(_Instance != null)
+            {
+                Destroy(this);
+                return;
+            }
+            _Instance = this;
+        }
+
+        private void Start()
+        {
+            #NOTRIM#
+        }
+
+        private void OnDestroy()
+        {
+            if (_Instance == this)
+                _Instance = null;
+        }
+
+    }
+}
