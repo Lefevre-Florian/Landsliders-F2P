@@ -58,7 +58,9 @@ public class HandManager : MonoBehaviour
     [HideInInspector] public bool[] _AvailableCardSlots;
     private GameObject[] _Deck;
 
+    public int _TotalCards { get { return _Deck.Length + _CardInHand; } }
 
+    
     private void Start()
     {
         CardSlot();

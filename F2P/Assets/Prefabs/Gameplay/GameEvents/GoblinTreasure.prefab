@@ -93,6 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6757908115115406046}
+  - component: {fileID: -2609899514548897404}
   m_Layer: 0
   m_Name: GoblinTreasure
   m_TagString: Untagged
@@ -116,3 +117,19 @@ Transform:
   - {fileID: 7185586157793960481}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2609899514548897404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956311438354313730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a921526ffecfc45488552bf74a6d25f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Priority: 5
+  _NbCardsAdded: 3
+  _NbCardsBurnt: 2
+  _TreasureChance: 0.5

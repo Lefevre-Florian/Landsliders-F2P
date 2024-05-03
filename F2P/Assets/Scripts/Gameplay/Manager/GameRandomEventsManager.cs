@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Author (CR): Dorian Husson
 namespace Com.IsartDigital.F2P.Gameplay.Manager
 {
     public enum GameEventType { Etheral_Rift = 0, Dragon_Lair = 1, Witch = 2, Wisp = 3, Goblin_Treasure = 4, Mist = 5}
@@ -99,7 +100,7 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
 
         private void OnCardPlaced()
         {
-            if (_GameEventsCount < _MaxGameEventsNumber)
+            if (_GameEventsCount < _MaxGameEventsNumber && _Eventdeck.Count > 0)
             {
                 _RandomValue = UnityEngine.Random.value;
 
@@ -138,7 +139,7 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
         {
             _InstantiatedGameEvent = Instantiate(pGameObject);
             _InstantiatedGameEvent.transform.SetParent(GameManager.GetInstance()._LastCardPlayed.transform);
-            _InstantiatedGameEvent.transform.localPosition = Vector3.zero;
+            _InstantiatedGameEvent.transform.localPosition = Vector3.back;
             return _InstantiatedGameEvent;
         }
     }
