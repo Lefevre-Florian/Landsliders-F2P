@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-// Author: Dorian Husson
+// Author (CR): Dorian Husson
 namespace Com.IsartDigital.F2P.Gameplay.Events
 {
     public class Witch : GameRandomEvent
@@ -13,7 +13,7 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
             {
                 OnWitchPosition?.Invoke();
 
-                Destroy(transform.gameObject);
+                Destroy(gameObject);
             }
         }
     }

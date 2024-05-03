@@ -4,7 +4,7 @@ using com.isartdigital.f2p.gameplay.manager;
 using Com.IsartDigital.F2P.Gameplay.Manager;
 using UnityEngine;
 
-// Author: Dorian Husson
+// Author (CR): Dorian Husson
 namespace Com.IsartDigital.F2P.Gameplay.Events
 {
     public class GameRandomEvent : MonoBehaviour

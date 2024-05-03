@@ -3,7 +3,7 @@ using System.Collections;
 using com.isartdigital.f2p.gameplay.manager;
 using UnityEngine;
 
-// Author: Dorian Husson
+// Author (CR): Dorian Husson
 namespace Com.IsartDigital.F2P.Gameplay
 {
     public enum Direction { Up = 0, Down = 1, Right = 2, Left = 3 }

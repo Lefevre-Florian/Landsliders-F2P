@@ -3,7 +3,7 @@ using System.Collections;
 using com.isartdigital.f2p.gameplay.manager;
 using UnityEngine;
 
-// Author: Dorian Husson
+// Author (CR): Dorian Husson
 namespace Com.IsartDigital.F2P.Gameplay.Events
 {
     public class DragonLair : GameRandomEvent
@@ -23,7 +23,7 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
             {
                 _HandManager.AddCardToDeck(_NbCardsAdded);
 
-                Destroy(transform.gameObject);
+                Destroy(gameObject);
             }
         }
     }

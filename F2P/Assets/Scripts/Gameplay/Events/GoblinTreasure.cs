@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-// Author: Dorian Husson
+// Author (CR): Dorian Husson
 namespace Com.IsartDigital.F2P.Gameplay.Events
 {
     public class GoblinTreasure : GameRandomEvent
@@ -26,7 +26,7 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
                     _HandManager.BurnCard(_NbCardsBurnt);
                 }
 
-                Destroy(transform.gameObject);
+                Destroy(gameObject);
             }
         }
     }

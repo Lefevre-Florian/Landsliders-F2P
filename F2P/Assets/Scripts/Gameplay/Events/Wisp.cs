@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-// Author: Dorian Husson
+// Author (CR): Dorian Husson
 namespace Com.IsartDigital.F2P.Gameplay.Events
 {
     public class Wisp : GameRandomEvent
@@ -15,11 +15,11 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
             {
                 _HandManager.AddCardToDeck(_NbCardsAdded);
 
-                Destroy(transform.gameObject);
+                Destroy(gameObject);
             }
             else if (_TurnCount == _TurnBeforeDestroy)
             {
-                Destroy(transform.gameObject);
+                Destroy(gameObject);
             }
 
             _TurnCount += 1;
