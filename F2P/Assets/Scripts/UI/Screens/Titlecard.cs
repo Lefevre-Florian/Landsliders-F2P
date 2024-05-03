@@ -1,3 +1,5 @@
+using TMPro;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,12 +15,17 @@ namespace Com.IsartDigital.F2P.UI.Screens
         [Header("Application management")]
         [SerializeField][Range(15, 120)] private int _TargetedFrameRate = 30;
 
+        [Header("Screen")]
+        [SerializeField] private TextMeshProUGUI _ExpLevelLabel = null;
+
         private void Start()
         {
             Application.targetFrameRate = _TargetedFrameRate;
 
             // Reset timescale (in case)
             Time.timeScale = 1f;
+
+            _ExpLevelLabel.text = Save.data.exp.ToString();
         }
 
         public void Play()

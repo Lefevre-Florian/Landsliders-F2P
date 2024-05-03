@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8982103411981584231
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307112218122664447, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+      propertyPath: m_Name
+      value: Grassland_upgraded
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3307112218122664447, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: -2365258819067849802}
+  m_SourcePrefab: {fileID: 100100000, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+--- !u!114 &2060781579252192717 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6935414350572311210, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+  m_PrefabInstance: {fileID: 8982103411981584231}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5855786159664447128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8f5b350aecf584fb5e845adb339412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &5855786159664447128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3307112218122664447, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+  m_PrefabInstance: {fileID: 8982103411981584231}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-2365258819067849802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5855786159664447128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81319e495f8ba7243a9d365efb7f3978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _AlwaysStart: 1
+  _Timer: 3
+  _TimedActions:
+  - time: 0
+    method:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2060781579252192717}
+          m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.Biome, Assembly-CSharp
+          m_MethodName: Replace
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1923077027656481196, guid: 6d8af7ce6b1c1004ca1bee3ff37e99b0, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  _Label: {fileID: 0}

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 // Author (CR) : Lefevre Florian
@@ -24,26 +25,37 @@ namespace Com.IsartDigital.F2P.UI
         private bool _EditorIsOn = true;
         #endif
 
-        // Events
-        private event Action<bool> OnToggleChanged;
+        // Get / Set
+        public bool IsOn { get { return _IsOn; } }
 
-        private void Start()
+        // Events
+        public UnityEvent<bool> onToggleChanged = new UnityEvent<bool>();
+
+        private void Awake()
         {
             _IconComponent = GetComponent<Image>();
             _ButtonComponents = GetComponent<Button>();
 
             _ButtonComponents.onClick.AddListener(UpdateToggle);
         }
-        
-        private void UpdateToggle()
+
+
+        private void UpdateToggle() => SetToggle(_IsOn = !_IsOn);
+
+        private void UpdateRenderer()
         {
-            _IsOn = !_IsOn;
             if (_IsOn)
                 _IconComponent.sprite = _IconOn;
             else
                 _IconComponent.sprite = _IconOff;
+        }
 
-            OnToggleChanged?.Invoke(_IsOn);
+        public void SetToggle(bool pStatus)
+        {
+            _IsOn = pStatus;
+            UpdateRenderer();
+
+            onToggleChanged.Invoke(_IsOn);
         }
 
         #if UNITY_EDITOR

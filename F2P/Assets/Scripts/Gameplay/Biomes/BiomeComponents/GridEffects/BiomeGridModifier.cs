@@ -1,3 +1,4 @@
+using com.isartdigital.f2p.gameplay.quest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,6 +83,7 @@ namespace Com.IsartDigital.F2P.Biomes
                 {
                     lNextPosition = m_Biome.GridPosition + lDirection * j;
                     m_GridManager.ReplaceAtIndex(lNextPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform : _SubstitutionBiome);
+                    if (TryGetComponent<VortexQuest>(out VortexQuest vq)) vq.ValidQuest(lNextPosition);
                 }
             }
         }
