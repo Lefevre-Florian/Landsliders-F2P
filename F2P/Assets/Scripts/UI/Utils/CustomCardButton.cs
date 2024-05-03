@@ -12,6 +12,7 @@ namespace Com.IsartDigital.F2P.UI
     public class CustomCardButton : MonoBehaviour
     {
         private const string CMD_QUERY = "SELECT name, description, fragment FROM BIOME WHERE id = ";
+        private const string CMD_UPGRADE_QUERY = "SELECT id, name, description, fragment FROM BIOME WHERE id = (SELECT fk_upgrade FROM BIOME WHERE id = ";
 
         [Header("UI-Elements")]
         [SerializeField] private RectTransform _DefaultStateOverlay = null;
@@ -62,6 +63,24 @@ namespace Com.IsartDigital.F2P.UI
 
             _Loaded = true;
         }
+
+        public void Upgrade()
+        {
+            DatabaseManager lDatabase = DatabaseManager.GetInstance();
+            List<object> lResult = lDatabase.GetRow(CMD_UPGRADE_QUERY + _ID + ")");
+
+            int lOldID = _ID;
+
+            _ID = Convert.ToInt32(lResult[0]);
+            _Name = lResult[1].ToString();
+            _Description = lResult[2].ToString();
+            _FragmentRequired = Convert.ToInt32(lResult[3]);
+
+            Save.data.cards[Save.data.cards.ToList().IndexOf(lOldID)] = _ID;
+            lDatabase.WriteDataToSaveFile();
+
+            Draw();
+        } 
 
         private void Draw()
         {
