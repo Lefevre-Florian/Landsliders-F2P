@@ -56,7 +56,8 @@ namespace Com.IsartDigital.F2P.FileSystem
             }
             _Instance = this;
 
-            ReadDataFromSaveFile();
+            if(Save.data == null)
+                ReadDataFromSaveFile();
         }
 
         #region Database & Cache
@@ -206,7 +207,7 @@ namespace Com.IsartDigital.F2P.FileSystem
 
                 int lLength = lResult.Count;
                 for (int i = 0; i < lResult.Count; i++)
-                    Save.data.cardPrefabs[i] = Resources.Load<GameObject>(lResult[i][0].ToString());
+                    Save.data.cardPrefabs[i] = Resources.Load<BiomeDataPath>(lResult[i][0].ToString()).Biomeref; 
             }
             else
             {
@@ -226,9 +227,10 @@ namespace Com.IsartDigital.F2P.FileSystem
                     Save.data.cards[i] = Convert.ToInt32(lRawDatas[i][0]);
                     Save.data.fragments[i] = new Fragment(Save.data.cards[i], 0);
 
-                    lCardsPrefabs.Add(Resources.Load<GameObject>(lRawDatas[i][1].ToString()));
+                    lCardsPrefabs.Add(Resources.Load<BiomeDataPath>(lRawDatas[i][1].ToString()).Biomeref);
                 }
 
+                Save.data.cardPrefabs = lCardsPrefabs.ToArray();
                 lRawDatas.Clear();
                 WriteDataToSaveFile();
             }   
