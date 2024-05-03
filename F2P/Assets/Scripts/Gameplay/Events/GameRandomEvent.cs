@@ -4,17 +4,22 @@ using com.isartdigital.f2p.gameplay.manager;
 using Com.IsartDigital.F2P.Gameplay.Manager;
 using UnityEngine;
 
+// Author: Dorian Husson
 namespace Com.IsartDigital.F2P.Gameplay.Events
 {
     public class GameRandomEvent : MonoBehaviour
     {
-        protected int _Priority;
+        [SerializeField][Min(0)] protected int _Priority;
         protected Vector2 _GridPosition;
+
+        protected GameManager _GameManager = GameManager.GetInstance();
         protected GridManager _GridManager = GridManager.GetInstance();
+        protected HandManager _HandManager = HandManager.GetInstance();
+        protected Player _Player = Player.GetInstance();
 
         protected virtual void Start()
         {
-            GameManager.GetInstance().OnEffectPlayed += OnRandomEventTriggered;
+            _GameManager.OnEffectPlayed += OnRandomEventTriggered;
             _GridPosition = GridManager.GetInstance().GetGridCoordinate(transform.position);
         }
 
@@ -26,14 +31,15 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
             }
         }
 
-        protected virtual IEnumerator PlayRandomEventEffect()
+        protected virtual void PlayRandomEventEffect()
         {
-            return null;
+
         }
 
         protected void OnDestroy()
         {
-            GameManager.GetInstance().OnEffectPlayed -= OnRandomEventTriggered;
+            _GameManager.OnEffectPlayed -= OnRandomEventTriggered;
+
             if (GameRandomEventsManager.GetInstance().GameEventCount > 0)
             {
                 GameRandomEventsManager.GetInstance().GameEventCount -= 1;
