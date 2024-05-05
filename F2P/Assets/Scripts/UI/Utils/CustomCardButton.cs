@@ -1,8 +1,11 @@
 using Com.IsartDigital.F2P.FileSystem;
+
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
+
 using TMPro;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,7 +48,7 @@ namespace Com.IsartDigital.F2P.UI
                 Draw();
         }
 
-        public void Enable(int pId, GameObject pBiome = null)
+        public void Enable(int pId)
         {
             _ID = pId;
 
@@ -57,7 +60,9 @@ namespace Com.IsartDigital.F2P.UI
 
             _3DModelRenderer = TexturePhotographer.GetInstance();
             _Image = GetComponent<RawImage>();
-            _Image.texture = _3DModelRenderer.CreateTextureBiome(ImageSize, pBiome);
+            _Image.texture = _3DModelRenderer.CreateTextureBiome(ImageSize, 
+                                                                 Save.data.cardPrefabs[Save.data.cards.ToList().IndexOf(pId)].transform.GetChild(0).gameObject,
+                                                                 new Vector2(.5f, .5f));
 
             Draw();
 

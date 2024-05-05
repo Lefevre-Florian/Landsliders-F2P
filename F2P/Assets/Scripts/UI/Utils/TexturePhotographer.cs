@@ -50,7 +50,7 @@ namespace Com.IsartDigital.F2P.UI
         /// <param name="pModel"></param>
         /// <param name="pVirtualTexture"></param>
         /// <returns></returns>
-        public RenderTexture CreateTextureBiome(int pWidth, int pHeight, GameObject pModel)
+        public RenderTexture CreateTextureBiome(int pWidth, int pHeight, GameObject pModel, Vector2 pScale = default)
         {
             _Camera.enabled = true;
             RenderTexture lVirtualTexture = new RenderTexture(pWidth, pHeight, TEXTURE_DEPTH_BUFFER);
@@ -58,6 +58,7 @@ namespace Com.IsartDigital.F2P.UI
 
             GameObject lObj = Instantiate(pModel, transform);
             lObj.transform.localPosition = new Vector3(0f, 0f, DISTANCE_TO_LENS);
+            lObj.transform.localScale = pScale;
 
             _Camera.targetTexture = lVirtualTexture;
             _Camera.Render();
@@ -71,9 +72,9 @@ namespace Com.IsartDigital.F2P.UI
             return lVirtualTexture;
         }
 
-        public RenderTexture CreateTextureBiome(Vector2 pSize, GameObject pModel)
+        public RenderTexture CreateTextureBiome(Vector2 pSize, GameObject pModel, Vector2 pScale = default)
         {
-            return CreateTextureBiome((int)pSize.x, (int)pSize.y, pModel);
+            return CreateTextureBiome((int)pSize.x, (int)pSize.y, pModel, pScale);
         }
 
         public void StartRecording(RenderTexture pTexture, GameObject pModel)
