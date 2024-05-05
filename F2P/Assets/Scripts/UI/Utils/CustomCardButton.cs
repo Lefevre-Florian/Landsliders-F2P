@@ -60,6 +60,7 @@ namespace Com.IsartDigital.F2P.UI
 
             _3DModelRenderer = TexturePhotographer.GetInstance();
             _Image = GetComponent<RawImage>();
+
             _Image.texture = _3DModelRenderer.CreateTextureBiome(ImageSize, 
                                                                  Save.data.cardPrefabs[Save.data.cards.ToList().IndexOf(pId)].transform.GetChild(0).gameObject,
                                                                  new Vector2(.5f, .5f));

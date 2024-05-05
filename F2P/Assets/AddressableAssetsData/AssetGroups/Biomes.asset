@@ -12,14 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
   m_Name: Biomes
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
+  m_GroupName: Biomes
   m_Data:
     m_SerializedData: []
-  m_GUID: 99b4dbc3466f1ae42a78c8db78ffdcba
-  m_SerializeEntries: []
+  m_GUID: 42e80b7adec381a45b48a3d77527c2f7
+  m_SerializeEntries:
+  - m_GUID: 8156b78edd3ed434aabdcaa16a710fa9
+    m_Address: Base
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: abf1611afca876945a10da0d08da7fed
+    m_Address: Upgrade
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - upgrades
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 55c16f3f451f3354c98c3c10aba4798d, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 003877ca54918e441ac1478d4a63f274, type: 2}
-    - {fileID: 11400000, guid: 824940bfc2b72c74aa64fd80597e37bf, type: 2}
+    - {fileID: 11400000, guid: d794109ca483713418d029660ff98df4, type: 2}
+    - {fileID: 11400000, guid: 4c22d7f3957d35a4592d2c25b914c67c, type: 2}

@@ -203,9 +203,7 @@ namespace Com.IsartDigital.F2P.FileSystem
             if (File.Exists(lPath))
             {
                 Save.data = JsonUtility.FromJson<PlayerSave>(File.ReadAllText(lPath));
-
                 List<List<object>> lResult = GetRowsWhereIN(SELECT_ALL_BIOMES_RESOURCES_WHERE, Save.data.cards);
-                Save.data.cardPrefabs = new GameObject[lResult.Count];
 
                 int lLength = lResult.Count;
                 string[] lPaths = new string[lLength];
@@ -220,8 +218,6 @@ namespace Com.IsartDigital.F2P.FileSystem
                 // New save
                 Save.data = new PlayerSave();
                 
-                List<GameObject> lCardsPrefabs = new List<GameObject>();
-
                 List<List<object>> lRawDatas = GetRows(SELECT_ALL_BIOME_IDS_PATH);
 
                 int lLength = lRawDatas.Count;
@@ -240,7 +236,6 @@ namespace Com.IsartDigital.F2P.FileSystem
 
                 StartCoroutine(RetrievePrefabs(lPaths));
 
-                Save.data.cardPrefabs = lCardsPrefabs.ToArray();
                 lRawDatas.Clear();
                 WriteDataToSaveFile();
             }   
@@ -280,11 +275,10 @@ namespace Com.IsartDigital.F2P.FileSystem
                 yield return new WaitForEndOfFrame();
             }
 
+            Save.data.cardPrefabs = new GameObject[lLength];
+
             for (int i = 0; i < lLength; i++)
-            {
                 Save.data.cardPrefabs[i] = lHandles[i].Result;
-                Addressables.Release(lHandles[i]);
-            }
 
             StopCoroutine(RetrievePrefabs(pPaths));
         }
