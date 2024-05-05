@@ -1,6 +1,7 @@
 using System.Collections;
 
 using UnityEngine;
+using UnityEngine.Rendering;
 
 // Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.Cards
@@ -44,6 +45,8 @@ namespace Com.IsartDigital.F2P.Cards
 
             DisableAnimation();
         }
+
+        public void SetSortingLayer(int pLayer) => GetComponent<SortingGroup>().sortingOrder = pLayer;
 
         private IEnumerator FlipAnimation(bool pAnimationStatus = false)
         {

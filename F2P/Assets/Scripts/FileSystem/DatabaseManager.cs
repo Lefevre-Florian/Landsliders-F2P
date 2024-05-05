@@ -7,6 +7,8 @@ using System.IO;
 using System.Text;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.AddressableAssets;
 
 
 // Author (CR) : Lefevre Florian
@@ -201,36 +203,39 @@ namespace Com.IsartDigital.F2P.FileSystem
             if (File.Exists(lPath))
             {
                 Save.data = JsonUtility.FromJson<PlayerSave>(File.ReadAllText(lPath));
-
                 List<List<object>> lResult = GetRowsWhereIN(SELECT_ALL_BIOMES_RESOURCES_WHERE, Save.data.cards);
-                Save.data.cardPrefabs = new GameObject[lResult.Count];
 
                 int lLength = lResult.Count;
-                for (int i = 0; i < lResult.Count; i++)
-                    Save.data.cardPrefabs[i] = Resources.Load<BiomeDataPath>(lResult[i][0].ToString()).Biomeref; 
+                string[] lPaths = new string[lLength];
+
+                for (int i = 0; i < lLength; i++)
+                    lPaths[i] = lResult[i][0].ToString();
+
+                StartCoroutine(RetrievePrefabs(lPaths));
             }
             else
             {
                 // New save
                 Save.data = new PlayerSave();
                 
-                List<GameObject> lCardsPrefabs = new List<GameObject>();
-
                 List<List<object>> lRawDatas = GetRows(SELECT_ALL_BIOME_IDS_PATH);
 
                 int lLength = lRawDatas.Count;
                 Save.data.cards = new int[lLength];
                 Save.data.fragments = new Fragment[lLength];
 
+                string[] lPaths = new string[lLength];
+
                 for (int i = 0; i < lLength; i++)
                 {
                     Save.data.cards[i] = Convert.ToInt32(lRawDatas[i][0]);
                     Save.data.fragments[i] = new Fragment(Save.data.cards[i], 0);
 
-                    lCardsPrefabs.Add(Resources.Load<BiomeDataPath>(lRawDatas[i][1].ToString()).Biomeref);
+                    lPaths[i] = lRawDatas[i][1].ToString();
                 }
 
-                Save.data.cardPrefabs = lCardsPrefabs.ToArray();
+                StartCoroutine(RetrievePrefabs(lPaths));
+
                 lRawDatas.Clear();
                 WriteDataToSaveFile();
             }   
@@ -241,6 +246,43 @@ namespace Com.IsartDigital.F2P.FileSystem
             string lPath = Application.persistentDataPath + FILE_NAME;
             File.WriteAllText(lPath, JsonUtility.ToJson(Save.data), Encoding.UTF8);
         }
+
+        private IEnumerator RetrievePrefabs(string[] pPaths)
+        {
+            AsyncOperationHandle<GameObject>[] lHandles = new AsyncOperationHandle<GameObject>[pPaths.Length];
+
+            bool lIsDone = false;
+
+            int lLength = lHandles.Length;
+            int lTotal = 0;
+
+            for (int i = 0; i < lLength; i++)
+                lHandles[i] = Addressables.LoadAssetAsync<GameObject>(pPaths[i]);
+
+            while (!lIsDone)
+            {
+                for (int i = 0; i < lLength; i++)
+                {
+                    if (lHandles[i].IsDone)
+                        lTotal += 1;
+                }
+
+                if (lTotal == lLength)
+                    lIsDone = true;
+                else
+                    lTotal = 0;
+
+                yield return new WaitForEndOfFrame();
+            }
+
+            Save.data.cardPrefabs = new GameObject[lLength];
+
+            for (int i = 0; i < lLength; i++)
+                Save.data.cardPrefabs[i] = lHandles[i].Result;
+
+            StopCoroutine(RetrievePrefabs(pPaths));
+        }
+
         #endregion
 
         private void OnDestroy()

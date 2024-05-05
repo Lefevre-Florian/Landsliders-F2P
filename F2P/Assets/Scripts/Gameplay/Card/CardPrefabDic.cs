@@ -1,3 +1,4 @@
+using Com.IsartDigital.F2P;
 using Com.IsartDigital.F2P.Biomes;
 
 using System;
@@ -14,8 +15,25 @@ public class CardPrefabDic : MonoBehaviour
 
     private void Awake()
     {
-        prefabDic = _Biomes.ToDic();
-        prefabList = _Biomes.ToList();
+        if(Save.data == null)
+        {
+            prefabDic = _Biomes.ToDic();
+            prefabList = _Biomes.ToList();
+        }
+        else
+        {
+            prefabList = new List<GameObject>();
+            prefabDic = new Dictionary<BiomeType, GameObject>();
+
+            int lLength = Save.data.cardPrefabs.Length;
+            for (int i = 0; i < lLength; i++)
+                prefabList.Add(Save.data.cardPrefabs[i]);
+
+            for (int i = 0; i < lLength; i++)
+                prefabDic.Add(prefabList[i].GetComponent<Biome>().Type,
+                              Save.data.cardPrefabs[i]);
+        }
+        
     }
 
     public static GameObject GetRandomPrefab() 
