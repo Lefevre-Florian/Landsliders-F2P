@@ -28,6 +28,7 @@ namespace Com.IsartDigital.F2P
 
         // Tracking
         public TimeSpan totalPlaytime = TimeSpan.Zero;
+        public int numberOfUpgrade = 0;
 
         // Non-serializable
         [NonSerialized] public GameObject[] cardPrefabs;            // Only a session variable won't be include in save file

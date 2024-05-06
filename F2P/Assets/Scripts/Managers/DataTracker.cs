@@ -2,8 +2,9 @@ using UnityEngine;
 using Unity.Services.Core;
 using Unity.Services.Analytics;
 
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+
 using Com.IsartDigital.F2P.FileSystem;
 
 namespace Com.IsartDigital.F2P
@@ -30,7 +31,7 @@ namespace Com.IsartDigital.F2P
 
         private const string TRACKER_HOUR_MINUTE_PARAMETER = "timeInHourMinute";
         private const string TRACKER_MINUTE_SECOND_PARAMETER = "timeInSecondMinute";
-        private const string TRACKER_NUMBER_GAME_STARTED_PARAMETER = "nPlayStarted";
+        private const string TRACKER_NUMBER_GAME_STARTED_PARAMETER = "numberOfGame";
         #endregion 
 
         // Variables
@@ -40,7 +41,7 @@ namespace Com.IsartDigital.F2P
         {
             if(_Instance != null)
             {
-                Destroy(this);
+                Destroy(gameObject);
                 return;
             }
             _Instance = this;
@@ -92,12 +93,14 @@ namespace Com.IsartDigital.F2P
             Save.data.totalPlaytime = lPlaytime;
 
             DatabaseManager.GetInstance().WriteDataToSaveFile();
-            SendAnalytics(TRACKER_TOTAL_GAME_NAME,
+            SendAnalytics(TRACKER_TOTAL_PLAYTIME_NAME,
                           new Dictionary<string, object>() { { TRACKER_HOUR_MINUTE_PARAMETER, lPlaytime.Hours + ":" + lPlaytime.Minutes } });
 
             // Third tracker : total play in this session
             SendAnalytics(TRACKER_TOTAL_GAME_NAME,
                           new Dictionary<string, object>() { { TRACKER_NUMBER_GAME_STARTED_PARAMETER, Save.data.totalGame } });
+
+            print("Good");
 
         }
 
