@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace com.isartdigital.f2p.gameplay.quest
 {
-    public class CanyonQuest : MonoBehaviour
+    public class CanyonQuest : Quests
     {
         public static UnityEvent ValidSignal = new UnityEvent();
 

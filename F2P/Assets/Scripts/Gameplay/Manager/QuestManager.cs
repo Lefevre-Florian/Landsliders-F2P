@@ -9,8 +9,6 @@ namespace com.isartdigital.f2p.manager
 {
     public class QuestManager : MonoBehaviour
     {
-        [SerializeField] QuestDic questsDic;
-        Dictionary<QuestsEnum, MonoScript> _QuestDic;
 
         public static QuestsEnum currentQuest;
 
@@ -31,7 +29,6 @@ namespace com.isartdigital.f2p.manager
         {
             currentQuest = currentQuestDebug;
             GameFlowManager.LoadMap.AddListener(Init);
-            _QuestDic = questsDic.ToDic();
         }
 
         private void Init()
@@ -44,8 +41,6 @@ namespace com.isartdigital.f2p.manager
                 currentQuest = (QuestsEnum)Enum.Parse(typeof(QuestsEnum), lQuestsArray[rand]);
             }
 
-            if(_QuestDic.ContainsKey(currentQuest)) gameObject.AddComponent(_QuestDic[currentQuest].GetClass());
-
             Debug.Log(currentQuest);
 
         }
@@ -56,34 +51,6 @@ namespace com.isartdigital.f2p.manager
         }
 
 
-    }
-
-    [Serializable]
-    public class QuestDic
-    {
-        [SerializeField] private QuestItem[] questArray;
-
-        public Dictionary<QuestManager.QuestsEnum, MonoScript> ToDic()
-        {
-            Dictionary<QuestManager.QuestsEnum, MonoScript> newDic = new Dictionary<QuestManager.QuestsEnum, MonoScript>();
-
-            foreach (QuestItem item in questArray)
-            {
-                newDic.Add(item.key, item.value);
-            }
-
-            return newDic;
-        }
-    }
-
-    [Serializable]
-    public class QuestItem
-    {
-        [SerializeField]
-        public QuestManager.QuestsEnum key;
-
-        [SerializeField]
-        public MonoScript value;
     }
 }
 
