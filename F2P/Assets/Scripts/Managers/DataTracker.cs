@@ -3,6 +3,8 @@ using Unity.Services.Core;
 using Unity.Services.Analytics;
 
 using System.Collections.Generic;
+using System;
+using Com.IsartDigital.F2P.FileSystem;
 
 namespace Com.IsartDigital.F2P
 {
@@ -20,6 +22,16 @@ namespace Com.IsartDigital.F2P
 
         private DataTracker() : base() {}
         #endregion
+
+        #region Tracking
+        private const string TRACKER_TOTAL_PLAYTIME_NAME = "globalPlayTime";
+        private const string TRACKER_TOTAL_GAME_NAME = "numberGameLaunchDuringSession";
+        private const string TRACKER_SESSION_PLAYTIME_NAME = "sessionDuration";
+
+        private const string TRACKER_HOUR_MINUTE_PARAMETER = "timeInHourMinute";
+        private const string TRACKER_MINUTE_SECOND_PARAMETER = "timeInSecondMinute";
+        private const string TRACKER_NUMBER_GAME_STARTED_PARAMETER = "nPlayStarted";
+        #endregion 
 
         // Variables
         private IAnalyticsService _AnalyticsRemote = null;
@@ -56,6 +68,37 @@ namespace Com.IsartDigital.F2P
 
             _AnalyticsRemote.RecordEvent(lEvent);
             _AnalyticsRemote.Flush();
+        }
+
+        private void OnApplicationFocus(bool focus)
+        {
+            #if UNITY_ANDROID && !UNITY_EDITOR
+            if (!focus)
+                SessionAnalytics();
+            #endif
+        }
+
+        private void OnApplicationQuit() => SessionAnalytics();
+
+        private void SessionAnalytics()
+        {
+            // First tracker : session playtime
+            TimeSpan lDuration = (DateTime.UtcNow - Save.data.startTime).Duration();
+            SendAnalytics(TRACKER_SESSION_PLAYTIME_NAME, 
+                          new Dictionary<string, object>() { { TRACKER_MINUTE_SECOND_PARAMETER, lDuration.Minutes + ":" + lDuration.Seconds } });
+
+            // Second tracker : total playtime
+            TimeSpan lPlaytime = Save.data.totalPlaytime + lDuration;
+            Save.data.totalPlaytime = lPlaytime;
+
+            DatabaseManager.GetInstance().WriteDataToSaveFile();
+            SendAnalytics(TRACKER_TOTAL_GAME_NAME,
+                          new Dictionary<string, object>() { { TRACKER_HOUR_MINUTE_PARAMETER, lPlaytime.Hours + ":" + lPlaytime.Minutes } });
+
+            // Third tracker : total play in this session
+            SendAnalytics(TRACKER_TOTAL_GAME_NAME,
+                          new Dictionary<string, object>() { { TRACKER_NUMBER_GAME_STARTED_PARAMETER, Save.data.totalGame } });
+
         }
 
         private void OnDestroy()

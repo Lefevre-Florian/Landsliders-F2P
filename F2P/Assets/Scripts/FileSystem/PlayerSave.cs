@@ -26,8 +26,13 @@ namespace Com.IsartDigital.F2P
         public float musicVolume = 0f;
         public float sfxVolume = 0f;
 
+        // Tracking
+        public TimeSpan totalPlaytime = TimeSpan.Zero;
+
         // Non-serializable
         [NonSerialized] public GameObject[] cardPrefabs;            // Only a session variable won't be include in save file
+        [NonSerialized] public DateTime startTime;
+        [NonSerialized] public int totalGame = 0;
     }
 
     [Serializable]

@@ -14,6 +14,11 @@ namespace Com.IsartDigital.F2P.UI
 {
     public class CustomCardButton : MonoBehaviour
     {
+        #region Tracking
+        private const string TRACKER_NAME = "biomeUpgradeUnlocked";
+        private const string TRACKER_BIOME_PARAMETER = "biomeType";
+        #endregion
+
         private const string CMD_QUERY = "SELECT name, description, fragment FROM BIOME WHERE id = ";
         private const string CMD_UPGRADE_QUERY = "SELECT id, name, description, fragment FROM BIOME WHERE id = (SELECT fk_upgrade FROM BIOME WHERE id = ";
 
@@ -85,6 +90,7 @@ namespace Com.IsartDigital.F2P.UI
             Save.data.cards[Save.data.cards.ToList().IndexOf(lOldID)] = _ID;
             lDatabase.WriteDataToSaveFile();
 
+            DataTracker.GetInstance().SendAnalytics(TRACKER_NAME, new Dictionary<string, object>() { { TRACKER_BIOME_PARAMETER, _Name } });
             Draw();
         } 
 

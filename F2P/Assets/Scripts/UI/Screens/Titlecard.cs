@@ -30,6 +30,8 @@ namespace Com.IsartDigital.F2P.UI.Screens
 
         public void Play()
         {
+            Save.data.totalGame += 1;
+
             if (!_IsUsingLoadingScreen)
                 SceneManager.LoadScene(_GameBuildIDX);
             else
