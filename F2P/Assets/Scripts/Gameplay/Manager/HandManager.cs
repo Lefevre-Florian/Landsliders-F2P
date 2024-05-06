@@ -1,8 +1,9 @@
 using Com.IsartDigital.F2P.UI.UIHUD;
-using System;
-using UnityEngine;
-using System.Collections.Generic;
 using com.isartdigital.f2p.gameplay.quest;
+
+using System;
+
+using UnityEngine;
 
 // Author (CR) : Elias Dridi
 public class HandManager : MonoBehaviour
@@ -57,6 +58,8 @@ public class HandManager : MonoBehaviour
     [HideInInspector] public bool[] _AvailableCardSlots;
     private GameObject[] _Deck;
 
+    public int _TotalCards { get { return _Deck.Length + _CardInHand; } }
+
     
     private void Start()
     {
@@ -101,11 +104,24 @@ public class HandManager : MonoBehaviour
     {
         int lRemainingCardToRemove = pNbCards;
         if (lRemainingCardToRemove < _Deck.Length)
+        {
+            for (int i = 0; i < lRemainingCardToRemove; i++)
+                Destroy(_DeckContainer.transform.GetChild(UnityEngine.Random.Range(0, _DeckContainer.transform.childCount)).gameObject);
+
             Array.Resize(ref _Deck, _Deck.Length - lRemainingCardToRemove);
+        }
         else
         {
+            if (_Deck.Length > 0)
+            {
+                int lLength = _DeckContainer.transform.childCount;
+                for (int i = 0; i < lLength; i++)
+                    Destroy(_DeckContainer.transform.GetChild(i).gameObject);
+            }
+
             lRemainingCardToRemove -= _Deck.Length;
             _Deck = new GameObject[0];
+
 
             if (lRemainingCardToRemove > _CardInHand)
                 GameManager.GetInstance().SetModeGameover();
@@ -123,7 +139,7 @@ public class HandManager : MonoBehaviour
         int lStartIdx = _Deck.Length - 1;
         Array.Resize(ref _Deck, _Deck.Length + pNbCards);
 
-        if(TryGetComponent<CardQuest>(out CardQuest cd)) cd.AddCard(pNbCards);
+        if (TryGetComponent<CardQuest>(out CardQuest cd)) cd.AddCard(pNbCards);
 
         int lLength = _Deck.Length;
         for (int i = lStartIdx; i < lLength; i++)
@@ -156,7 +172,7 @@ public class HandManager : MonoBehaviour
     private void CardSlot()
     {
         _CardsSlot = new GameObject[_MaxCardHold];
-        _AvailableCardSlots = new bool [_MaxCardHold];
+        _AvailableCardSlots = new bool[_MaxCardHold];
         for (int i = 0; i < _AvailableCardSlots.Length; i++)
         {
             _AvailableCardSlots[i] = true;
@@ -192,9 +208,9 @@ public class HandManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (_Instance == this) 
+        if (_Instance == this)
             return;
-        
+
         _Instance = null;
         GameManager.CardPlaced.RemoveListener(CardPlayedThenDraw);
     }

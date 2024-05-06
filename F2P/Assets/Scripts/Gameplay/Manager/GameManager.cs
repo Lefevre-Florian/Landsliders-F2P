@@ -1,8 +1,8 @@
 using com.isartdigital.f2p.gameplay.manager;
-
+using Com.IsartDigital.F2P.Gameplay;
 using System;
 using System.Collections;
-
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     // Variables
     private int _CurrentPriority = 1;
-    private int _MaxPriority = 12; // Temp value will be reduce to 1
+    private int _MaxPriority = 12;
 
     private int _TurnNumber = 1;
     private int _CardStocked = 12;
@@ -70,6 +70,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public State currentState;
 
     [HideInInspector] public GameObject _LastCardPlayed;
+
+    [HideInInspector] public List<Dragon> randomEventObjects = new List<Dragon>();
 
     // Get / Set
     public int cardStocked
@@ -87,6 +89,7 @@ public class GameManager : MonoBehaviour
     // Events
     public event Action OnTurnPassed;
     public event Action<int> OnEffectPlayed;
+    public event Action OnAllEffectPlayed;
 
     public static UnityEvent CardPlaced = new UnityEvent();
     public static UnityEvent PlayerMoved = new UnityEvent();
@@ -106,7 +109,6 @@ public class GameManager : MonoBehaviour
         _TurnNumber++;
         cardPlayed = false;
         OnTurnPassed?.Invoke();
-
         SetModeMovingCard();
     }
 
@@ -149,7 +151,7 @@ public class GameManager : MonoBehaviour
     #region Utilities
     private IEnumerator EffectTurnByTurn()
     {
-        while (_CurrentPriority != _MaxPriority)
+        while (_CurrentPriority != _MaxPriority + 1)
         {
             OnEffectPlayed?.Invoke(_CurrentPriority);
             _CurrentPriority += 1;
@@ -158,7 +160,26 @@ public class GameManager : MonoBehaviour
         }
         _CurrentPriority = 1;
 
-        if(_EffectTimer != null)
+        OnAllEffectPlayed?.Invoke();
+
+        if (randomEventObjects.Count > 0)
+        {
+            List<Dragon> lRandomEventObjects = new List<Dragon>(randomEventObjects);
+
+            while (lRandomEventObjects.Count > 0)
+            {
+                for (int i = lRandomEventObjects.Count - 1; i >= 0; i--)
+                {
+                    if(lRandomEventObjects[i].IsDone)
+                    {
+                        lRandomEventObjects.RemoveAt(i);
+                    }
+                }
+                yield return new WaitForEndOfFrame();
+            }
+        }
+
+        if (_EffectTimer != null)
         {
             StopCoroutine(_EffectTimer);
             _EffectTimer = null;
