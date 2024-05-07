@@ -1,19 +1,24 @@
 using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.manager;
 using Com.IsartDigital.F2P.Biomes;
+using Com.IsartDigital.F2P.Gameplay.Events;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AlignSwampQuest : MonoBehaviour
 {
+    private WitchQuestManager.WitchQuestsEnum myQuest = WitchQuestManager.WitchQuestsEnum.AlignSwampQuest;
+
     private void Start()
     {
-        //CheckAroundCanyon();
+        GetComponent<TEMPCard>().OnPlaced += CheckAroundCanyon;
     }
 
-    private bool CheckAroundCanyon()
+    private void CheckAroundCanyon()
     {
+        Debug.Log("kp");
+        if(myQuest != WitchQuestManager.WitchQuestsEnum.AlignSwampQuest) return;
         Vector3 baseDir = Vector3.up;
         Vector3 currentDir;
         for (int i = 0; i < 8; i++)
@@ -26,17 +31,36 @@ public class AlignSwampQuest : MonoBehaviour
 
             if (CheckBiomeAtIndex(lXIndexToCheck, lYIndexToCheck)) continue;
 
-            if (!CheckBiomeAtIndex(lXIndexToCheck + Mathf.RoundToInt(currentDir.x), lYIndexToCheck + Mathf.RoundToInt(currentDir.y)) && 
-                !CheckBiomeAtIndex(lXIndexToCheck - 2 * Mathf.RoundToInt(currentDir.x), lYIndexToCheck - 2 * Mathf.RoundToInt(currentDir.y))) continue;
+            if (!CheckBiomeAfter(new Vector2Int(lXIndexToCheck, lYIndexToCheck), currentDir) && 
+                !CheckBiomeBehind(new Vector2Int(lXIndexToCheck, lYIndexToCheck), currentDir)) continue;
 
-            return true;
+            Debug.Log("WIN");
+            return;
         }
-
-        return false;
     }
 
     private bool CheckBiomeAtIndex(int pXIndex, int pYIndex)
     {
         return GridManager.GetInstance()._Cards[pXIndex, pYIndex].GetComponent<Biome>().Type == BiomeType.swamp;
+    }
+
+    private bool CheckBiomeBehind(Vector2Int pIndex, Vector2 currentDir)
+    {
+        Vector2Int finalDir = new Vector2Int(Mathf.RoundToInt(currentDir.x), Mathf.RoundToInt(currentDir.y));
+        Vector2Int finalIndex = pIndex - 2 * finalDir;
+
+        if(finalIndex.x < 0 || finalIndex.x > 2 || finalIndex.y < 0 || finalIndex.y > 2) return false;
+
+        return CheckBiomeAtIndex(finalIndex.x, finalIndex.y);
+    }
+
+    private bool CheckBiomeAfter(Vector2Int pIndex, Vector2 currentDir)
+    {
+        Vector2Int finalDir = new Vector2Int(Mathf.RoundToInt(currentDir.x), Mathf.RoundToInt(currentDir.y));
+        Vector2Int finalIndex = pIndex + finalDir;
+
+        if (finalIndex.x < 0 || finalIndex.x > 2 || finalIndex.y < 0 || finalIndex.y > 2) return false;
+
+        return CheckBiomeAtIndex(finalIndex.x, finalIndex.y);
     }
 }

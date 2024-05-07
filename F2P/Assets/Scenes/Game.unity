@@ -685,7 +685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c32f52816a393f419a2634e48bf8a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _predifinedMap: {fileID: 11400000, guid: b81edbf2f86c42d4abd71d46b9350032, type: 2}
+  _predifinedMap: {fileID: 11400000, guid: d90ed92abb0696d4bbe61c6d69458d8d, type: 2}
 --- !u!114 &1061210648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -711,10 +711,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MaxGameEventsNumber: 3
-  _GameEventChance: 0
-  _MaxEtheralRiftsNumber: 4
+  _GameEventChance: 1
+  _MaxEtheralRiftsNumber: 0
   _MaxDragonLairsNumber: 0
-  _MaxWitchesNumber: 0
+  _MaxWitchesNumber: 1
   _MaxWispsNumber: 0
   _MaxGoblinTreasuresNumber: 0
   _MaxMistsNumber: 0
@@ -762,9 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c530af9e6e97949b70a38278c33939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alignSwampQuest:
-    m_PersistentCalls:
-      m_Calls: []
+  currentQuestDebug: 0
 --- !u!1001 &1087800625
 PrefabInstance:
   m_ObjectHideFlags: 0
