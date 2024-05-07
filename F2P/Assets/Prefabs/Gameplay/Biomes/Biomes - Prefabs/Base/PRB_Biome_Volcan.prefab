@@ -104,6 +104,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4598724416907114331}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3287015596430958360}
   m_SourcePrefab: {fileID: 100100000, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
 --- !u!1 &3912905057911434000 stripped
 GameObject:
@@ -270,6 +273,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myQuest: 1
+--- !u!114 &3287015596430958360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3912905057911434000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2e44949eb89dd4aa12f1ba1357509d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Renderer: {fileID: 105223767021252279}
+  _CardLayer: {fileID: 21300000, guid: 2ccb2101866e215478d752d343323433, type: 3}
+  _MoveLayer: {fileID: 21300000, guid: f4e19aa3433b6f04f911e4407cdcfe1d, type: 3}
 --- !u!4 &4332480486215935314 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
@@ -355,6 +373,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+--- !u!212 &105223767021252279 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5240019529883761956, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+  m_PrefabInstance: {fileID: 5318079953205351315}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &801218468649840049 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4815441437027302946, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}

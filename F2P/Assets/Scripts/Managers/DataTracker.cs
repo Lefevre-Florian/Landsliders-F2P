@@ -63,7 +63,9 @@ namespace Com.IsartDigital.F2P
             await UnityServices.InitializeAsync();
             Connect();
 
+            #if !UNITY_EDITOR
             ComputeRetentionTracking();
+            #endif
         }
 
         private void Connect()
@@ -84,10 +86,10 @@ namespace Com.IsartDigital.F2P
 
         private void OnApplicationFocus(bool focus)
         {
-            #if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
             if (!focus)
                 SessionAnalytics();
-            #endif
+#endif
         }
 
         private void OnApplicationQuit() => SessionAnalytics();
