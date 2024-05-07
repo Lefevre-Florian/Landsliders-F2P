@@ -1,8 +1,10 @@
+using Com.IsartDigital.F2P.Cards;
 using TMPro;
 
 using UnityEngine;
 using UnityEngine.UI;
 
+// Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.UI.Screens
 {
     public class UpgradeScreen : Screen
@@ -30,7 +32,14 @@ namespace Com.IsartDigital.F2P.UI.Screens
             _DescrLabel.text = pDescription;
             _Image.texture = _VirtualTexture;
 
-            TexturePhotographer.GetInstance().StartRecording(_VirtualTexture, pModel, new Vector2(.5f, .5f));
+            GameObject lObj = TexturePhotographer.GetInstance().StartRecording(_VirtualTexture, pModel, new Vector2(.45f, .45f));
+            if (lObj != null)
+            {
+                CardRenderer lCard = lObj.GetComponent<CardRenderer>();
+                lCard.EnableAnimation();
+                lCard.FlipCard();
+            }
+                
         }
 
         public override void Close()
