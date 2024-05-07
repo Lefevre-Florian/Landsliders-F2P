@@ -17,8 +17,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Map1:
-  - {fileID: 3912905057911434000, guid: b7c09bb64cb724242bd2bb46530aabf3, type: 3}
   - {fileID: 0}
+  - {fileID: 3912905057911434000, guid: b7c09bb64cb724242bd2bb46530aabf3, type: 3}
   - {fileID: 0}
   Map2:
   - {fileID: 0}
