@@ -14,6 +14,7 @@ namespace Com.IsartDigital.F2P.UI
         {
             OnScreenOpened?.Invoke();
             gameObject.SetActive(true);
+            print("hello");
         }
 
         public virtual void Open(Screen pScreen) => pScreen.Open();
