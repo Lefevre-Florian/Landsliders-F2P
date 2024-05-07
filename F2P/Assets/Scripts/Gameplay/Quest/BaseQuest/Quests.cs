@@ -10,7 +10,7 @@ namespace com.isartdigital.f2p.gameplay.quest
     {
         [SerializeField] private QuestManager.QuestsEnum myQuest;
 
-        private void Awake()
+        protected virtual void Start()
         {
             if (myQuest != QuestManager.currentQuest) DestroyImmediate(this);
         }

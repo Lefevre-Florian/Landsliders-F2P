@@ -8,8 +8,9 @@ namespace com.isartdigital.f2p.gameplay.quest
     {
         private int[] lastTurnCardGet = new int[4];
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             GameManager.PlayerMoved.AddListener(ShiftArray);
         }
 

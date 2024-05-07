@@ -133,7 +133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.8750001
+      value: -1.4210527
       objectReference: {fileID: 0}
     - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
       propertyPath: m_LocalPosition.y
@@ -330,7 +330,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.8750001
+      value: -1.4210527
       objectReference: {fileID: 0}
     - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
       propertyPath: m_LocalPosition.y
@@ -396,7 +396,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8750001
+      value: 1.4210527
       objectReference: {fileID: 0}
     - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
       propertyPath: m_LocalPosition.y
@@ -594,6 +594,7 @@ GameObject:
   - component: {fileID: 1061210647}
   - component: {fileID: 1061210648}
   - component: {fileID: 1061210649}
+  - component: {fileID: 1061210651}
   - component: {fileID: 1061210650}
   m_Layer: 0
   m_Name: Managers
@@ -683,7 +684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c32f52816a393f419a2634e48bf8a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _predifinedMap: {fileID: 11400000, guid: 0205a3118a27fd945bd4ce1de9395770, type: 2}
+  _predifinedMap: {fileID: 11400000, guid: b81edbf2f86c42d4abd71d46b9350032, type: 2}
 --- !u!114 &1061210648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,14 +732,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1061210643}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6236697caef784145a3238610f9d3c43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myQuest: 2
+--- !u!114 &1061210651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061210643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17aa8ce40a699244e9239b52f0866cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questsDic:
-    questArray:
-    - key: 2
-      value: {fileID: 11500000, guid: 6236697caef784145a3238610f9d3c43, type: 3}
-  currentQuestDebug: 0
+  currentQuestDebug: 3
 --- !u!1001 &1087800625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1163,7 +1173,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8750001
+      value: 1.4210527
       objectReference: {fileID: 0}
     - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1230,7 +1240,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.8750001
+      value: -1.4210527
       objectReference: {fileID: 0}
     - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1421,7 +1431,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8750001
+      value: 1.4210527
       objectReference: {fileID: 0}
     - target: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
       propertyPath: m_LocalPosition.y
