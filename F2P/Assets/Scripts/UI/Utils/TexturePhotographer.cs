@@ -80,14 +80,14 @@ namespace Com.IsartDigital.F2P.UI
 
         public RenderTexture CreateEmptyTexture(Vector2 pSize) => new RenderTexture((int) pSize.x, (int) pSize.y, TEXTURE_DEPTH_BUFFER);
 
-        public void StartRecording(RenderTexture pTexture, GameObject pModel, Vector2 pScale = default)
+        public GameObject StartRecording(RenderTexture pTexture, GameObject pModel, Vector2 pScale = default)
         {
             if (_StreamedObject != null)
             {
                 #if UNITY_EDITOR
                 Debug.LogError(STREAMING_ERROR_MSG);
                 #endif
-                return;
+                return null;
             }
 
             _Camera.enabled = true;
@@ -96,6 +96,8 @@ namespace Com.IsartDigital.F2P.UI
             _StreamedObject = Instantiate(pModel, transform).transform;
             _StreamedObject.position = new Vector3(0f, 0f, DISTANCE_TO_LENS);
             _StreamedObject.localScale = (pScale == default) ? new Vector2(1f, 1f) : pScale;
+
+            return _StreamedObject.gameObject;
         }
 
         public void StopRecording()

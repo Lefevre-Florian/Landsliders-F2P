@@ -123,6 +123,41 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &44448702 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2455197586866828140, guid: d9de87e64e4335749a50fc4322aeaccc, type: 3}
+  m_PrefabInstance: {fileID: 7079741632217218199}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &44448706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44448702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1001 &252059468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2084,6 +2119,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PRB_UpgradeScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 2417706858622659584, guid: d9de87e64e4335749a50fc4322aeaccc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8018362429481518622, guid: d9de87e64e4335749a50fc4322aeaccc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2167,7 +2206,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2455197586866828140, guid: d9de87e64e4335749a50fc4322aeaccc, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 44448706}
   m_SourcePrefab: {fileID: 100100000, guid: d9de87e64e4335749a50fc4322aeaccc, type: 3}
 --- !u!1001 &7713260486290743852
 PrefabInstance:
