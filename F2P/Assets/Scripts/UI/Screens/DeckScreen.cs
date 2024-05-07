@@ -15,6 +15,10 @@ namespace Com.IsartDigital.F2P.UI.Screens
         [SerializeField] private RectTransform _Container = null;
         [SerializeField] private GameObject _CardButtonPrefab = null;
 
+        [Space(5)]
+        [SerializeField] private UpgradeScreen _UpgradeScreen = null;
+        [SerializeField] private ConsentAskScreen _ConsentScreen = null;
+
         // Variables
         private bool _Loaded = false;
 
@@ -46,7 +50,7 @@ namespace Com.IsartDigital.F2P.UI.Screens
             for (int i = 0; i < lLength; i++)
             {
                 lCard = Instantiate(_CardButtonPrefab, _Container).GetComponent<CustomCardButton>();
-                lCard.Enable(Save.data.cards[i]);
+                lCard.Enable(Save.data.cards[i], _UpgradeScreen, _ConsentScreen);
             }
         }
     }

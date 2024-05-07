@@ -617,7 +617,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5380922084386219490}
         m_TargetAssemblyTypeName: Com.IsartDigital.F2P.UI.CustomCardButton, Assembly-CSharp
-        m_MethodName: Upgrade
+        m_MethodName: RequestUpgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
