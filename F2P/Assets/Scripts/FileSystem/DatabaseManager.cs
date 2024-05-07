@@ -245,7 +245,7 @@ namespace Com.IsartDigital.F2P.FileSystem
 
                 lRawDatas.Clear();
                 WriteDataToSaveFile();
-            }   
+            }
         }
 
         public void WriteDataToSaveFile()
