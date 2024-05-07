@@ -165,6 +165,9 @@ public class TEMPCard : MonoBehaviour
     }
     public void SetModePlayed()
     {
+        if(_HandManager != null)
+            _HandManager.TrackBiome(GetComponent<Biome>().Type);
+
         currentState |= State.Played;
         OnPlaced?.Invoke();
         enabled = false;

@@ -203,6 +203,8 @@ namespace Com.IsartDigital.F2P.FileSystem
             if (File.Exists(lPath))
             {
                 Save.data = JsonUtility.FromJson<PlayerSave>(File.ReadAllText(lPath));
+                Save.data.startTime = DateTime.UtcNow;
+
                 List<List<object>> lResult = GetRowsWhereIN(SELECT_ALL_BIOMES_RESOURCES_WHERE, Save.data.cards);
 
                 int lLength = lResult.Count;
@@ -215,8 +217,13 @@ namespace Com.IsartDigital.F2P.FileSystem
             }
             else
             {
+                #if UNITY_ANDROID && !UNITY_EDITOR
+                CopyDatabase();
+                #endif
+
                 // New save
                 Save.data = new PlayerSave();
+                Save.data.startTime = DateTime.UtcNow;
                 
                 List<List<object>> lRawDatas = GetRows(SELECT_ALL_BIOME_IDS_PATH);
 
@@ -238,7 +245,7 @@ namespace Com.IsartDigital.F2P.FileSystem
 
                 lRawDatas.Clear();
                 WriteDataToSaveFile();
-            }   
+            }
         }
 
         public void WriteDataToSaveFile()

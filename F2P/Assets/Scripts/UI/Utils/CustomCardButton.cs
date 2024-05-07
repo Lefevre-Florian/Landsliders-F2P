@@ -14,6 +14,16 @@ namespace Com.IsartDigital.F2P.UI
 {
     public class CustomCardButton : MonoBehaviour
     {
+        #region Tracking
+        private const string TRACKER_BIOME_UNLOCKED_NAME = "biomeUpgradeUnlocked";
+        private const string TRACKER_TOTAL_BIOME_UPGRADED_NAME = "numberOfUpgradePerformed";
+
+        private const string TRACKER_TOTAL_UPGRADE_PARAMETER = "numberOfUpgrade";
+        private const string TRACKER_TOTAL_PLAYTIME = "timeInHourMinute";
+
+        private const string TRACKER_BIOME_NAME_PARAMETER = "biomeType";
+        #endregion
+
         private const string CMD_QUERY = "SELECT name, description, fragment FROM BIOME WHERE id = ";
         private const string CMD_UPGRADE_QUERY = "SELECT id, name, description, fragment FROM BIOME WHERE id = (SELECT fk_upgrade FROM BIOME WHERE id = ";
 
@@ -84,6 +94,17 @@ namespace Com.IsartDigital.F2P.UI
 
             Save.data.cards[Save.data.cards.ToList().IndexOf(lOldID)] = _ID;
             lDatabase.WriteDataToSaveFile();
+
+            // Track : Biome upgraded
+            DataTracker.GetInstance().SendAnalytics(TRACKER_BIOME_UNLOCKED_NAME, new Dictionary<string, object>() { { TRACKER_BIOME_NAME_PARAMETER, _Name } });
+
+            // Track : Total number of biome upgraded
+            Save.data.numberOfUpgrade += 1;
+            TimeSpan lDuration = Save.data.totalPlaytime + (DateTime.UtcNow - Save.data.startTime).Duration();
+
+            DataTracker.GetInstance().SendAnalytics(TRACKER_TOTAL_BIOME_UPGRADED_NAME, 
+                                                    new Dictionary<string, object>() { { TRACKER_TOTAL_UPGRADE_PARAMETER, Save.data.numberOfUpgrade },
+                                                                                       { TRACKER_TOTAL_PLAYTIME, lDuration.Hours + ":" + lDuration.Minutes} });
 
             Draw();
         } 
