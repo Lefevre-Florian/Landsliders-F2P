@@ -30,6 +30,12 @@ namespace Com.IsartDigital.F2P
         public TimeSpan totalPlaytime = TimeSpan.Zero;
         public int numberOfUpgrade = 0;
 
+        public bool dtone = false;
+        public bool dtseven = false;
+        public bool dtthirty = false;
+
+        public DateTime firstConnection = DateTime.UtcNow;
+
         // Non-serializable
         [NonSerialized] public GameObject[] cardPrefabs;            // Only a session variable won't be include in save file
         [NonSerialized] public DateTime startTime;
