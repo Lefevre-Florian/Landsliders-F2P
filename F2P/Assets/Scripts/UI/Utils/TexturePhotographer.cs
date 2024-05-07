@@ -72,12 +72,15 @@ namespace Com.IsartDigital.F2P.UI
             return lVirtualTexture;
         }
 
+
         public RenderTexture CreateTextureBiome(Vector2 pSize, GameObject pModel, Vector2 pScale = default)
         {
             return CreateTextureBiome((int)pSize.x, (int)pSize.y, pModel, pScale);
         }
 
-        public void StartRecording(RenderTexture pTexture, GameObject pModel)
+        public RenderTexture CreateEmptyTexture(Vector2 pSize) => new RenderTexture((int) pSize.x, (int) pSize.y, TEXTURE_DEPTH_BUFFER);
+
+        public void StartRecording(RenderTexture pTexture, GameObject pModel, Vector2 pScale = default)
         {
             if (_StreamedObject != null)
             {
@@ -92,6 +95,7 @@ namespace Com.IsartDigital.F2P.UI
 
             _StreamedObject = Instantiate(pModel, transform).transform;
             _StreamedObject.position = new Vector3(0f, 0f, DISTANCE_TO_LENS);
+            _StreamedObject.localScale = (pScale == default) ? new Vector2(1f, 1f) : pScale;
         }
 
         public void StopRecording()
