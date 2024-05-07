@@ -1,8 +1,11 @@
 using com.isartdigital.f2p.gameplay.manager;
+using Com.IsartDigital.F2P;
 using Com.IsartDigital.F2P.Gameplay;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,6 +23,13 @@ public class GameManager : MonoBehaviour
     }
 
     private GameManager() : base() { }
+    #endregion
+
+    #region Tracking   
+    private const string TRACKER_NAME = "gameDuration";
+
+    private const string TRACKER_GAME_DURATION_REALTIME_PARAMETER = "timeInSecondMinute";
+    private const string TRACKER_GAME_DURATION_TURN_PARAMETER = "numberOfTurn";
     #endregion
 
     private void Awake()
@@ -63,6 +73,8 @@ public class GameManager : MonoBehaviour
 
     private Coroutine _EffectTimer = null;
 
+    private DateTime _GameStartTime = default;
+
     [HideInInspector] public bool cardPlayed;
     [HideInInspector] public bool playerMoved;
     [HideInInspector] public bool playerCanMove;
@@ -102,6 +114,8 @@ public class GameManager : MonoBehaviour
 
         CardPlaced.AddListener(SetModeMovingPlayer);
         PlayerMoved.AddListener(SetModeBiomeEffect);
+
+        _GameStartTime = DateTime.UtcNow;
     }
 
     public void NextTurn()
@@ -145,6 +159,20 @@ public class GameManager : MonoBehaviour
         playerCanMove = false;
         
         ///TODO Trigger popup
+    }
+
+    public void SetModeWin()
+    {
+        currentState = State.GameEnd;
+        playerCanMove = false;
+
+        // Track game duration
+        TimeSpan lDuration = (DateTime.UtcNow - _GameStartTime).Duration();
+        DataTracker.GetInstance().SendAnalytics(TRACKER_NAME, 
+                                                new Dictionary<string, object>() {
+                                                    { TRACKER_GAME_DURATION_TURN_PARAMETER, _TurnNumber},
+                                                    {TRACKER_GAME_DURATION_REALTIME_PARAMETER,  lDuration.Minutes + ":" + lDuration.Seconds}
+                                                });
     }
     #endregion
 
