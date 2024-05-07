@@ -99,9 +99,6 @@ namespace Com.IsartDigital.F2P
             // Third tracker : total play in this session
             SendAnalytics(TRACKER_TOTAL_GAME_NAME,
                           new Dictionary<string, object>() { { TRACKER_NUMBER_GAME_STARTED_PARAMETER, Save.data.totalGame } });
-
-            print("Good");
-
         }
 
         private void OnDestroy()

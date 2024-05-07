@@ -1,9 +1,13 @@
 using Com.IsartDigital.F2P.UI.UIHUD;
 using com.isartdigital.f2p.gameplay.quest;
-
-using System;
+using Com.IsartDigital.F2P.Biomes;
+using Com.IsartDigital.F2P;
 
 using UnityEngine;
+
+using System;
+using System.Collections.Generic;
+
 
 // Author (CR) : Elias Dridi
 public class HandManager : MonoBehaviour
@@ -17,6 +21,12 @@ public class HandManager : MonoBehaviour
             _Instance = new HandManager();
         return _Instance;
     }
+    #endregion
+
+    #region Tracking
+    private const string TRACKER_NAME = "biomeMostPlayed";
+
+    private const string TRACKER_BIOME_TYPE_PARAMETER = "biomeType";
     #endregion
 
     private void Awake()
@@ -60,6 +70,7 @@ public class HandManager : MonoBehaviour
 
     public int _TotalCards { get { return _Deck.Length + _CardInHand; } }
 
+    private List<Tuple<BiomeType, int>> _BiomePlayedTracking = new List<Tuple<BiomeType, int>>();
     
     private void Start()
     {
@@ -70,6 +81,15 @@ public class HandManager : MonoBehaviour
             DrawCard();
         }
         GameManager.CardPlaced.AddListener(CardPlayedThenDraw);
+    }
+
+    public void TrackBiome(BiomeType pType)
+    {
+        int lIndex = _BiomePlayedTracking.FindIndex(x => x.Item1 == pType);
+        if (lIndex == -1)
+            _BiomePlayedTracking.Add(new Tuple<BiomeType, int>(pType, 1));
+        else
+            _BiomePlayedTracking[lIndex] = new Tuple<BiomeType, int>(pType, _BiomePlayedTracking[lIndex].Item2 + 1);
     }
 
     public void DrawCard()
@@ -205,6 +225,26 @@ public class HandManager : MonoBehaviour
         DrawCard();
     }
 
+    /// <summary>
+    /// TO MOVE AFTER FULL FLOW IMPLEMENTATION
+    /// </summary>
+    private void SetModeWin()
+    {
+        int lMax = 0;
+        int lLength = _BiomePlayedTracking.Count;
+
+        BiomeType lMaxUsed = default;
+        for (int i = 0; i < lLength; i++)
+        {
+            if (_BiomePlayedTracking[i].Item2 > lMax)
+            {
+                lMax = _BiomePlayedTracking[i].Item2;
+                lMaxUsed = _BiomePlayedTracking[i].Item1;
+            }
+        }
+
+        DataTracker.GetInstance().SendAnalytics(TRACKER_NAME, new Dictionary<string, object>() { { TRACKER_BIOME_TYPE_PARAMETER, lMaxUsed } });
+    }
 
     private void OnDestroy()
     {
