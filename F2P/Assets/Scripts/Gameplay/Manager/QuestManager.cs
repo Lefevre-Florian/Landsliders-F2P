@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace com.isartdigital.f2p.manager
 {
@@ -13,6 +14,8 @@ namespace com.isartdigital.f2p.manager
         public static QuestsEnum currentQuest;
 
         [SerializeField] private QuestsEnum currentQuestDebug;
+
+        public static UnityEvent ValidQuest = new UnityEvent();
 
         public enum QuestsEnum
         {
@@ -29,6 +32,7 @@ namespace com.isartdigital.f2p.manager
         {
             currentQuest = currentQuestDebug;
             GameFlowManager.LoadMap.AddListener(Init);
+            ValidQuest.AddListener(WinDebug);
         }
 
         private void Init()
@@ -42,14 +46,19 @@ namespace com.isartdigital.f2p.manager
             }
 
             Debug.Log(currentQuest);
-
         }
 
         private void OnDestroy()
         {
             GameFlowManager.LoadMap.RemoveListener(Init);
+            ValidQuest.RemoveListener(WinDebug);
         }
 
+
+        private void WinDebug()
+        {
+            Debug.Log("Win");
+        }
 
     }
 }

@@ -1,5 +1,6 @@
 using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.manager;
+using com.isartdigital.f2p.manager;
 using Com.IsartDigital.F2P.Biomes;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace com.isartdigital.f2p.gameplay.quest
                 if (lCardToCheck.GetComponent<Biome>().Type != BiomeType.grassland) return;
             }
 
-            Debug.Log("Win");
+            QuestManager.ValidQuest.Invoke();
         }
     }
 }

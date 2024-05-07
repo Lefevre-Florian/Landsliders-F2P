@@ -1,3 +1,4 @@
+using com.isartdigital.f2p.manager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,7 +33,7 @@ namespace com.isartdigital.f2p.gameplay.quest
             foreach (int pNbCard in lastTurnCardGet)
                 totalCardGainLastFourTurn += pNbCard;
 
-            if (totalCardGainLastFourTurn > 6) Debug.Log("WIN");
+            if (totalCardGainLastFourTurn > 6) QuestManager.ValidQuest.Invoke();
         }
     }
 }
