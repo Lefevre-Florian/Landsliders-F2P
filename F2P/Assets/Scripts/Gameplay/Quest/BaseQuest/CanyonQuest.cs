@@ -9,8 +9,9 @@ namespace com.isartdigital.f2p.gameplay.quest
     {
         public static UnityEvent ValidSignal = new UnityEvent();
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             ValidSignal.AddListener(ValidQuest);
         }
 
