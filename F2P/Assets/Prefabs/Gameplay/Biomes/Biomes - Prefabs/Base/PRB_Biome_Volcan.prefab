@@ -171,8 +171,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NbAffected: 8
-  _IsRemoving: 1
-  _NbTurn: 0
+  _Type: -1
+  _DestroyEffectWithInstance: 1
 --- !u!114 &7230458385552713416
 MonoBehaviour:
   m_ObjectHideFlags: 0
