@@ -1,5 +1,8 @@
 using com.isartdigital.f2p.gameplay.manager;
 
+using System.Collections.Generic;
+using System.Linq;
+
 using UnityEngine;
 
 // Author (CR) : Lefevre Florian
@@ -46,15 +49,23 @@ namespace Com.IsartDigital.F2P.Biomes
             _GridManager = GridManager.GetInstance();
 
             _GameManager.OnTurnPassed += Predict;
+
+            Predict();
         }
 
         private void Predict()
         {
-            _StackMemory = GetComponent<IBiomeSupplier>().SupplyBiomes();
+            List<IBiomeSupplier> lResult = GetComponents<IBiomeSupplier>().ToList();
+            lResult.Remove(this);
+
+            if (lResult.Count == 0)
+                return;
+
+            _StackMemory = lResult[0].SupplyBiomes();
 
             if (_Displays != null)
                 foreach (Transform lItem in _Displays)
-                    Destroy(lItem);
+                    Destroy(lItem.gameObject);
 
             int lLength = _StackMemory.Length;
             if (lLength == 0)
