@@ -16,7 +16,8 @@ public class WitchQuestManager : MonoBehaviour
     public enum WitchQuestsEnum
     {
         NONE,
-        AlignSwampQuest
+        AlignSwampQuest,
+        SurviveSwampQuest
     }
 
     private void Start()

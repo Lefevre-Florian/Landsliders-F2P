@@ -762,7 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c530af9e6e97949b70a38278c33939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentQuestDebug: 0
+  currentQuestDebug: 1
 --- !u!1001 &1087800625
 PrefabInstance:
   m_ObjectHideFlags: 0
