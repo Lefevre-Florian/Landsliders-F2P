@@ -22,6 +22,7 @@ public class WitchQuestManager : MonoBehaviour
     private void Start()
     {
         Witch.OnWitchPosition.AddListener(GiveQuest);
+        currentQuest = currentQuestDebug;
     }
 
     private void GiveQuest()

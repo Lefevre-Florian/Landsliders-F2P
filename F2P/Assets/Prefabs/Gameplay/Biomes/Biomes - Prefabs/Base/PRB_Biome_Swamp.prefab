@@ -145,6 +145,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6452449759358689630}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6677746253460147062}
   m_SourcePrefab: {fileID: 100100000, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
 --- !u!1 &7305934453097383714 stripped
 GameObject:
@@ -193,6 +196,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6677746253460147062}
+        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeTimer, Assembly-CSharp
+        m_MethodName: StartTicking
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6452449759358689630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,6 +220,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eccfdfd00d20eb41bca697c12b76e14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6677746253460147062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305934453097383714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81319e495f8ba7243a9d365efb7f3978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _AlwaysStart: 0
+  _Timer: 3
+  _TimedActions:
+  - time: 0
+    method:
+      m_PersistentCalls:
+        m_Calls: []
+  _Label: {fileID: 0}
 --- !u!4 &8002503781277092192 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
