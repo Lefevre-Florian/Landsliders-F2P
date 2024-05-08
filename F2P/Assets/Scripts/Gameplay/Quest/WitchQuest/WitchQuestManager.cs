@@ -17,7 +17,8 @@ public class WitchQuestManager : MonoBehaviour
     {
         NONE,
         AlignSwampQuest,
-        SurviveSwampQuest
+        SurviveSwampQuest,
+        FrozenLake
     }
 
     private void Start()

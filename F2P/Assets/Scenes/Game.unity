@@ -185,6 +185,106 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8372841694036601837, guid: ddc7a0c9470b72144b00fbc095576ba5, type: 3}
   m_PrefabInstance: {fileID: 1087800625}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &439403961
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 439403966}
+  - component: {fileID: 439403965}
+  - component: {fileID: 439403964}
+  - component: {fileID: 439403963}
+  - component: {fileID: 439403962}
+  - component: {fileID: 439403967}
+  m_Layer: 0
+  m_Name: QuestContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &439403962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439403961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf497aa50fcba64291821167857052e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _TimeToComplete: 3
+--- !u!114 &439403963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439403961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c530af9e6e97949b70a38278c33939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentQuestDebug: 3
+--- !u!114 &439403964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439403961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6236697caef784145a3238610f9d3c43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myQuest: 2
+--- !u!114 &439403965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439403961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17aa8ce40a699244e9239b52f0866cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentQuestDebug: 3
+--- !u!4 &439403966
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439403961}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.040500045, y: 0.41200006, z: -0.37575004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &439403967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439403961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 458ba2a3614cab8498ace4b083fd3742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &564700396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -594,9 +694,6 @@ GameObject:
   - component: {fileID: 1061210647}
   - component: {fileID: 1061210648}
   - component: {fileID: 1061210649}
-  - component: {fileID: 1061210651}
-  - component: {fileID: 1061210650}
-  - component: {fileID: 1061210652}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -685,7 +782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c32f52816a393f419a2634e48bf8a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _predifinedMap: {fileID: 11400000, guid: d90ed92abb0696d4bbe61c6d69458d8d, type: 2}
+  _predifinedMap: {fileID: 11400000, guid: cef079d8fcc046d469a63ae7a09cbd40, type: 2}
 --- !u!114 &1061210648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,45 +821,6 @@ MonoBehaviour:
   _Wisp: {fileID: 7100505260429275719, guid: d7ba279bed5d1ca44a6f7716a67c93f5, type: 3}
   _GoblinTreasure: {fileID: 6956311438354313730, guid: aa830714b7b17d945a7b1e4c0d885b38, type: 3}
   _Mist: {fileID: 4857646458243004221, guid: ea2578a30c4a6404e90de53066c8cc48, type: 3}
---- !u!114 &1061210650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061210643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6236697caef784145a3238610f9d3c43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myQuest: 2
---- !u!114 &1061210651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061210643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17aa8ce40a699244e9239b52f0866cd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentQuestDebug: 3
---- !u!114 &1061210652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061210643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93c530af9e6e97949b70a38278c33939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentQuestDebug: 1
 --- !u!1001 &1087800625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1630,3 +1688,4 @@ SceneRoots:
   - {fileID: 1613892858}
   - {fileID: 1087800625}
   - {fileID: 5228520700684496751}
+  - {fileID: 439403966}
