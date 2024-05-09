@@ -48,18 +48,18 @@ namespace com.isartdigital.f2p.manager
             Debug.Log(currentQuest);
         }
 
+        private void WinDebug()
+        {
+            Debug.Log("Win");
+
+            GameManager.GetInstance().SetModeWin();
+        }
+
         private void OnDestroy()
         {
             GameFlowManager.LoadMap.RemoveListener(Init);
             ValidQuest.RemoveListener(WinDebug);
         }
-
-
-        private void WinDebug()
-        {
-            Debug.Log("Win");
-        }
-
     }
 }
 

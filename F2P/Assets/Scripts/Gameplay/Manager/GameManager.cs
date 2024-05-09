@@ -1,4 +1,5 @@
 using com.isartdigital.f2p.gameplay.manager;
+using com.isartdigital.f2p.manager;
 using Com.IsartDigital.F2P;
 using Com.IsartDigital.F2P.Gameplay;
 
@@ -100,8 +101,11 @@ public class GameManager : MonoBehaviour
     public int Turn { get { return _TurnNumber; } }
     // Events
     public event Action OnTurnPassed;
+
     public event Action<int> OnEffectPlayed;
     public event Action OnAllEffectPlayed;
+
+    public event Action<bool> OnGameover;
 
     public static UnityEvent CardPlaced = new UnityEvent();
     public static UnityEvent PlayerMoved = new UnityEvent();
@@ -157,8 +161,8 @@ public class GameManager : MonoBehaviour
     {
         currentState = State.GameEnd;
         playerCanMove = false;
-        
-        ///TODO Trigger popup
+
+        OnGameover?.Invoke(false);
     }
 
     public void SetModeWin()
@@ -173,6 +177,8 @@ public class GameManager : MonoBehaviour
                                                     { TRACKER_GAME_DURATION_TURN_PARAMETER, _TurnNumber},
                                                     {TRACKER_GAME_DURATION_REALTIME_PARAMETER,  lDuration.Minutes + ":" + lDuration.Seconds}
                                                 });
+
+        OnGameover?.Invoke(true);
     }
     #endregion
 
