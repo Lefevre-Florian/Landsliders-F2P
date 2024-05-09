@@ -684,7 +684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c32f52816a393f419a2634e48bf8a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _predifinedMap: {fileID: 11400000, guid: e829f269d621a7f4a9178bd000b15b96, type: 2}
+  _predifinedMap: {fileID: 11400000, guid: 81b67306ff8f6d74ea941ecc5f8b4df0, type: 2}
 --- !u!114 &1061210648
 MonoBehaviour:
   m_ObjectHideFlags: 0

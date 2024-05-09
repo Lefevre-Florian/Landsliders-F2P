@@ -244,6 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _GridDirection: 8
+  _Range: 2
   _ChanceOfModification: 100
   _ChangeRatio: 100
   _BiomeTypeToReplace: 000000000100000002000000030000000400000005000000060000000700000008000000

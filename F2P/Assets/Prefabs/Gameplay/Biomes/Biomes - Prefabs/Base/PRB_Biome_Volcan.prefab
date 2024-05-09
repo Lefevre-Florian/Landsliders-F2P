@@ -125,7 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe52d472d6ff8bf4abf26fc0d5035303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _GridDirection: 8
+  _GridDirection: 4
+  _Range: 1
   _ChanceOfModification: 100
   _ChangeRatio: 100
   _BiomeTypeToReplace: 0000000001000000020000000400000005000000060000000700000008000000
@@ -237,7 +238,7 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeGridModifier,
             Assembly-CSharp
           m_MethodName: UpdateNeigbourhood
-          m_Mode: 3
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

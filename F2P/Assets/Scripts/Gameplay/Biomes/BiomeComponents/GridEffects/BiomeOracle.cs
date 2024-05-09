@@ -1,8 +1,5 @@
 using com.isartdigital.f2p.gameplay.manager;
 
-using System.Collections.Generic;
-using System.Linq;
-
 using UnityEngine;
 
 // Author (CR) : Lefevre Florian
@@ -16,6 +13,9 @@ namespace Com.IsartDigital.F2P.Biomes
         [Header("Feedbacks")]
         [SerializeField] private Transform _LayerContainer = null;
         [SerializeField] private GameObject _FeedbackLayer = null;
+
+        [Header("Logic")]
+        [SerializeField] private MonoBehaviour _SupplierComponent = null;
 
         // Variables
         private GameManager _GameManager = null;
@@ -55,17 +55,14 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void Predict()
         {
-            List<IBiomeSupplier> lResult = GetComponents<IBiomeSupplier>().ToList();
-            lResult.Remove(this);
-
-            if (lResult.Count == 0)
-                return;
-
-            _StackMemory = lResult[0].SupplyBiomes();
-
+            _StackMemory = (_SupplierComponent as IBiomeSupplier).SupplyBiomes();
+            
             if (_Displays != null)
                 foreach (Transform lItem in _Displays)
                     Destroy(lItem.gameObject);
+
+            if (_StackMemory == null || _StackMemory.Length == 0)
+                return;
 
             int lLength = _StackMemory.Length;
             if (lLength == 0)
