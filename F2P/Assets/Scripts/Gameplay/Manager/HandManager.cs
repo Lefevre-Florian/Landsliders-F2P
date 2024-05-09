@@ -148,7 +148,7 @@ public class HandManager : MonoBehaviour
             else
             {
                 for (int i = 0; i < lRemainingCardToRemove; i++)
-                    Destroy(_HandContainer.transform.GetChild(UnityEngine.Random.Range(0, _HandContainer.transform.childCount)));
+                    Destroy(_HandContainer.transform.GetChild(UnityEngine.Random.Range(0, _HandContainer.transform.childCount)).gameObject);
                 _CardInHand -= lRemainingCardToRemove;
             }
         }

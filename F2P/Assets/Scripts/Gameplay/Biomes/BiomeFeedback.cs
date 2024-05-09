@@ -64,6 +64,8 @@ namespace Com.IsartDigital.F2P.Biomes
                 TEMPCard.OnFocus -= CardFocus;
             else
                 TEMPCard.OnFocus += CardFocus;
+
+            CardFocus(!pState);
         }
 
         private void CardFocus(bool pFocusState)

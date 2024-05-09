@@ -61,6 +61,7 @@ namespace Com.IsartDigital.F2P.Biomes
             }
         }
 
+        [HideInInspector]
         public Vector2[] SupplyBiomes()
         {
             List<Biome> lBiomes = GetNeighbourBiomes(_Range);
@@ -128,8 +129,8 @@ namespace Com.IsartDigital.F2P.Biomes
             int lIdx = 0;
             for (int i = 0; i < lRatio; i++)
             {
-                lIdx = UnityEngine.Random.Range(0, lCards.Count - 1);
-                lBiomes.Add(lCards[i]);
+                lIdx = UnityEngine.Random.Range(0, lCards.Count);
+                lBiomes.Add(lCards[lIdx]);
                 lCards.RemoveAt(lIdx);
             }
 

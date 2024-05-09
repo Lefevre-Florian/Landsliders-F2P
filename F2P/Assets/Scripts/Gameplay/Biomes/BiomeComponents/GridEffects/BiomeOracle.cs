@@ -17,6 +17,9 @@ namespace Com.IsartDigital.F2P.Biomes
         [Header("Logic")]
         [SerializeField] private MonoBehaviour _SupplierComponent = null;
 
+        [Space(5)]
+        [SerializeField] private bool _StartAtReady = true;
+
         // Variables
         private GameManager _GameManager = null;
         private GridManager _GridManager = null;
@@ -35,10 +38,24 @@ namespace Com.IsartDigital.F2P.Biomes
             }
 
             _Biome = GetComponent<Biome>();
-            if (_Biome.IsReady)
-                Enable();
-            else
-                _Biome.OnReady += Enable;
+            if (_StartAtReady)
+            {
+                if (_Biome.IsReady)
+                    Enable();
+                else
+                    _Biome.OnReady += Enable;
+            }
+        }
+
+        public void StartPrediction() => Enable();
+
+        public void StopPrediction()
+        {
+            _GameManager.OnTurnPassed -= Predict;
+
+            int lLength = _Displays.Length;
+            for (int i = 0; i < lLength; i++)
+                Destroy(_Displays[i].transform);
         }
 
         private void Enable()
