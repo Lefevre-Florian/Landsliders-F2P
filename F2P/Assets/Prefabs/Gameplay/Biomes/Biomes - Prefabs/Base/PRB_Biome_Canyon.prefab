@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: m_Name
-      value: Canyon
+      value: PRB_Biome_Canyon
       objectReference: {fileID: 0}
     - target: {fileID: 8295392945309103686, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: _Type
@@ -83,8 +83,31 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3590885038888507081}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2504610723244485548}
   m_SourcePrefab: {fileID: 100100000, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+--- !u!1 &3667428915726666856 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+  m_PrefabInstance: {fileID: 873917495327592827}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2504610723244485548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3667428915726666856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2e44949eb89dd4aa12f1ba1357509d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Renderer: {fileID: 1659205262842375310}
+  _CardLayer: {fileID: 21300000, guid: 2ccb2101866e215478d752d343323433, type: 3}
+  _MoveLayer: {fileID: 21300000, guid: f4e19aa3433b6f04f911e4407cdcfe1d, type: 3}
 --- !u!4 &4073555667556221482 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
@@ -159,6 +182,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+--- !u!212 &1659205262842375310 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4210206513366535035, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+  m_PrefabInstance: {fileID: 3272717118207043573}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3590885038888507081 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2071202880351957308, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}

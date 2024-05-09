@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: m_Name
-      value: Field
+      value: PRB_Biome_Field
       objectReference: {fileID: 0}
     - target: {fileID: 8295392945309103686, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: _Type
@@ -192,8 +192,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NbAffected: 1
-  _IsRemoving: 0
-  _NbTurn: 0
+  _Type: 1
+  _DestroyEffectWithInstance: 0
 --- !u!114 &333202221833708060
 MonoBehaviour:
   m_ObjectHideFlags: 0
