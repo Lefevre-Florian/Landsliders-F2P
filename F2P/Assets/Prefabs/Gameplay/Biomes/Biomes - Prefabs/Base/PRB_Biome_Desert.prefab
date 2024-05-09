@@ -218,4 +218,4 @@ MonoBehaviour:
   _ChangeRatio: 25
   _BiomeTypeToReplace: 0000000001000000030000000400000005000000060000000700000008000000
   _IsRandomReplace: 0
-  _SubstitutionBiome: {fileID: 8084758009786610639}
+  _SubstitutionBiome: 2

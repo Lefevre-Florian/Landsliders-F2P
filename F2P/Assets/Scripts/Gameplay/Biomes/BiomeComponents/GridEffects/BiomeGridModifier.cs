@@ -29,7 +29,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
         [Space(2)]
         [SerializeField] private bool _IsRandomReplace = true;
-        [SerializeField] private Transform _SubstitutionBiome = null;
+        [SerializeField] private BiomeType _SubstitutionBiome = default;
 
         public void UpdateNeigbourhood()
         {
@@ -100,7 +100,7 @@ namespace Com.IsartDigital.F2P.Biomes
                 for (int j = 1; j < _Range; j++)
                 {
                     lNextPosition = m_Biome.GridPosition + lDirection * j;
-                    m_GridManager.ReplaceAtIndex(lNextPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform : _SubstitutionBiome);
+                    m_GridManager.ReplaceAtIndex(lNextPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform : CardPrefabDic.GetPrefab(_SubstitutionBiome).transform);
                     if (TryGetComponent<VortexQuest>(out VortexQuest vq)) vq.ValidQuest(lNextPosition);
                 }
             }
@@ -140,7 +140,7 @@ namespace Com.IsartDigital.F2P.Biomes
         {
             int lLength = pBiomes.Length;
             for (int i = 0; i < lLength; i++)
-                m_GridManager.ReplaceAtIndex(pBiomes[i].GridPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform : _SubstitutionBiome);
+                m_GridManager.ReplaceAtIndex(pBiomes[i].GridPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform : CardPrefabDic.GetPrefab(_SubstitutionBiome).transform);
         }
     }
 }
