@@ -21,7 +21,16 @@ namespace Com.IsartDigital.F2P.FTUE
         #endregion
 
         [Header("FTUE Flow")]
-        [SerializeField][Range(1, 3)] private int _Phase = 1;
+        [SerializeField][Range(1, 3)] private int _PhaseID = 1;
+        [SerializeField] private FTUEPhaseSO[] _Phase = null;
+
+        // Get & Set
+        public FTUEPhaseSO CurrentPhase { get { return _Phase[_PhaseID - 1]; } }
+
+        public int CurrentPhaseID { get { return _PhaseID; } }
+
+        // Events
+        public event Action OnPhaseUpdated;
 
         private void Awake()
         {
@@ -31,19 +40,43 @@ namespace Com.IsartDigital.F2P.FTUE
                 return;
             }
             _Instance = this;
+
+            GameFlowManager.PlayerLoaded.AddListener(UpdatePlayer);
+            GameFlowManager.HandLoaded.AddListener(UpdateHand);
         }
 
-        private void Start()
+        private void UpdatePhase()
+        {
+            _PhaseID += 1;
+            if (_PhaseID > _Phase.Length)
+                _PhaseID = _Phase.Length;
+
+            OnPhaseUpdated?.Invoke();
+        }
+
+        private void UpdatePlayer() => Player.GetInstance().SetPosition(CurrentPhase.StartPosition);
+
+        private void UpdateHand()
+        {
+            print("ko");
+            HandManager lHand = HandManager.GetInstance();
+            lHand.CreateDeck(CurrentPhase.Deck);
+            lHand.CreateHand(CurrentPhase.StartNBCards);
+        }
+
+        private void UpdateGrid()
         {
 
         }
-
 
         private void OnDestroy()
         {
             if (_Instance == this)
             {
-                _Instance = null;   
+                _Instance = null;
+
+                GameFlowManager.PlayerLoaded.RemoveListener(UpdatePlayer);
+                GameFlowManager.HandLoaded.RemoveListener(UpdateHand);
             }
         }
     }

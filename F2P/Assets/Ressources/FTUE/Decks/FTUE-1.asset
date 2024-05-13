@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c00dfcc5719810d4fa4bb5da100f48e4, type: 3}
+  m_Script: {fileID: 11500000, guid: e9092595ced0a804d857333d7588f546, type: 3}
   m_Name: FTUE-1
   m_EditorClassIdentifier: 
   _FTUEPhase: 1
@@ -23,3 +23,5 @@ MonoBehaviour:
       quantity: 8
     - type: 1
       quantity: 4
+  _StartNBCards: 1
+  _StartPosition: {x: 0, y: 1}

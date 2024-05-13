@@ -62,10 +62,6 @@ public class HandManager : MonoBehaviour
     [SerializeField] private GameObject _DeckContainer;
     [SerializeField] private GameObject _HandContainer;
 
-    [Space(5)]
-    [Header("Deck")]
-    [SerializeField] private DeckSO _FakeDeck = null;
-
     // Variables
 
     [HideInInspector] public Vector2 _ScreenSizeInGameUnit;
@@ -83,21 +79,15 @@ public class HandManager : MonoBehaviour
     private void Start()
     {
         CardSlot();
-        if(_FakeDeck == null)
-        {
-            CreateDeck();
-            for (int i = 0; i < _StartingCardNb; i++)
-                DrawCard();
-        }
-        else
-        {
-            CreateDeck(_FakeDeck.Deck);
-            for (int i = 0; i < _FakeDeck.StartNBCards; i++)
-                DrawCard();
-        }
+        CreateDeck();
+        CreateHand(_StartingCardNb);
+        
 
         QuestManager.ValidQuest.AddListener(TrackWinCondition);
         GameManager.CardPlaced.AddListener(CardPlayedThenDraw);
+
+        GameFlowManager.HandLoaded.Invoke();
+        print("ok");
     }
 
     #region Deck and hand alteration
@@ -207,6 +197,7 @@ public class HandManager : MonoBehaviour
     /// Create a prediffined deck
     /// </summary>
     /// <param name="pDeck"></param>
+    [HideInInspector]
     public void CreateDeck(Tuple<BiomeType, int>[] pDeck)
     {
         ClearDeck();
@@ -227,6 +218,15 @@ public class HandManager : MonoBehaviour
                 lIdx++;
             }
         }
+    }
+
+    [HideInInspector]
+    public void CreateHand(int pNBCards)
+    {
+        ClearHand();
+
+        for (int i = 0; i < pNBCards; i++)
+            DrawCard();
     }
 
     /// <summary>
@@ -250,6 +250,19 @@ public class HandManager : MonoBehaviour
         int lChildCount = _DeckContainer.transform.childCount;
         for (int i = 0; i < lChildCount; i++)
             Destroy(_DeckContainer.transform.GetChild(i).gameObject);
+    }
+
+    private void ClearHand()
+    {
+        _CardInHand = 0;
+
+        int lLength = _HandContainer.transform.childCount;
+        for (int i = 0; i < lLength; i++)
+            Destroy(_HandContainer.transform.GetChild(i).gameObject);
+
+        lLength = _AvailableCardSlots.Length;
+        for (int i = 0; i < lLength; i++)
+            _AvailableCardSlots[i] = true;
     }
 
     private void CardSlot()
