@@ -55,7 +55,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
             int lLength = _Displays.Length;
             for (int i = 0; i < lLength; i++)
-                Destroy(_Displays[i].transform);
+                Destroy(_Displays[i].gameObject);
         }
 
         private void Enable()

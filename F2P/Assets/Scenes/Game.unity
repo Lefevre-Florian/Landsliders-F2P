@@ -710,13 +710,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MaxGameEventsNumber: 3
-  _GameEventChance: 0
-  _MaxEtheralRiftsNumber: 4
+  _GameEventChance: 1
+  _MaxEtheralRiftsNumber: 0
   _MaxDragonLairsNumber: 0
   _MaxWitchesNumber: 0
   _MaxWispsNumber: 0
   _MaxGoblinTreasuresNumber: 0
-  _MaxMistsNumber: 0
+  _MaxMistsNumber: 1
   _EtheralRift: {fileID: 8149821949770973124, guid: 806f15beba4f9e04eb9bd269db15f90f, type: 3}
   _DragonLair: {fileID: 6087476990557836528, guid: 32c0595fe4bed8144b59f4e1c9421115, type: 3}
   _Witch: {fileID: 1284007911230468281, guid: e33e8248a04cd5642a3d41315b9fb62b, type: 3}
