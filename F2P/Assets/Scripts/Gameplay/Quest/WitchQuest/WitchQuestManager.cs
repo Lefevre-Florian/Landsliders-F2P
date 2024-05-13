@@ -18,7 +18,8 @@ public class WitchQuestManager : MonoBehaviour
         NONE,
         AlignSwampQuest,
         SurviveSwampQuest,
-        FrozenLake
+        FrozenLake,
+        SurviveCenterQuest
     }
 
     private void Start()
@@ -36,7 +37,7 @@ public class WitchQuestManager : MonoBehaviour
 
             currentQuest = (WitchQuestsEnum)Enum.Parse(typeof(WitchQuestsEnum), lQuestsArray[rand]);
         }
-
+        if (currentQuest == WitchQuestsEnum.SurviveCenterQuest) SurviveCenterWitchQuest.StartEvent.Invoke();
         Debug.Log(currentQuest);
     }
 
