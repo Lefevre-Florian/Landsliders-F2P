@@ -7,6 +7,7 @@ using UnityEngine;
 
 using System;
 using System.Collections.Generic;
+using com.isartdigital.f2p.manager;
 
 
 // Author (CR) : Elias Dridi
@@ -80,6 +81,8 @@ public class HandManager : MonoBehaviour
         {
             DrawCard();
         }
+
+        QuestManager.ValidQuest.AddListener(TrackWinCondition);
         GameManager.CardPlaced.AddListener(CardPlayedThenDraw);
     }
 
@@ -116,7 +119,9 @@ public class HandManager : MonoBehaviour
         }
         else
         {
-            if (_CardInHand == 0) Hud.GetInstance().Lose();
+            if (_CardInHand == 0)
+                GameManager.GetInstance()
+                           .SetModeGameover();
         }
     }
 
@@ -225,10 +230,7 @@ public class HandManager : MonoBehaviour
         DrawCard();
     }
 
-    /// <summary>
-    /// TO MOVE AFTER FULL FLOW IMPLEMENTATION
-    /// </summary>
-    private void SetModeWin()
+    private void TrackWinCondition()
     {
         int lMax = 0;
         int lLength = _BiomePlayedTracking.Count;
@@ -249,10 +251,13 @@ public class HandManager : MonoBehaviour
     private void OnDestroy()
     {
         if (_Instance == this)
-            return;
+        {
 
-        _Instance = null;
-        GameManager.CardPlaced.RemoveListener(CardPlayedThenDraw);
+            _Instance = null;
+
+            QuestManager.ValidQuest.RemoveListener(TrackWinCondition);
+            GameManager.CardPlaced.RemoveListener(CardPlayedThenDraw);
+        }
     }
 }
 
