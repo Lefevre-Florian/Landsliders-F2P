@@ -62,7 +62,7 @@ namespace Com.IsartDigital.F2P.FTUE
             _GridManager = GridManager.GetInstance();
         }
 
-        private void UpdatePhase()
+        public void UpdatePhase()
         {
             _PhaseID += 1;
             _TurnIdx = -1;

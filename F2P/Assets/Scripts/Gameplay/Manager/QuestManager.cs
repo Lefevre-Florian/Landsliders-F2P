@@ -22,7 +22,9 @@ namespace com.isartdigital.f2p.manager
             FieldQuest,
             FlyingIslandQuest,
             CardQuest,
-            VortexQuest
+            VortexQuest,
+
+            FTUE
         }
 
         private void Awake()
