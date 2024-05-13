@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7684073175427262826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5740343852598720198}
+  m_Layer: 0
+  m_Name: Layers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5740343852598720198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7684073175427262826}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4332480486215935314}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &615016316167894531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: m_Name
-      value: Volcan
+      value: PRB_Biome_Volcan
       objectReference: {fileID: 0}
     - target: {fileID: 8295392945309103686, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: _Type
@@ -88,6 +119,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
       addedObject: {fileID: 801218468649840049}
+    - targetCorrespondingSourceObject: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5740343852598720198}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
@@ -101,6 +135,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7230458385552713416}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4759694817511133440}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3287015596430958360}
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4598724416907114331}
@@ -122,12 +162,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe52d472d6ff8bf4abf26fc0d5035303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _GridDirection: 8
+  _GridDirection: 4
+  _Range: 1
   _ChanceOfModification: 100
   _ChangeRatio: 100
   _BiomeTypeToReplace: 0000000001000000020000000400000005000000060000000700000008000000
   _IsRandomReplace: 0
-  _SubstitutionBiome: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+  _SubstitutionBiome: 0
 --- !u!114 &4029001507541559187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,8 +209,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NbAffected: 8
-  _IsRemoving: 1
-  _NbTurn: 0
+  _Type: -1
+  _DestroyEffectWithInstance: 1
 --- !u!114 &7230458385552713416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +242,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - time: 1
+    method:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4759694817511133440}
+          m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeOracle, Assembly-CSharp
+          m_MethodName: StartPrediction
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - time: 0
     method:
       m_PersistentCalls:
@@ -208,7 +265,7 @@ MonoBehaviour:
         - m_Target: {fileID: 4029001507541559187}
           m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomePlayerContact,
             Assembly-CSharp
-          m_MethodName: ComputeCollision
+          m_MethodName: ComputeAOECollision
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -234,7 +291,32 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeGridModifier,
             Assembly-CSharp
           m_MethodName: UpdateNeigbourhood
-          m_Mode: 3
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 4598724416907114331}
+          m_TargetAssemblyTypeName: com.isartdigital.f2p.gameplay.quest.VolcanQuest,
+            Assembly-CSharp
+          m_MethodName: ValidQuest
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 4759694817511133440}
+          m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeOracle, Assembly-CSharp
+          m_MethodName: StopPrediction
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -244,6 +326,37 @@ MonoBehaviour:
             m_BoolArgument: 1
           m_CallState: 2
   _Label: {fileID: 0}
+--- !u!114 &4759694817511133440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3912905057911434000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e51f4feaba20634cb243f1c16899e09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _LayerContainer: {fileID: 5740343852598720198}
+  _FeedbackLayer: {fileID: 7488741472889718749, guid: 006fec806a740ca46b94333a90b61fee, type: 3}
+  _SupplierComponent: {fileID: 1045741457130915142}
+  _StartAtReady: 0
+--- !u!114 &3287015596430958360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3912905057911434000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2e44949eb89dd4aa12f1ba1357509d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Renderer: {fileID: 105223767021252279}
+  _CardLayer: {fileID: 21300000, guid: 2ccb2101866e215478d752d343323433, type: 3}
+  _MoveLayer: {fileID: 21300000, guid: f4e19aa3433b6f04f911e4407cdcfe1d, type: 3}
 --- !u!114 &4598724416907114331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,6 +455,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+--- !u!212 &105223767021252279 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5240019529883761956, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+  m_PrefabInstance: {fileID: 5318079953205351315}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &801218468649840049 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4815441437027302946, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}

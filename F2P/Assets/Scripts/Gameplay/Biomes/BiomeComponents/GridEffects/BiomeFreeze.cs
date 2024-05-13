@@ -7,10 +7,11 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.Biomes
 {
     [RequireComponent(typeof(Biome))]
-    public class BiomeFreeze : MonoBehaviour
+    public class BiomeFreeze : MonoBehaviour, IBiomeSupplier
     {
         [Header("Design")]
         [SerializeField] private BiomeType[] _StoppingBiome = new BiomeType[] { BiomeType.Canyon };
@@ -36,11 +37,37 @@ namespace Com.IsartDigital.F2P.Biomes
             _GridManager = GridManager.GetInstance();
         }
 
-        public void Spread()
+        public void Spread() => PerformSpreading(ComputeTarget());
+
+        public void Spread(MonoBehaviour pSupplier)
+        {
+            if (pSupplier is IBiomeSupplier)
+                PerformSpreading((pSupplier as IBiomeSupplier).SupplyBiomes()[0]);
+            else
+                Debug.LogError($"Must be of type : {typeof(IBiomeSupplier)}");
+        }
+
+        [HideInInspector]
+        public Vector2[] SupplyBiomes() => new Vector2[] { ComputeTarget() };
+
+        private void PerformSpreading(Vector2 pTarget)
+        {
+            if (pTarget == -Vector2.one)
+                return;
+
+            Biome lBiome = _GridManager.GetCardByGridCoordinate(pTarget);
+
+            lBiome.AddComponent<BiomeFreeze>();
+            lBiome.GetComponent<Biome>().locked = true;
+
+            Instantiate(_VFXFrozen, lBiome.transform);
+        }
+
+        private Vector2 ComputeTarget()
         {
             List<Biome> lBiomes = _GridManager.Biomes;
             if (lBiomes.Count == 0)
-                return;
+                return -Vector2.one;
 
             // Add condition to the spread
             lBiomes.RemoveAll(x => !x.CanBeReplaced);
@@ -50,14 +77,10 @@ namespace Com.IsartDigital.F2P.Biomes
 
             // Recheck biomes states after every conditions were applied
             if (lBiomes.Count == 0)
-                return;
+                return -Vector2.one;
 
             int lIdx = UnityEngine.Random.Range(0, lBiomes.Count);
-            
-            lBiomes[lIdx].AddComponent<BiomeFreeze>();
-            lBiomes[lIdx].GetComponent<Biome>().locked = true;
-
-            Instantiate(_VFXFrozen, lBiomes[lIdx].transform);
+            return lBiomes[lIdx].GridPosition;
         }
 
         private void Enable()

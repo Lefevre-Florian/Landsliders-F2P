@@ -1,5 +1,7 @@
 using Com.IsartDigital.F2P.FileSystem;
+
 using System;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +16,9 @@ namespace Com.IsartDigital.F2P.UI.Screens
         [SerializeField] private RectTransform _Container = null;
         [SerializeField] private GameObject _CardButtonPrefab = null;
 
-        [SerializeField] private GameObject[] _Debug = new GameObject[0];
+        [Space(5)]
+        [SerializeField] private UpgradeScreen _UpgradeScreen = null;
+        [SerializeField] private ConsentAskScreen _ConsentScreen = null;
 
         // Variables
         private bool _Loaded = false;
@@ -24,7 +28,7 @@ namespace Com.IsartDigital.F2P.UI.Screens
             if (!_Loaded)
             {
                 _Loaded = true;
-                CreateLayout(_Debug);
+                CreateLayout();
             }
         }
 
@@ -38,7 +42,7 @@ namespace Com.IsartDigital.F2P.UI.Screens
             _Container.sizeDelta = new Vector2(_Container.sizeDelta.x, lHeight);
         }
 
-        private void CreateLayout(GameObject[] pCards)
+        private void CreateLayout()
         {
             CustomCardButton lCard;
 
@@ -47,7 +51,7 @@ namespace Com.IsartDigital.F2P.UI.Screens
             for (int i = 0; i < lLength; i++)
             {
                 lCard = Instantiate(_CardButtonPrefab, _Container).GetComponent<CustomCardButton>();
-                lCard.Enable(Save.data.cards[i], _Debug[i]);
+                lCard.Enable(Save.data.cards[i], _UpgradeScreen, _ConsentScreen);
             }
         }
     }
