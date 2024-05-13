@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: FTUE-01
   m_EditorClassIdentifier: 
   Map0:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3667428915726666856, guid: dd4cbe3675d65774ba30060468879427, type: 3}
+  - {fileID: 3667428915726666856, guid: dd4cbe3675d65774ba30060468879427, type: 3}
+  - {fileID: 3667428915726666856, guid: dd4cbe3675d65774ba30060468879427, type: 3}
   Map1:
   - {fileID: 3307112218122664447, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
   - {fileID: 1215226676069808110, guid: 6d8af7ce6b1c1004ca1bee3ff37e99b0, type: 3}
-  - {fileID: 0}
+  - {fileID: 3667428915726666856, guid: dd4cbe3675d65774ba30060468879427, type: 3}
   Map2:
-  - {fileID: 0}
+  - {fileID: 3667428915726666856, guid: dd4cbe3675d65774ba30060468879427, type: 3}
   - {fileID: 7305934453097383714, guid: e09688d49f55b4447bec5e0f20188ea6, type: 3}
-  - {fileID: 0}
+  - {fileID: 3667428915726666856, guid: dd4cbe3675d65774ba30060468879427, type: 3}
