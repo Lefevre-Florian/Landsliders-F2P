@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Purchasing.Extension;
 using UnityEngine.Purchasing;
+using UnityEditor;
+using Com.IsartDigital.F2P;
+using Com.IsartDigital.F2P.FileSystem;
 
 public class ShopManager : MonoBehaviour
 {
-    private int _HardCurrency = 0;
-
+    
     public void BuyHardCurrency(UnityEngine.Purchasing.Product pProduct)
     {
-        _HardCurrency += (int)pProduct.definition.payout.quantity;
-        print(_HardCurrency);
+        Save.data.hardcurrency += (int)pProduct.definition.payout.quantity;
+        DatabaseManager.GetInstance().WriteDataToSaveFile();
     }
 
     public void OnPurchaseComplete(UnityEngine.Purchasing.Product pProduct)

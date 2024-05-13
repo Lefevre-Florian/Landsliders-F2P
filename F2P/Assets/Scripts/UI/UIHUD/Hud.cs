@@ -24,10 +24,14 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
         [Header("Sub-screens")]
         [SerializeField] private Transform _PauseScreen = null;
         [SerializeField] private Transform _LoseScreen = null;
+        [SerializeField] private Transform _WinScreen = null;
 
         [Header("Scene management")]
         [SerializeField] private int _MainMenuIDX = 0;
         [SerializeField] private bool _UseLoadingScreen = false;
+
+        // Variables
+        private GameManager _GameManager = null;
 
         private void Awake()
         {
@@ -39,7 +43,13 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
             _Instance = this;
         }
 
-        private void Start() => _PauseScreen.gameObject.SetActive(false);
+        private void Start()
+        {
+            _GameManager = GameManager.GetInstance();
+            _GameManager.OnGameover += DisplayGameEndPanel;
+
+            _PauseScreen.gameObject.SetActive(false);
+        }
 
         public void Pause()
         {
@@ -57,10 +67,14 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
 
         public void MainMenu() => LoadScene(_MainMenuIDX);
 
-        public void Lose()
+        private void DisplayGameEndPanel(bool pStatus)
         {
             _PauseButton.SetActive(false);
-            _LoseScreen.gameObject.SetActive(true);
+
+            if (pStatus)
+                _WinScreen.gameObject.SetActive(true);
+            else
+                _LoseScreen.gameObject.SetActive(true);
         }
 
         private void LoadScene(int pSceneIDX)
@@ -75,8 +89,12 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
         private void OnDestroy()
         {
             if (_Instance == this)
+            {
                 _Instance = null;
-        }
 
+                _GameManager.OnGameover -= DisplayGameEndPanel;
+                _GameManager = null;
+            }
+        }
     }
 }

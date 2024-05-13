@@ -1,4 +1,5 @@
 using Com.IsartDigital.F2P.FileSystem;
+using Com.IsartDigital.F2P.UI.Screens;
 
 using System;
 using System.Linq;
@@ -8,6 +9,7 @@ using TMPro;
 
 using UnityEngine;
 using UnityEngine.UI;
+
 
 // Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.UI
@@ -45,7 +47,10 @@ namespace Com.IsartDigital.F2P.UI
 
         private int _ID = 0;
 
-        private TexturePhotographer _3DModelRenderer = null;
+        private GameObject _Prefab = null;
+
+        private UpgradeScreen _UpgradeScreen = null;
+        private ConsentAskScreen _ConsentScreen = null;
 
         private bool _Loaded = false;
 
@@ -58,7 +63,7 @@ namespace Com.IsartDigital.F2P.UI
                 Draw();
         }
 
-        public void Enable(int pId)
+        public void Enable(int pId, UpgradeScreen pUpgradeScreen, ConsentAskScreen pConsentScreen)
         {
             _ID = pId;
 
@@ -68,20 +73,40 @@ namespace Com.IsartDigital.F2P.UI
             _Description = lResult[1].ToString();
             _FragmentRequired = Convert.ToInt32(lResult[2]);
 
-            _3DModelRenderer = TexturePhotographer.GetInstance();
+            TexturePhotographer l3DModelRenderer = TexturePhotographer.GetInstance();
             _Image = GetComponent<RawImage>();
 
-            _Image.texture = _3DModelRenderer.CreateTextureBiome(ImageSize, 
-                                                                 Save.data.cardPrefabs[Save.data.cards.ToList().IndexOf(pId)].transform.GetChild(0).gameObject,
+            _Prefab = Save.data.cardPrefabs[Save.data.cards.ToList().IndexOf(pId)].transform.GetChild(0).gameObject;
+            _Image.texture = l3DModelRenderer.CreateTextureBiome(ImageSize, 
+                                                                 _Prefab,
                                                                  new Vector2(.5f, .5f));
 
             Draw();
 
+            _UpgradeScreen = pUpgradeScreen;
+            _ConsentScreen = pConsentScreen;
+
             _Loaded = true;
         }
 
-        public void Upgrade()
+        #region Upgrade
+        public void RequestUpgrade()
         {
+            _ConsentScreen.Open();
+            _ConsentScreen.OnValidate += Upgrade;
+            _ConsentScreen.OnCanceled += ClearUpgrade;
+        }
+
+        private void ClearUpgrade()
+        {
+            _ConsentScreen.OnValidate -= Upgrade;
+            _ConsentScreen.OnCanceled -= ClearUpgrade;
+        }
+        
+        private void Upgrade()
+        {
+            ClearUpgrade();
+
             DatabaseManager lDatabase = DatabaseManager.GetInstance();
             List<object> lResult = lDatabase.GetRow(CMD_UPGRADE_QUERY + _ID + ")");
 
@@ -107,7 +132,10 @@ namespace Com.IsartDigital.F2P.UI
                                                                                        { TRACKER_TOTAL_PLAYTIME, lDuration.Hours + ":" + lDuration.Minutes} });
 
             Draw();
+            _UpgradeScreen.Open();
+            _UpgradeScreen.SetContent(_Description, _Prefab);
         } 
+        #endregion
 
         private void Draw()
         {
@@ -132,9 +160,6 @@ namespace Com.IsartDigital.F2P.UI
                 _LockedStateOverlay.gameObject.SetActive(true);
         }
 
-        private void OnDestroy()
-        {
-            _3DModelRenderer = null;
-        }
+        private void OnDestroy() => ClearUpgrade();
     }
 }
