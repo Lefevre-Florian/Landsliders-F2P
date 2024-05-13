@@ -139,6 +139,7 @@ public class GameManager : MonoBehaviour
 
     public void SetModeMovingPlayer()
     {
+        print("Played");
         currentState = State.MovingPlayer;
         playerCanMove = true;
     }

@@ -1,4 +1,9 @@
+using com.isartdigital.f2p.gameplay.manager;
+using Com.IsartDigital.F2P.Biomes;
+
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using UnityEngine;
 
@@ -24,13 +29,16 @@ namespace Com.IsartDigital.F2P.FTUE
         [SerializeField][Range(1, 3)] private int _PhaseID = 1;
         [SerializeField] private FTUEPhaseSO[] _Phase = null;
 
+        // Variables
+        private GameManager _GameManager = null;
+        private GridManager _GridManager = null;
+
+        private int _TurnIdx = 0;
+
         // Get & Set
         public FTUEPhaseSO CurrentPhase { get { return _Phase[_PhaseID - 1]; } }
 
         public int CurrentPhaseID { get { return _PhaseID; } }
-
-        // Events
-        public event Action OnPhaseUpdated;
 
         private void Awake()
         {
@@ -45,35 +53,81 @@ namespace Com.IsartDigital.F2P.FTUE
             GameFlowManager.HandLoaded.AddListener(UpdateHand);
         }
 
+        private void Start()
+        {
+            _GameManager = GameManager.GetInstance();
+            _GameManager.OnTurnPassed += UpdateTurn;
+            _GameManager.OnEffectPlayed += PlayEffect;
+
+            _GridManager = GridManager.GetInstance();
+        }
+
         private void UpdatePhase()
         {
             _PhaseID += 1;
+            _TurnIdx = -1;
+
             if (_PhaseID > _Phase.Length)
                 _PhaseID = _Phase.Length;
 
-            OnPhaseUpdated?.Invoke();
+            UpdateTurn();
         }
 
         private void UpdatePlayer() => Player.GetInstance().SetPosition(CurrentPhase.StartPosition);
 
         private void UpdateHand()
         {
-            print("ko");
             HandManager lHand = HandManager.GetInstance();
             lHand.CreateDeck(CurrentPhase.Deck);
             lHand.CreateHand(CurrentPhase.StartNBCards);
         }
 
-        private void UpdateGrid()
+        private void UpdateTurn() 
         {
+            _TurnIdx += 1;
 
+            List<Phase> lPhases = CurrentPhase.Phases.ToList().FindAll(x => !x.isLinkedBiomeEffect && x.triggerTurn == _TurnIdx);
+            if (lPhases != null && lPhases.Count > 0)
+                UpdateGrid(lPhases);
         }
+
+        private void PlayEffect(int pID)
+        {
+            List<Phase> lPhases = CurrentPhase.Phases.ToList().FindAll(x => x.isLinkedBiomeEffect && x.effectID == pID);
+            if (lPhases != null && lPhases.Count > 0)
+                UpdateGrid(lPhases);
+        }
+
+        private void UpdateGrid(List<Phase> pPhases)
+        {
+            Biome lBiome;
+            int lLength = pPhases.Count;
+            for (int i = 0; i < lLength; i++)
+            {
+                _GridManager.ReplaceAtIndex(pPhases[i].position,
+                                            CardPrefabDic.GetPrefab(pPhases[i].type).transform);
+                lBiome = _GridManager.GetCardByGridCoordinate(pPhases[i].position);
+
+                if (lBiome.Type == BiomeType.volcan)
+                    lBiome.GetComponent<BiomeTimer>().SetCurrentTimer(1);
+                else if (lBiome.Type == BiomeType.desert)
+                    lBiome.locked = true;
+            }
+        }
+
 
         private void OnDestroy()
         {
             if (_Instance == this)
             {
                 _Instance = null;
+
+                if (_GameManager != null)
+                {
+                    _GameManager.OnTurnPassed -= UpdateTurn;
+                    _GameManager.OnEffectPlayed -= PlayEffect;
+                }
+                _GameManager = null;
 
                 GameFlowManager.PlayerLoaded.RemoveListener(UpdatePlayer);
                 GameFlowManager.HandLoaded.RemoveListener(UpdateHand);

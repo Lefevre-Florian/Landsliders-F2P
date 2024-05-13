@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 930c4e2eaed957344896bfa34b0340db, type: 3}
-  m_Name: FTUE-03
+  m_Name: FTUE
   m_EditorClassIdentifier: 
   Map0:
   - {fileID: 3667428915726666856, guid: dd4cbe3675d65774ba30060468879427, type: 3}
   - {fileID: 3667428915726666856, guid: dd4cbe3675d65774ba30060468879427, type: 3}
   - {fileID: 3667428915726666856, guid: dd4cbe3675d65774ba30060468879427, type: 3}
   Map1:
-  - {fileID: 7305934453097383714, guid: e09688d49f55b4447bec5e0f20188ea6, type: 3}
-  - {fileID: 8817954561399897485, guid: d9dd62ae092e4504ba99f2f8f7402a37, type: 3}
-  - {fileID: 7305934453097383714, guid: e09688d49f55b4447bec5e0f20188ea6, type: 3}
+  - {fileID: 3307112218122664447, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+  - {fileID: 3307112218122664447, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+  - {fileID: 3667428915726666856, guid: dd4cbe3675d65774ba30060468879427, type: 3}
   Map2:
-  - {fileID: 7305934453097383714, guid: e09688d49f55b4447bec5e0f20188ea6, type: 3}
-  - {fileID: 7305934453097383714, guid: e09688d49f55b4447bec5e0f20188ea6, type: 3}
-  - {fileID: 7305934453097383714, guid: e09688d49f55b4447bec5e0f20188ea6, type: 3}
+  - {fileID: 3667428915726666856, guid: dd4cbe3675d65774ba30060468879427, type: 3}
+  - {fileID: 3667428915726666856, guid: dd4cbe3675d65774ba30060468879427, type: 3}
+  - {fileID: 3667428915726666856, guid: dd4cbe3675d65774ba30060468879427, type: 3}

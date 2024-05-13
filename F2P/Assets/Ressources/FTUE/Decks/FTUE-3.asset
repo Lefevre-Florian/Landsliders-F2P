@@ -23,3 +23,49 @@ MonoBehaviour:
       quantity: 2
   _StartNBCards: 4
   _StartPosition: {x: 1, y: 1}
+  _Phases:
+  - triggerTurn: 0
+    position: {x: 0, y: 0}
+    type: 4
+    isLinkedBiomeEffect: 0
+    effectID: -1
+  - triggerTurn: 0
+    position: {x: 0, y: 1}
+    type: 4
+    isLinkedBiomeEffect: 0
+    effectID: -1
+  - triggerTurn: 0
+    position: {x: 1, y: 0}
+    type: 4
+    isLinkedBiomeEffect: 0
+    effectID: -1
+  - triggerTurn: 0
+    position: {x: 2, y: 0}
+    type: 4
+    isLinkedBiomeEffect: 0
+    effectID: -1
+  - triggerTurn: 0
+    position: {x: 2, y: 1}
+    type: 4
+    isLinkedBiomeEffect: 0
+    effectID: -1
+  - triggerTurn: 0
+    position: {x: 1, y: 1}
+    type: 2
+    isLinkedBiomeEffect: 1
+    effectID: 10
+  - triggerTurn: 1
+    position: {x: 2, y: 1}
+    type: 2
+    isLinkedBiomeEffect: 1
+    effectID: 10
+  - triggerTurn: 2
+    position: {x: 0, y: 1}
+    type: 2
+    isLinkedBiomeEffect: 1
+    effectID: 10
+  - triggerTurn: 3
+    position: {x: 1, y: 0}
+    type: 2
+    isLinkedBiomeEffect: 1
+    effectID: 10

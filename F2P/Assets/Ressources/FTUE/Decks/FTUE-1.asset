@@ -25,3 +25,7 @@ MonoBehaviour:
       quantity: 4
   _StartNBCards: 1
   _StartPosition: {x: 0, y: 1}
+  _Phases:
+  - triggerTurn: 0
+    position: {x: 1, y: 0}
+    type: 4

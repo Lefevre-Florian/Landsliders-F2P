@@ -87,7 +87,6 @@ public class HandManager : MonoBehaviour
         GameManager.CardPlaced.AddListener(CardPlayedThenDraw);
 
         GameFlowManager.HandLoaded.Invoke();
-        print("ok");
     }
 
     #region Deck and hand alteration

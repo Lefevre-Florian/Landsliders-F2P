@@ -20,6 +20,10 @@ namespace Com.IsartDigital.F2P.FTUE
         [Header("Player")]
         [SerializeField] private Vector2 _StartPosition = Vector2.one;
 
+        [Space(5)]
+        [Header("Flow")]
+        [SerializeField] private Phase[] _Phases = null;
+
         public int FTUEPhase { get { return _FTUEPhase; } }
 
         /// FTUE DECK
@@ -38,6 +42,9 @@ namespace Com.IsartDigital.F2P.FTUE
 
         /// FTUE PLAYER
         public Vector2 StartPosition { get { return _StartPosition; } }
+
+        /// FTUE Flow
+        public Phase[] Phases { get { return _Phases; } }
     }
 
     [Serializable]
@@ -51,5 +58,16 @@ namespace Com.IsartDigital.F2P.FTUE
     {
         public BiomeType type = default;
         [Min(1)] public int quantity = 1;
+    }
+
+    [Serializable]
+    public class Phase
+    {
+        public int triggerTurn;
+        public Vector2 position;
+        public BiomeType type = default;
+
+        public bool isLinkedBiomeEffect = false;
+        public int effectID = -1;
     }
 }

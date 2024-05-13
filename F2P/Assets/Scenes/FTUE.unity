@@ -185,23 +185,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8372841694036601837, guid: ddc7a0c9470b72144b00fbc095576ba5, type: 3}
   m_PrefabInstance: {fileID: 1087800625}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &226590745 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7291853324815534500, guid: cd2991d2c7e688c46ad73a5158eae7e7, type: 3}
-  m_PrefabInstance: {fileID: 5228520700684496751}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &226590749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 226590745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c916c829d4fab4549b8ad6a9e33a630d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &564700396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -655,7 +638,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1061210644}
-  - component: {fileID: 1061210645}
   - component: {fileID: 1061210646}
   - component: {fileID: 1061210647}
   - component: {fileID: 1061210648}
@@ -681,28 +663,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1061210645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1061210643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccfec35685b579b44a97b759d08db856, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _MaxCardStocked: 12
-  _Player: {fileID: 6110220630346872215, guid: fc2c9f220e004af41a39e714ffc80dfa, type: 3}
-  _BasePlayerGridPos: {x: 1, y: 1}
-  _SecondsBetweenEachPriorityExecution: 0.1
-  cardPlayed: 0
-  playerMoved: 0
-  playerCanMove: 0
-  currentState: 0
-  _LastCardPlayed: {fileID: 0}
-  randomEventObjects: []
 --- !u!114 &1061210646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1299,6 +1259,60 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+--- !u!1 &1584301607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1584301609}
+  - component: {fileID: 1584301608}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!114 &1584301608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584301607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccfec35685b579b44a97b759d08db856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MaxCardStocked: 12
+  _Player: {fileID: 6110220630346872215, guid: fc2c9f220e004af41a39e714ffc80dfa, type: 3}
+  _BasePlayerGridPos: {x: 1, y: 1}
+  _SecondsBetweenEachPriorityExecution: 0.1
+  cardPlayed: 0
+  playerMoved: 0
+  playerCanMove: 0
+  currentState: 0
+  _LastCardPlayed: {fileID: 0}
+  randomEventObjects: []
+--- !u!4 &1584301609
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584301607}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1587467352 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
@@ -1501,7 +1515,7 @@ PrefabInstance:
     - target: {fileID: 1091581421771125744, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1061210645}
+      objectReference: {fileID: 0}
     - target: {fileID: 4276773080372793231, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1672,10 +1686,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7291853324815534500, guid: cd2991d2c7e688c46ad73a5158eae7e7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 226590749}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd2991d2c7e688c46ad73a5158eae7e7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -1683,6 +1694,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1088435683}
   - {fileID: 1060975888}
+  - {fileID: 1584301609}
   - {fileID: 1061210644}
   - {fileID: 1471252759428463884}
   - {fileID: 706180343}
