@@ -8,14 +8,15 @@ using UnityEngine;
 
 public class CardPrefabDic : MonoBehaviour
 {
-    [SerializeField] CTGODic _Biomes;
+    [SerializeField] private CTGODic _Biomes;
+    [SerializeField] private bool _ForceList = false;
 
     private static Dictionary<BiomeType, GameObject> prefabDic;
     private static List<GameObject> prefabList;
 
     private void Awake()
     {
-        if(Save.data == null)
+        if(Save.data == null || _ForceList)
         {
             prefabDic = _Biomes.ToDic();
             prefabList = _Biomes.ToList();

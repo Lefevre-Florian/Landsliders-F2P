@@ -1,14 +1,14 @@
-using Com.IsartDigital.F2P.UI.UIHUD;
 using com.isartdigital.f2p.gameplay.quest;
 using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P;
+using com.isartdigital.f2p.manager;
+
+using Com.IsartDigital.F2P.FTUE;
 
 using UnityEngine;
 
 using System;
 using System.Collections.Generic;
-using com.isartdigital.f2p.manager;
-
 
 // Author (CR) : Elias Dridi
 public class HandManager : MonoBehaviour
@@ -62,6 +62,12 @@ public class HandManager : MonoBehaviour
     [SerializeField] private GameObject _DeckContainer;
     [SerializeField] private GameObject _HandContainer;
 
+    [Space(5)]
+    [Header("Deck")]
+    [SerializeField] private DeckSO _FakeDeck = null;
+
+    // Variables
+
     [HideInInspector] public Vector2 _ScreenSizeInGameUnit;
     [HideInInspector] public Vector2 _GridSize;
 
@@ -72,29 +78,29 @@ public class HandManager : MonoBehaviour
     public int _TotalCards { get { return _Deck.Length + _CardInHand; } }
 
     private List<Tuple<BiomeType, int>> _BiomePlayedTracking = new List<Tuple<BiomeType, int>>();
+
     
     private void Start()
     {
         CardSlot();
-        CreateDeck();
-        for (int i = 0; i < _StartingCardNb; i++)
+        if(_FakeDeck == null)
         {
-            DrawCard();
+            CreateDeck();
+            for (int i = 0; i < _StartingCardNb; i++)
+                DrawCard();
+        }
+        else
+        {
+            CreateDeck(_FakeDeck.Deck);
+            for (int i = 0; i < _FakeDeck.StartNBCards; i++)
+                DrawCard();
         }
 
         QuestManager.ValidQuest.AddListener(TrackWinCondition);
         GameManager.CardPlaced.AddListener(CardPlayedThenDraw);
     }
 
-    public void TrackBiome(BiomeType pType)
-    {
-        int lIndex = _BiomePlayedTracking.FindIndex(x => x.Item1 == pType);
-        if (lIndex == -1)
-            _BiomePlayedTracking.Add(new Tuple<BiomeType, int>(pType, 1));
-        else
-            _BiomePlayedTracking[lIndex] = new Tuple<BiomeType, int>(pType, _BiomePlayedTracking[lIndex].Item2 + 1);
-    }
-
+    #region Deck and hand alteration
     public void DrawCard()
     {
         if (_Deck.Length >= 1)
@@ -123,6 +129,12 @@ public class HandManager : MonoBehaviour
                 GameManager.GetInstance()
                            .SetModeGameover();
         }
+    }
+    
+    public void CardPlayedThenDraw()
+    {
+        _CardInHand--;
+        DrawCard();
     }
 
     public void BurnCard(int pNbCards = 1)
@@ -176,22 +188,68 @@ public class HandManager : MonoBehaviour
         Array.Copy(_Deck, index + 1, _Deck, index, _Deck.Length - index - 1);
         Array.Resize(ref _Deck, _Deck.Length - 1);
     }
+    #endregion
 
+    #region Creation and Initialization
+    /// <summary>
+    /// Create a random deck
+    /// </summary>
     private void CreateDeck()
     {
+        ClearDeck();
+
         _Deck = new GameObject[GameManager.GetInstance().cardStocked];
         for (int i = 0; i < _Deck.Length; i++)
             _Deck[i] = CreateCard();
     }
 
-    private GameObject CreateCard()
+    /// <summary>
+    /// Create a prediffined deck
+    /// </summary>
+    /// <param name="pDeck"></param>
+    public void CreateDeck(Tuple<BiomeType, int>[] pDeck)
     {
-        GameObject lCard = Instantiate(CardPrefabDic.GetRandomPrefab());
+        ClearDeck();
+
+        int lLength = pDeck.Length;
+
+        int lTotal = 0;
+        for (int i = 0; i < lLength; i++)
+            lTotal += pDeck[i].Item2;
+
+        int lIdx = 0;
+        _Deck = new GameObject[lTotal];
+        for (int i = 0; i < lLength; i++)
+        {
+            for (int j = 0; j < pDeck[i].Item2; j++)
+            {
+                _Deck[lIdx] = CreateCard(true, pDeck[i].Item1);
+                lIdx++;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Create a card
+    /// </summary>
+    /// <param name="pIsDefined">If the card have a predifined biome attributed to it</param>
+    /// <param name="pType">The type of the biome that will be attached to this card depending of pIsDefined</param>
+    /// <returns></returns>
+    private GameObject CreateCard(bool pIsDefined = false, BiomeType pType = default)
+    {
+        GameObject lCard = Instantiate(pIsDefined ? CardPrefabDic.GetPrefab(pType) : CardPrefabDic.GetRandomPrefab());
         lCard.GetComponent<TEMPCard>().enabled = true;
         lCard.SetActive(false);
         lCard.transform.SetParent(_DeckContainer.transform, true);
 
         return lCard;
+    }
+
+    private void ClearDeck()
+    {
+        int lChildCount = _DeckContainer.transform.childCount;
+        for (int i = 0; i < lChildCount; i++)
+            Destroy(_DeckContainer.transform.GetChild(i).gameObject);
     }
 
     private void CardSlot()
@@ -223,11 +281,16 @@ public class HandManager : MonoBehaviour
             lXArrayIndex++;
         }
     }
+    #endregion
 
-    public void CardPlayedThenDraw()
+    #region Data tracking
+    public void TrackBiome(BiomeType pType)
     {
-        _CardInHand--;
-        DrawCard();
+        int lIndex = _BiomePlayedTracking.FindIndex(x => x.Item1 == pType);
+        if (lIndex == -1)
+            _BiomePlayedTracking.Add(new Tuple<BiomeType, int>(pType, 1));
+        else
+            _BiomePlayedTracking[lIndex] = new Tuple<BiomeType, int>(pType, _BiomePlayedTracking[lIndex].Item2 + 1);
     }
 
     private void TrackWinCondition()
@@ -247,6 +310,7 @@ public class HandManager : MonoBehaviour
 
         DataTracker.GetInstance().SendAnalytics(TRACKER_NAME, new Dictionary<string, object>() { { TRACKER_BIOME_TYPE_PARAMETER, lMaxUsed } });
     }
+    #endregion
 
     private void OnDestroy()
     {
