@@ -34,7 +34,6 @@ namespace Com.IsartDigital.F2P.Biomes
             for (int i = 0; i < CARDINAL_AOE; i++)
             {
                 lGridPosition = _Biome.GridPosition + (Vector2)(Quaternion.AngleAxis(lAngle * i, Vector3.forward) * Vector3.up);
-                print(lGridPosition + lPlayer.GridPosition);
                 if(lGridPosition == lPlayer.GridPosition)
                 {
                     _OnPlayerCollision?.Invoke();

@@ -21,7 +21,6 @@ namespace com.isartdigital.f2p.gameplay.quest
 
         // Variables (Phase - 2)
         private int _FieldHarvested = 0;
-        private HandManager _HandManager = null;
 
         // Variables (Phase - 3)
         private bool _IsPoisoned = false;
@@ -33,7 +32,8 @@ namespace com.isartdigital.f2p.gameplay.quest
             _GameManager = GameManager.GetInstance();
             _TutorialManager = TutorialManager.GetInstance();
 
-            _GameManager.OnTurnPassed += UnfoldPhase;
+            _GameManager.OnAllEffectPlayed += UnfoldPhase;
+            
         }
 
         private void UnfoldPhase()
@@ -45,13 +45,15 @@ namespace com.isartdigital.f2p.gameplay.quest
                     if(_TutorialManager.Tick + 1 == PHASE_ONE_MAX_TIMER)
                     {
                         _TutorialManager.UpdatePhase();
-                        _HandManager = HandManager.GetInstance();
+
+                        HandManager.OnDeckAltered.AddListener(ObserveFieldHarvesting);
                     }
                     break;
                 case 2:
                     if(_FieldHarvested == MAX_PHASE_TWO_CARD_FIELD)
                     {
                         _TutorialManager.UpdatePhase();
+                        _TutorialManager.UpdatePlayer();
 
                         HandManager.OnDeckAltered.RemoveListener(ObserveFieldHarvesting);
                     }
@@ -67,7 +69,6 @@ namespace com.isartdigital.f2p.gameplay.quest
 
                     if (_IsPoisoned)
                     {
-                        print("Turn number : " + _NbTurn);
                         if(_NbTurn == MAX_PHASE_THREE_SURVIVED)
                         {
                             _TutorialManager.UpdatePhase();
@@ -89,7 +90,7 @@ namespace com.isartdigital.f2p.gameplay.quest
         private void OnDestroy()
         {
             if (_GameManager != null)
-                _GameManager.OnTurnPassed -= UnfoldPhase;
+                _GameManager.OnAllEffectPlayed -= UnfoldPhase;
             _GameManager = null;
 
             HandManager.OnDeckAltered.RemoveListener(ObserveFieldHarvesting);

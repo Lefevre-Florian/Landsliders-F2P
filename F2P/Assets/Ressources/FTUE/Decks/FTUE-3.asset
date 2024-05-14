@@ -29,8 +29,10 @@ MonoBehaviour:
       cards:
       - type: 1
         quantity: 1
+      - type: 4
+        quantity: 1
     updateHand: 0
-  - turn: 1
+  - turn: 2
     deck:
       cards:
       - type: 1

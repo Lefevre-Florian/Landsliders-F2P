@@ -117,8 +117,11 @@ public class HandManager : MonoBehaviour
         else
         {
             if (_CardInHand == 0)
+            {
                 GameManager.GetInstance()
                            .SetModeGameover();
+            }
+                
         }
     }
     
@@ -133,10 +136,18 @@ public class HandManager : MonoBehaviour
         int lRemainingCardToRemove = pNbCards;
         if (lRemainingCardToRemove < _Deck.Length)
         {
-            for (int i = 0; i < lRemainingCardToRemove; i++)
-                Destroy(_DeckContainer.transform.GetChild(UnityEngine.Random.Range(0, _DeckContainer.transform.childCount)).gameObject);
+            List<GameObject> lDeck = _Deck.ToList();
+            int lIdx = 0;
 
-            Array.Resize(ref _Deck, _Deck.Length - lRemainingCardToRemove);
+            for (int i = 0; i < lRemainingCardToRemove; i++)
+            {
+                lIdx = UnityEngine.Random.Range(0, lDeck.Count);
+
+                Destroy(lDeck[lIdx]);
+                lDeck.RemoveAt(lIdx);
+            }
+                
+            _Deck = lDeck.ToArray();
         }
         else
         {
@@ -152,7 +163,10 @@ public class HandManager : MonoBehaviour
 
 
             if (lRemainingCardToRemove > _CardInHand)
+            {
+                print("Burned");
                 GameManager.GetInstance().SetModeGameover();
+            }
             else
             {
                 for (int i = 0; i < lRemainingCardToRemove; i++)
