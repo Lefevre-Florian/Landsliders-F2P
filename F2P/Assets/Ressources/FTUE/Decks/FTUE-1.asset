@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: FTUE-1
   m_EditorClassIdentifier: 
   _FTUEPhase: 1
-  _Deck:
-    cards:
-    - type: 1
-      quantity: 1
-    - type: 0
-      quantity: 1
-    - type: 4
-      quantity: 8
-    - type: 1
-      quantity: 4
+  _Decks:
+  - turn: 0
+    deck:
+      cards:
+      - type: 1
+        quantity: 1
+      - type: 0
+        quantity: 1
+      - type: 4
+        quantity: 8
+      - type: 1
+        quantity: 4
   _StartNBCards: 1
   _StartPosition: {x: 0, y: 1}
   _Phases:

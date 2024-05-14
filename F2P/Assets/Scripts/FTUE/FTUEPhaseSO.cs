@@ -13,7 +13,7 @@ namespace Com.IsartDigital.F2P.FTUE
         [SerializeField][Range(1,3)] private int _FTUEPhase = 1;
 
         [Header("Deck & Hand")]
-        [SerializeField] private Deck _Deck = null;
+        [SerializeField] private TurnDeck[] _Decks = null;
         [SerializeField][Range(1,4)] private int _StartNBCards = 1;
 
         [Space(5)]
@@ -27,16 +27,7 @@ namespace Com.IsartDigital.F2P.FTUE
         public int FTUEPhase { get { return _FTUEPhase; } }
 
         /// FTUE DECK
-        public Tuple<BiomeType, int>[] Deck { 
-            get {
-                int lLength = _Deck.cards.Length;
-                Tuple<BiomeType, int>[] lCards = new Tuple<BiomeType, int>[lLength];
-                for (int i = 0; i < lLength; i++)
-                    lCards[i] = new Tuple<BiomeType, int>(_Deck.cards[i].type,
-                                                          _Deck.cards[i].quantity);
-                return lCards; 
-            } 
-        }
+        public TurnDeck[] Decks { get { return _Decks; } }
 
         public int StartNBCards { get { return _StartNBCards; } }
 
@@ -69,5 +60,12 @@ namespace Com.IsartDigital.F2P.FTUE
 
         public bool isLinkedBiomeEffect = false;
         public int effectID = -1;
+    }
+
+    [Serializable]
+    public class TurnDeck
+    {
+        [Min(0)] public int turn = 0;
+        public Deck deck = null;
     }
 }

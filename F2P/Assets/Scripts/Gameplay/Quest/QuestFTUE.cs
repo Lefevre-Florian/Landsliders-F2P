@@ -64,12 +64,13 @@ namespace com.isartdigital.f2p.gameplay.quest
                     {
                         _IsPoisoned = true;
                         _NbTurn = 0;
-                    }
-                        
+                        return;
+                    }   
 
                     if (_IsPoisoned)
                     {
                         _NbTurn += 1;
+                        print("Turn number : " + _NbTurn);
 
                         if(_NbTurn == MAX_PHASE_THREE_SURVIVED)
                         {

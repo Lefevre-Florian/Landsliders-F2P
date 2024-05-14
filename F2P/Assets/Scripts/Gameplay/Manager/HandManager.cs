@@ -8,6 +8,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using UnityEngine.Events;
+using System.Linq;
 
 // Author (CR) : Elias Dridi
 public class HandManager : MonoBehaviour
@@ -133,7 +134,7 @@ public class HandManager : MonoBehaviour
         if (lRemainingCardToRemove < _Deck.Length)
         {
             for (int i = 0; i < lRemainingCardToRemove; i++)
-                Destroy(_DeckContainer.transform.GetChild(0).gameObject);
+                Destroy(_DeckContainer.transform.GetChild(UnityEngine.Random.Range(0, _DeckContainer.transform.childCount)).gameObject);
 
             Array.Resize(ref _Deck, _Deck.Length - lRemainingCardToRemove);
         }
@@ -155,7 +156,7 @@ public class HandManager : MonoBehaviour
             else
             {
                 for (int i = 0; i < lRemainingCardToRemove; i++)
-                    Destroy(_HandContainer.transform.GetChild(_HandContainer.transform.childCount - 1).gameObject);
+                    Destroy(_HandContainer.transform.GetChild(UnityEngine.Random.Range(0, _HandContainer.transform.childCount)).gameObject);
                 _CardInHand -= lRemainingCardToRemove;
             }
         }
@@ -163,14 +164,17 @@ public class HandManager : MonoBehaviour
 
     public void AddCardToDeck(int pNbCards, bool pIsPredifined = false, BiomeType pType = default)
     {
-        int lStartIdx = _Deck.Length - 1;
-        Array.Resize(ref _Deck, _Deck.Length + pNbCards);
+        List<GameObject> lDeck = _Deck.ToList();
+
+        if(lDeck.Count <= 0)
+            lDeck = new List<GameObject>();
 
         if (TryGetComponent<CardQuest>(out CardQuest cd)) cd.AddCard(pNbCards);
 
-        int lLength = _Deck.Length;
-        for (int i = lStartIdx; i < lLength; i++)
-            _Deck[i] = CreateCard(pIsPredifined, pType);
+        for (int i = 0; i < pNbCards; i++)
+            lDeck.Add(CreateCard(pIsPredifined, pType));
+
+        _Deck = lDeck.ToArray();
     }
 
     public void RemoveAtDeck(int index)
@@ -224,7 +228,6 @@ public class HandManager : MonoBehaviour
     public void CreateHand(int pNBCards)
     {
         ClearHand();
-
         for (int i = 0; i < pNBCards; i++)
             DrawCard();
     }
@@ -321,7 +324,7 @@ public class HandManager : MonoBehaviour
             }
         }
 
-        DataTracker.GetInstance().SendAnalytics(TRACKER_NAME, new Dictionary<string, object>() { { TRACKER_BIOME_TYPE_PARAMETER, lMaxUsed } });
+        DataTracker.GetInstance().SendAnalytics(TRACKER_NAME, new Dictionary<string, object>() { { TRACKER_BIOME_TYPE_PARAMETER, lMaxUsed.ToString() } });
     }
     #endregion
 

@@ -13,14 +13,26 @@ MonoBehaviour:
   m_Name: FTUE-3
   m_EditorClassIdentifier: 
   _FTUEPhase: 3
-  _Deck:
-    cards:
-    - type: 0
-      quantity: 1
-    - type: 1
-      quantity: 3
-    - type: 4
-      quantity: 2
+  _Decks:
+  - turn: 0
+    deck:
+      cards:
+      - type: 0
+        quantity: 1
+      - type: 1
+        quantity: 3
+      - type: 4
+        quantity: 2
+  - turn: 1
+    deck:
+      cards:
+      - type: 1
+        quantity: 1
+  - turn: 1
+    deck:
+      cards:
+      - type: 1
+        quantity: 2
   _StartNBCards: 4
   _StartPosition: {x: 1, y: 1}
   _Phases:
@@ -52,8 +64,8 @@ MonoBehaviour:
   - triggerTurn: 0
     position: {x: 1, y: 1}
     type: 2
-    isLinkedBiomeEffect: 1
-    effectID: 10
+    isLinkedBiomeEffect: 0
+    effectID: 1
   - triggerTurn: 1
     position: {x: 2, y: 1}
     type: 2

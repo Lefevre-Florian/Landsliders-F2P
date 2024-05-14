@@ -89,7 +89,14 @@ namespace Com.IsartDigital.F2P.FTUE
         private void UpdateHand()
         {
             HandManager lHand = HandManager.GetInstance();
-            lHand.CreateDeck(CurrentPhase.Deck);
+
+            int lLength = CurrentPhase.Decks[0].deck.cards.Length;
+            Tuple<BiomeType, int>[] lCards = new Tuple<BiomeType, int>[lLength];
+            for (int i = 0; i < lLength; i++)
+                lCards[i] = new Tuple<BiomeType, int>(CurrentPhase.Decks[0].deck.cards[i].type,
+                                                      CurrentPhase.Decks[0].deck.cards[i].quantity);
+
+            lHand.CreateDeck(lCards);
             lHand.CreateHand(CurrentPhase.StartNBCards);
         }
 
