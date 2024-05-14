@@ -67,5 +67,6 @@ namespace Com.IsartDigital.F2P.FTUE
     {
         [Min(0)] public int turn = 0;
         public Deck deck = null;
+        public bool updateHand = false;
     }
 }

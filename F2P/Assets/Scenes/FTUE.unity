@@ -416,8 +416,8 @@ MonoBehaviour:
   _PhaseID: 1
   _Phase:
   - {fileID: 11400000, guid: 2728f4b6cc45d354593abda946a48876, type: 2}
-  - {fileID: 11400000, guid: ef7a134f1ecff8d4c83bd134126c8686, type: 2}
   - {fileID: 11400000, guid: 3e5c31198499dff45af97f7627c104c9, type: 2}
+  - {fileID: 11400000, guid: ef7a134f1ecff8d4c83bd134126c8686, type: 2}
 --- !u!4 &708899413
 Transform:
   m_ObjectHideFlags: 0

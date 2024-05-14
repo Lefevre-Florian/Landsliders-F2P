@@ -37,10 +37,14 @@ namespace Com.IsartDigital.F2P.FTUE
 
         private int _TurnIdx = 0;
 
+        private bool _Skip = false;
+
         // Get & Set
         public FTUEPhaseSO CurrentPhase { get { return _Phase[_PhaseID - 1]; } }
 
         public int CurrentPhaseID { get { return _Phase[_PhaseID - 1].FTUEPhase; } }
+
+        public int Tick { get { return _TurnIdx; } }
 
         private void Awake()
         {
@@ -52,6 +56,8 @@ namespace Com.IsartDigital.F2P.FTUE
             _Instance = this;
 
             GameFlowManager.PlayerLoaded.AddListener(UpdatePlayer);
+
+            GameFlowManager.HandLoaded.AddListener(UpdateDeck);
             GameFlowManager.HandLoaded.AddListener(UpdateHand);
         }
 
@@ -72,10 +78,7 @@ namespace Com.IsartDigital.F2P.FTUE
             if (_PhaseID > _Phase.Length)
                 _PhaseID = _Phase.Length;
 
-            UpdateHand();
             UpdatePlayer();
-
-            PlayTurn();
         }
 
         private void UpdatePlayer()
@@ -86,23 +89,30 @@ namespace Com.IsartDigital.F2P.FTUE
                                     .SetEffect(3, 1, DeckEffect.AlterationType.Negative);
         }
 
-        private void UpdateHand()
-        {
-            HandManager lHand = HandManager.GetInstance();
+        private void UpdateHand() => HandManager.GetInstance().CreateHand(CurrentPhase.StartNBCards);
 
-            int lLength = CurrentPhase.Decks[0].deck.cards.Length;
+        private void UpdateDeck()
+        {
+            int lIdx = CurrentPhase.Decks.ToList().FindIndex(x => x.turn == _TurnIdx);
+            if (lIdx == -1)
+                return;
+
+            print(CurrentPhase.FTUEPhase + " turn : " + lIdx);
+            int lLength = CurrentPhase.Decks[lIdx].deck.cards.Length;
             Tuple<BiomeType, int>[] lCards = new Tuple<BiomeType, int>[lLength];
             for (int i = 0; i < lLength; i++)
-                lCards[i] = new Tuple<BiomeType, int>(CurrentPhase.Decks[0].deck.cards[i].type,
-                                                      CurrentPhase.Decks[0].deck.cards[i].quantity);
+                lCards[i] = new Tuple<BiomeType, int>(CurrentPhase.Decks[lIdx].deck.cards[i].type,
+                                                      CurrentPhase.Decks[lIdx].deck.cards[i].quantity);
+            HandManager.GetInstance().CreateDeck(lCards);
 
-            lHand.CreateDeck(lCards);
-            lHand.CreateHand(CurrentPhase.StartNBCards);
+            if (CurrentPhase.Decks[lIdx].updateHand)
+                UpdateHand();
         }
 
         private void PlayTurn() 
         {
             _TurnIdx += 1;
+            UpdateDeck();
 
             List<Phase> lPhases = CurrentPhase.Phases.ToList().FindAll(x => !x.isLinkedBiomeEffect && x.triggerTurn == _TurnIdx);
             if (lPhases != null && lPhases.Count > 0)
@@ -151,6 +161,8 @@ namespace Com.IsartDigital.F2P.FTUE
                 _GameManager = null;
 
                 GameFlowManager.PlayerLoaded.RemoveListener(UpdatePlayer);
+
+                GameFlowManager.HandLoaded.RemoveListener(UpdateDeck);
                 GameFlowManager.HandLoaded.RemoveListener(UpdateHand);
             }
         }

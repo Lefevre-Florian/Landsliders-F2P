@@ -41,11 +41,9 @@ namespace com.isartdigital.f2p.gameplay.quest
             switch (_TutorialManager.CurrentPhaseID)
             {
                 case 1:
-                    _NbTurn += 1;
-                    if(_NbTurn == PHASE_ONE_MAX_TIMER)
+                    
+                    if(_TutorialManager.Tick + 1 == PHASE_ONE_MAX_TIMER)
                     {
-                        _NbTurn = 0;
-
                         _TutorialManager.UpdatePhase();
                         _HandManager = HandManager.GetInstance();
                     }
@@ -69,14 +67,13 @@ namespace com.isartdigital.f2p.gameplay.quest
 
                     if (_IsPoisoned)
                     {
-                        _NbTurn += 1;
                         print("Turn number : " + _NbTurn);
-
                         if(_NbTurn == MAX_PHASE_THREE_SURVIVED)
                         {
                             _TutorialManager.UpdatePhase();
                             QuestManager.ValidQuest.Invoke();
                         }
+                        _NbTurn += 1;
                     }
 
                     break;
