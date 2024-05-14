@@ -12,6 +12,8 @@ public class CardPrefabDic : MonoBehaviour
     private static Dictionary<BiomeType, Card> prefabDic;
     private static List<Card> prefabList;
 
+    private static float currentLevel = 0;
+
     private void Awake()
     {
         prefabDic = _Biomes.ToDic();
@@ -28,7 +30,7 @@ public class CardPrefabDic : MonoBehaviour
 
         for (int i = 0; i < prefabList.Count; i++)
         {
-            lCurrentProp += prefabList[i].chanceToSpawn;
+            lCurrentProp += prefabList[i].chanceToSpawn.Evaluate(currentLevel);
             if (lRand < lCurrentProp) return prefabList[i].GO;
         }
 
@@ -44,7 +46,7 @@ public class CardPrefabDic : MonoBehaviour
     {
         float ret = 0;
         foreach (Card pCard in prefabList)
-            ret += pCard.chanceToSpawn;
+            ret += pCard.chanceToSpawn.Evaluate(currentLevel);
 
         return ret;
     }
@@ -94,5 +96,5 @@ public class CTGOItem
 public struct Card
 {
     public GameObject GO;
-    public float chanceToSpawn;
+    public AnimationCurve chanceToSpawn;
 }
