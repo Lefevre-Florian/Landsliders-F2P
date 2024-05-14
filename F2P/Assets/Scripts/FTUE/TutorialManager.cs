@@ -142,7 +142,7 @@ namespace Com.IsartDigital.F2P.FTUE
                     lBiome.GetComponent<BiomeGridModifier>().Start();
                     lBiome.GetComponent<BiomeTimer>().SetCurrentTimer(1);
                 }
-                else if (lBiome.Type == BiomeType.desert)
+                else if (lBiome.Type == BiomeType.desert || lBiome.Type == BiomeType.swamp)
                     lBiome.locked = true;
             }
         }

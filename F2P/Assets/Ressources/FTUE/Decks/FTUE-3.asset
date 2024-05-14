@@ -23,16 +23,19 @@ MonoBehaviour:
         quantity: 3
       - type: 4
         quantity: 2
+    updateHand: 1
   - turn: 1
     deck:
       cards:
       - type: 1
         quantity: 1
+    updateHand: 0
   - turn: 1
     deck:
       cards:
       - type: 1
         quantity: 2
+    updateHand: 0
   _StartNBCards: 4
   _StartPosition: {x: 1, y: 1}
   _Phases:
