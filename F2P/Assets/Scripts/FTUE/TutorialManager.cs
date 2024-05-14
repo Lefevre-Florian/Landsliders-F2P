@@ -1,11 +1,12 @@
 using com.isartdigital.f2p.gameplay.manager;
 using Com.IsartDigital.F2P.Biomes;
+using Com.IsartDigital.F2P.Biomes.Effects;
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Author (CR) : Lefevre Florian
@@ -39,7 +40,7 @@ namespace Com.IsartDigital.F2P.FTUE
         // Get & Set
         public FTUEPhaseSO CurrentPhase { get { return _Phase[_PhaseID - 1]; } }
 
-        public int CurrentPhaseID { get { return _PhaseID; } }
+        public int CurrentPhaseID { get { return _Phase[_PhaseID - 1].FTUEPhase; } }
 
         private void Awake()
         {
@@ -77,7 +78,13 @@ namespace Com.IsartDigital.F2P.FTUE
             PlayTurn();
         }
 
-        private void UpdatePlayer() => Player.GetInstance().SetPosition(CurrentPhase.StartPosition);
+        private void UpdatePlayer()
+        {
+            Player.GetInstance().SetPosition(CurrentPhase.StartPosition);
+            if (CurrentPhaseID == 3)
+                Player.GetInstance().AddComponent<DeckEffect>()
+                                    .SetEffect(3, 1, DeckEffect.AlterationType.Negative);
+        }
 
         private void UpdateHand()
         {
@@ -97,7 +104,7 @@ namespace Com.IsartDigital.F2P.FTUE
 
         private void PlayEffect(int pID)
         {
-            List<Phase> lPhases = CurrentPhase.Phases.ToList().FindAll(x => x.isLinkedBiomeEffect && x.effectID == pID);
+            List<Phase> lPhases = CurrentPhase.Phases.ToList().FindAll(x => x.isLinkedBiomeEffect && x.effectID == pID && x.triggerTurn == _TurnIdx);
             if (lPhases != null && lPhases.Count > 0)
                 UpdateGrid(lPhases);
         }
@@ -113,7 +120,11 @@ namespace Com.IsartDigital.F2P.FTUE
                 lBiome = _GridManager.GetCardByGridCoordinate(pPhases[i].position);
 
                 if (lBiome.Type == BiomeType.volcan)
+                {
+                    lBiome.GetComponent<BiomeOracle>().Start();
+                    lBiome.GetComponent<BiomeGridModifier>().Start();
                     lBiome.GetComponent<BiomeTimer>().SetCurrentTimer(1);
+                }
                 else if (lBiome.Type == BiomeType.desert)
                     lBiome.locked = true;
             }

@@ -1,4 +1,5 @@
 using com.isartdigital.f2p.manager;
+using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P.FTUE;
 
 // Author (CR) : Lefevre Florian
@@ -19,7 +20,7 @@ namespace com.isartdigital.f2p.gameplay.quest
         private int _NbTurn = 0;
 
         // Variables (Phase - 2)
-        private int _StartCardNumber = 0;
+        private int _FieldHarvested = 0;
         private HandManager _HandManager = null;
 
         // Variables (Phase - 3)
@@ -47,13 +48,14 @@ namespace com.isartdigital.f2p.gameplay.quest
 
                         _TutorialManager.UpdatePhase();
                         _HandManager = HandManager.GetInstance();
-                        _StartCardNumber = _HandManager._TotalCards;
                     }
                     break;
                 case 2:
-                    if((_HandManager._TotalCards - _StartCardNumber) == MAX_PHASE_TWO_CARD_FIELD)
+                    if(_FieldHarvested == MAX_PHASE_TWO_CARD_FIELD)
                     {
                         _TutorialManager.UpdatePhase();
+
+                        HandManager.OnDeckAltered.RemoveListener(ObserveFieldHarvesting);
                     }
                     break;
                 case 3:
@@ -80,11 +82,19 @@ namespace com.isartdigital.f2p.gameplay.quest
             }
         }
 
+        private void ObserveFieldHarvesting(int pNb, BiomeType pType)
+        {
+            if (pType == BiomeType.field)
+                _FieldHarvested += 1;
+        }
+
         private void OnDestroy()
         {
             if (_GameManager != null)
                 _GameManager.OnTurnPassed -= UnfoldPhase;
             _GameManager = null;
+
+            HandManager.OnDeckAltered.RemoveListener(ObserveFieldHarvesting);
         }
     }
 }

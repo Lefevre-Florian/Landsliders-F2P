@@ -29,7 +29,7 @@ namespace Com.IsartDigital.F2P.Biomes
         private Vector2[] _StackMemory = null;
         private Transform[] _Displays = null;
 
-        private void Start()
+        public void Start()
         {
             if(_LayerContainer == null)
             {

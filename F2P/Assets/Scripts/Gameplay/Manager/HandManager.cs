@@ -7,6 +7,7 @@ using UnityEngine;
 
 using System;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 // Author (CR) : Elias Dridi
 public class HandManager : MonoBehaviour
@@ -73,6 +74,8 @@ public class HandManager : MonoBehaviour
 
     private List<Tuple<BiomeType, int>> _BiomePlayedTracking = new List<Tuple<BiomeType, int>>();
 
+    // Events
+    public static UnityEvent<int, BiomeType> OnDeckAltered = new UnityEvent<int, BiomeType>();
     
     private void Start()
     {
@@ -152,13 +155,13 @@ public class HandManager : MonoBehaviour
             else
             {
                 for (int i = 0; i < lRemainingCardToRemove; i++)
-                    Destroy(_HandContainer.transform.GetChild(0).gameObject);
+                    Destroy(_HandContainer.transform.GetChild(_HandContainer.transform.childCount - 1).gameObject);
                 _CardInHand -= lRemainingCardToRemove;
             }
         }
     }
 
-    public void AddCardToDeck(int pNbCards)
+    public void AddCardToDeck(int pNbCards, bool pIsPredifined = false, BiomeType pType = default)
     {
         int lStartIdx = _Deck.Length - 1;
         Array.Resize(ref _Deck, _Deck.Length + pNbCards);
@@ -167,7 +170,7 @@ public class HandManager : MonoBehaviour
 
         int lLength = _Deck.Length;
         for (int i = lStartIdx; i < lLength; i++)
-            _Deck[i] = CreateCard();
+            _Deck[i] = CreateCard(pIsPredifined, pType);
     }
 
     public void RemoveAtDeck(int index)
@@ -331,6 +334,8 @@ public class HandManager : MonoBehaviour
 
             QuestManager.ValidQuest.RemoveListener(TrackWinCondition);
             GameManager.CardPlaced.RemoveListener(CardPlayedThenDraw);
+
+            OnDeckAltered.RemoveAllListeners();
         }
     }
 }

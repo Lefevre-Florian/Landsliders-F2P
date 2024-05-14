@@ -2,6 +2,7 @@ using com.isartdigital.f2p.gameplay.quest;
 
 using UnityEngine;
 
+// Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.Biomes.Effects
 {
     public class DeckEffect : MonoBehaviour
@@ -23,6 +24,8 @@ namespace Com.IsartDigital.F2P.Biomes.Effects
 
         private int _ImpactStats = 1;
 
+        private bool _IsSkipping = true;
+
         private void Start()
         {
             _Player = Player.GetInstance();
@@ -40,8 +43,17 @@ namespace Com.IsartDigital.F2P.Biomes.Effects
             _Clock.OnTurnPassed += UpdateTime;
         }
 
+        [HideInInspector]
+        public void IncrementTimer() => _Timer += 1;
+
         private void UpdateTime()
         {
+            if (_IsSkipping)
+            {
+                _IsSkipping = false;
+                return;
+            }
+
             PlayEffect();
             if (--_Timer <= 0)
             {
