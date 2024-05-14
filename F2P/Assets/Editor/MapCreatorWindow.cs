@@ -56,12 +56,12 @@ public class MapCreatorWindow : EditorWindow
             return;
         }
 
-        MapScriptableObj lMap = AssetDatabase.LoadAssetAtPath<MapScriptableObj>("Assets/Ressource/Maps/" + assetName);
+        MapScriptableObj lMap = AssetDatabase.LoadAssetAtPath<MapScriptableObj>("Assets/Ressources/Maps/" + assetName);
 
-        if (lMap) Debug.Log("Nom dÈj‡ utilisÈ");
+        if (lMap) Debug.Log("Nom d√©j√† utilis√©");
         lMap = CreateInstance<MapScriptableObj>();
 
-        AssetDatabase.CreateAsset(lMap, "Assets/Ressource/Maps/" + assetName + ".asset");
+        AssetDatabase.CreateAsset(lMap, "Assets/Ressources/Maps/" + assetName + ".asset");
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
 

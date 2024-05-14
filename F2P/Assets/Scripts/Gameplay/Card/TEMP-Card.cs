@@ -41,6 +41,8 @@ public class TEMPCard : MonoBehaviour
     // Event
     public event Action OnPlaced;
 
+    public static event Action<bool> OnFocus;
+
     void Start()
     {
         _HandManager = HandManager.GetInstance();      
@@ -128,6 +130,8 @@ public class TEMPCard : MonoBehaviour
 
     public void SetModeMoving()
     {
+        OnFocus?.Invoke(true);
+
         currentState = State.Moving;
         DoAction = DoActionMoving;
     }
@@ -159,12 +163,17 @@ public class TEMPCard : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0) && !_Snapable) 
         {
+            OnFocus?.Invoke(false);
+
             transform.position = snapPos;
             SetModeInHand();
         }
     }
     public void SetModePlayed()
     {
+        if(_HandManager != null)
+            _HandManager.TrackBiome(GetComponent<Biome>().Type);
+
         currentState |= State.Played;
         OnPlaced?.Invoke();
         enabled = false;

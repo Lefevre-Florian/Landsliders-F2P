@@ -1,7 +1,11 @@
 using com.isartdigital.f2p.gameplay.manager;
+using com.isartdigital.f2p.manager;
+using Com.IsartDigital.F2P;
+using Com.IsartDigital.F2P.Gameplay;
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,6 +24,13 @@ public class GameManager : MonoBehaviour
     }
 
     private GameManager() : base() { }
+    #endregion
+
+    #region Tracking   
+    private const string TRACKER_NAME = "gameDuration";
+
+    private const string TRACKER_GAME_DURATION_REALTIME_PARAMETER = "timeInSecondMinute";
+    private const string TRACKER_GAME_DURATION_TURN_PARAMETER = "numberOfTurn";
     #endregion
 
     private void Awake()
@@ -54,7 +65,7 @@ public class GameManager : MonoBehaviour
 
     // Variables
     private int _CurrentPriority = 1;
-    private int _MaxPriority = 12; // Temp value will be reduce to 1
+    private int _MaxPriority = 12;
 
     private int _TurnNumber = 1;
     private int _CardStocked = 12;
@@ -63,6 +74,8 @@ public class GameManager : MonoBehaviour
 
     private Coroutine _EffectTimer = null;
 
+    private DateTime _GameStartTime = default;
+
     [HideInInspector] public bool cardPlayed;
     [HideInInspector] public bool playerMoved;
     [HideInInspector] public bool playerCanMove;
@@ -70,6 +83,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public State currentState;
 
     [HideInInspector] public GameObject _LastCardPlayed;
+
+    [HideInInspector] public List<Dragon> randomEventObjects = new List<Dragon>();
 
     // Get / Set
     public int cardStocked
@@ -86,7 +101,11 @@ public class GameManager : MonoBehaviour
     public int Turn { get { return _TurnNumber; } }
     // Events
     public event Action OnTurnPassed;
+
     public event Action<int> OnEffectPlayed;
+    public event Action OnAllEffectPlayed;
+
+    public event Action<bool> OnGameover;
 
     public static UnityEvent CardPlaced = new UnityEvent();
     public static UnityEvent PlayerMoved = new UnityEvent();
@@ -99,6 +118,8 @@ public class GameManager : MonoBehaviour
 
         CardPlaced.AddListener(SetModeMovingPlayer);
         PlayerMoved.AddListener(SetModeBiomeEffect);
+
+        _GameStartTime = DateTime.UtcNow;
     }
 
     public void NextTurn()
@@ -106,7 +127,6 @@ public class GameManager : MonoBehaviour
         _TurnNumber++;
         cardPlayed = false;
         OnTurnPassed?.Invoke();
-
         SetModeMovingCard();
     }
 
@@ -141,15 +161,31 @@ public class GameManager : MonoBehaviour
     {
         currentState = State.GameEnd;
         playerCanMove = false;
-        
-        ///TODO Trigger popup
+
+        OnGameover?.Invoke(false);
+    }
+
+    public void SetModeWin()
+    {
+        currentState = State.GameEnd;
+        playerCanMove = false;
+
+        // Track game duration
+        TimeSpan lDuration = (DateTime.UtcNow - _GameStartTime).Duration();
+        DataTracker.GetInstance().SendAnalytics(TRACKER_NAME, 
+                                                new Dictionary<string, object>() {
+                                                    { TRACKER_GAME_DURATION_TURN_PARAMETER, _TurnNumber},
+                                                    {TRACKER_GAME_DURATION_REALTIME_PARAMETER,  lDuration.Minutes + ":" + lDuration.Seconds}
+                                                });
+
+        OnGameover?.Invoke(true);
     }
     #endregion
 
     #region Utilities
     private IEnumerator EffectTurnByTurn()
     {
-        while (_CurrentPriority != _MaxPriority)
+        while (_CurrentPriority != _MaxPriority + 1)
         {
             OnEffectPlayed?.Invoke(_CurrentPriority);
             _CurrentPriority += 1;
@@ -158,7 +194,26 @@ public class GameManager : MonoBehaviour
         }
         _CurrentPriority = 1;
 
-        if(_EffectTimer != null)
+        OnAllEffectPlayed?.Invoke();
+
+        if (randomEventObjects.Count > 0)
+        {
+            List<Dragon> lRandomEventObjects = new List<Dragon>(randomEventObjects);
+
+            while (lRandomEventObjects.Count > 0)
+            {
+                for (int i = lRandomEventObjects.Count - 1; i >= 0; i--)
+                {
+                    if(lRandomEventObjects[i].IsDone)
+                    {
+                        lRandomEventObjects.RemoveAt(i);
+                    }
+                }
+                yield return new WaitForEndOfFrame();
+            }
+        }
+
+        if (_EffectTimer != null)
         {
             StopCoroutine(_EffectTimer);
             _EffectTimer = null;

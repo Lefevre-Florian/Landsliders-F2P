@@ -1,8 +1,14 @@
 using Com.IsartDigital.F2P.UI.UIHUD;
-using System;
-using UnityEngine;
-using System.Collections.Generic;
 using com.isartdigital.f2p.gameplay.quest;
+using Com.IsartDigital.F2P.Biomes;
+using Com.IsartDigital.F2P;
+
+using UnityEngine;
+
+using System;
+using System.Collections.Generic;
+using com.isartdigital.f2p.manager;
+
 
 // Author (CR) : Elias Dridi
 public class HandManager : MonoBehaviour
@@ -16,6 +22,12 @@ public class HandManager : MonoBehaviour
             _Instance = new HandManager();
         return _Instance;
     }
+    #endregion
+
+    #region Tracking
+    private const string TRACKER_NAME = "biomeMostPlayed";
+
+    private const string TRACKER_BIOME_TYPE_PARAMETER = "biomeType";
     #endregion
 
     private void Awake()
@@ -57,6 +69,9 @@ public class HandManager : MonoBehaviour
     [HideInInspector] public bool[] _AvailableCardSlots;
     private GameObject[] _Deck;
 
+    public int _TotalCards { get { return _Deck.Length + _CardInHand; } }
+
+    private List<Tuple<BiomeType, int>> _BiomePlayedTracking = new List<Tuple<BiomeType, int>>();
     
     private void Start()
     {
@@ -66,7 +81,18 @@ public class HandManager : MonoBehaviour
         {
             DrawCard();
         }
+
+        QuestManager.ValidQuest.AddListener(TrackWinCondition);
         GameManager.CardPlaced.AddListener(CardPlayedThenDraw);
+    }
+
+    public void TrackBiome(BiomeType pType)
+    {
+        int lIndex = _BiomePlayedTracking.FindIndex(x => x.Item1 == pType);
+        if (lIndex == -1)
+            _BiomePlayedTracking.Add(new Tuple<BiomeType, int>(pType, 1));
+        else
+            _BiomePlayedTracking[lIndex] = new Tuple<BiomeType, int>(pType, _BiomePlayedTracking[lIndex].Item2 + 1);
     }
 
     public void DrawCard()
@@ -93,7 +119,9 @@ public class HandManager : MonoBehaviour
         }
         else
         {
-            if (_CardInHand == 0) Hud.GetInstance().Lose();
+            if (_CardInHand == 0)
+                GameManager.GetInstance()
+                           .SetModeGameover();
         }
     }
 
@@ -101,18 +129,31 @@ public class HandManager : MonoBehaviour
     {
         int lRemainingCardToRemove = pNbCards;
         if (lRemainingCardToRemove < _Deck.Length)
+        {
+            for (int i = 0; i < lRemainingCardToRemove; i++)
+                Destroy(_DeckContainer.transform.GetChild(UnityEngine.Random.Range(0, _DeckContainer.transform.childCount)).gameObject);
+
             Array.Resize(ref _Deck, _Deck.Length - lRemainingCardToRemove);
+        }
         else
         {
+            if (_Deck.Length > 0)
+            {
+                int lLength = _DeckContainer.transform.childCount;
+                for (int i = 0; i < lLength; i++)
+                    Destroy(_DeckContainer.transform.GetChild(i).gameObject);
+            }
+
             lRemainingCardToRemove -= _Deck.Length;
             _Deck = new GameObject[0];
+
 
             if (lRemainingCardToRemove > _CardInHand)
                 GameManager.GetInstance().SetModeGameover();
             else
             {
                 for (int i = 0; i < lRemainingCardToRemove; i++)
-                    Destroy(_HandContainer.transform.GetChild(UnityEngine.Random.Range(0, _HandContainer.transform.childCount)));
+                    Destroy(_HandContainer.transform.GetChild(UnityEngine.Random.Range(0, _HandContainer.transform.childCount)).gameObject);
                 _CardInHand -= lRemainingCardToRemove;
             }
         }
@@ -123,7 +164,7 @@ public class HandManager : MonoBehaviour
         int lStartIdx = _Deck.Length - 1;
         Array.Resize(ref _Deck, _Deck.Length + pNbCards);
 
-        if(TryGetComponent<CardQuest>(out CardQuest cd)) cd.AddCard(pNbCards);
+        if (TryGetComponent<CardQuest>(out CardQuest cd)) cd.AddCard(pNbCards);
 
         int lLength = _Deck.Length;
         for (int i = lStartIdx; i < lLength; i++)
@@ -156,7 +197,7 @@ public class HandManager : MonoBehaviour
     private void CardSlot()
     {
         _CardsSlot = new GameObject[_MaxCardHold];
-        _AvailableCardSlots = new bool [_MaxCardHold];
+        _AvailableCardSlots = new bool[_MaxCardHold];
         for (int i = 0; i < _AvailableCardSlots.Length; i++)
         {
             _AvailableCardSlots[i] = true;
@@ -189,14 +230,34 @@ public class HandManager : MonoBehaviour
         DrawCard();
     }
 
+    private void TrackWinCondition()
+    {
+        int lMax = 0;
+        int lLength = _BiomePlayedTracking.Count;
+
+        BiomeType lMaxUsed = default;
+        for (int i = 0; i < lLength; i++)
+        {
+            if (_BiomePlayedTracking[i].Item2 > lMax)
+            {
+                lMax = _BiomePlayedTracking[i].Item2;
+                lMaxUsed = _BiomePlayedTracking[i].Item1;
+            }
+        }
+
+        DataTracker.GetInstance().SendAnalytics(TRACKER_NAME, new Dictionary<string, object>() { { TRACKER_BIOME_TYPE_PARAMETER, lMaxUsed } });
+    }
 
     private void OnDestroy()
     {
-        if (_Instance == this) 
-            return;
-        
-        _Instance = null;
-        GameManager.CardPlaced.RemoveListener(CardPlayedThenDraw);
+        if (_Instance == this)
+        {
+
+            _Instance = null;
+
+            QuestManager.ValidQuest.RemoveListener(TrackWinCondition);
+            GameManager.CardPlaced.RemoveListener(CardPlayedThenDraw);
+        }
     }
 }
 

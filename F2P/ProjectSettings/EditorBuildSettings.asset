@@ -9,6 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/TEMP.unity
+    path: Assets/Scenes/Game.unity
     guid: b0aeca6ef19f2614db2961ef1cbe5f0b
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: eb498cdcbd0ac114bacabc03ad9bd443, type: 2}
