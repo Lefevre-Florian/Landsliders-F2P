@@ -22,7 +22,7 @@ namespace Com.IsartDigital.F2P.Biomes
             _Type = GetComponent<Biome>().Type;
         }
 
-        public int GetEnumertation() => GetChainLength();
+        public int GetEnumertation() => GetChainLength() + 1;
 
         private int GetChainLength()
         {

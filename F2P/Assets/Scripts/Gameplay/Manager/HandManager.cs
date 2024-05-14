@@ -244,7 +244,6 @@ public class HandManager : MonoBehaviour
         lCard.GetComponent<TEMPCard>().enabled = true;
         lCard.SetActive(false);
         lCard.transform.SetParent(_DeckContainer.transform, true);
-
         return lCard;
     }
 
