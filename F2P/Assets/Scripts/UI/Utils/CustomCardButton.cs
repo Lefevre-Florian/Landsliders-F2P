@@ -1,4 +1,5 @@
 using Com.IsartDigital.F2P.FileSystem;
+using Com.IsartDigital.F2P.UI.Screens;
 
 using System;
 using System.Linq;
@@ -9,11 +10,22 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 // Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.UI
 {
     public class CustomCardButton : MonoBehaviour
     {
+        #region Tracking
+        private const string TRACKER_BIOME_UNLOCKED_NAME = "biomeUpgradeUnlocked";
+        private const string TRACKER_TOTAL_BIOME_UPGRADED_NAME = "numberOfUpgradePerformed";
+
+        private const string TRACKER_TOTAL_UPGRADE_PARAMETER = "numberOfUpgrade";
+        private const string TRACKER_TOTAL_PLAYTIME = "timeInHourMinute";
+
+        private const string TRACKER_BIOME_NAME_PARAMETER = "biomeType";
+        #endregion
+
         private const string CMD_QUERY = "SELECT name, description, fragment FROM BIOME WHERE id = ";
         private const string CMD_UPGRADE_QUERY = "SELECT id, name, description, fragment FROM BIOME WHERE id = (SELECT fk_upgrade FROM BIOME WHERE id = ";
 
@@ -35,7 +47,10 @@ namespace Com.IsartDigital.F2P.UI
 
         private int _ID = 0;
 
-        private TexturePhotographer _3DModelRenderer = null;
+        private GameObject _Prefab = null;
+
+        private UpgradeScreen _UpgradeScreen = null;
+        private ConsentAskScreen _ConsentScreen = null;
 
         private bool _Loaded = false;
 
@@ -48,7 +63,7 @@ namespace Com.IsartDigital.F2P.UI
                 Draw();
         }
 
-        public void Enable(int pId)
+        public void Enable(int pId, UpgradeScreen pUpgradeScreen, ConsentAskScreen pConsentScreen)
         {
             _ID = pId;
 
@@ -58,20 +73,40 @@ namespace Com.IsartDigital.F2P.UI
             _Description = lResult[1].ToString();
             _FragmentRequired = Convert.ToInt32(lResult[2]);
 
-            _3DModelRenderer = TexturePhotographer.GetInstance();
+            TexturePhotographer l3DModelRenderer = TexturePhotographer.GetInstance();
             _Image = GetComponent<RawImage>();
 
-            _Image.texture = _3DModelRenderer.CreateTextureBiome(ImageSize, 
-                                                                 Save.data.cardPrefabs[Save.data.cards.ToList().IndexOf(pId)].transform.GetChild(0).gameObject,
+            _Prefab = Save.data.cardPrefabs[Save.data.cards.ToList().IndexOf(pId)].transform.GetChild(0).gameObject;
+            _Image.texture = l3DModelRenderer.CreateTextureBiome(ImageSize, 
+                                                                 _Prefab,
                                                                  new Vector2(.5f, .5f));
 
             Draw();
 
+            _UpgradeScreen = pUpgradeScreen;
+            _ConsentScreen = pConsentScreen;
+
             _Loaded = true;
         }
 
-        public void Upgrade()
+        #region Upgrade
+        public void RequestUpgrade()
         {
+            _ConsentScreen.Open();
+            _ConsentScreen.OnValidate += Upgrade;
+            _ConsentScreen.OnCanceled += ClearUpgrade;
+        }
+
+        private void ClearUpgrade()
+        {
+            _ConsentScreen.OnValidate -= Upgrade;
+            _ConsentScreen.OnCanceled -= ClearUpgrade;
+        }
+        
+        private void Upgrade()
+        {
+            ClearUpgrade();
+
             DatabaseManager lDatabase = DatabaseManager.GetInstance();
             List<object> lResult = lDatabase.GetRow(CMD_UPGRADE_QUERY + _ID + ")");
 
@@ -85,8 +120,22 @@ namespace Com.IsartDigital.F2P.UI
             Save.data.cards[Save.data.cards.ToList().IndexOf(lOldID)] = _ID;
             lDatabase.WriteDataToSaveFile();
 
+            // Track : Biome upgraded
+            DataTracker.GetInstance().SendAnalytics(TRACKER_BIOME_UNLOCKED_NAME, new Dictionary<string, object>() { { TRACKER_BIOME_NAME_PARAMETER, _Name } });
+
+            // Track : Total number of biome upgraded
+            Save.data.numberOfUpgrade += 1;
+            TimeSpan lDuration = Save.data.totalPlaytime + (DateTime.UtcNow - Save.data.startTime).Duration();
+
+            DataTracker.GetInstance().SendAnalytics(TRACKER_TOTAL_BIOME_UPGRADED_NAME, 
+                                                    new Dictionary<string, object>() { { TRACKER_TOTAL_UPGRADE_PARAMETER, Save.data.numberOfUpgrade },
+                                                                                       { TRACKER_TOTAL_PLAYTIME, lDuration.Hours + ":" + lDuration.Minutes} });
+
             Draw();
+            _UpgradeScreen.Open();
+            _UpgradeScreen.SetContent(_Description, _Prefab);
         } 
+        #endregion
 
         private void Draw()
         {
@@ -111,9 +160,6 @@ namespace Com.IsartDigital.F2P.UI
                 _LockedStateOverlay.gameObject.SetActive(true);
         }
 
-        private void OnDestroy()
-        {
-            _3DModelRenderer = null;
-        }
+        private void OnDestroy() => ClearUpgrade();
     }
 }
