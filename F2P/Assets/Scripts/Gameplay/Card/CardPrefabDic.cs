@@ -1,4 +1,3 @@
-using Com.IsartDigital.F2P;
 using Com.IsartDigital.F2P.Biomes;
 
 using System;
@@ -8,43 +7,48 @@ using UnityEngine;
 
 public class CardPrefabDic : MonoBehaviour
 {
-    [SerializeField] private CTGODic _Biomes;
-    [SerializeField] private bool _ForceList = false;
+    [SerializeField] CTGODic _Biomes;
 
-    private static Dictionary<BiomeType, GameObject> prefabDic;
-    private static List<GameObject> prefabList;
+    private static Dictionary<BiomeType, Card> prefabDic;
+    private static List<Card> prefabList;
+
+    private static float currentLevel = 0;
 
     private void Awake()
     {
-        if(Save.data == null || _ForceList)
-        {
-            prefabDic = _Biomes.ToDic();
-            prefabList = _Biomes.ToList();
-        }
-        else
-        {
-            prefabList = new List<GameObject>();
-            prefabDic = new Dictionary<BiomeType, GameObject>();
-
-            int lLength = Save.data.cardPrefabs.Length;
-            for (int i = 0; i < lLength; i++)
-                prefabList.Add(Save.data.cardPrefabs[i]);
-
-            for (int i = 0; i < lLength; i++)
-                prefabDic.Add(prefabList[i].GetComponent<Biome>().Type,
-                              Save.data.cardPrefabs[i]);
-        }
-        
+        prefabDic = _Biomes.ToDic();
+        prefabList = _Biomes.ToList();
     }
 
     public static GameObject GetRandomPrefab() 
     {
-        return prefabList[UnityEngine.Random.Range(0, prefabList.Count)];   
+        float lTotalWeight = GetTotalWeight();
+
+        float lRand = UnityEngine.Random.Range(0, lTotalWeight);
+
+        float lCurrentProp = 0;
+
+        for (int i = 0; i < prefabList.Count; i++)
+        {
+            lCurrentProp += prefabList[i].chanceToSpawn.Evaluate(currentLevel);
+            if (lRand < lCurrentProp) return prefabList[i].GO;
+        }
+
+        return null;
     }
 
     public static GameObject GetPrefab(BiomeType type)
     {
-        return prefabDic[type];
+        return prefabDic[type].GO;
+    }
+
+    private static float GetTotalWeight()
+    {
+        float ret = 0;
+        foreach (Card pCard in prefabList)
+            ret += pCard.chanceToSpawn.Evaluate(currentLevel);
+
+        return ret;
     }
 }
 
@@ -53,9 +57,9 @@ public class CTGODic
 {
     [SerializeField] CTGOItem[] _Dict;
 
-    public Dictionary<BiomeType, GameObject> ToDic()
+    public Dictionary<BiomeType, Card> ToDic()
     {
-        Dictionary<BiomeType, GameObject> newDic = new Dictionary<BiomeType, GameObject>();
+        Dictionary<BiomeType, Card> newDic = new Dictionary<BiomeType, Card>();
 
         foreach (CTGOItem item in _Dict)
         {
@@ -65,9 +69,9 @@ public class CTGODic
         return newDic;
     }
 
-    public List<GameObject> ToList()
+    public List<Card> ToList()
     {
-        List<GameObject> newList = new List<GameObject>();
+        List<Card> newList = new List<Card>();
 
         foreach (CTGOItem item in _Dict)
         {
@@ -85,5 +89,12 @@ public class CTGOItem
     public BiomeType key;
 
     [SerializeField]
-    public GameObject value;
+    public Card value;
+}
+
+[Serializable]
+public struct Card
+{
+    public GameObject GO;
+    public AnimationCurve chanceToSpawn;
 }
