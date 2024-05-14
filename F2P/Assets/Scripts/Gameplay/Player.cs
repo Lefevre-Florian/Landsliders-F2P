@@ -158,7 +158,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    /// TEMPORARY METHOD WILL BE CHANGED
     public void SetModeSlide(Vector2 pPosition)
     {
         _PreviousGridPos = _ActualGridPos;

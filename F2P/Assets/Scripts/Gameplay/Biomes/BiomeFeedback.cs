@@ -85,8 +85,8 @@ namespace Com.IsartDigital.F2P.Biomes
             if(_Biome != null)
                 _Biome.OnReady -= Enable;
 
-            GameManager.CardPlaced.RemoveAllListeners();
-            GameManager.PlayerMoved.RemoveAllListeners();
+            GameManager.CardPlaced.RemoveListener(EnableMoveLayer);
+            GameManager.PlayerMoved.RemoveListener(DisableMoveLayer);
 
             TEMPCard.OnFocus -= CardFocus;
         }

@@ -2,6 +2,7 @@ using com.isartdigital.f2p.gameplay.manager;
 using Com.IsartDigital.F2P.Biomes;
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -56,7 +57,7 @@ namespace Com.IsartDigital.F2P.FTUE
         private void Start()
         {
             _GameManager = GameManager.GetInstance();
-            _GameManager.OnTurnPassed += UpdateTurn;
+            _GameManager.OnTurnPassed += PlayTurn;
             _GameManager.OnEffectPlayed += PlayEffect;
 
             _GridManager = GridManager.GetInstance();
@@ -70,7 +71,10 @@ namespace Com.IsartDigital.F2P.FTUE
             if (_PhaseID > _Phase.Length)
                 _PhaseID = _Phase.Length;
 
-            UpdateTurn();
+            UpdateHand();
+            UpdatePlayer();
+
+            PlayTurn();
         }
 
         private void UpdatePlayer() => Player.GetInstance().SetPosition(CurrentPhase.StartPosition);
@@ -82,7 +86,7 @@ namespace Com.IsartDigital.F2P.FTUE
             lHand.CreateHand(CurrentPhase.StartNBCards);
         }
 
-        private void UpdateTurn() 
+        private void PlayTurn() 
         {
             _TurnIdx += 1;
 
@@ -115,7 +119,6 @@ namespace Com.IsartDigital.F2P.FTUE
             }
         }
 
-
         private void OnDestroy()
         {
             if (_Instance == this)
@@ -124,7 +127,7 @@ namespace Com.IsartDigital.F2P.FTUE
 
                 if (_GameManager != null)
                 {
-                    _GameManager.OnTurnPassed -= UpdateTurn;
+                    _GameManager.OnTurnPassed -= PlayTurn;
                     _GameManager.OnEffectPlayed -= PlayEffect;
                 }
                 _GameManager = null;

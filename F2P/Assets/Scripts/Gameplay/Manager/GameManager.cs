@@ -8,7 +8,6 @@ using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UIElements;
 
 // Author (CR): Elias Dridi
 public class GameManager : MonoBehaviour
@@ -139,7 +138,6 @@ public class GameManager : MonoBehaviour
 
     public void SetModeMovingPlayer()
     {
-        print("Played");
         currentState = State.MovingPlayer;
         playerCanMove = true;
     }

@@ -36,8 +36,6 @@ public class TEMPCard : MonoBehaviour
     private GameObject _SnapParent;
     private GameObject _ClosestSnapParent;
 
-    private Vector3 _GridPlacement;
-
     private HandManager _HandManager = null;
     private Action DoAction = null;
 
@@ -152,7 +150,6 @@ public class TEMPCard : MonoBehaviour
             CardContainer lContainer = GetComponent<CardContainer>();
             GridManager lGridManager = GridManager.GetInstance();
 
-            _GridPlacement = _SnapParent.GetComponent<CardContainer>().gridPosition;
             transform.position = snapPos;
             _HandManager._AvailableCardSlots[handIndex] = true;
             lContainer.gridPosition = _SnapParent.GetComponent<CardContainer>().gridPosition;
@@ -160,7 +157,7 @@ public class TEMPCard : MonoBehaviour
             Destroy(_SnapParent.transform.gameObject);
             GameManager.GetInstance()._LastCardPlayed = transform.gameObject;
             transform.SetParent(lGridManager.transform);
-            
+
             GameManager.CardPlaced.Invoke();
             tag = CARDPLAYED_TAG;
             

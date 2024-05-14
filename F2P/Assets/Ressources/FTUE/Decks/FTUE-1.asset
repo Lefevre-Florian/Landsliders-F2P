@@ -26,6 +26,8 @@ MonoBehaviour:
   _StartNBCards: 1
   _StartPosition: {x: 0, y: 1}
   _Phases:
-  - triggerTurn: 0
+  - triggerTurn: 1
     position: {x: 1, y: 0}
     type: 4
+    isLinkedBiomeEffect: 0
+    effectID: -1

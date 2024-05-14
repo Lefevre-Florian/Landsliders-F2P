@@ -3,8 +3,6 @@ using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P;
 using com.isartdigital.f2p.manager;
 
-using Com.IsartDigital.F2P.FTUE;
-
 using UnityEngine;
 
 using System;
@@ -132,7 +130,7 @@ public class HandManager : MonoBehaviour
         if (lRemainingCardToRemove < _Deck.Length)
         {
             for (int i = 0; i < lRemainingCardToRemove; i++)
-                Destroy(_DeckContainer.transform.GetChild(UnityEngine.Random.Range(0, _DeckContainer.transform.childCount)).gameObject);
+                Destroy(_DeckContainer.transform.GetChild(0).gameObject);
 
             Array.Resize(ref _Deck, _Deck.Length - lRemainingCardToRemove);
         }
@@ -154,7 +152,7 @@ public class HandManager : MonoBehaviour
             else
             {
                 for (int i = 0; i < lRemainingCardToRemove; i++)
-                    Destroy(_HandContainer.transform.GetChild(UnityEngine.Random.Range(0, _HandContainer.transform.childCount)).gameObject);
+                    Destroy(_HandContainer.transform.GetChild(0).gameObject);
                 _CardInHand -= lRemainingCardToRemove;
             }
         }

@@ -16,9 +16,9 @@ MonoBehaviour:
   _Deck:
     cards:
     - type: 1
-      quantity: 1
+      quantity: 2
     - type: 4
-      quantity: 8
+      quantity: 7
     - type: 1
       quantity: 4
   _StartNBCards: 1

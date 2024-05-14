@@ -30,9 +30,6 @@ namespace com.isartdigital.f2p.gameplay.manager
         [SerializeField] public Vector2 _GridSizePercent;
         [SerializeField] public Vector2 _Offset;
 
-        [Space(2)]
-        [SerializeField] private bool _IsGridPredefined = false;
-
         [Header("GameObject")]
 
         [SerializeField] public GameObject _CardBackgroundPrefab;

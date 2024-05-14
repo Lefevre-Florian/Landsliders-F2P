@@ -41,7 +41,6 @@ namespace com.isartdigital.f2p.gameplay.quest
             {
                 case 1:
                     _NbTurn += 1;
-
                     if(_NbTurn == PHASE_ONE_MAX_TIMER)
                     {
                         _NbTurn = 0;
