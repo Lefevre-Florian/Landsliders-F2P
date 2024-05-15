@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13fc138a05a12a40970d46e03c479ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StoppingBiome: 06000000
+  _StoppingBiome: 06000000ffffffff
   _VFXFrozen: {fileID: 8518150010312492001, guid: b875958f313e6c346831e389d29ee288, type: 3}
 --- !u!1001 &8634055702446491831
 PrefabInstance:

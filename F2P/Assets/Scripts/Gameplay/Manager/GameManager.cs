@@ -1,5 +1,4 @@
 using com.isartdigital.f2p.gameplay.manager;
-using com.isartdigital.f2p.manager;
 using Com.IsartDigital.F2P;
 using Com.IsartDigital.F2P.Gameplay;
 
@@ -70,8 +69,6 @@ public class GameManager : MonoBehaviour
     private int _TurnNumber = 1;
     private int _CardStocked = 12;
 
-    private Vector3 _BasePlayerGridPosToPixel;
-
     private Coroutine _EffectTimer = null;
 
     private DateTime _GameStartTime = default;
@@ -112,8 +109,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        _BasePlayerGridPosToPixel = GridManager.GetInstance().GetWorldCoordinate((int)_BasePlayerGridPos.x, (int)_BasePlayerGridPos.y);
-        Instantiate(_Player, _BasePlayerGridPosToPixel, Quaternion.identity);
+        Vector3 lWorldPosition = GridManager.GetInstance().GetWorldCoordinate(_BasePlayerGridPos);
+        Instantiate(_Player, lWorldPosition, Quaternion.identity);
         _Player.GetComponent<Player>().baseGridPos = _BasePlayerGridPos;
 
         CardPlaced.AddListener(SetModeMovingPlayer);

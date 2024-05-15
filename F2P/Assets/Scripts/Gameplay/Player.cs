@@ -74,6 +74,8 @@ public class Player : MonoBehaviour
         GameManager.PlayerMoved.AddListener(SetModeFixed);
 
         _GridManager = GridManager.GetInstance();
+
+        GameFlowManager.PlayerLoaded.Invoke();
     }
 
     private void Update()
@@ -98,6 +100,13 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+
+    [HideInInspector]
+    public void SetPosition(Vector2 pPosition)
+    {
+        _ActualGridPos = _PreviousGridPos = pPosition;
+        transform.position = _GridManager.GetWorldCoordinate(pPosition);
     }
 
     #region State machine
@@ -149,7 +158,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    /// TEMPORARY METHOD WILL BE CHANGED
     public void SetModeSlide(Vector2 pPosition)
     {
         _PreviousGridPos = _ActualGridPos;
