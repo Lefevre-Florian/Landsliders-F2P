@@ -133,11 +133,13 @@ namespace Com.IsartDigital.F2P.FTUE
                                             CardPrefabDic.GetPrefab(pPhases[i].type).transform);
                 lBiome = _GridManager.GetCardByGridCoordinate(pPhases[i].position);
 
+                /// Allow us to fake every biome comportement
                 if (lBiome.Type == BiomeType.volcan)
                 {
                     lBiome.GetComponent<BiomeOracle>().Start();
                     lBiome.GetComponent<BiomeGridModifier>().Start();
                     lBiome.GetComponent<BiomeTimer>().SetCurrentTimer(1);
+                    lBiome.GetComponent<BiomePlayerContact>().DisableCollision();
                 }
                 else if (lBiome.Type == BiomeType.desert || lBiome.Type == BiomeType.swamp)
                     lBiome.locked = true;
