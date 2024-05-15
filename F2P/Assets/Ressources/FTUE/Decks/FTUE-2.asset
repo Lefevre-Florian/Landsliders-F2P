@@ -20,17 +20,11 @@ MonoBehaviour:
       - type: 1
         quantity: 2
       - type: 4
-        quantity: 6
+        quantity: 8
       - type: 1
         quantity: 4
     updateHand: 1
   - turn: 1
-    deck:
-      cards:
-      - type: 1
-        quantity: 10
-    updateHand: 0
-  - turn: 2
     deck:
       cards:
       - type: 1

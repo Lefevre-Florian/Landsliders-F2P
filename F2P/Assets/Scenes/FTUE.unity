@@ -913,6 +913,7 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+  _IsForced: 1
 --- !u!114 &1061210647
 MonoBehaviour:
   m_ObjectHideFlags: 0

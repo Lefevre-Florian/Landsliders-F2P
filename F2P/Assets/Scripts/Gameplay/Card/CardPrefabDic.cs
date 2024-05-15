@@ -1,13 +1,15 @@
+using Com.IsartDigital.F2P;
 using Com.IsartDigital.F2P.Biomes;
 
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using UnityEngine;
 
 public class CardPrefabDic : MonoBehaviour
 {
-    [SerializeField] CTGODic _Biomes;
+    [SerializeField] private CTGODic _Biomes;
+    [SerializeField] private bool _IsForced = false;
 
     private static Dictionary<BiomeType, Card> prefabDic;
     private static List<Card> prefabList;
@@ -16,8 +18,34 @@ public class CardPrefabDic : MonoBehaviour
 
     private void Awake()
     {
-        prefabDic = _Biomes.ToDic();
-        prefabList = _Biomes.ToList();
+        if(_IsForced || Save.data == null)
+        {
+            prefabDic = _Biomes.ToDic();
+            prefabList = _Biomes.ToList();
+        }
+        else
+        {
+            prefabDic = _Biomes.ToDic();
+            prefabList = _Biomes.ToList();
+
+            int lLength = Save.data.cardPrefabs.Length;
+            List<BiomeType> lKeys = new List<BiomeType>();
+            for (int i = 0; i < lLength; i++)
+                lKeys.Add(Save.data.cardPrefabs[i].GetComponent<Biome>().Type);
+
+            Card lCard;
+            for (int i = 0; i < lLength; i++)
+            {
+                lCard = prefabDic[lKeys[i]];
+                lCard.GO = Save.data.cardPrefabs[i];
+                prefabDic[lKeys[i]] = lCard;
+            }
+
+            prefabDic.ToList().RemoveAll(x => !lKeys.Contains(x.Key));
+
+            for (int i = 0; i < lLength; i++)
+                prefabList[prefabList.FindIndex(x => x.GO.GetComponent<Biome>().Type == lKeys[i])] = prefabDic[lKeys[i]];
+        }
     }
 
     public static GameObject GetRandomPrefab() 
