@@ -244,6 +244,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myQuest: 7
+--- !u!1 &180416130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 180416132}
+  - component: {fileID: 180416131}
+  m_Layer: 0
+  m_Name: DialogueDictionary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!114 &180416131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180416130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec7befb80bdd6cf4d8e37d2598235394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DialogueCSV: {fileID: 4900000, guid: d4bd97ed0849e234a9d08fe3434c00bd, type: 3}
+--- !u!4 &180416132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180416130}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 800, y: 1280, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &371822737 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7503488287599980504, guid: 9c8a33b1af0d81c4c9e4d529ff735349, type: 3}
@@ -1970,3 +2015,4 @@ SceneRoots:
   - {fileID: 706180343}
   - {fileID: 1087800625}
   - {fileID: 5228520700684496751}
+  - {fileID: 180416132}
