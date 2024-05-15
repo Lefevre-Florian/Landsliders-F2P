@@ -30,6 +30,8 @@ namespace Com.IsartDigital.F2P.Biomes
                 HandManager.GetInstance().AddCardToDeck(_NbAffected);
             else
                 HandManager.GetInstance().BurnCard(_NbAffected);
+
+            HandManager.OnDeckAltered.Invoke(_NbAffected, GetComponent<Biome>().Type);
         }
 
         public void ImmmediateAlteration(MonoBehaviour pBonus)
@@ -37,7 +39,7 @@ namespace Com.IsartDigital.F2P.Biomes
             if (pBonus is IBiomeEnumerator)
             {
                 _NbAffected = (pBonus as IBiomeEnumerator).GetEnumertation();
-                SetupDeckEffect();
+                ImmediateAlteration();
             }
             else
                 Debug.LogError("Must be an" + typeof(IBiomeEnumerator));
@@ -47,13 +49,34 @@ namespace Com.IsartDigital.F2P.Biomes
         {
             DeckEffect lEffect = null;
             if (_DestroyEffectWithInstance)
+            {
                 lEffect = gameObject.AddComponent<DeckEffect>();
-            else
-                lEffect = Player.GetInstance().AddComponent<DeckEffect>();
+                lEffect.SetEffect(_NbTurn,
+                                  _NbAffected,
+                                  _Type);
 
-            lEffect.SetEffect(_NbTurn,
-                              _NbAffected,
-                              _Type);
+                HandManager.OnDeckAltered.Invoke(_NbAffected * _NbTurn, GetComponent<Biome>().Type);
+            }
+            else
+            {
+                Player lPlayer = Player.GetInstance();
+                if(lPlayer.GetComponent<DeckEffect>() == null)
+                {
+                    lEffect = lPlayer.AddComponent<DeckEffect>();
+
+                    lEffect.SetEffect(_NbTurn,
+                                      _NbAffected,
+                                      _Type);
+
+                    HandManager.OnDeckAltered.Invoke(_NbAffected * _NbTurn, GetComponent<Biome>().Type);
+                }
+                else
+                {
+                    lPlayer.GetComponent<DeckEffect>().IncrementTimer();
+                    HandManager.OnDeckAltered.Invoke(1, GetComponent<Biome>().Type);
+                }
+                    
+            }
         }
     }
 }
