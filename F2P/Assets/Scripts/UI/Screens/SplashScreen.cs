@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 
 using UnityEngine;
@@ -16,6 +17,9 @@ namespace Com.IsartDigital.F2P.UI.Screens
 
         // Variables
         private Coroutine _Animator = null;
+
+        // Event
+        public event Action OnFinished;
 
         private void Start()
         {
@@ -37,6 +41,7 @@ namespace Com.IsartDigital.F2P.UI.Screens
             }
 
             Clear();
+            OnFinished?.Invoke();
         }
 
         private void Clear()
