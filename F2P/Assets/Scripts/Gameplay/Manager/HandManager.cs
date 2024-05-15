@@ -94,7 +94,6 @@ public class HandManager : MonoBehaviour
     #region Deck and hand alteration
     public void DrawCard()
     {
-        print(_CardInHand);
         if (_Deck.Length >= 1)
         {
             for (int i = 0; i < _AvailableCardSlots.Length; i++)
