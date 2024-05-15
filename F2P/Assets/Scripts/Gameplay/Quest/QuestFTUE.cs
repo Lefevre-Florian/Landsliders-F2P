@@ -1,6 +1,8 @@
 using com.isartdigital.f2p.manager;
+using Com.IsartDigital.F2P;
 using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P.FTUE;
+using System;
 
 // Author (CR) : Lefevre Florian
 namespace com.isartdigital.f2p.gameplay.quest
@@ -11,6 +13,13 @@ namespace com.isartdigital.f2p.gameplay.quest
 
         private const int MAX_PHASE_TWO_CARD_FIELD = 3;
         private const int MAX_PHASE_THREE_SURVIVED = 3;
+
+        #region Tracking
+        private const string TRACKER_NAME = "ftueComplete";
+
+        private const string TRACKER_PHASE_PARAMETER_NAME = "phase";
+        private const string TRACKER_DURATION_PARAMETER_NAME = "timeInSecondMinute";
+        #endregion
 
         // Variables
         private GameManager _GameManager = null;
@@ -85,6 +94,19 @@ namespace com.isartdigital.f2p.gameplay.quest
         {
             if (pType == BiomeType.field)
                 _FieldHarvested += 1;
+        }
+
+        private void OnDisable()
+        {
+            if (_TutorialManager.CurrentPhaseID != 3)
+            {
+                TimeSpan lDuration = (DateTime.UtcNow - _TutorialManager.StartTime).Duration();
+                DataTracker.GetInstance().SendAnalytics(TRACKER_NAME, new System.Collections.Generic.Dictionary<string, object>()
+                {
+                    {TRACKER_DURATION_PARAMETER_NAME, lDuration.Minutes + ":" + lDuration.Seconds},
+                    {TRACKER_PHASE_PARAMETER_NAME, _TutorialManager.CurrentPhaseID }
+                });
+            }
         }
 
         private void OnDestroy()

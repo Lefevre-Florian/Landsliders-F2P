@@ -1,12 +1,15 @@
 using com.isartdigital.f2p.gameplay.manager;
+using com.isartdigital.f2p.manager;
 using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P.Biomes.Effects;
+using Com.IsartDigital.F2P.FileSystem;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using Unity.VisualScripting;
+
 using UnityEngine;
 
 // Author (CR) : Lefevre Florian
@@ -27,6 +30,11 @@ namespace Com.IsartDigital.F2P.FTUE
         private TutorialManager() : base() {}
         #endregion
 
+        #region Tracking
+        private const string TRACKER_NAME = "ftueComplete";
+        private const string TRACKER_DURATION_PARAMETER_NAME = "timeInSecondMinute";
+        #endregion
+
         [Header("FTUE Flow")]
         [SerializeField][Range(1, 3)] private int _PhaseID = 1;
         [SerializeField] private FTUEPhaseSO[] _Phase = null;
@@ -37,14 +45,15 @@ namespace Com.IsartDigital.F2P.FTUE
 
         private int _TurnIdx = 0;
 
-        private bool _Skip = false;
-
+        private DateTime _FTUEStartTime = default;
         // Get & Set
         public FTUEPhaseSO CurrentPhase { get { return _Phase[_PhaseID - 1]; } }
 
         public int CurrentPhaseID { get { return _Phase[_PhaseID - 1].FTUEPhase; } }
 
         public int Tick { get { return _TurnIdx; } }
+
+        public DateTime StartTime { get { return _FTUEStartTime; } }
 
         private void Awake()
         {
@@ -68,6 +77,10 @@ namespace Com.IsartDigital.F2P.FTUE
             _GameManager.OnEffectPlayed += PlayEffect;
 
             _GridManager = GridManager.GetInstance();
+
+            QuestManager.ValidQuest.AddListener(EndFTUE);
+
+            _FTUEStartTime = DateTime.UtcNow;
         }
 
         public void UpdatePhase()
@@ -146,6 +159,17 @@ namespace Com.IsartDigital.F2P.FTUE
             }
         }
 
+        private void EndFTUE()
+        {
+            // Save
+            Save.data.ftuecomplete = true;
+            DatabaseManager.GetInstance().WriteDataToSaveFile();
+
+            // Tracking
+            TimeSpan lDuration = (DateTime.UtcNow - _FTUEStartTime).Duration();
+            DataTracker.GetInstance().SendAnalytics(TRACKER_NAME, new Dictionary<string, object>() { { TRACKER_DURATION_PARAMETER_NAME, lDuration.Minutes + ":" + lDuration.Seconds } });
+        }
+
         private void OnDestroy()
         {
             if (_Instance == this)
@@ -163,6 +187,8 @@ namespace Com.IsartDigital.F2P.FTUE
 
                 GameFlowManager.HandLoaded.RemoveListener(UpdateDeck);
                 GameFlowManager.HandLoaded.RemoveListener(UpdateHand);
+
+                QuestManager.ValidQuest.RemoveListener(EndFTUE);
             }
         }
     }
