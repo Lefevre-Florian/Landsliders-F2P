@@ -86,3 +86,6 @@ MonoBehaviour:
     type: 2
     isLinkedBiomeEffect: 1
     effectID: 10
+  _DialogueFlow:
+  - Bidoum-C-01
+  - Bidoum-C-02

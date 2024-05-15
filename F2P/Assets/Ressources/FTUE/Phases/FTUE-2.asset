@@ -38,3 +38,5 @@ MonoBehaviour:
     type: 3
     isLinkedBiomeEffect: 0
     effectID: -1
+  _DialogueFlow:
+  - Bidoum-B-01

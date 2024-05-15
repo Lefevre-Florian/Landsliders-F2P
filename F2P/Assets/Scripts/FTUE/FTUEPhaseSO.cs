@@ -24,6 +24,10 @@ namespace Com.IsartDigital.F2P.FTUE
         [Header("Flow")]
         [SerializeField] private Phase[] _Phases = null;
 
+        [Space(5)]
+        [Header("Dialogues")]
+        [SerializeField] private string[] _DialogueFlow = new string[0];
+
         public int FTUEPhase { get { return _FTUEPhase; } }
 
         /// FTUE DECK
@@ -36,6 +40,8 @@ namespace Com.IsartDigital.F2P.FTUE
 
         /// FTUE Flow
         public Phase[] Phases { get { return _Phases; } }
+
+        public string[] Dialogues { get { return _DialogueFlow; } }
     }
 
     [Serializable]

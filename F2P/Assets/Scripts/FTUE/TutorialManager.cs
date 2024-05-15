@@ -3,6 +3,7 @@ using com.isartdigital.f2p.manager;
 using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P.Biomes.Effects;
 using Com.IsartDigital.F2P.FileSystem;
+using Com.IsartDigital.F2P.FTUE.Dialogues;
 
 using System;
 using System.Collections.Generic;
@@ -35,9 +36,14 @@ namespace Com.IsartDigital.F2P.FTUE
         private const string TRACKER_DURATION_PARAMETER_NAME = "timeInSecondMinute";
         #endregion
 
+        private const string FTUE_NARRATOR = "Bidoum";
+
         [Header("FTUE Flow")]
         [SerializeField][Range(1, 3)] private int _PhaseID = 1;
         [SerializeField] private FTUEPhaseSO[] _Phase = null;
+
+        [Header("Prefabs")]
+        [SerializeField] private GameObject _DialogueBox = null;
 
         // Variables
         private GameManager _GameManager = null;
@@ -81,6 +87,8 @@ namespace Com.IsartDigital.F2P.FTUE
             QuestManager.ValidQuest.AddListener(EndFTUE);
 
             _FTUEStartTime = DateTime.UtcNow;
+
+            UpdateDialogue();
         }
 
         public void UpdatePhase()
@@ -90,6 +98,8 @@ namespace Com.IsartDigital.F2P.FTUE
 
             if (_PhaseID > _Phase.Length)
                 _PhaseID = _Phase.Length;
+
+            UpdateDialogue();
         }
 
         public void UpdatePlayer()
@@ -159,6 +169,13 @@ namespace Com.IsartDigital.F2P.FTUE
             }
         }
 
+        private void UpdateDialogue()
+        {
+            // Dialogues
+            GameObject lTextBox = Instantiate(_DialogueBox);
+            lTextBox.GetComponent<DialogueScreen>().SetDialogues(FTUE_NARRATOR, CurrentPhase.Dialogues);
+        }
+
         private void EndFTUE()
         {
             // Save
@@ -181,7 +198,9 @@ namespace Com.IsartDigital.F2P.FTUE
                     _GameManager.OnAllEffectPlayed -= PlayTurn;
                     _GameManager.OnEffectPlayed -= PlayEffect;
                 }
+
                 _GameManager = null;
+                _GridManager = null;
 
                 GameFlowManager.PlayerLoaded.RemoveListener(UpdatePlayer);
 

@@ -25,6 +25,7 @@ MonoBehaviour:
         quantity: 8
       - type: 1
         quantity: 4
+    updateHand: 0
   _StartNBCards: 1
   _StartPosition: {x: 0, y: 1}
   _Phases:
@@ -33,3 +34,7 @@ MonoBehaviour:
     type: 4
     isLinkedBiomeEffect: 0
     effectID: -1
+  _DialogueFlow:
+  - Bidoum-A-01
+  - Bidoum-A-02
+  - Bidoum-A-03

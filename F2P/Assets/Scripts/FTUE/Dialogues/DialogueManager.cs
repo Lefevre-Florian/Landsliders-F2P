@@ -1,6 +1,5 @@
+using System;
 using System.Collections.Generic;
-
-using TMPro;
 
 using UnityEngine;
 
@@ -34,6 +33,12 @@ namespace Com.IsartDigital.F2P.FTUE
 
         // Variables
         private Dictionary<string, Dictionary<string, string>> _Dialogues = null;
+
+        // Event
+        public event Action OnDialogueStarted;
+        public event Action OnDialogueEnded;
+
+        public event Action OnScreenTouched;
 
         private void Awake()
         {
@@ -75,6 +80,12 @@ namespace Com.IsartDigital.F2P.FTUE
             }
         }
 
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+                OnScreenTouched?.Invoke();
+        }
+
         public string GetDialogue(string pCharacterID, string pDialogueID)
         {
             if (_Dialogues == null || !_Dialogues.ContainsKey(pCharacterID))
@@ -82,6 +93,10 @@ namespace Com.IsartDigital.F2P.FTUE
 
             return _Dialogues[pCharacterID][pDialogueID];
         }
+
+        public void TriggerDialogue() => OnDialogueStarted?.Invoke();
+
+        public void EndDialogue() => OnDialogueEnded?.Invoke();
 
         private void OnDestroy()
         {
