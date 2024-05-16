@@ -7,97 +7,48 @@ using UnityEngine;
 // Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.FTUE.Dialogues
 {
-    public class DialogueScreen : MonoBehaviour
+    public abstract class DialogueScreen : MonoBehaviour
     {
         [Header("UI")]
-        [SerializeField] private RectTransform _DialogueBox = null;
-        [SerializeField] private TextMeshProUGUI _LabelUIText = null;
+        [SerializeField] protected TextMeshProUGUI m_LabelUIText = null;
 
         [Header("Dialogue flow")]
-        [SerializeField] private string _CharacterIDs = "";
-        [SerializeField] private string[] _DialogueIDs = new string[0];
+        [SerializeField] protected DialogueFlowSO m_FlowSO = null;
 
         [Header("Juiciness")]
-        [SerializeField][Min(1f)] private float _DisplayDuration = 1f;
+        [SerializeField][Min(1f)] protected float m_DisplayDuration = 1f;
 
         // Variables
-        private DialogueManager _DialogueManager = null;
+        protected DialogueManager m_DialogueManager = null;
+        protected Coroutine m_DialogueWriter = null;
 
-        private int _DialogueIdx = 0;
-        private Coroutine _DialogueWriter = null;
+        protected string[] m_DialogueIDs = new string[0];
 
-        private int _TextLength = 0;
-
-        private void Start()
-        {
-            _DialogueManager = DialogueManager.GetInstance();
-            _DialogueManager.OnScreenTouched += Next;
-
-            if(_DialogueIDs.Length > 0)
-                DisplayText();
+        protected virtual void Start()
+        {   
+            m_LabelUIText.text = "";
+            if (m_FlowSO != null)
+                m_DialogueIDs = m_FlowSO.Dialogues;
+            
+            m_DialogueManager = DialogueManager.GetInstance();
         }
 
-        public void SetDialogues(string pCharacter, string[] pLines)
+        public void SetDialogues(string[] pLineIDs)=> m_DialogueIDs = pLineIDs;
+
+        protected void DisplayText()
         {
-            _CharacterIDs = pCharacter;
-            _DialogueIDs = pLines;
+            if (m_DialogueWriter != null)
+                StopCoroutine(m_DialogueWriter);
+
+            m_DialogueWriter = StartCoroutine(WriteDialogue());
         }
 
-        private void DisplayText()
+        protected virtual IEnumerator WriteDialogue() { yield return null; }
+
+        protected virtual void OnDestroy()
         {
-            if (_DialogueWriter != null)
-                StopCoroutine(_DialogueWriter);
-
-            _DialogueWriter = StartCoroutine(WriteDialogue());
-        }
-
-        private IEnumerator WriteDialogue()
-        {
-            string lCurrent = _DialogueManager.GetDialogue(_CharacterIDs, _DialogueIDs[_DialogueIdx]);
-            float lPromptTime = _DisplayDuration / lCurrent.Length;
-
-            _TextLength = lCurrent.Length;
-            _LabelUIText.maxVisibleCharacters = 0;
-            _LabelUIText.text = lCurrent;
-
-            for (int i = 0; i < _TextLength; i++)
-            {
-                _LabelUIText.maxVisibleCharacters += 1;
-                yield return new WaitForSeconds(lPromptTime);
-            }
-
-            StopCoroutine(_DialogueWriter);
-        }
-
-        private void Next()
-        {
-            if (_LabelUIText.maxVisibleCharacters != _TextLength)
-                return;
-
-            // Skip to next dialogue
-            if (_DialogueIdx == _DialogueIDs.Length - 1)
-            {
-                _DialogueManager.EndDialogue();
-                Destroy(gameObject);
-                return;
-            }
-                
-            _DialogueIdx += 1;
-            DisplayText();
-        }
-
-        private void HideBox() => _DialogueBox.gameObject.SetActive(false);
-
-        private void ShowBox() => _DialogueBox.gameObject.SetActive(true);
-
-        private void OnDestroy()
-        {
-            if(_DialogueManager != null)
-                _DialogueManager.OnScreenTouched -= Next;
-            _DialogueManager = null;
-
+            m_DialogueManager = null;
             StopAllCoroutines();
         }
-
     }
 }

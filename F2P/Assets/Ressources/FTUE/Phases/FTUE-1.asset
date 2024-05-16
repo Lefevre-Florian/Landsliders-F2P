@@ -34,7 +34,4 @@ MonoBehaviour:
     type: 4
     isLinkedBiomeEffect: 0
     effectID: -1
-  _DialogueFlow:
-  - Bidoum-A-01
-  - Bidoum-A-02
-  - Bidoum-A-03
+  _DialogueFlow: {fileID: 11400000, guid: 0d277e1f32166364c9423176f1cd2efb, type: 2}
