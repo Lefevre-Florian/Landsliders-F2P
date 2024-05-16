@@ -6,6 +6,14 @@ using UnityEngine;
 namespace Com.IsartDigital.F2P.Gameplay.Manager
 {
     public enum GameEventType { Etheral_Rift = 0, Dragon_Lair = 1, Witch = 2, Wisp = 3, Goblin_Treasure = 4, Mist = 5}
+
+    [System.Serializable]
+    public struct WeightedGameEvent
+    {
+        public GameEventType gameEvent;
+        public float weight;
+    }
+
     public class GameRandomEventsManager : MonoBehaviour
     {
         #region Singleton
@@ -42,13 +50,6 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
         [SerializeField][Range(0f,1f)]private float _GameEventChance = 0.3f;
         private float _RandomValue;
 
-        [SerializeField] private int _MaxEtheralRiftsNumber = 4;
-        [SerializeField] private int _MaxDragonLairsNumber = 2;
-        [SerializeField] private int _MaxWitchesNumber = 2;
-        [SerializeField] private int _MaxWispsNumber = 2;
-        [SerializeField] private int _MaxGoblinTreasuresNumber = 2;
-        [SerializeField] private int _MaxMistsNumber = 2;
-
         [SerializeField] private GameObject _EtheralRift;
         [SerializeField] private GameObject _DragonLair;
         [SerializeField] private GameObject _Witch;
@@ -62,23 +63,10 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
 
         private GameObject _InstantiatedGameEvent;
 
+        public List<WeightedGameEvent> _Events = new List<WeightedGameEvent>();
+
         private void Start()
         {
-            AddToEventDeckList(_MaxEtheralRiftsNumber, GameEventType.Etheral_Rift);
-            AddToEventDeckList(_MaxDragonLairsNumber, GameEventType.Dragon_Lair);
-            AddToEventDeckList(_MaxWitchesNumber, GameEventType.Witch);
-            AddToEventDeckList(_MaxWispsNumber, GameEventType.Wisp);
-            AddToEventDeckList(_MaxGoblinTreasuresNumber, GameEventType.Goblin_Treasure);
-            AddToEventDeckList(_MaxMistsNumber, GameEventType.Mist);
-
-            for (int i = _Eventdeck.Count - 1; i > 0; i--)
-            {
-                int j = UnityEngine.Random.Range(0, i + 1);
-                GameEventType lGameEventType = _Eventdeck[i];
-                _Eventdeck[i] = _Eventdeck[j];
-                _Eventdeck[j] = lGameEventType;
-            }
-
             GameManager.CardPlaced.AddListener(OnCardPlaced);
         }
 
@@ -90,28 +78,44 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
             GameManager.CardPlaced.RemoveListener(OnCardPlaced);
         }
 
-        private void AddToEventDeckList(int pInt, GameEventType pGameEventType)
-        {
-            for (int i = 0; i < pInt; i++)
-            {
-                _Eventdeck.Add(pGameEventType);
-            }
-        }
-
         private void OnCardPlaced()
         {
-            if (_GameEventsCount < _MaxGameEventsNumber && _Eventdeck.Count > 0)
+            if (_GameEventsCount < _MaxGameEventsNumber)
             {
                 _RandomValue = UnityEngine.Random.value;
 
                 if (_RandomValue < _GameEventChance)
                 {
-                    _GameEventSelected = _Eventdeck[_Eventdeck.Count - 1];
-                    _Eventdeck.RemoveAt(_Eventdeck.Count - 1);
+                    _GameEventSelected = GetRandomEvent(_Events);
+
                     InstantiateGameEvent(_GameEventSelected);
                     _GameEventsCount += 1;
                 }
             }
+        }
+
+        private GameEventType GetRandomEvent(List<WeightedGameEvent> pWeightedList)
+        {
+            float lTotalWeight = 0f;
+
+            foreach (WeightedGameEvent lWeighted in pWeightedList)
+            {
+                lTotalWeight += lWeighted.weight;
+            }
+
+            float lRandomValue = UnityEngine.Random.Range(0, lTotalWeight);
+
+            foreach (WeightedGameEvent lWeighted in pWeightedList)
+            {
+                if (lRandomValue < lWeighted.weight)
+                {
+                    return lWeighted.gameEvent;
+                }
+
+                lRandomValue -= lWeighted.weight;
+            }
+
+            return default(GameEventType);
         }
 
         private GameObject InstantiateGameEvent(GameEventType pGameEvenType)
