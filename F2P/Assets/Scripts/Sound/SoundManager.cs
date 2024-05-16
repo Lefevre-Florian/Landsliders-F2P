@@ -114,6 +114,19 @@ namespace Com.IsartDigital.F2P.Sound
                 UnloadSpecificBank(pBanks[i]);
         }
 
+        public void UpdateVolume(SoundType pType)
+        {
+            switch (pType)
+            {
+                case SoundType.GLOBAL:
+                    break;
+                case SoundType.VFX:
+                    break;
+                case SoundType.MUSIC:
+                    break;
+            }
+        }
+
         private void OnDestroy()
         {
             if (_Instance == this)
