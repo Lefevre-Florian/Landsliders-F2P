@@ -34,9 +34,6 @@ namespace Com.IsartDigital.F2P.FTUE
         private Dictionary<string, string> _Dialogues = null;
 
         // Event
-        public event Action OnDialogueStarted;
-        public event Action OnDialogueEnded;
-
         public event Action OnScreenTouched;
 
         private void Awake()
@@ -89,10 +86,6 @@ namespace Com.IsartDigital.F2P.FTUE
 
             return _Dialogues[pDialogueID];
         }
-
-        public void TriggerDialogue() => OnDialogueStarted?.Invoke();
-
-        public void EndDialogue() => OnDialogueEnded?.Invoke();
 
         private void OnDestroy()
         {

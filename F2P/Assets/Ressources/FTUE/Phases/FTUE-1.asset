@@ -34,4 +34,6 @@ MonoBehaviour:
     type: 4
     isLinkedBiomeEffect: 0
     effectID: -1
-  _DialogueFlow: {fileID: 11400000, guid: 0d277e1f32166364c9423176f1cd2efb, type: 2}
+  _DialogueFlow:
+  - {fileID: 11400000, guid: b8a3b8960ebc44744a55b552515f55c6, type: 2}
+  - {fileID: 11400000, guid: 0d277e1f32166364c9423176f1cd2efb, type: 2}

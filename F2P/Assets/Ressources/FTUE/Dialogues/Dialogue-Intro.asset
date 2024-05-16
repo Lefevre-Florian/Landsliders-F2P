@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d308c0ee8fdf3544d81c00ab15157ebc, type: 3}
-  m_Name: Dialogue-01
+  m_Name: Dialogue-Intro
   m_EditorClassIdentifier: 
   _Dialogues:
-  - Bidoum-A-01
-  - Bidoum-A-02
-  - Bidoum-A-03
-  _Animation: 3
+  - Guard-A-01
+  _Animation: 0
+  _DisplaySprite: 0

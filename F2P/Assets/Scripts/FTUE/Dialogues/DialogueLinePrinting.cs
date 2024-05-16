@@ -1,12 +1,15 @@
 using System.Collections;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 // Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.FTUE.Dialogues
 {
     public class DialogueLinePrinting : DialogueScreen
     {
+        // Events
+        public UnityEvent OnDialogueEnded;
 
         protected override void Start()
         {
@@ -33,7 +36,14 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
             yield return new WaitForSeconds(m_DisplayDuration);
             StopCoroutine(m_DialogueWriter);
 
+            OnDialogueEnded?.Invoke();
             Destroy(gameObject);
+        }
+
+        protected override void OnDestroy()
+        {
+            OnDialogueEnded.RemoveAllListeners();
+            base.OnDestroy();
         }
     }
 }

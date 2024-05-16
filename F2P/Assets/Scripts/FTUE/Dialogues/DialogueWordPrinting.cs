@@ -13,6 +13,7 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
 
         [Space(2)]
         [SerializeField] private RectTransform _DialogueBox = null;
+        [SerializeField] private RectTransform _CharacterRenderer = null;
 
         public enum Animation
         {
@@ -45,10 +46,13 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
                 PlayAnimation();
         }
 
-        public void SetDialogues(string[] pLineIDs, Animation pAnimationType = Animation.NONE)
+        public void SetDialogues(string[] pLineIDs, Animation pAnimationType = Animation.NONE, bool pDisplayIcon = true)
         {
             m_DialogueIDs = pLineIDs;
             _Type = pAnimationType;
+
+            if (!pDisplayIcon)
+                _CharacterRenderer.gameObject.SetActive(false);
         }
 
         protected override IEnumerator WriteDialogue()
@@ -124,8 +128,6 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
             if (_DialogueIdx == m_DialogueIDs.Length - 1)
             {
                 OnDialogueEnded?.Invoke();
-
-                m_DialogueManager.EndDialogue();
                 Destroy(gameObject);
                 return;
             }

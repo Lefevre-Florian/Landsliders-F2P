@@ -43,6 +43,8 @@ namespace Com.IsartDigital.F2P.FTUE
         [SerializeField] private FTUEPhaseSO[] _Phase = null;
 
         [Space(5)]
+        [SerializeField] private DialogueLinePrinting _StoryNarrator = null;
+        [Header("Prefabs")]
         [SerializeField] private GameObject _PRBDialogueBox = null;
 
         // Variables
@@ -50,6 +52,9 @@ namespace Com.IsartDigital.F2P.FTUE
         private GridManager _GridManager = null;
 
         private int _TurnIdx = 0;
+
+        private DialogueWordPrinting _CurrentTextBox = null;
+        private int _DialoguePhaseIdx = 0;
 
         private DateTime _FTUEStartTime = default;
         // Get & Set
@@ -88,13 +93,17 @@ namespace Com.IsartDigital.F2P.FTUE
 
             _FTUEStartTime = DateTime.UtcNow;
 
-            UpdateDialogue();
+            if (_StoryNarrator.isActiveAndEnabled)
+                _StoryNarrator.OnDialogueEnded.AddListener(UpdateDialogue);
+            else
+                UpdateDialogue();
         }
 
         public void UpdatePhase()
         {
             _PhaseID += 1;
             _TurnIdx = -1;
+            _DialoguePhaseIdx = 0;
 
             if (_PhaseID > _Phase.Length)
                 _PhaseID = _Phase.Length;
@@ -102,6 +111,7 @@ namespace Com.IsartDigital.F2P.FTUE
             UpdateDialogue();
         }
 
+        #region FTUE Gampelay
         public void UpdatePlayer()
         {
             Player.GetInstance().SetPosition(CurrentPhase.StartPosition);
@@ -168,15 +178,33 @@ namespace Com.IsartDigital.F2P.FTUE
                     lBiome.locked = true;
             }
         }
+        #endregion
 
+        #region FTUE Dialogue and Juiciness
         private void UpdateDialogue() 
         {
             // Dialogues
             GameObject lTextBox = Instantiate(_PRBDialogueBox, Hud.GetInstance().transform);
-            lTextBox.GetComponent<DialogueWordPrinting>().SetDialogues(CurrentPhase.DialogueFlow.Dialogues, 
-                                                                       CurrentPhaseID == 1 ? DialogueWordPrinting.Animation.DOWN : 
-                                                                                             DialogueWordPrinting.Animation.NONE);
+            _CurrentTextBox = lTextBox.GetComponent<DialogueWordPrinting>();
+            _CurrentTextBox.SetDialogues(CurrentPhase.DialogueFlow[_DialoguePhaseIdx].Dialogues,
+                                         CurrentPhase.DialogueFlow[_DialoguePhaseIdx].Tween,
+                                         CurrentPhase.DialogueFlow[_DialoguePhaseIdx].DisplaySprite);
+            if (CurrentPhase.DialogueFlow.Length > 1)
+                _CurrentTextBox.OnDialogueEnded.AddListener(ManageDialoguePhaseFlow);
         }
+
+        private void ManageDialoguePhaseFlow()
+        {
+            _CurrentTextBox.OnDialogueEnded.RemoveListener(ManageDialoguePhaseFlow);
+            _CurrentTextBox = null;
+
+            _DialoguePhaseIdx += 1;
+            if (_DialoguePhaseIdx >= CurrentPhase.DialogueFlow.Length)
+                return;
+
+            UpdateDialogue();
+        }
+        #endregion
 
         private void EndFTUE()
         {
