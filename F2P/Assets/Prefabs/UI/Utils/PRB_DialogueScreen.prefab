@@ -579,6 +579,7 @@ GameObject:
   - component: {fileID: 8358661112361680748}
   - component: {fileID: 3832248404576627933}
   - component: {fileID: 2397169019517711582}
+  - component: {fileID: 6730030256735565922}
   m_Layer: 5
   m_Name: PRB_DialogueScreen
   m_TagString: Untagged
@@ -632,6 +633,71 @@ MonoBehaviour:
   m_DisplayDuration: 2.5
   _AnimationDuration: 1
   _DialogueBox: {fileID: 5008251918128552970}
+  OnDialogueEnded:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6730030256735565922}
+        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.FTUE.Dialogues.DialogueCharacterAnimator,
+          Assembly-CSharp
+        m_MethodName: StopAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDialogueStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6730030256735565922}
+        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.FTUE.Dialogues.DialogueCharacterAnimator,
+          Assembly-CSharp
+        m_MethodName: StartAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDialoguePaused:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6730030256735565922}
+        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.FTUE.Dialogues.DialogueCharacterAnimator,
+          Assembly-CSharp
+        m_MethodName: StopAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6730030256735565922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6973438908491267459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8a6b701ef7ca0f44ba996cb8b2df859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Renderer: {fileID: 766349311584393741}
+  _LoopDuration: 0.5
+  _Frames:
+  - {fileID: 21300000, guid: 86cbcc971deaaa84e8dc113d6152ca5e, type: 3}
+  - {fileID: 21300000, guid: 497dbbd4762bad54ca4ba0e3d5e05f0b, type: 3}
 --- !u!1 &8623086247266322843
 GameObject:
   m_ObjectHideFlags: 0

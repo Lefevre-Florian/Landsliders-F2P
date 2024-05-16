@@ -1,6 +1,7 @@
 using System.Collections;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 // Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.FTUE.Dialogues
@@ -28,6 +29,11 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
 
         private Animation _Type = Animation.NONE;
 
+        // Event
+        public UnityEvent OnDialogueEnded;
+        public UnityEvent OnDialogueStarted;
+        public UnityEvent OnDialoguePaused;
+
         protected override void Start()
         {
             base.Start();
@@ -47,6 +53,8 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
 
         protected override IEnumerator WriteDialogue()
         {
+            OnDialogueStarted?.Invoke();
+
             _PrintFinished = false;
 
             string lCurrent = m_DialogueManager.GetDialogue(m_DialogueIDs[_DialogueIdx]);
@@ -61,6 +69,8 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
                 m_LabelUIText.maxVisibleCharacters += 1;
                 yield return new WaitForSeconds(lPromptTime);
             }
+
+            OnDialoguePaused?.Invoke();
 
             _PrintFinished = true;
             StopCoroutine(m_DialogueWriter);
@@ -113,6 +123,8 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
             // Skip to next dialogue
             if (_DialogueIdx == m_DialogueIDs.Length - 1)
             {
+                OnDialogueEnded?.Invoke();
+
                 m_DialogueManager.EndDialogue();
                 Destroy(gameObject);
                 return;
@@ -126,6 +138,11 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
         {
             if (m_DialogueManager != null)
                 m_DialogueManager.OnScreenTouched -= Next;
+
+            OnDialogueEnded.RemoveAllListeners();
+            OnDialoguePaused.RemoveAllListeners();
+            OnDialogueStarted.RemoveAllListeners();
+
             base.OnDestroy();
         }
     }
