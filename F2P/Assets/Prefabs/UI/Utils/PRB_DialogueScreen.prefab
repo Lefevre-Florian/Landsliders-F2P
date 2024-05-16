@@ -654,7 +654,7 @@ MonoBehaviour:
   OnDialogueEnded:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4734169934410587410}
         m_TargetAssemblyTypeName: Com.IsartDigital.F2P.FTUE.Dialogues.DialogueCharacterAnimator,
           Assembly-CSharp
         m_MethodName: StopAnimation
@@ -670,7 +670,7 @@ MonoBehaviour:
   OnDialogueStarted:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4734169934410587410}
         m_TargetAssemblyTypeName: Com.IsartDigital.F2P.FTUE.Dialogues.DialogueCharacterAnimator,
           Assembly-CSharp
         m_MethodName: StartAnimation
@@ -686,7 +686,7 @@ MonoBehaviour:
   OnDialoguePaused:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4734169934410587410}
         m_TargetAssemblyTypeName: Com.IsartDigital.F2P.FTUE.Dialogues.DialogueCharacterAnimator,
           Assembly-CSharp
         m_MethodName: StopAnimation

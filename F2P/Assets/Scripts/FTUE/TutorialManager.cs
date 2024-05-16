@@ -44,6 +44,9 @@ namespace Com.IsartDigital.F2P.FTUE
 
         [Space(5)]
         [SerializeField] private DialogueLinePrinting _StoryNarrator = null;
+        [SerializeField] private DialogueFlowSO _EndDialogue = null;
+
+        [Space(5)]
         [Header("Prefabs")]
         [SerializeField] private GameObject _PRBDialogueBox = null;
 
@@ -208,6 +211,12 @@ namespace Com.IsartDigital.F2P.FTUE
 
         private void EndFTUE()
         {
+            // Last dialogue
+            GameObject lTextBox = Instantiate(_PRBDialogueBox, Hud.GetInstance().transform);
+            lTextBox.GetComponent<DialogueWordPrinting>().SetDialogues(_EndDialogue.Dialogues,
+                                                                       _EndDialogue.Tween,
+                                                                       _EndDialogue.DisplaySprite);
+
             // Save
             Save.data.ftuecomplete = true;
             DatabaseManager.GetInstance().WriteDataToSaveFile();

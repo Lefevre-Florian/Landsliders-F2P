@@ -590,6 +590,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3e5c31198499dff45af97f7627c104c9, type: 2}
   - {fileID: 11400000, guid: ef7a134f1ecff8d4c83bd134126c8686, type: 2}
   _StoryNarrator: {fileID: 373833943}
+  _EndDialogue: {fileID: 11400000, guid: 6730611f783156849a0d4105e8619643, type: 2}
   _PRBDialogueBox: {fileID: 6973438908491267459, guid: b7bf6d2aca116294ca520f6b461543da, type: 3}
 --- !u!4 &708899413
 Transform:
