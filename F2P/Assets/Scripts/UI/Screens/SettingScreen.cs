@@ -1,4 +1,5 @@
 using Com.IsartDigital.F2P.FileSystem;
+using Com.IsartDigital.F2P.Sound;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,8 +18,12 @@ namespace Com.IsartDigital.F2P.UI
         // Variables
         private bool _WasModified = false;
 
+        private SoundManager _SoundManager = null;
+
         private void Start()
         {
+            _SoundManager = SoundManager.GetInstance();
+
             _MusicSlider.onValueChanged.AddListener(MusicVolumeChanged);
             _SFXSlider.onValueChanged.AddListener(SFXVolumeChanged);
             _GlobalSoundToggle.onToggleChanged.AddListener(SoundStatusChanged);
@@ -32,14 +37,26 @@ namespace Com.IsartDigital.F2P.UI
             }
         }
 
-        private void MusicVolumeChanged(float pValue) => VolumeSaveWrapper(pValue, ref Save.data.musicVolume);
+        private void MusicVolumeChanged(float pValue)
+        {
+            VolumeSaveWrapper(pValue, ref Save.data.musicVolume);
 
-        private void SFXVolumeChanged(float pValue) => VolumeSaveWrapper(pValue, ref Save.data.sfxVolume);
+            _SoundManager.UpdateVolume(SoundType.MUSIC);
+        }
+
+        private void SFXVolumeChanged(float pValue)
+        {
+            VolumeSaveWrapper(pValue, ref Save.data.sfxVolume);
+
+            _SoundManager.UpdateVolume(SoundType.VFX);
+        }
 
         private void SoundStatusChanged(bool pStatus)
         {
             Save.data.soundStatus = pStatus;
             _WasModified = true;
+
+            _SoundManager.UpdateVolume(SoundType.GLOBAL);
         }
 
         private void VolumeSaveWrapper(float pValue, ref float pVar)
@@ -47,8 +64,6 @@ namespace Com.IsartDigital.F2P.UI
             pVar = pValue;
             _WasModified = true;
         }
-
-        private void CallForModification() => _WasModified = true;
 
         private void OnDisable()
         {
