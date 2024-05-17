@@ -101,7 +101,19 @@ namespace Com.IsartDigital.F2P.Biomes
                 for (int j = 1; j < _Range; j++)
                 {
                     lNextPosition = m_Biome.GridPosition + lDirection * j;
-                    m_GridManager.ReplaceAtIndex(lNextPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform : CardPrefabDic.GetPrefab(_SubstitutionBiome).transform);
+                    
+                    if(lNextPosition.x % 1f != 0f && lNextPosition.y % 1f != 0f)
+                    {
+                        lNextPosition.x = lNextPosition.x % 1 <= 0.5f ? Mathf.FloorToInt(lNextPosition.x) : Mathf.CeilToInt(lNextPosition.x);
+                        lNextPosition.y = lNextPosition.y % 1 <= 0.5f ? Mathf.FloorToInt(lNextPosition.y) : Mathf.CeilToInt(lNextPosition.y);
+
+                        lNextPosition.x = lNextPosition.x + (Mathf.Sign(lDirection.x) * (j / 2));
+                        lNextPosition.y = lNextPosition.y + (Mathf.Sign(lDirection.y) * (j / 2));
+                    }
+
+                    m_GridManager.ReplaceAtIndex(lNextPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform 
+                                                                                   : CardPrefabDic.GetPrefab(_SubstitutionBiome).transform);
+                    
                     if (TryGetComponent<VortexQuest>(out VortexQuest vq)) vq.ValidQuest(lNextPosition);
                 }
             }
