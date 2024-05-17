@@ -10,31 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9092595ced0a804d857333d7588f546, type: 3}
-  m_Name: FTUE-2
+  m_Name: FTUE-1
   m_EditorClassIdentifier: 
-  _FTUEPhase: 2
+  _FTUEPhase: 1
   _Decks:
   - turn: 0
     deck:
       cards:
       - type: 1
-        quantity: 2
+        quantity: 1
+      - type: 0
+        quantity: 1
       - type: 4
         quantity: 8
       - type: 1
         quantity: 4
-    updateHand: 1
-  - turn: 1
-    deck:
-      cards:
-      - type: 1
-        quantity: 5
     updateHand: 0
   _StartNBCards: 1
-  _StartPosition: {x: 1, y: 0}
+  _StartPosition: {x: 0, y: 1}
   _Phases:
-  - triggerTurn: 0
-    position: {x: 0, y: 0}
-    type: 3
+  - triggerTurn: 1
+    position: {x: 1, y: 0}
+    type: 4
     isLinkedBiomeEffect: 0
     effectID: -1
+  _DialogueFlow:
+  - {fileID: 11400000, guid: b8a3b8960ebc44744a55b552515f55c6, type: 2}
+  - {fileID: 11400000, guid: 0d277e1f32166364c9423176f1cd2efb, type: 2}

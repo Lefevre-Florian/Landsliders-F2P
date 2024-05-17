@@ -1800,6 +1800,10 @@ PrefabInstance:
       propertyPath: _WinScreen
       value: 
       objectReference: {fileID: 1471252759428463885}
+    - target: {fileID: 4803329268400056286, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: _MainMenuIDX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5415446868097734589, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_Name
       value: PRB_Hud
