@@ -1,5 +1,7 @@
 using System.Collections;
 
+using TMPro;
+
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,40 +10,62 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
 {
     public class DialogueLinePrinting : DialogueScreen
     {
+        [SerializeField] private TextMeshProUGUI _DisplayContinue = null;
+
         // Events
+        [HideInInspector]
         public UnityEvent OnDialogueEnded;
 
         protected override void Start()
         {
             base.Start();
             if (m_DialogueIDs.Length > 0)
+            {
                 DisplayText();
+            }
+
+            _DisplayContinue.gameObject.SetActive(false);
         }
 
         protected override IEnumerator WriteDialogue()
         {
             int lLength = m_DialogueIDs.Length;
-            string lCurrent = "";
-
             for (int i = 0; i < lLength; i++)
             {
-                yield return new WaitForSeconds(m_DisplayDuration);
-
-                lCurrent = m_DialogueManager.GetDialogue(m_DialogueIDs[i]);
-                m_LabelUIText.text += '\n' + lCurrent;
-
-                m_LabelUIText.lineSpacing = m_LabelUIText.lineSpacing;
+                yield return WriteLine(m_DialogueManager.GetDialogue(m_DialogueIDs[i]));
+                m_LabelUIText.text += '\n';
             }
 
-            yield return new WaitForSeconds(m_DisplayDuration);
             StopCoroutine(m_DialogueWriter);
 
+            _DisplayContinue.gameObject.SetActive(true);
+            m_DialogueManager.OnScreenTouched += WaitForContinue;
+        }
+
+        private IEnumerator WriteLine(string pLine)
+        {
+            int lLength = pLine.Length;
+            float t = m_DisplayDuration / lLength;
+            for (int i = 0; i < lLength; i++)
+            {
+                yield return new WaitForSeconds(t);
+                m_LabelUIText.text += pLine[i];
+            }
+        }
+
+        private void WaitForContinue()
+        {
             OnDialogueEnded?.Invoke();
             Destroy(gameObject);
         }
 
         protected override void OnDestroy()
         {
+            if(m_DialogueManager != null)
+            {
+                m_DialogueManager.OnScreenTouched -= WaitForContinue;
+            }
+
             OnDialogueEnded.RemoveAllListeners();
             base.OnDestroy();
         }
