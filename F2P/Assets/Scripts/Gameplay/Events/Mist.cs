@@ -37,7 +37,6 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
                 foreach (GameObject lMist in _Mistlist)
                 {
                     lMist.SetActive(true);
-                    print("hi");
                 }
             }
             else if(_InstantiatedMist.activeSelf)
@@ -45,7 +44,6 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
                 foreach (GameObject lMist in _Mistlist)
                 {
                     lMist.SetActive(false);
-                    print("hello");
                 }
             }
         }

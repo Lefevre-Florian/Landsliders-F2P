@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using com.isartdigital.f2p.gameplay.manager;
+using Com.IsartDigital.F2P.Biomes;
 using UnityEngine;
 
 // Author (CR): Dorian Husson
@@ -57,16 +60,19 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
         [SerializeField] private GameObject _GoblinTreasure;
         [SerializeField] private GameObject _Mist;
 
-        private List<GameEventType> _Eventdeck = new List<GameEventType>();
-
         private GameEventType _GameEventSelected;
 
         private GameObject _InstantiatedGameEvent;
+
+        [SerializeField] private GameObject _GridContainer;
+        private List<GameObject> _StartGridList = new List<GameObject>();
 
         public List<WeightedGameEvent> _Events = new List<WeightedGameEvent>();
 
         private void Start()
         {
+            StartCoroutine(OnStart());
+
             GameManager.CardPlaced.AddListener(OnCardPlaced);
         }
 
@@ -88,7 +94,7 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
                 {
                     _GameEventSelected = GetRandomEvent(_Events);
 
-                    InstantiateGameEvent(_GameEventSelected);
+                    InstantiateGameEvent(_GameEventSelected, GameManager.GetInstance()._LastCardPlayed.transform);
                     _GameEventsCount += 1;
                 }
             }
@@ -118,33 +124,79 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
             return default(GameEventType);
         }
 
-        private GameObject InstantiateGameEvent(GameEventType pGameEvenType)
+        private GameObject InstantiateGameEvent(GameEventType pGameEvenType, Transform pParent)
         {
             switch (pGameEvenType)
             {
                 case GameEventType.Etheral_Rift:
-                    return PlaceGameEvent(_EtheralRift);
+                    return PlaceGameEvent(_EtheralRift, pParent);
                 case GameEventType.Dragon_Lair:
-                    return PlaceGameEvent(_DragonLair);
+                    return PlaceGameEvent(_DragonLair, pParent);
                 case GameEventType.Witch:
-                    return PlaceGameEvent(_Witch);
+                    return PlaceGameEvent(_Witch, pParent);
                 case GameEventType.Wisp:
-                    return PlaceGameEvent(_Wisp);
+                    return PlaceGameEvent(_Wisp, pParent);
                 case GameEventType.Goblin_Treasure:
-                    return PlaceGameEvent(_GoblinTreasure);
+                    return PlaceGameEvent(_GoblinTreasure, pParent);
                 case GameEventType.Mist:
-                    return PlaceGameEvent(_Mist);
+                    return PlaceGameEvent(_Mist, pParent);
                 default:
                     return null;
             }
         }
 
-        private GameObject PlaceGameEvent(GameObject pGameObject)
+        private GameObject PlaceGameEvent(GameObject pGameObject, Transform pParent)
         {
             _InstantiatedGameEvent = Instantiate(pGameObject);
-            _InstantiatedGameEvent.transform.SetParent(GameManager.GetInstance()._LastCardPlayed.transform);
+            _InstantiatedGameEvent.transform.SetParent(pParent);
             _InstantiatedGameEvent.transform.localPosition = Vector3.back;
             return _InstantiatedGameEvent;
+        }
+
+        private List<GameObject> GetAllChildren(GameObject pParent)
+        {
+            List<GameObject> lChildren = new List<GameObject>();
+
+            for (int i = 0; i < pParent.transform.childCount; i++)
+            {
+                if (Player.GetInstance().transform.position != pParent.transform.GetChild(i).transform.position)
+                {
+                    lChildren.Add(pParent.transform.GetChild(i).gameObject);
+                }
+            }
+
+            return lChildren;
+        }
+
+        private IEnumerator OnStart()
+        {
+            yield return new WaitForEndOfFrame();
+
+            _StartGridList = GetAllChildren(_GridContainer);
+
+            for (int i = _StartGridList.Count - 1; i > 0; i--)
+            {
+                int j = UnityEngine.Random.Range(0, i + 1);
+                GameObject lObject = _StartGridList[i];
+                _StartGridList[i] = _StartGridList[j];
+                _StartGridList[j] = lObject;
+            }
+
+            foreach (GameObject lGameObject in _StartGridList)
+            {
+                if (_GameEventsCount < _MaxGameEventsNumber)
+                {
+                    _RandomValue = UnityEngine.Random.value;
+
+                    if (_RandomValue < _GameEventChance)
+                    {
+                        _GameEventSelected = GetRandomEvent(_Events);
+
+                        InstantiateGameEvent(_GameEventSelected, lGameObject.transform);
+                        _GameEventsCount += 1;
+                    }
+                }
+            }
         }
     }
 }
