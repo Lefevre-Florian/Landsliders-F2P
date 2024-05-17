@@ -1,4 +1,5 @@
 using Com.IsartDigital.F2P.Biomes;
+using Com.IsartDigital.F2P.FTUE.Dialogues;
 
 using System;
 
@@ -24,6 +25,10 @@ namespace Com.IsartDigital.F2P.FTUE
         [Header("Flow")]
         [SerializeField] private Phase[] _Phases = null;
 
+        [Space(5)]
+        [Header("Dialogues")]
+        [SerializeField] private DialogueFlowSO[] _DialogueFlow = null;
+
         public int FTUEPhase { get { return _FTUEPhase; } }
 
         /// FTUE DECK
@@ -36,6 +41,8 @@ namespace Com.IsartDigital.F2P.FTUE
 
         /// FTUE Flow
         public Phase[] Phases { get { return _Phases; } }
+
+        public DialogueFlowSO[] DialogueFlow { get { return _DialogueFlow; } }
     }
 
     [Serializable]

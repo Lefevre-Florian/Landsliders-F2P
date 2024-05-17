@@ -79,10 +79,7 @@ namespace com.isartdigital.f2p.gameplay.quest
                     if (_IsPoisoned)
                     {
                         if(_NbTurn == MAX_PHASE_THREE_SURVIVED)
-                        {
-                            _TutorialManager.UpdatePhase();
                             QuestManager.ValidQuest.Invoke();
-                        }
                         _NbTurn += 1;
                     }
 

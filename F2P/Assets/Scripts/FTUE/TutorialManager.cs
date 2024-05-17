@@ -1,8 +1,11 @@
 using com.isartdigital.f2p.gameplay.manager;
 using com.isartdigital.f2p.manager;
+
 using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P.Biomes.Effects;
 using Com.IsartDigital.F2P.FileSystem;
+using Com.IsartDigital.F2P.FTUE.Dialogues;
+using Com.IsartDigital.F2P.UI.UIHUD;
 
 using System;
 using System.Collections.Generic;
@@ -39,11 +42,22 @@ namespace Com.IsartDigital.F2P.FTUE
         [SerializeField][Range(1, 3)] private int _PhaseID = 1;
         [SerializeField] private FTUEPhaseSO[] _Phase = null;
 
+        [Space(5)]
+        [SerializeField] private DialogueLinePrinting _StoryNarrator = null;
+        [SerializeField] private DialogueFlowSO _EndDialogue = null;
+
+        [Space(5)]
+        [Header("Prefabs")]
+        [SerializeField] private GameObject _PRBDialogueBox = null;
+
         // Variables
         private GameManager _GameManager = null;
         private GridManager _GridManager = null;
 
         private int _TurnIdx = 0;
+
+        private DialogueWordPrinting _CurrentTextBox = null;
+        private int _DialoguePhaseIdx = 0;
 
         private DateTime _FTUEStartTime = default;
         // Get & Set
@@ -81,17 +95,26 @@ namespace Com.IsartDigital.F2P.FTUE
             QuestManager.ValidQuest.AddListener(EndFTUE);
 
             _FTUEStartTime = DateTime.UtcNow;
+
+            if (_StoryNarrator.isActiveAndEnabled)
+                _StoryNarrator.OnDialogueEnded.AddListener(UpdateDialogue);
+            else
+                UpdateDialogue();
         }
 
         public void UpdatePhase()
         {
             _PhaseID += 1;
             _TurnIdx = -1;
+            _DialoguePhaseIdx = 0;
 
             if (_PhaseID > _Phase.Length)
                 _PhaseID = _Phase.Length;
+
+            UpdateDialogue();
         }
 
+        #region FTUE Gampelay
         public void UpdatePlayer()
         {
             Player.GetInstance().SetPosition(CurrentPhase.StartPosition);
@@ -158,9 +181,42 @@ namespace Com.IsartDigital.F2P.FTUE
                     lBiome.locked = true;
             }
         }
+        #endregion
+
+        #region FTUE Dialogue and Juiciness
+        private void UpdateDialogue() 
+        {
+            // Dialogues
+            GameObject lTextBox = Instantiate(_PRBDialogueBox, Hud.GetInstance().transform);
+            _CurrentTextBox = lTextBox.GetComponent<DialogueWordPrinting>();
+            _CurrentTextBox.SetDialogues(CurrentPhase.DialogueFlow[_DialoguePhaseIdx].Dialogues,
+                                         CurrentPhase.DialogueFlow[_DialoguePhaseIdx].Tween,
+                                         CurrentPhase.DialogueFlow[_DialoguePhaseIdx].DisplaySprite);
+            if (CurrentPhase.DialogueFlow.Length > 1)
+                _CurrentTextBox.OnDialogueEnded.AddListener(ManageDialoguePhaseFlow);
+        }
+
+        private void ManageDialoguePhaseFlow()
+        {
+            _CurrentTextBox.OnDialogueEnded.RemoveListener(ManageDialoguePhaseFlow);
+            _CurrentTextBox = null;
+
+            _DialoguePhaseIdx += 1;
+            if (_DialoguePhaseIdx >= CurrentPhase.DialogueFlow.Length)
+                return;
+
+            UpdateDialogue();
+        }
+        #endregion
 
         private void EndFTUE()
         {
+            // Last dialogue
+            GameObject lTextBox = Instantiate(_PRBDialogueBox, Hud.GetInstance().transform);
+            lTextBox.GetComponent<DialogueWordPrinting>().SetDialogues(_EndDialogue.Dialogues,
+                                                                       _EndDialogue.Tween,
+                                                                       _EndDialogue.DisplaySprite);
+
             // Save
             Save.data.ftuecomplete = true;
             DatabaseManager.GetInstance().WriteDataToSaveFile();
@@ -181,7 +237,9 @@ namespace Com.IsartDigital.F2P.FTUE
                     _GameManager.OnAllEffectPlayed -= PlayTurn;
                     _GameManager.OnEffectPlayed -= PlayEffect;
                 }
+
                 _GameManager = null;
+                _GridManager = null;
 
                 GameFlowManager.PlayerLoaded.RemoveListener(UpdatePlayer);
 

@@ -1,7 +1,6 @@
 using System;
 
 using UnityEngine;
-using UnityEngine.Device;
 
 // Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.UI
@@ -10,8 +9,7 @@ namespace Com.IsartDigital.F2P.UI
     {
         [Header("Screens")]
         [SerializeField] private Transform _SwipeContainer = null;
-        [Space(5)]
-        [SerializeField] private Screen[] _LockScreen = null;
+        [SerializeField] private Transform _LockContainer = null;
 
         [Header("Settings")]
         [SerializeField][Range(.1f, .8f)] private float _SwipeMinPercent = .25f;
@@ -23,14 +21,20 @@ namespace Com.IsartDigital.F2P.UI
         private Action _Action = null;
         
         private Screen[] _ScreenNavigation = null;
+        private Screen[] _LockScreens = null;
 
         private void Start()
         {
-            int lLength = _LockScreen.Length;
-            for (int i = 0; i < lLength; i++)
+            int lLength = _LockContainer.childCount;
+            if(lLength > 0)
             {
-                _LockScreen[i].OnScreenClosed += EnableSwipe;
-                _LockScreen[i].OnScreenOpened += DisableSwipe;
+                _LockScreens = new Screen[lLength];
+                for (int i = 0; i < lLength; i++)
+                {
+                    _LockScreens[i] = _LockContainer.GetChild(i).GetComponent<Screen>();
+                    _LockScreens[i].OnScreenClosed += EnableSwipe;
+                    _LockScreens[i].OnScreenOpened += DisableSwipe;
+                }
             }
 
             //Check which screen is open
@@ -98,11 +102,16 @@ namespace Com.IsartDigital.F2P.UI
 
         private void OnDestroy()
         {
-            int lLength = _LockScreen.Length;
-            for (int i = 0; i < lLength; i++)
+            if(_LockScreens != null && _LockScreens.Length > 0)
             {
-                _LockScreen[i].OnScreenClosed -= EnableSwipe;
-                _LockScreen[i].OnScreenOpened -= DisableSwipe;
+                int lLength = _LockScreens.Length;
+                for (int i = 0; i < lLength; i++)
+                {
+                    _LockScreens[i].OnScreenClosed -= EnableSwipe;
+                    _LockScreens[i].OnScreenOpened -= DisableSwipe;
+                }
+
+                _LockScreens = null;
             }
         }
     }
