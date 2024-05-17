@@ -351,6 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _AlwaysLoadedBank: []
   _Banks: []
+  _VCATypes: []
 --- !u!4 &292189298
 Transform:
   m_ObjectHideFlags: 0
@@ -983,6 +984,14 @@ PrefabInstance:
     - target: {fileID: 1946682801412205127, guid: 0a2dfef94edcba04b91ff0b6116a8627, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557786929326541684, guid: 0a2dfef94edcba04b91ff0b6116a8627, type: 3}
+      propertyPath: m_Value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445752505279082194, guid: 0a2dfef94edcba04b91ff0b6116a8627, type: 3}
+      propertyPath: m_Value
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6776490786727723926, guid: 0a2dfef94edcba04b91ff0b6116a8627, type: 3}
       propertyPath: m_AnchorMax.y

@@ -24,8 +24,8 @@ namespace Com.IsartDigital.F2P
 
         // Settings
         public bool soundStatus = true;
-        public float musicVolume = 0f;
-        public float sfxVolume = 0f;
+        public float musicVolume = 0.5f;
+        public float sfxVolume = 0.5f;
 
         // Tracking
         public TimeSpan totalPlaytime = TimeSpan.Zero;

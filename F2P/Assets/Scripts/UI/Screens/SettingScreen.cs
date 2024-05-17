@@ -41,14 +41,14 @@ namespace Com.IsartDigital.F2P.UI
         {
             VolumeSaveWrapper(pValue, ref Save.data.musicVolume);
 
-            _SoundManager.UpdateVolume(SoundType.MUSIC);
+            _SoundManager.UpdateVolume(SoundType.MUSIC, pValue);
         }
 
         private void SFXVolumeChanged(float pValue)
         {
             VolumeSaveWrapper(pValue, ref Save.data.sfxVolume);
 
-            _SoundManager.UpdateVolume(SoundType.VFX);
+            _SoundManager.UpdateVolume(SoundType.VFX, pValue);
         }
 
         private void SoundStatusChanged(bool pStatus)
@@ -56,7 +56,7 @@ namespace Com.IsartDigital.F2P.UI
             Save.data.soundStatus = pStatus;
             _WasModified = true;
 
-            _SoundManager.UpdateVolume(SoundType.GLOBAL);
+            _SoundManager.UpdateVolume(SoundType.GLOBAL, (pStatus) ? 1f : 0f);
         }
 
         private void VolumeSaveWrapper(float pValue, ref float pVar)
