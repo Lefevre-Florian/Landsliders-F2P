@@ -936,19 +936,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MaxGameEventsNumber: 3
-  _GameEventChance: 0
-  _MaxEtheralRiftsNumber: 4
-  _MaxDragonLairsNumber: 0
-  _MaxWitchesNumber: 0
-  _MaxWispsNumber: 0
-  _MaxGoblinTreasuresNumber: 0
-  _MaxMistsNumber: 0
+  _GameEventChance: 1
   _EtheralRift: {fileID: 8149821949770973124, guid: 806f15beba4f9e04eb9bd269db15f90f, type: 3}
   _DragonLair: {fileID: 6087476990557836528, guid: 32c0595fe4bed8144b59f4e1c9421115, type: 3}
   _Witch: {fileID: 1284007911230468281, guid: e33e8248a04cd5642a3d41315b9fb62b, type: 3}
   _Wisp: {fileID: 7100505260429275719, guid: d7ba279bed5d1ca44a6f7716a67c93f5, type: 3}
   _GoblinTreasure: {fileID: 6956311438354313730, guid: aa830714b7b17d945a7b1e4c0d885b38, type: 3}
   _Mist: {fileID: 4857646458243004221, guid: ea2578a30c4a6404e90de53066c8cc48, type: 3}
+  _GridContainer: {fileID: 2095938587}
+  _Events:
+  - gameEvent: 0
+    weight: 24
+  - gameEvent: 1
+    weight: 12
+  - gameEvent: 2
+    weight: 22
+  - gameEvent: 3
+    weight: 18
+  - gameEvent: 4
+    weight: 14
+  - gameEvent: 5
+    weight: 10
 --- !u!114 &1061210650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1704,6 +1712,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
+--- !u!1 &2095938587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2523440598157997503, guid: ddc7a0c9470b72144b00fbc095576ba5, type: 3}
+  m_PrefabInstance: {fileID: 1087800625}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1471252759428463884
 PrefabInstance:
   m_ObjectHideFlags: 0

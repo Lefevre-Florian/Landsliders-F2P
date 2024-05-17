@@ -53,6 +53,7 @@ namespace Com.IsartDigital.F2P.Biomes
         {
             _GameManager.OnTurnPassed -= Predict;
 
+            if (_Displays == null) return;
             int lLength = _Displays.Length;
             for (int i = 0; i < lLength; i++)
                 Destroy(_Displays[i].gameObject);

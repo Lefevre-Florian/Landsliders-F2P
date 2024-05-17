@@ -65,13 +65,14 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
         private GameObject _InstantiatedGameEvent;
 
         [SerializeField] private GameObject _GridContainer;
-        private List<GameObject> _StartGridList = new List<GameObject>();
 
         public List<WeightedGameEvent> _Events = new List<WeightedGameEvent>();
 
+        private GameManager _Gamemanager;
+
         private void Start()
         {
-            StartCoroutine(OnStart());
+            _Gamemanager = GameManager.GetInstance();
 
             GameManager.CardPlaced.AddListener(OnCardPlaced);
         }
@@ -82,10 +83,18 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
                 _Instance = null;
 
             GameManager.CardPlaced.RemoveListener(OnCardPlaced);
+            GridManager.GetInstance().GridGenerated.RemoveListener(OnStart);
         }
 
         private void OnCardPlaced()
         {
+            OnCardPlaced(_Gamemanager._LastCardPlayed.transform);
+        }
+
+        private void OnCardPlaced(Transform pParent)
+        {
+            if (pParent.GetComponent<Biome>().Type == BiomeType.Canyon) return;
+
             if (_GameEventsCount < _MaxGameEventsNumber)
             {
                 _RandomValue = UnityEngine.Random.value;
@@ -94,7 +103,7 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
                 {
                     _GameEventSelected = GetRandomEvent(_Events);
 
-                    InstantiateGameEvent(_GameEventSelected, GameManager.GetInstance()._LastCardPlayed.transform);
+                    InstantiateGameEvent(_GameEventSelected, pParent);
                     _GameEventsCount += 1;
                 }
             }
@@ -153,50 +162,30 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
             return _InstantiatedGameEvent;
         }
 
-        private List<GameObject> GetAllChildren(GameObject pParent)
+        private void OnStart()
         {
-            List<GameObject> lChildren = new List<GameObject>();
+            List<Biome> lGrid = GridManager.GetInstance().Biomes;
 
-            for (int i = 0; i < pParent.transform.childCount; i++)
-            {
-                if (Player.GetInstance().transform.position != pParent.transform.GetChild(i).transform.position)
-                {
-                    lChildren.Add(pParent.transform.GetChild(i).gameObject);
-                }
-            }
+            lGrid.RemoveAll(x => x.transform.position == Player.GetInstance().transform.position);
 
-            return lChildren;
-        }
 
-        private IEnumerator OnStart()
-        {
-            yield return new WaitForEndOfFrame();
-
-            _StartGridList = GetAllChildren(_GridContainer);
-
-            for (int i = _StartGridList.Count - 1; i > 0; i--)
+            for (int i = lGrid.Count - 1; i > 0; i--)
             {
                 int j = UnityEngine.Random.Range(0, i + 1);
-                GameObject lObject = _StartGridList[i];
-                _StartGridList[i] = _StartGridList[j];
-                _StartGridList[j] = lObject;
+                Biome lObject = lGrid[i];
+                lGrid[i] = lGrid[j];
+                lGrid[j] = lObject;
             }
 
-            foreach (GameObject lGameObject in _StartGridList)
+            foreach (Biome lBiome in lGrid)
             {
-                if (_GameEventsCount < _MaxGameEventsNumber)
-                {
-                    _RandomValue = UnityEngine.Random.value;
-
-                    if (_RandomValue < _GameEventChance)
-                    {
-                        _GameEventSelected = GetRandomEvent(_Events);
-
-                        InstantiateGameEvent(_GameEventSelected, lGameObject.transform);
-                        _GameEventsCount += 1;
-                    }
-                }
+                OnCardPlaced(lBiome.transform);
             }
+        }
+
+        private void OnEnable()
+        {
+            GridManager.GetInstance().GridGenerated.AddListener(OnStart);
         }
     }
 }
