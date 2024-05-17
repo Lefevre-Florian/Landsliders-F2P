@@ -29,7 +29,7 @@ namespace Com.IsartDigital.F2P.Biomes
         // Get / Set
         public int NbDirectionToCheck { get { return (int)_GridDirection; } }
 
-        protected virtual void Start()
+        public virtual void Start()
         {
             m_GridManager = GridManager.GetInstance();
             m_Biome = GetComponent<Biome>();

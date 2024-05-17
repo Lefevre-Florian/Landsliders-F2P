@@ -3048,7 +3048,8 @@ MonoBehaviour:
   _PauseButton: {fileID: 1920386465178502156}
   _PauseScreen: {fileID: 5980275830428676693}
   _LoseScreen: {fileID: 5979940545188701387}
-  _MainMenuIDX: 0
+  _WinScreen: {fileID: 0}
+  _MainMenuIDX: 1
   _UseLoadingScreen: 0
 --- !u!1 &5662230753421264551
 GameObject:

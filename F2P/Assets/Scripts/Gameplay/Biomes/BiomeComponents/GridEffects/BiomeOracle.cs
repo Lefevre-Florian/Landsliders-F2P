@@ -29,7 +29,7 @@ namespace Com.IsartDigital.F2P.Biomes
         private Vector2[] _StackMemory = null;
         private Transform[] _Displays = null;
 
-        private void Start()
+        public void Start()
         {
             if(_LayerContainer == null)
             {
@@ -76,7 +76,8 @@ namespace Com.IsartDigital.F2P.Biomes
             
             if (_Displays != null)
                 foreach (Transform lItem in _Displays)
-                    Destroy(lItem.gameObject);
+                    if(lItem != null)
+                        Destroy(lItem.gameObject);
 
             if (_StackMemory == null || _StackMemory.Length == 0)
                 return;
