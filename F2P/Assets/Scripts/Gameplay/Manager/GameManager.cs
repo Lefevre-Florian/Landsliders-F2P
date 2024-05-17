@@ -69,8 +69,6 @@ public class GameManager : MonoBehaviour
     private int _TurnNumber = 1;
     private int _CardStocked = 12;
 
-    private Vector3 _BasePlayerGridPosToPixel;
-
     private Coroutine _EffectTimer = null;
 
     private DateTime _GameStartTime = default;
@@ -100,16 +98,19 @@ public class GameManager : MonoBehaviour
     public int Turn { get { return _TurnNumber; } }
     // Events
     public event Action OnTurnPassed;
+
     public event Action<int> OnEffectPlayed;
     public event Action OnAllEffectPlayed;
+
+    public event Action<bool> OnGameover;
 
     public static UnityEvent CardPlaced = new UnityEvent();
     public static UnityEvent PlayerMoved = new UnityEvent();
 
     private void Start()
     {
-        _BasePlayerGridPosToPixel = GridManager.GetInstance().GetWorldCoordinate((int)_BasePlayerGridPos.x, (int)_BasePlayerGridPos.y);
-        Instantiate(_Player, _BasePlayerGridPosToPixel, Quaternion.identity);
+        Vector3 lWorldPosition = GridManager.GetInstance().GetWorldCoordinate(_BasePlayerGridPos);
+        Instantiate(_Player, lWorldPosition, Quaternion.identity);
         _Player.GetComponent<Player>().baseGridPos = _BasePlayerGridPos;
 
         CardPlaced.AddListener(SetModeMovingPlayer);
@@ -157,8 +158,8 @@ public class GameManager : MonoBehaviour
     {
         currentState = State.GameEnd;
         playerCanMove = false;
-        
-        ///TODO Trigger popup
+
+        OnGameover?.Invoke(false);
     }
 
     public void SetModeWin()
@@ -173,6 +174,8 @@ public class GameManager : MonoBehaviour
                                                     { TRACKER_GAME_DURATION_TURN_PARAMETER, _TurnNumber},
                                                     {TRACKER_GAME_DURATION_REALTIME_PARAMETER,  lDuration.Minutes + ":" + lDuration.Seconds}
                                                 });
+
+        OnGameover?.Invoke(true);
     }
     #endregion
 

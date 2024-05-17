@@ -63,7 +63,9 @@ namespace Com.IsartDigital.F2P
             await UnityServices.InitializeAsync();
             Connect();
 
+            #if !UNITY_EDITOR
             ComputeRetentionTracking();
+            #endif
         }
 
         private void Connect()

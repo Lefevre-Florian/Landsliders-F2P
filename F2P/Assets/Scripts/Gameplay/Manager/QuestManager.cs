@@ -1,8 +1,6 @@
-using Com.IsartDigital.F2P.Biomes;
 using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
+using System.Linq;
+
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -25,7 +23,9 @@ namespace com.isartdigital.f2p.manager
             FieldQuest,
             FlyingIslandQuest,
             CardQuest,
-            VortexQuest
+            VortexQuest,
+
+            FTUE
         }
 
         private void Awake()
@@ -40,6 +40,8 @@ namespace com.isartdigital.f2p.manager
             if(currentQuestDebug == QuestsEnum.NONE)
             {
                 string[] lQuestsArray = Enum.GetNames(typeof(QuestsEnum));
+                lQuestsArray.ToList().Remove(QuestsEnum.FTUE.ToString());
+
                 int rand = UnityEngine.Random.Range(1, lQuestsArray.Length);
 
                 currentQuest = (QuestsEnum)Enum.Parse(typeof(QuestsEnum), lQuestsArray[rand]);
@@ -48,18 +50,18 @@ namespace com.isartdigital.f2p.manager
             Debug.Log(currentQuest);
         }
 
+        private void WinDebug()
+        {
+            Debug.Log("Win");
+
+            GameManager.GetInstance().SetModeWin();
+        }
+
         private void OnDestroy()
         {
             GameFlowManager.LoadMap.RemoveListener(Init);
             ValidQuest.RemoveListener(WinDebug);
         }
-
-
-        private void WinDebug()
-        {
-            Debug.Log("Win");
-        }
-
     }
 }
 

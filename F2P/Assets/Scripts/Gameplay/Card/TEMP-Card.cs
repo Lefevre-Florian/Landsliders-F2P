@@ -4,7 +4,7 @@ using Com.IsartDigital.F2P.Biomes;
 
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using UnityEngine;
 
 // Author (CR) : Elias Dridi
@@ -19,19 +19,22 @@ public class TEMPCard : MonoBehaviour
     
     private const string CARDPLAYED_TAG = "CardPlayed";
     private const string PLAYER_NAME = "Player";
-    
-    // Variables
+
+    // Inspector
+    [Header("Card")]
     public int handIndex;
     public State currentState;
+
+    [Space(2)]
+    [SerializeField] private BiomeType[] _ForbiddenBiome = new BiomeType[] { BiomeType.Canyon, BiomeType.Myst};
     
+    // Variables
     private RaycastHit2D _Hit;
 
     private bool _Snapable;
     [HideInInspector]public Vector3 snapPos;
     private GameObject _SnapParent;
     private GameObject _ClosestSnapParent;
-
-    private Vector3 _GridPlacement;
 
     private HandManager _HandManager = null;
     private Action DoAction = null;
@@ -40,6 +43,8 @@ public class TEMPCard : MonoBehaviour
 
     // Event
     public event Action OnPlaced;
+
+    public static event Action<bool> OnFocus;
 
     void Start()
     {
@@ -55,7 +60,7 @@ public class TEMPCard : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.name != PLAYER_NAME && collision.GetComponent<TEMPCard>().currentState != State.InHand && collision.GetComponent<Biome>().Type != GetComponent<Biome>().Type && 
-            collision.GetComponent<Biome>().Type != BiomeType.Canyon && collision.GetComponent<CardContainer>().gridPosition != Player.GetInstance()._ActualGridPos)
+            !_ForbiddenBiome.Contains(collision.GetComponent<Biome>().Type)  && collision.GetComponent<CardContainer>().gridPosition != Player.GetInstance()._ActualGridPos)
         {
             _CollidingObjects.Add(collision);
             _Snapable = true;
@@ -79,7 +84,7 @@ public class TEMPCard : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.name != PLAYER_NAME && collision.GetComponent<TEMPCard>().currentState != State.InHand && collision.GetComponent<Biome>().Type != GetComponent<Biome>().Type
-            && collision.GetComponent<Biome>().Type != BiomeType.Canyon && collision.GetComponent<CardContainer>().gridPosition != Player.GetInstance()._ActualGridPos)
+            && !_ForbiddenBiome.Contains(collision.GetComponent<Biome>().Type) && collision.GetComponent<CardContainer>().gridPosition != Player.GetInstance()._ActualGridPos)
         {
             if (_CollidingObjects.Count > 1)
             {
@@ -128,6 +133,8 @@ public class TEMPCard : MonoBehaviour
 
     public void SetModeMoving()
     {
+        OnFocus?.Invoke(true);
+
         currentState = State.Moving;
         DoAction = DoActionMoving;
     }
@@ -143,7 +150,6 @@ public class TEMPCard : MonoBehaviour
             CardContainer lContainer = GetComponent<CardContainer>();
             GridManager lGridManager = GridManager.GetInstance();
 
-            _GridPlacement = _SnapParent.GetComponent<CardContainer>().gridPosition;
             transform.position = snapPos;
             _HandManager._AvailableCardSlots[handIndex] = true;
             lContainer.gridPosition = _SnapParent.GetComponent<CardContainer>().gridPosition;
@@ -151,7 +157,7 @@ public class TEMPCard : MonoBehaviour
             Destroy(_SnapParent.transform.gameObject);
             GameManager.GetInstance()._LastCardPlayed = transform.gameObject;
             transform.SetParent(lGridManager.transform);
-            
+
             GameManager.CardPlaced.Invoke();
             tag = CARDPLAYED_TAG;
             
@@ -159,6 +165,8 @@ public class TEMPCard : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0) && !_Snapable) 
         {
+            OnFocus?.Invoke(false);
+
             transform.position = snapPos;
             SetModeInHand();
         }

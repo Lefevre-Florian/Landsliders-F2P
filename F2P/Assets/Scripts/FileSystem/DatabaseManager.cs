@@ -49,6 +49,9 @@ namespace Com.IsartDigital.F2P.FileSystem
         // Variables
         private Coroutine _Session = null;
 
+        // Events
+        public event Action OnResourcesLoaded;
+
         private void Awake()
         {
             if(_Instance != null)
@@ -288,6 +291,8 @@ namespace Com.IsartDigital.F2P.FileSystem
                 Save.data.cardPrefabs[i] = lHandles[i].Result;
 
             StopCoroutine(RetrievePrefabs(pPaths));
+
+            OnResourcesLoaded?.Invoke();
         }
 
         #endregion

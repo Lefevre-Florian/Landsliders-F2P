@@ -46,6 +46,9 @@ namespace Com.IsartDigital.F2P.Biomes
         // Events
         public event Action OnReady;
 
+        public event Action<bool> OnWalkableStateChanged;
+        public event Action<bool> OnRemovableStateChanged;
+
         private void Start()
         {
             TEMPCard lCard = GetComponent<TEMPCard>();
@@ -56,11 +59,19 @@ namespace Com.IsartDigital.F2P.Biomes
                 lCard.OnPlaced += Enable;
         }
 
-        public void PreciseSwitchWalkableState(bool pState) => _IsWalkable = pState;
+        public void PreciseSwitchWalkableState(bool pState)
+        {
+            OnWalkableStateChanged?.Invoke(pState);
+            _IsWalkable = pState;
+        }
 
         public void PreciseSwitchReplacabilityState(bool pState) => _CanBeReplaced = pState;
 
-        public void PreciseSwitchRemoveByHandState(bool pState) => _CanBeRemoved = pState;
+        public void PreciseSwitchRemoveByHandState(bool pState)
+        {
+            OnRemovableStateChanged?.Invoke(pState);
+            _CanBeRemoved = pState;
+        }
 
         public void Remove()
         {
@@ -87,9 +98,11 @@ namespace Com.IsartDigital.F2P.Biomes
 
             _Renderer = transform.GetChild(0)
                                  .GetComponent<CardRenderer>();
-            _Renderer.EnableAnimation();
-            _Renderer.SetSortingLayer(-(int)(_GridPosition.x + _GridPosition.y));
-
+            if(_Renderer != null)
+            {
+                _Renderer.EnableAnimation();
+                _Renderer.SetSortingLayer(-(int)(_GridPosition.x + _GridPosition.y));
+            }
             OnReady?.Invoke();
         }
 

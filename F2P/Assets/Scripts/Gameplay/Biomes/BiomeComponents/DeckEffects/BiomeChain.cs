@@ -16,13 +16,13 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private BiomeType _Type = default;
 
-        protected override void Start()
+        public override void Start()
         {
             base.Start();
             _Type = GetComponent<Biome>().Type;
         }
 
-        public int GetEnumertation() => GetChainLength();
+        public int GetEnumertation() => GetChainLength() + 1;
 
         private int GetChainLength()
         {
