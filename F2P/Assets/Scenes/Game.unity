@@ -633,7 +633,7 @@ MonoBehaviour:
   _MaxCardStocked: 12
   _Player: {fileID: 6110220630346872215, guid: fc2c9f220e004af41a39e714ffc80dfa, type: 3}
   _BasePlayerGridPos: {x: 1, y: 1}
-  _SecondsBetweenEachPriorityExecution: 0.1
+  _SecondsBetweenEachPriorityExecution: 0.25
   cardPlayed: 0
   playerMoved: 0
   playerCanMove: 0
@@ -910,7 +910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c32f52816a393f419a2634e48bf8a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _predifinedMap: {fileID: 11400000, guid: e829f269d621a7f4a9178bd000b15b96, type: 2}
+  _predifinedMap: {fileID: 11400000, guid: 0205a3118a27fd945bd4ce1de9395770, type: 2}
 --- !u!114 &1061210648
 MonoBehaviour:
   m_ObjectHideFlags: 0

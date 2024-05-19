@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 // Author (CR): Lefevre Florian
 namespace Com.IsartDigital.F2P.Biomes
@@ -30,6 +31,9 @@ namespace Com.IsartDigital.F2P.Biomes
         [Space(2)]
         [SerializeField] private bool _IsRandomReplace = true;
         [SerializeField] private BiomeType _SubstitutionBiome = default;
+
+        [Space(5)]
+        public UnityEvent OnGridModified;
 
         public void UpdateNeigbourhood()
         {
@@ -117,6 +121,8 @@ namespace Com.IsartDigital.F2P.Biomes
                     if (TryGetComponent<VortexQuest>(out VortexQuest vq)) vq.ValidQuest(lNextPosition);
                 }
             }
+
+            OnGridModified?.Invoke();
         }
 
         private List<Biome> GetNeighbourBiomes(int pRange)
@@ -151,9 +157,17 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void PerformedNeighbourhoodModification(Biome[] pBiomes)
         {
+            OnGridModified?.Invoke();
+
             int lLength = pBiomes.Length;
             for (int i = 0; i < lLength; i++)
                 m_GridManager.ReplaceAtIndex(pBiomes[i].GridPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform : CardPrefabDic.GetPrefab(_SubstitutionBiome).transform);
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            OnGridModified.RemoveAllListeners();
         }
     }
 }
