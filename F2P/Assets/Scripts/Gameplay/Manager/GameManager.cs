@@ -96,6 +96,9 @@ public class GameManager : MonoBehaviour
         }
     }
     public int Turn { get { return _TurnNumber; } }
+
+    public float EffectDuration { get { return _SecondsBetweenEachPriorityExecution; } }
+
     // Events
     public event Action OnTurnPassed;
 
