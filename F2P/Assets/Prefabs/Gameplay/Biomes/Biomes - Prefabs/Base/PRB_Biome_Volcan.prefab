@@ -172,7 +172,7 @@ MonoBehaviour:
   _BiomeTypeToReplace: 0000000001000000020000000400000005000000060000000700000008000000
   _IsRandomReplace: 0
   _SubstitutionBiome: 0
-  _Particles: {fileID: 0}
+  _Particles: {fileID: 933335185411524344, guid: f6e95069b44d7ef47b3b5d90751d7bc3, type: 3}
 --- !u!114 &4906436724934549735
 MonoBehaviour:
   m_ObjectHideFlags: 0
