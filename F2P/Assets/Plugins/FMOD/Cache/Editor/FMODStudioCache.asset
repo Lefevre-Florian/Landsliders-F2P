@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638513084600090761
+  lastModified: 638513087822017793
   FileSizes:
   - Name: Desktop
     Value: 494
@@ -42,7 +42,7 @@ MonoBehaviour:
   - {fileID: 1247950292147221911}
   StringsBanks:
   - {fileID: 7391608658828067301}
-  cacheTime: 638513084600090761
+  cacheTime: 638513087822017793
   cacheVersion: 131607
 --- !u!114 &1247950292147221911
 MonoBehaviour:
@@ -59,7 +59,7 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638513084600045010
+  lastModified: 638513087822017793
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -79,7 +79,7 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638513084600059903
+  lastModified: 638513087822017793
   FileSizes:
   - Name: Desktop
     Value: 756
