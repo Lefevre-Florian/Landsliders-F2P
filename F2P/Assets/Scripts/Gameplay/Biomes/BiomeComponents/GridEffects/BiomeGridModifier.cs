@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
-using UnityEngine.Events;
 
 // Author (CR): Lefevre Florian
 namespace Com.IsartDigital.F2P.Biomes
@@ -32,8 +31,18 @@ namespace Com.IsartDigital.F2P.Biomes
         [SerializeField] private bool _IsRandomReplace = true;
         [SerializeField] private BiomeType _SubstitutionBiome = default;
 
-        [Space(5)]
-        public UnityEvent OnGridModified;
+        [Header("Juiciness")]
+        [SerializeField] private GameObject _Particles = null;
+
+        // Variables
+        private BiomeParticles _ParticleSystem = null;
+
+        public override void Start()
+        {
+            base.Start();
+
+            _ParticleSystem = GetComponent<BiomeParticles>();
+        }
 
         public void UpdateNeigbourhood()
         {
@@ -117,12 +126,13 @@ namespace Com.IsartDigital.F2P.Biomes
 
                     m_GridManager.ReplaceAtIndex(lNextPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform 
                                                                                    : CardPrefabDic.GetPrefab(_SubstitutionBiome).transform);
-                    
+
+                    if (_ParticleSystem != null && _Particles != null)
+                        _ParticleSystem.PlayOneshotParticles(_Particles, m_GridManager.GetWorldCoordinate(lNextPosition));
+
                     if (TryGetComponent<VortexQuest>(out VortexQuest vq)) vq.ValidQuest(lNextPosition);
                 }
             }
-
-            OnGridModified?.Invoke();
         }
 
         private List<Biome> GetNeighbourBiomes(int pRange)
@@ -157,17 +167,12 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void PerformedNeighbourhoodModification(Biome[] pBiomes)
         {
-            OnGridModified?.Invoke();
+            if (_ParticleSystem != null && _Particles != null)
+                _ParticleSystem.PlayOneshotParticles(_Particles);
 
             int lLength = pBiomes.Length;
             for (int i = 0; i < lLength; i++)
                 m_GridManager.ReplaceAtIndex(pBiomes[i].GridPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform : CardPrefabDic.GetPrefab(_SubstitutionBiome).transform);
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            OnGridModified.RemoveAllListeners();
         }
     }
 }

@@ -253,21 +253,7 @@ MonoBehaviour:
   _BiomeTypeToReplace: 000000000100000002000000030000000400000005000000060000000700000008000000
   _IsRandomReplace: 1
   _SubstitutionBiome: 0
-  OnGridModified:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7391917181959379304}
-        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeParticles, Assembly-CSharp
-        m_MethodName: PlayOneshotParticles
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 5042602560618487295, guid: 2a7865a223141434fa1b0e5f11366bfc, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _Particles: {fileID: 5042602560618487295, guid: 2a7865a223141434fa1b0e5f11366bfc, type: 3}
 --- !u!114 &7391917181959379304
 MonoBehaviour:
   m_ObjectHideFlags: 0

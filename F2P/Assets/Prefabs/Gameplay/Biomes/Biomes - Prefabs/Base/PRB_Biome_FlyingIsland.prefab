@@ -180,18 +180,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 6435428697026256330}
-        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeParticles, Assembly-CSharp
-        m_MethodName: PlayLoopParticles
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 5779651269420528491, guid: e2d82f91889942b4bae78b88e8be62f8, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!114 &1834280640119364373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,18 +247,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 6435428697026256330}
-          m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeParticles, Assembly-CSharp
-          m_MethodName: StopLoopParticles
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   _Label: {fileID: 0}
 --- !u!114 &2867720193359730958
 MonoBehaviour:
@@ -284,6 +260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1ef96e54fd3af34eac0ffe631c9a838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsLooping: 1
+  _Particles: {fileID: 5779651269420528491, guid: e2d82f91889942b4bae78b88e8be62f8, type: 3}
 --- !u!114 &6435428697026256330
 MonoBehaviour:
   m_ObjectHideFlags: 0

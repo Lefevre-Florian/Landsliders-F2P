@@ -1,4 +1,6 @@
-using System;
+using System.Collections.Generic;
+using System.Linq;
+
 using UnityEngine;
 
 // Author (CR) : Lefevre Florian
@@ -7,21 +9,43 @@ namespace Com.IsartDigital.F2P.Biomes
     public class BiomeParticles : MonoBehaviour
     {
         // Variables
-        private ParticleSystem _Loop = null;
+        private Dictionary<MonoBehaviour, ParticleSystem> _Loops = new Dictionary<MonoBehaviour, ParticleSystem>();
 
-        public void PlayOneshotParticles(GameObject pPrefab) => CreateParticles(pPrefab);
+        public void PlayOneshotParticles(GameObject pPrefab) => PlayOneshotParticles(pPrefab, transform.position);
 
-        public void PlayLoopParticles(GameObject pPrefab)
+        public void PlayOneshotParticles(GameObject pPrefab, Vector3 pPosition) => CreateParticles(pPrefab).transform.position = pPosition;
+
+        public void PlayLoopParticles(MonoBehaviour pObj, GameObject pPrefab) => PlayLoopParticles(pObj, pPrefab, transform.position);
+
+        public void PlayLoopParticles(MonoBehaviour pObj, GameObject pPrefab, Vector3 pPosition)
         {
-            _Loop = CreateParticles(pPrefab, true);
+            if (_Loops == null || _Loops.ContainsKey(pObj))
+                return;
+
+            ParticleSystem lParticles = CreateParticles(pPrefab, true);
+            lParticles.transform.position = pPosition;
+
+            _Loops.Add(pObj, lParticles);
         }
 
-        public void StopLoopParticles()
+        public void StopLoopParticles(MonoBehaviour pObj)
         {
-            if(_Loop != null)
+            if(_Loops != null && _Loops.ContainsKey(pObj))
             {
-                ParticleSystem.MainModule lSystem = _Loop.main;
+                ParticleSystem.MainModule lSystem = _Loops[pObj].main;
                 lSystem.loop = false;
+
+                _Loops.Remove(pObj);
+            }
+        }
+
+        public void StopAllLoopParticles()
+        {
+            if(_Loops.Keys.Count > 0)
+            {
+                int lLength = _Loops.Count;
+                for (int i = 0; i < lLength; i++)
+                    StopLoopParticles(_Loops.Keys.ToList()[i]);
             }
         }
 
