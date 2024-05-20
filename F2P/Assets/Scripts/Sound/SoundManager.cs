@@ -36,15 +36,24 @@ namespace Com.IsartDigital.F2P.Sound
             public SoundType Type { get { return _Type; } }
         }
 
+        [Serializable]
+        public class FMODBankScene : FMODBank
+        {
+            [Header("Scene")]
+            [SerializeField] private int[] _ScenesLinked = new int[] { 0};
+
+            public int[] ScenesLinked { get { return _ScenesLinked; } }
+        }
+
         [Header("Banks")]
         [SerializeField] private FMODBank[] _AlwaysLoadedBank = default;
-        [SerializeField] private FMODBank[] _Banks = default;
+        [SerializeField] private FMODBankScene[] _Banks = default;
 
         [Header("VCA")]
         [SerializeField] private VCAType[] _VCATypes = null;
 
         // Variables
-        private List<FMODBank> _LoadedBanks = new List<FMODBank>();
+        private List<FMODBankScene> _LoadedBanks = new List<FMODBankScene>();
 
         private Dictionary<SoundType, List<VCA>> _VCAs = new Dictionary<SoundType, List<VCA>>();
 
@@ -64,8 +73,11 @@ namespace Com.IsartDigital.F2P.Sound
         {
             int lLength = _AlwaysLoadedBank.Length;
             for (int i = 0; i < lLength; i++)
+            {
+                _AlwaysLoadedBank[i].isLoaded = true;
                 RuntimeManager.LoadBank(_AlwaysLoadedBank[i].path);
-
+            }
+                
             int lID = 0;
             lLength = _Banks.Length;
             for (int i = 0; i < lLength; i++)
@@ -105,10 +117,10 @@ namespace Com.IsartDigital.F2P.Sound
 
         private void LoadSceneBank(Scene pOldScene, Scene pNextScene)
         {
-            List<FMODBank> lBanks = _Banks.ToList<FMODBank>();
+            List<FMODBankScene> lBanks = _Banks.ToList<FMODBankScene>();
 
-            UnloadBankGroup(lBanks.FindAll(x => x.SceneLinked == pOldScene.buildIndex).ToArray());
-            LoadBankGroup(lBanks.FindAll(x => x.SceneLinked == pNextScene.buildIndex).ToArray());
+            UnloadBankGroup(lBanks.FindAll(x => x.ScenesLinked.ToList().Contains(pOldScene.buildIndex)).ToArray());
+            LoadBankGroup(lBanks.FindAll(x => x.ScenesLinked.ToList().Contains(pNextScene.buildIndex)).ToArray());
         }
 
         public void LoadSpecificBank(FMODBank pBank)
