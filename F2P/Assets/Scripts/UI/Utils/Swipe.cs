@@ -1,3 +1,5 @@
+using Com.IsartDigital.F2P.Sound;
+
 using System;
 
 using UnityEngine;
@@ -13,6 +15,9 @@ namespace Com.IsartDigital.F2P.UI
 
         [Header("Settings")]
         [SerializeField][Range(.1f, .8f)] private float _SwipeMinPercent = .25f;
+
+        [Header("Sound")]
+        [SerializeField] private SoundEmitter _SoundEmitter = null;
 
         // Variables
         private float _StartPosition = 0f;
@@ -91,6 +96,8 @@ namespace Com.IsartDigital.F2P.UI
                         _ScreenNavigation[_CurrentScreenIdx + lSide].Open();
 
                         _CurrentScreenIdx += lSide;
+
+                        _SoundEmitter.PlaySFXOnShot();
                     }
                 }
                 SetModeTrack();

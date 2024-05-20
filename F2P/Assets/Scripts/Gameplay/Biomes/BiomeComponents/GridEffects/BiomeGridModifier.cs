@@ -1,4 +1,5 @@
 using com.isartdigital.f2p.gameplay.quest;
+using Com.IsartDigital.F2P.Sound;
 
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,9 @@ namespace Com.IsartDigital.F2P.Biomes
 
         [Header("Juiciness")]
         [SerializeField] private GameObject _Particles = null;
+
+        [Header("Sound")]
+        [SerializeField] private SoundEmitter _SoundEmitter = null;
 
         // Variables
         private BiomeParticles _ParticleSystem = null;
@@ -108,6 +112,9 @@ namespace Com.IsartDigital.F2P.Biomes
             Vector2 lDirection = default;
             Vector2 lNextPosition = default;
 
+            if (_SoundEmitter != null)
+                _SoundEmitter.PlaySFXOnShot();
+
             for (int i = 0; i < lLength; i++)
             {
                 lDirection = (lCards[i].GridPosition - m_Biome.GridPosition).normalized;
@@ -169,6 +176,9 @@ namespace Com.IsartDigital.F2P.Biomes
         {
             if (_ParticleSystem != null && _Particles != null)
                 _ParticleSystem.PlayOneshotParticles(_Particles);
+
+            if (_SoundEmitter != null)
+                _SoundEmitter.PlaySFXOnShot();
 
             int lLength = pBiomes.Length;
             for (int i = 0; i < lLength; i++)

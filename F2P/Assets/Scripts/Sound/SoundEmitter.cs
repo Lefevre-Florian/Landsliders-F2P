@@ -1,6 +1,8 @@
 using FMOD.Studio;
 using FMODUnity;
 
+using System;
+
 using UnityEngine;
 
 // Author (CR) : Lefevre Florian
@@ -15,6 +17,10 @@ namespace Com.IsartDigital.F2P.Sound
 
         private bool _InstancePlaying = false;
         private PLAYBACK_STATE _InstanceState = PLAYBACK_STATE.STOPPED;
+
+        // Events
+        public event Action OnSoundEnded;
+        public event Action OnSoundStarted;
 
         private void Update()
         {
@@ -41,6 +47,8 @@ namespace Com.IsartDigital.F2P.Sound
             _InstancePlaying = true;
             _SoundInstance = RuntimeManager.CreateInstance(_SoundReference);
             _SoundInstance.start();
+
+            OnSoundStarted?.Invoke();
         }
 
         public void StopSFXLoopingImmediate()
@@ -62,6 +70,8 @@ namespace Com.IsartDigital.F2P.Sound
 
             _SoundInstance.release();
             _InstancePlaying = false;
+
+            OnSoundEnded?.Invoke();
         }
 
         private void OnDestroy()
