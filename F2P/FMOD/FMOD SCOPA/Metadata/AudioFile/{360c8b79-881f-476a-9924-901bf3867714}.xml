@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{360c8b79-881f-476a-9924-901bf3867714}">
+		<property name="assetPath">
+			<value>played_desert.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>5</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b96f2628-958f-4f43-aa99-54224e96a477}</destination>
+		</relationship>
+	</object>
+</objects>
