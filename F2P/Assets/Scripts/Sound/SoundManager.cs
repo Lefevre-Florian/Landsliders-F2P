@@ -185,15 +185,16 @@ namespace Com.IsartDigital.F2P.Sound
                         for (int i = 0; i < lLength; i++)
                         {
                             if (lItem.Key == SoundType.MUSIC)
-                                _VCAs[pType][i].setVolume(Save.data != null ? Save.data.musicVolume * Convert.ToInt32(Save.data.soundStatus) : pValue);
+                                _VCAs[lItem.Key][i].setVolume(Save.data != null ? Save.data.musicVolume * Convert.ToInt32(Save.data.soundStatus) : pValue);
                             else if(lItem.Key == SoundType.VFX)
-                                _VCAs[pType][i].setVolume(Save.data != null ? Save.data.sfxVolume * Convert.ToInt32(Save.data.soundStatus) : pValue);
+                                _VCAs[lItem.Key][i].setVolume(Save.data != null ? Save.data.sfxVolume * Convert.ToInt32(Save.data.soundStatus) : pValue);
                         }
                     }
                     break;
 
                 case SoundType.VFX | SoundType.MUSIC:
                     lLength = _VCAs[pType].Count;
+                    print(pType);
                     for (int i = 0; i < lLength; i++)
                         _VCAs[pType][i].setVolume(pValue);
                     break;
