@@ -2334,11 +2334,11 @@ PrefabInstance:
     - target: {fileID: 3847636361747932719, guid: 9f1bec447a2e6d4409657e9e3e2c6af8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 8248097553765969090}
+      objectReference: {fileID: 8541802969604723492}
     - target: {fileID: 3847636361747932719, guid: 9f1bec447a2e6d4409657e9e3e2c6af8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 8541802969604723492}
+      objectReference: {fileID: 8248097553765969090}
     - target: {fileID: 3847636361747932719, guid: 9f1bec447a2e6d4409657e9e3e2c6af8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -2366,6 +2366,10 @@ PrefabInstance:
     - target: {fileID: 3847636361747932719, guid: 9f1bec447a2e6d4409657e9e3e2c6af8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: Com.IsartDigital.F2P.UI.Screen, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3847636361747932719, guid: 9f1bec447a2e6d4409657e9e3e2c6af8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Com.IsartDigital.F2P.UI.ShopScreen, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3847636361747932719, guid: 9f1bec447a2e6d4409657e9e3e2c6af8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -2510,11 +2514,11 @@ PrefabInstance:
     - target: {fileID: 7634904620617205365, guid: 9f1bec447a2e6d4409657e9e3e2c6af8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1196697414}
+      objectReference: {fileID: 8541802969604723492}
     - target: {fileID: 7634904620617205365, guid: 9f1bec447a2e6d4409657e9e3e2c6af8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 8541802969604723492}
+      objectReference: {fileID: 1196697414}
     - target: {fileID: 7634904620617205365, guid: 9f1bec447a2e6d4409657e9e3e2c6af8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2

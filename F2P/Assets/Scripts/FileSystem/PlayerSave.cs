@@ -1,4 +1,5 @@
 using System;
+
 using UnityEngine;
 
 // Author (CR) : Lefevre Florian
@@ -6,7 +7,13 @@ namespace Com.IsartDigital.F2P
 {
     public static class Save
     {
+        // Variables
         public static PlayerSave data = null;
+
+        // Events
+        public static event Action OnDataUpdated;
+
+        public static void ApplyUpdate() => OnDataUpdated?.Invoke();
     }
 
     [Serializable]
