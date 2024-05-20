@@ -51,11 +51,14 @@ namespace Com.IsartDigital.F2P.Biomes
 
         public void StopPrediction()
         {
-            _GameManager.OnTurnPassed -= Predict;
+            if (_Displays == null)
+                return;
 
             int lLength = _Displays.Length;
             for (int i = 0; i < lLength; i++)
                 Destroy(_Displays[i].gameObject);
+            
+            _GameManager.OnTurnPassed -= Predict;
         }
 
         private void Enable()

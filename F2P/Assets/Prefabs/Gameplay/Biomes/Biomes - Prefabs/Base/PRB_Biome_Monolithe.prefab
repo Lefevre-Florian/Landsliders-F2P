@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8295392945309103686, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: onTriggered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8295392945309103686, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: onTriggered.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -219,6 +219,9 @@ PrefabInstance:
       addedObject: {fileID: 5933520431795780613}
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 7391917181959379304}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4668389858478936349}
   m_SourcePrefab: {fileID: 100100000, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
 --- !u!4 &4860772988200803585 stripped
@@ -249,7 +252,20 @@ MonoBehaviour:
   _ChangeRatio: 100
   _BiomeTypeToReplace: 000000000100000002000000030000000400000005000000060000000700000008000000
   _IsRandomReplace: 1
-  _SubstitutionBiome: {fileID: 0}
+  _SubstitutionBiome: 0
+  _Particles: {fileID: 5042602560618487295, guid: 2a7865a223141434fa1b0e5f11366bfc, type: 3}
+--- !u!114 &7391917181959379304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5267400807792268099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c043bdba33b6140a0af83f6a311a2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4668389858478936349
 MonoBehaviour:
   m_ObjectHideFlags: 0

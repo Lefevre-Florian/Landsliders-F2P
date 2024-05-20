@@ -66,7 +66,6 @@ namespace Com.IsartDigital.F2P.Biomes
         private void ClockTicking()
         {
             --_InternalTimer;
-
             int lLength = _TimedActions.Length;
             for (int i = 0; i < lLength; i++)
             {
