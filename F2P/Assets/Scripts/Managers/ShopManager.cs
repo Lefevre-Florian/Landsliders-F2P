@@ -23,6 +23,7 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private int _LegendaryChestPrice;
     [SerializeField] private int _LuckyChestPrice;
     [SerializeField] private int _DailyShardPrice;
+    [SerializeField] private int _DailyChestShardPrice;
 
     [SerializeField] private int _FirstSCPrice;
     [SerializeField] private int _SecondSCPrice;
@@ -35,6 +36,8 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private int _CommonShardNB;
     [SerializeField] private int _RareShardNB;
     [SerializeField] private int _LegendaryShardNB;
+    [SerializeField] private int _DailyChestShardNB;
+
     
     public void BuyHardCurrency(int pHardCurrency)
     {
@@ -62,6 +65,44 @@ public class ShopManager : MonoBehaviour
             print("PurchaseComplet");
         }
         print("PurchaseFailed");
+    }
+
+    public void DailyChest(int pFragments)
+    {
+        if(Save.data.softcurrency >= _DailyChestShardPrice)
+        {
+            int lCardLength = Save.data.cards.Length;
+            while (pFragments > 0)
+            {
+                int lChosenCard = UnityEngine.Random.Range(0, lCardLength);
+                int lRandomFragments = UnityEngine.Random.Range(1, pFragments);
+                Save.data.fragments[lChosenCard].fragment += lRandomFragments;
+                pFragments -= lRandomFragments;
+            }
+            Save.data.softcurrency -= _DailyChestShardPrice;
+            _SoftCurrencyLabel.GetComponentInChildren<TextMeshProUGUI>().text = Save.data.softcurrency.ToString();
+            DatabaseManager.GetInstance().WriteDataToSaveFile();
+            print("PurchaseComplet");
+        }
+        else print("PurchasedFailed");    
+    }
+
+    public void DeckUpgrade()
+    {
+        if(Save.data.startingdecknb < 14)
+        {
+            Save.data.startingdecknb += 2;
+            DatabaseManager.GetInstance().WriteDataToSaveFile();
+        }
+    }
+
+    public void XPUpgrade()
+    {
+        if (!Save.data.xpdoubled)
+        {
+            Save.data.xpdoubled = true;
+            DatabaseManager.GetInstance().WriteDataToSaveFile();
+        }
     }
 
     public void Chest(int pFragments)

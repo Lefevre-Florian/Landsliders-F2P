@@ -205,8 +205,8 @@ public class HandManager : MonoBehaviour
     {
         ClearDeck();
 
-        _Deck = new GameObject[GameManager.GetInstance().cardStocked];
-        for (int i = 0; i < _Deck.Length; i++)
+        _Deck = new GameObject[Save.data.startingdecknb];
+        for (int i = 0; i < Save.data.startingdecknb; i++)
             _Deck[i] = CreateCard();
     }
 

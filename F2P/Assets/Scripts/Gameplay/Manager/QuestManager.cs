@@ -43,10 +43,10 @@ namespace com.isartdigital.f2p.manager
                 lQuestsArray.ToList().Remove(QuestsEnum.FTUE.ToString());
 
                 int rand = UnityEngine.Random.Range(1, lQuestsArray.Length);
+                
 
                 currentQuest = (QuestsEnum)Enum.Parse(typeof(QuestsEnum), lQuestsArray[rand]);
             }
-
             Debug.Log(currentQuest);
         }
 
