@@ -20,7 +20,9 @@ namespace Com.IsartDigital.F2P.UI.Screens
             // Reset timescale (in case)
             Time.timeScale = 1f;
 
-            _ExpLevelLabel.text = Save.data.exp.ToString();
+            UpdateExp();
+
+            Save.OnDataUpdated += UpdateExp;
         }
 
         public void Play()
@@ -32,5 +34,10 @@ namespace Com.IsartDigital.F2P.UI.Screens
             else
                 LoadManager.GetInstance().StartLoading(_GameBuildIDX);
         }
+
+        private void UpdateExp() => _ExpLevelLabel.text = Save.data.exp.ToString();
+
+        private void OnDestroy() => Save.OnDataUpdated -= UpdateExp;
+
     }
 }

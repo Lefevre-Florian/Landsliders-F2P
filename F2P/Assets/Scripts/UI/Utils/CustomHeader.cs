@@ -15,6 +15,8 @@ namespace Com.IsartDigital.F2P.UI.Screens
         {
             // Init the header with player save data
             UpdateHeader();
+
+            Save.OnDataUpdated += UpdateHeader;
         }
 
         /// <summary>
@@ -26,6 +28,6 @@ namespace Com.IsartDigital.F2P.UI.Screens
             _UIHardCurrencyLabel.text = Save.data.hardcurrency.ToString();
         }
 
-        private void OnDestroy() { }
+        private void OnDestroy() => Save.OnDataUpdated -= UpdateHeader;
     }
 }
