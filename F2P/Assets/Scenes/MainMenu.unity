@@ -1906,7 +1906,13 @@ MonoBehaviour:
     _Type: 1
     isLoaded: 0
     _ScenesLinked: 0200000003000000
-  _VCATypes: []
+  _VCATypes:
+  - _VCAPath: vca:/Music
+    _Type: 2
+  - _VCAPath: vca:/SFX
+    _Type: 2
+  - _VCAPath: vca:/Master
+    _Type: 0
 --- !u!4 &1950178560
 Transform:
   m_ObjectHideFlags: 0
