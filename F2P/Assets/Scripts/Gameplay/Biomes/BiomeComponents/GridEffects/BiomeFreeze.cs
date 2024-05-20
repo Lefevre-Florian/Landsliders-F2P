@@ -1,4 +1,5 @@
 using com.isartdigital.f2p.gameplay.manager;
+using Com.IsartDigital.F2P.Sound;
 
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
         [Header("Feedback & Juiciness")]
         [SerializeField] private Transform _VFXFrozen = null;
+        [SerializeField] private SoundEmitter _SFXFrozenEmitter = null;
 
         // Variables
         private GridManager _GridManager = null;
@@ -54,6 +56,9 @@ namespace Com.IsartDigital.F2P.Biomes
         {
             if (pTarget == -Vector2.one)
                 return;
+
+            if (_SFXFrozenEmitter != null)
+                _SFXFrozenEmitter.PlaySFXOnShot();
 
             Biome lBiome = _GridManager.GetCardByGridCoordinate(pTarget);
 

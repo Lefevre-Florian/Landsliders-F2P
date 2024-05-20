@@ -10,10 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3794540079045137233}
   - component: {fileID: -2707025486543356891}
+  - component: {fileID: -7649302155736424160}
+  - component: {fileID: 8649781941472835880}
   - component: {fileID: 1670292805084634038}
   - component: {fileID: 3156987593860903009}
   - component: {fileID: 8295392945309103686}
-  - component: {fileID: 8649781941472835880}
+  - component: {fileID: -799997449162001414}
   m_Layer: 0
   m_Name: Biome
   m_TagString: Untagged
@@ -51,7 +53,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handIndex: 0
   currentState: 0
+  _ForbiddenBiome: 06000000ffffffff
+  _SoundEmitter: {fileID: -7649302155736424160}
   snapPos: {x: 0, y: 0, z: 0}
+--- !u!114 &-7649302155736424160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4523184677986655507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -820540232
+      Data2: 1269743226
+      Data3: -59619653
+      Data4: 1974636847
+    Path: event:/UI/fingergripping
+--- !u!114 &8649781941472835880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4523184677986655507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef0fffaf18bf9440a3119fcd0b2a01e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: 1670292805084634038}
+  size: 2.4
+  cardRatio: 1.0333333
+  gridPosition: {x: 0, y: 0}
 --- !u!61 &1670292805084634038
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145,7 +184,9 @@ MonoBehaviour:
   _CanBeReplaced: 1
   _IsWalkable: 1
   _CanBeRemoved: 1
---- !u!114 &8649781941472835880
+  _AwakeSoundEmitter: {fileID: -799997449162001414}
+  locked: 0
+--- !u!114 &-799997449162001414
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,13 +195,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4523184677986655507}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fef0fffaf18bf9440a3119fcd0b2a01e, type: 3}
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCollider: {fileID: 1670292805084634038}
-  size: 2.4
-  cardRatio: 1.0333333
-  gridPosition: {x: 0, y: 0}
+  _SoundReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &7646986577398426315
 GameObject:
   m_ObjectHideFlags: 0

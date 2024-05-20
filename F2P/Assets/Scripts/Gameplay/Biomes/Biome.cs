@@ -1,6 +1,6 @@
 using com.isartdigital.f2p.gameplay.manager;
 using Com.IsartDigital.F2P.Cards;
-
+using Com.IsartDigital.F2P.Sound;
 using System;
 
 using UnityEngine;
@@ -22,6 +22,9 @@ namespace Com.IsartDigital.F2P.Biomes
         [SerializeField] private bool _CanBeReplaced = true;
         [SerializeField] private bool _IsWalkable = true;
         [SerializeField] private bool _CanBeRemoved = true;
+
+        [Header("Sound")]
+        [SerializeField] private SoundEmitter _AwakeSoundEmitter = null;
 
         // Variables
         private GameManager _GameManager = null;
@@ -56,7 +59,12 @@ namespace Com.IsartDigital.F2P.Biomes
             if (!lCard.isActiveAndEnabled)
                 Enable();
             else
+            {
                 lCard.OnPlaced += Enable;
+                if (_AwakeSoundEmitter != null)
+                    lCard.OnPlaced += PlaySoundAwake;
+            }
+                
         }
 
         public void PreciseSwitchWalkableState(bool pState)
@@ -106,6 +114,8 @@ namespace Com.IsartDigital.F2P.Biomes
             OnReady?.Invoke();
         }
 
+        private void PlaySoundAwake() => _AwakeSoundEmitter.PlaySFXOnShot();
+
         private void TriggerPriority(int pGamePriority) 
         {
             if(pGamePriority == _Priority && !locked)
@@ -115,6 +125,9 @@ namespace Com.IsartDigital.F2P.Biomes
         private void OnDestroy()
         {
             GetComponent<TEMPCard>().OnPlaced -= Enable;
+
+            if (_AwakeSoundEmitter != null)
+                GetComponent<TEMPCard>().OnPlaced -= PlaySoundAwake;
 
             if(_Priority != 0 && _GameManager != null)
                 _GameManager.OnEffectPlayed -= TriggerPriority;

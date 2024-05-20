@@ -70,11 +70,11 @@ crashlytics-build.properties
 fmod_editor.log
 
 # FMOD
-/Assets/FMODStudioCache.asset
-/Assets/FMODStudioCache.asset.meta
+/F2P/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
+/F2P/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset.meta
 /Assets/StreamingAssets/*.bank
-fmod.log
-fmod_editor.log
+/F2P/fmod.log
+/F2P/fmod_editor.log
  
 # FMOD studio (In folder FMOD)
 FMOD/**.user
