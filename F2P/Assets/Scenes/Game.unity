@@ -979,7 +979,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17aa8ce40a699244e9239b52f0866cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentQuestDebug: 0
+  currentQuestDebug: 1
+  _QuestLabelsDic:
+    _Dict:
+    - key: 1
+      value:
+        name: Volcan
+        desc: Exploser Volcan
 --- !u!1001 &1087800625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1855,10 +1861,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1061210645}
-    - target: {fileID: 2198407347333157333, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
-      propertyPath: m_text
-      value: Main Quest
-      objectReference: {fileID: 0}
     - target: {fileID: 3901114907079579687, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1986,7 +1988,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4276773080372793231, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       insertIndex: 2
       addedObject: {fileID: 1139381316}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5415446868097734589, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1471252759428463890}
   m_SourcePrefab: {fileID: 100100000, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
 --- !u!224 &1471252759428463885 stripped
 RectTransform:
@@ -1998,6 +2003,47 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4276773080372793231, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
   m_PrefabInstance: {fileID: 1471252759428463884}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1471252759428463887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5415446868097734589, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+  m_PrefabInstance: {fileID: 1471252759428463884}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1471252759428463888 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2748246671456272197, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+  m_PrefabInstance: {fileID: 1471252759428463884}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1471252759428463889 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2198407347333157333, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+  m_PrefabInstance: {fileID: 1471252759428463884}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1471252759428463890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471252759428463887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238f570b1db9cef4ca79473d5e26c9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _QuestNameLabel: {fileID: 1471252759428463889}
+  _QuestDescLabel: {fileID: 1471252759428463888}
 --- !u!1001 &5228520700684496751
 PrefabInstance:
   m_ObjectHideFlags: 0
