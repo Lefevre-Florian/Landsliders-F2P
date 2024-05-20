@@ -1,3 +1,4 @@
+using Com.IsartDigital.F2P;
 using Com.IsartDigital.F2P.Biomes;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace com.isartdigital.f2p.manager
         public static UnityEvent ValidQuest = new UnityEvent();
 
         [SerializeField] private QuestLabelsDic _QuestLabelsDic = new QuestLabelsDic();
+        private static Dictionary<QuestsEnum, QuestText> questDic;
+
         public enum QuestsEnum
         {
             NONE,
@@ -36,6 +39,7 @@ namespace com.isartdigital.f2p.manager
             currentQuest = currentQuestDebug;
             GameFlowManager.LoadMap.AddListener(Init);
             ValidQuest.AddListener(WinDebug);
+            questDic = _QuestLabelsDic.ToDic();
         }
 
         private void Init()
@@ -48,7 +52,11 @@ namespace com.isartdigital.f2p.manager
                 int rand = UnityEngine.Random.Range(1, lQuestsArray.Length);
 
                 currentQuest = (QuestsEnum)Enum.Parse(typeof(QuestsEnum), lQuestsArray[rand]);
+
             }
+
+            QuestUiManager.GetInstance().SetQuestName(questDic[currentQuest].name);
+            QuestUiManager.GetInstance().SetQuestDesc(questDic[currentQuest].desc);
 
             Debug.Log(currentQuest);
         }

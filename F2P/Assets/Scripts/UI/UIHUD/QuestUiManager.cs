@@ -35,7 +35,6 @@ namespace Com.IsartDigital.F2P
         public void SetQuestName(string pName) => _QuestNameLabel.text = pName;
         public void SetQuestDesc(string pName) => _QuestDescLabel.text = pName;
 
-
         private void OnDestroy()
         {
             if (_Instance == this)
