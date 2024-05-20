@@ -128,6 +128,9 @@ PrefabInstance:
       addedObject: {fileID: 1045741457130915142}
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4906436724934549735}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4029001507541559187}
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
@@ -169,6 +172,19 @@ MonoBehaviour:
   _BiomeTypeToReplace: 0000000001000000020000000400000005000000060000000700000008000000
   _IsRandomReplace: 0
   _SubstitutionBiome: 0
+  _Particles: {fileID: 933335185411524344, guid: f6e95069b44d7ef47b3b5d90751d7bc3, type: 3}
+--- !u!114 &4906436724934549735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3912905057911434000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c043bdba33b6140a0af83f6a311a2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4029001507541559187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +250,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.Biome, Assembly-CSharp
           m_MethodName: PreciseSwitchRemoveByHandState
           m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 4759694817511133440}
+          m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeOracle, Assembly-CSharp
+          m_MethodName: StopPrediction
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

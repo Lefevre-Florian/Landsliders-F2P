@@ -29,7 +29,7 @@ namespace Com.IsartDigital.F2P.Biomes
         // Get / Set
         public int NbDirectionToCheck { get { return (int)_GridDirection; } }
 
-        protected virtual void Start()
+        public virtual void Start()
         {
             m_GridManager = GridManager.GetInstance();
             m_Biome = GetComponent<Biome>();
@@ -54,10 +54,25 @@ namespace Com.IsartDigital.F2P.Biomes
 
             for (int i = 0; i < lLength; i++)
             {
-                lSamplePosition = m_Biome.GridPosition + (Vector2)(Quaternion.AngleAxis(lAngle * i, Vector3.forward) * (Vector3.up * pRange));
+                if(_GridDirection == GridAngle.AllDirection && i % 2 != 0)
+                {
+                    // A diagonal
+                    lSamplePosition = m_Biome.GridPosition + (Vector2)(Quaternion.AngleAxis(lAngle * i, Vector3.forward) * Vector3.up);
 
-                lSamplePosition.x = Mathf.RoundToInt(lSamplePosition.x);
-                lSamplePosition.y = Mathf.RoundToInt(lSamplePosition.y);
+                    lSamplePosition.x = lSamplePosition.x % 1 <= 0.5f ? Mathf.FloorToInt(lSamplePosition.x) : Mathf.CeilToInt(lSamplePosition.x);
+                    lSamplePosition.y = lSamplePosition.y % 1 <= 0.5f ? Mathf.FloorToInt(lSamplePosition.y) : Mathf.CeilToInt(lSamplePosition.y);
+
+                    lSamplePosition.x = lSamplePosition.x + (Mathf.Sign((lSamplePosition - m_Biome.GridPosition).normalized.x) * (pRange / 2));
+                    lSamplePosition.y = lSamplePosition.y + (Mathf.Sign((lSamplePosition - m_Biome.GridPosition).normalized.y) * (pRange / 2));
+                }
+                else
+                {
+                    // Not a diagonal
+                    lSamplePosition = m_Biome.GridPosition + (Vector2)(Quaternion.AngleAxis(lAngle * i, Vector3.forward) * (Vector3.up * pRange));
+
+                    lSamplePosition.x = Mathf.RoundToInt(lSamplePosition.x);
+                    lSamplePosition.y = Mathf.RoundToInt(lSamplePosition.y);
+                }
 
                 // Check out of bound
                 if (lSamplePosition.x >= 0f

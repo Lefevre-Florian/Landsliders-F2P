@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+// Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P
 {
     public static class Save
@@ -23,8 +24,8 @@ namespace Com.IsartDigital.F2P
 
         // Settings
         public bool soundStatus = true;
-        public float musicVolume = 0f;
-        public float sfxVolume = 0f;
+        public float musicVolume = 0.5f;
+        public float sfxVolume = 0.5f;
 
         // Tracking
         public TimeSpan totalPlaytime = TimeSpan.Zero;
@@ -33,6 +34,8 @@ namespace Com.IsartDigital.F2P
         public bool dtone = false;
         public bool dtseven = false;
         public bool dtthirty = false;
+
+        public bool ftuecomplete = false;
 
         public DateTime firstConnection = DateTime.UtcNow;
 

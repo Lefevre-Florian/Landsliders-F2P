@@ -98,9 +98,11 @@ namespace Com.IsartDigital.F2P.Biomes
 
             _Renderer = transform.GetChild(0)
                                  .GetComponent<CardRenderer>();
-            _Renderer.EnableAnimation();
-            _Renderer.SetSortingLayer(-(int)(_GridPosition.x + _GridPosition.y));
-
+            if(_Renderer != null)
+            {
+                _Renderer.EnableAnimation();
+                _Renderer.SetSortingLayer(-(int)(_GridPosition.x + _GridPosition.y));
+            }
             OnReady?.Invoke();
         }
 
