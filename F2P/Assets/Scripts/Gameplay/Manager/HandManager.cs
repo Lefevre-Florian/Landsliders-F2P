@@ -135,6 +135,8 @@ public class HandManager : MonoBehaviour
 
     public void BurnCard(int pNbCards = 1)
     {
+        Player.GetInstance().GetComponent<PlayerAnim>().SetAnimTrig(PlayerAnim.AnimTrig.LoseCard);
+
         int lRemainingCardToRemove = pNbCards;
         if (lRemainingCardToRemove < _Deck.Length)
         {
@@ -179,6 +181,8 @@ public class HandManager : MonoBehaviour
 
     public void AddCardToDeck(int pNbCards, bool pIsPredifined = false, BiomeType pType = default)
     {
+        Player.GetInstance().GetComponent<PlayerAnim>().SetAnimTrig(PlayerAnim.AnimTrig.GainCard);
+
         List<GameObject> lDeck = _Deck.ToList();
 
         if(lDeck.Count <= 0)

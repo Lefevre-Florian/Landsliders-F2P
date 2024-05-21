@@ -230,9 +230,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17aa8ce40a699244e9239b52f0866cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentQuestDebug: 7
+  currentQuestDebug: 8
   _QuestLabelsDic:
-    _Dict: []
+    _Dict:
+    - key: 8
+      value:
+        name: Tutoriel
+        desc: ...
 --- !u!114 &153804695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8e12a34cd3d114baa581b45fe5766b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myQuest: 7
+  myQuest: 8
 --- !u!1 &180416130
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +397,33 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+--- !u!1 &342306354 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5415446868097734589, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+  m_PrefabInstance: {fileID: 1471252759428463884}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &342306355 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2748246671456272197, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+  m_PrefabInstance: {fileID: 1471252759428463884}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &342306356 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2198407347333157333, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+  m_PrefabInstance: {fileID: 1471252759428463884}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &371822737 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7503488287599980504, guid: 9c8a33b1af0d81c4c9e4d529ff735349, type: 3}
@@ -2338,6 +2369,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1007060143}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2076626846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342306354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 238f570b1db9cef4ca79473d5e26c9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _QuestNameLabel: {fileID: 342306356}
+  _QuestDescLabel: {fileID: 342306355}
 --- !u!1001 &1471252759428463884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2672,6 +2717,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 373833942}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5415446868097734589, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2076626846}
     - targetCorrespondingSourceObject: {fileID: 1426310422175395092, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1471252759428463894}
@@ -2695,7 +2743,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4803329268400056286, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
   m_PrefabInstance: {fileID: 1471252759428463884}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 342306354}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a9fd62a690c127468b3e6d10f654dbd, type: 3}

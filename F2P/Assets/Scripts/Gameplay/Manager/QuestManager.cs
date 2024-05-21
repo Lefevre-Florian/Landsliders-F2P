@@ -1,5 +1,5 @@
 using Com.IsartDigital.F2P;
-using Com.IsartDigital.F2P.Biomes;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +7,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
+// Author (CR) : Paul Vincencini
 namespace com.isartdigital.f2p.manager
 {
     public class QuestManager : MonoBehaviour

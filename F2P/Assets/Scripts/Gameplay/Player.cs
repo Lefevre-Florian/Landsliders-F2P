@@ -147,6 +147,7 @@ public class Player : MonoBehaviour
 
         _CurrentState = State.Moving;
         DoAction = DoActionMove;
+        GetComponent<PlayerAnim>().SetAnimTrig(PlayerAnim.AnimTrig.Transition);
     }
 
     private void DoActionMove()
