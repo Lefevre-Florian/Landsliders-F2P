@@ -92,7 +92,6 @@ namespace Com.IsartDigital.F2P.Sound
                 lLength = _VCATypes.Length;
                 for (int i = 0; i < lLength; i++)
                     LoadVCA(_VCATypes[i]);
-                _VCATypes = null;
 
                 if(Save.data != null)
                 {

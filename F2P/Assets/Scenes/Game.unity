@@ -233,6 +233,57 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8372841694036601837, guid: ddc7a0c9470b72144b00fbc095576ba5, type: 3}
   m_PrefabInstance: {fileID: 1087800625}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &249466669
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 249466671}
+  - component: {fileID: 249466670}
+  m_Layer: 0
+  m_Name: MusicEmitter
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!114 &249466670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249466669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe33f383e2ed43b42b25984e4096561a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MusicEvent:
+    Guid:
+      Data1: -280913606
+      Data2: 1128467790
+      Data3: -125533567
+      Data4: 1782631195
+    Path: event:/MUSIC/MUS_Gameplay
+--- !u!4 &249466671
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249466669}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &445612671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,18 +1300,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _MaxGameEventsNumber: 1
   _GameEventChance: 1
-  _MaxEtheralRiftsNumber: 0
-  _MaxDragonLairsNumber: 0
-  _MaxWitchesNumber: 1
-  _MaxWispsNumber: 0
-  _MaxGoblinTreasuresNumber: 0
-  _MaxMistsNumber: 0
   _EtheralRift: {fileID: 8149821949770973124, guid: 806f15beba4f9e04eb9bd269db15f90f, type: 3}
   _DragonLair: {fileID: 6087476990557836528, guid: 32c0595fe4bed8144b59f4e1c9421115, type: 3}
   _Witch: {fileID: 1284007911230468281, guid: e33e8248a04cd5642a3d41315b9fb62b, type: 3}
   _Wisp: {fileID: 7100505260429275719, guid: d7ba279bed5d1ca44a6f7716a67c93f5, type: 3}
   _GoblinTreasure: {fileID: 6956311438354313730, guid: aa830714b7b17d945a7b1e4c0d885b38, type: 3}
   _Mist: {fileID: 4857646458243004221, guid: ea2578a30c4a6404e90de53066c8cc48, type: 3}
+  _GridContainer: {fileID: 0}
+  _Events: []
 --- !u!1001 &1087800625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2180,6 +2227,9 @@ MonoBehaviour:
   _AlwaysLoadedBank:
   - path: UI
     _Type: 1
+    isLoaded: 0
+  - path: Music
+    _Type: 2
     isLoaded: 0
   _Banks:
   - path: GAME
@@ -3555,6 +3605,7 @@ SceneRoots:
   - {fileID: 1061210644}
   - {fileID: 1471252759428463884}
   - {fileID: 706180343}
+  - {fileID: 249466671}
   - {fileID: 1613892858}
   - {fileID: 1087800625}
   - {fileID: 5228520700684496751}
