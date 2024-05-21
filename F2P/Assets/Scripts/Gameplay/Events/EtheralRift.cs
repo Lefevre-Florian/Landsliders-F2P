@@ -12,6 +12,7 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
     public class EtheralRift : GameRandomEvent
     {
         private List<BiomeType> _BiomeTypeToReplace = new List<BiomeType>();
+        [SerializeField] private GameObject _Particles;
 
         protected override void PlayRandomEventEffect()
         {
@@ -27,6 +28,8 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
                     }
                     BiomeType lRandomType = _BiomeTypeToReplace[UnityEngine.Random.Range(0, _BiomeTypeToReplace.Count - 1)];
                     lBiome.Replace(CardPrefabDic.GetPrefab(lRandomType).transform);
+
+                    Instantiate(_Particles, lBiome.transform.position, Quaternion.identity);
                 }
             }
         }

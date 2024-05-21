@@ -23,7 +23,7 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
                     _InstantiatedMist = Instantiate(_Mist);
                     _InstantiatedMist.transform.position = lBiome.transform.position;
                     _InstantiatedMist.transform.SetParent(transform);
-                    _InstantiatedMist.transform.localPosition += new Vector3(0,0,-10);
+                    _InstantiatedMist.transform.localPosition += new Vector3(0,0,-1);
                     _InstantiatedMist.SetActive(false);
                     _Mistlist.Add(_InstantiatedMist);
                 }

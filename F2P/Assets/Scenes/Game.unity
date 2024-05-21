@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 1060975887}
   - component: {fileID: 1060975886}
   - component: {fileID: 1060975889}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -559,7 +559,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -935,7 +935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 480c46f3cec5c43489b081ea94bebe08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MaxGameEventsNumber: 3
+  _MaxGameEventsNumber: 1
   _GameEventChance: 1
   _EtheralRift: {fileID: 8149821949770973124, guid: 806f15beba4f9e04eb9bd269db15f90f, type: 3}
   _DragonLair: {fileID: 6087476990557836528, guid: 32c0595fe4bed8144b59f4e1c9421115, type: 3}
@@ -946,17 +946,17 @@ MonoBehaviour:
   _GridContainer: {fileID: 2095938587}
   _Events:
   - gameEvent: 0
-    weight: 24
+    weight: 100
   - gameEvent: 1
-    weight: 12
+    weight: 0
   - gameEvent: 2
-    weight: 22
+    weight: 0
   - gameEvent: 3
-    weight: 18
+    weight: 0
   - gameEvent: 4
-    weight: 14
+    weight: 0
   - gameEvent: 5
-    weight: 10
+    weight: 0
 --- !u!114 &1061210650
 MonoBehaviour:
   m_ObjectHideFlags: 0

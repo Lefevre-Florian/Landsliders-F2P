@@ -9,11 +9,16 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
         [SerializeField] private int _NbCardsAdded;
         [SerializeField] private int _TurnBeforeDestroy = 2;
         private int _TurnCount;
+
+        [SerializeField] private GameObject _Particles;
+
         protected override void PlayRandomEventEffect()
         {
             if (_GridManager.GetGridCoordinate(transform.position) == _GridManager.GetGridCoordinate(_Player.transform.position))
             {
                 _HandManager.AddCardToDeck(_NbCardsAdded);
+
+                Instantiate(_Particles, transform.position, Quaternion.identity);
 
                 Destroy(gameObject);
             }
