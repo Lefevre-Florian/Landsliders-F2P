@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2461288039634304325}
   - component: {fileID: -2955003137128851383}
+  - component: {fileID: 556216337512842725}
   m_Layer: 0
   m_Name: Witch
   m_TagString: Untagged
@@ -47,6 +48,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Priority: 6
+  _SpawnSFXEmitter: {fileID: 556216337512842725}
+--- !u!114 &556216337512842725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284007911230468281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: 2047000666
+      Data2: 1112348151
+      Data3: -400042098
+      Data4: 705569610
+    Path: event:/GAME/witch
 --- !u!1 &5540049190602417025
 GameObject:
   m_ObjectHideFlags: 0

@@ -178,6 +178,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6757908115115406046}
   - component: {fileID: -2609899514548897404}
+  - component: {fileID: 2136713659260712165}
+  - component: {fileID: 8275044694570446287}
+  - component: {fileID: 1958737979260521670}
   m_Layer: 10
   m_Name: GoblinTreasure
   m_TagString: Untagged
@@ -215,9 +218,69 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Priority: 5
+  _SpawnSFXEmitter: {fileID: 2136713659260712165}
   _NbCardsAdded: 3
   _NbCardsBurnt: 2
   _TreasureChance: 0.5
   _SoftCurrencyReward: 60
+  _PositiveOutcomeSFXEmitter: {fileID: 1958737979260521670}
+  _NegativeOutcomeSFXEmitter: {fileID: 8275044694570446287}
   _ParticlesWin: {fileID: 9078367999964250019, guid: 33fca4d64fa4cf24fac6b690c3c90f16, type: 3}
   _ParticlesLoose: {fileID: 2504674162794675595, guid: dbaa795fed6a1bc4c9c05d1d218ac961, type: 3}
+--- !u!114 &2136713659260712165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956311438354313730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -138683583
+      Data2: 1228520522
+      Data3: -367993418
+      Data4: 899444034
+    Path: event:/GAME/goblin_treasure
+--- !u!114 &8275044694570446287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956311438354313730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -1871147239
+      Data2: 1142443101
+      Data3: 384749699
+      Data4: -1123413770
+    Path: event:/GAME/goblin_treeasure_fail
+--- !u!114 &1958737979260521670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6956311438354313730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -462866490
+      Data2: 1180331743
+      Data3: -1753197912
+      Data4: 1027920546
+    Path: event:/GAME/goblin_treasure_success

@@ -1,5 +1,3 @@
-using System;
-using UnityEngine;
 using UnityEngine.Events;
 
 // Author (CR): Dorian Husson

@@ -94,6 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4144617113285954060}
   - component: {fileID: 4379911020385122167}
+  - component: {fileID: 8378378604890227460}
+  - component: {fileID: 6075556353331595916}
   m_Layer: 0
   m_Name: EtheralRift
   m_TagString: Untagged
@@ -131,7 +133,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Priority: 2
+  _SpawnSFXEmitter: {fileID: 8378378604890227460}
+  _EffectSFXEmitter: {fileID: 6075556353331595916}
   _Particles: {fileID: 8766446468685182177, guid: bb9d15bc4d1a68144a4df75129c88f4a, type: 3}
+--- !u!114 &8378378604890227460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8149821949770973124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -1556491245
+      Data2: 1291932782
+      Data3: -1152713337
+      Data4: 1239153305
+    Path: event:/GAME/flaw
+--- !u!114 &6075556353331595916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8149821949770973124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -2026158575
+      Data2: 1328552531
+      Data3: -5337449
+      Data4: -1260064175
+    Path: event:/GAME/flaw_effect
 --- !u!1 &8642259685678927538
 GameObject:
   m_ObjectHideFlags: 0

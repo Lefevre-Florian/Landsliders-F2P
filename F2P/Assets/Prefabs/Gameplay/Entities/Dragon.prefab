@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1740976208247641879}
-  - component: {fileID: 1342318828200268646}
   - component: {fileID: 1391488775470668730}
+  - component: {fileID: 971134675495411336}
   m_Layer: 0
   m_Name: Dragon
   m_TagString: Untagged
@@ -34,58 +34,6 @@ Transform:
   - {fileID: 3467835592428511923}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1342318828200268646
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4436327880437374050}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!114 &1391488775470668730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,6 +47,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NbCardsBurnt: 4
+  _FlySFXEmitter: {fileID: 971134675495411336}
+--- !u!114 &971134675495411336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4436327880437374050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -1652675297
+      Data2: 1272795424
+      Data3: 2114730376
+      Data4: 2056257365
+    Path: event:/GAME/dragon_moving
 --- !u!1001 &2594374647293670711
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109,7 +77,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 718242106284577611, guid: 65e44cdbf9e9e254ba75df715e4ae38f, type: 3}
       propertyPath: m_Name
-      value: Dragon
+      value: Renderer
       objectReference: {fileID: 0}
     - target: {fileID: 1450488822102988676, guid: 65e44cdbf9e9e254ba75df715e4ae38f, type: 3}
       propertyPath: m_LocalPosition.x
