@@ -81,33 +81,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-7280116864309025611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/upgrade
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/upgrade
-  Guid:
-    Data1: 1696387656
-    Data2: 1240223557
-    Data3: 514274445
-    Data4: -1387359060
-  Banks:
-  - {fileID: 5780021015574079501}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-6306624679846090223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,10 +312,10 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638518057495062280
+  lastModified: 638519003165170320
   FileSizes:
   - Name: Desktop
-    Value: 34368
+    Value: 50752
   Exists: 1
 --- !u!114 &-2039592566931951735
 MonoBehaviour:
@@ -362,6 +335,33 @@ MonoBehaviour:
     Data2: 1228520522
     Data3: -367993418
     Data4: 899444034
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2031027089336813802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/laser_destroy
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/laser_destroy
+  Guid:
+    Data1: 1358379235
+    Data2: 1177135528
+    Data3: -1595752575
+    Data4: 1366450819
   Banks:
   - {fileID: 5780021015574079501}
   IsStream: 0
@@ -398,6 +398,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-1605670380521634246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/upgrade
+  m_EditorClassIdentifier: 
+  Path: event:/UI/upgrade
+  Guid:
+    Data1: 1696387656
+    Data2: 1240223557
+    Data3: 514274445
+    Data4: -1387359060
+  Banks:
+  - {fileID: -2637945911149226402}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1305337885774525275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,6 +443,33 @@ MonoBehaviour:
     Data2: 1291932782
     Data3: -1152713337
     Data4: 1239153305
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1156568352078005226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/monolith_effect
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/monolith_effect
+  Guid:
+    Data1: -272962936
+    Data2: 1193632801
+    Data3: 542978971
+    Data4: -339637533
   Banks:
   - {fileID: 5780021015574079501}
   IsStream: 0
@@ -531,7 +585,6 @@ MonoBehaviour:
   - {fileID: 2014079891779623076}
   - {fileID: 4170849421902018481}
   - {fileID: -2039592566931951735}
-  - {fileID: -7280116864309025611}
   - {fileID: -5913644979611480137}
   - {fileID: -3932579627540223025}
   - {fileID: -6306624679846090223}
@@ -557,13 +610,44 @@ MonoBehaviour:
   - {fileID: -908428171292480841}
   - {fileID: -6002705808267838180}
   - {fileID: -2022255494343421910}
+  - {fileID: 252764185785947177}
+  - {fileID: -1156568352078005226}
+  - {fileID: -2031027089336813802}
+  - {fileID: -1605670380521634246}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1247950292147221911}
   StringsBanks:
   - {fileID: 7391608658828067301}
-  cacheTime: 638518057495062280
+  cacheTime: 638519003165170320
   cacheVersion: 131607
+--- !u!114 &252764185785947177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/monolith_connection
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/monolith_connection
+  Guid:
+    Data1: -1148817298
+    Data2: 1281009197
+    Data3: 994039972
+    Data4: 881166636
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &1247950292147221911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,10 +663,10 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638518057494613106
+  lastModified: 638519003164917380
   FileSizes:
   - Name: Desktop
-    Value: 1036
+    Value: 1872
   Exists: 1
 --- !u!114 &2014079891779623076
 MonoBehaviour:
@@ -815,10 +899,10 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/GAME.bank
   Name: GAME
   StudioPath: bank:/GAME
-  lastModified: 638518057494562415
+  lastModified: 638519003164815726
   FileSizes:
   - Name: Desktop
-    Value: 735104
+    Value: 799168
   Exists: 1
 --- !u!114 &6121040918377414445
 MonoBehaviour:
@@ -889,10 +973,10 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638518057494623140
+  lastModified: 638519003164927382
   FileSizes:
   - Name: Desktop
-    Value: 2326
+    Value: 2616
   Exists: 1
 --- !u!114 &7494338966482294810
 MonoBehaviour:
