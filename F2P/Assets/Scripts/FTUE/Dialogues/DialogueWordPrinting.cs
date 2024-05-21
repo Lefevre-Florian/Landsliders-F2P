@@ -57,6 +57,8 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
             _Type = pAnimationType;
         }
 
+        public void SetDialogue(string pLineID, Animation pAnimationTye = Animation.NONE) => SetDialogues(new string[] { pLineID }, pAnimationTye);
+
         protected override IEnumerator WriteDialogue()
         {
             OnDialogueStarted?.Invoke();

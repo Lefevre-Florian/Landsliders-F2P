@@ -65,6 +65,9 @@ namespace Com.IsartDigital.F2P.FTUE
 
         public DateTime StartTime { get { return _FTUEStartTime; } }
 
+        // Events
+        public event Action OnDialogueEnded;
+
         private void Awake()
         {
             if(_Instance != null)
@@ -190,6 +193,8 @@ namespace Com.IsartDigital.F2P.FTUE
 
             if (CurrentPhase.DialogueFlow.Length > 1)
                 _CurrentTextBox.OnDialogueEnded.AddListener(ManageDialoguePhaseFlow);
+            else
+                _CurrentTextBox.OnDialogueEnded.AddListener(ConversationEnd);
         }
 
         private void ManageDialoguePhaseFlow()
@@ -199,9 +204,21 @@ namespace Com.IsartDigital.F2P.FTUE
 
             _DialoguePhaseIdx += 1;
             if (_DialoguePhaseIdx >= CurrentPhase.DialogueFlow.Length)
+            {
+                OnDialogueEnded?.Invoke();
                 return;
-
+            }
+               
             UpdateDialogue();
+        }
+
+        private void ConversationEnd()
+        {
+            if (_CurrentTextBox != null)
+                _CurrentTextBox.OnDialogueEnded.RemoveListener(ConversationEnd);
+            _CurrentTextBox = null;
+
+            OnDialogueEnded?.Invoke();
         }
         #endregion
 
