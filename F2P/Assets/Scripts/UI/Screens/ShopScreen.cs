@@ -28,8 +28,11 @@ namespace Com.IsartDigital.F2P.UI
 
         public override void Close()
         {
-            TimeSpan lDuration = (DateTime.UtcNow - _StartTime).Duration();
-            _Tracker.SendAnalytics(TRACKER_NAME, new Dictionary<string, object>() { { TRACKER_TIME_PARAMETER, lDuration.Minutes + ":" + lDuration.Seconds } });
+            if(_Tracker != null)
+            {
+                TimeSpan lDuration = (DateTime.UtcNow - _StartTime).Duration();
+                _Tracker.SendAnalytics(TRACKER_NAME, new Dictionary<string, object>() { { TRACKER_TIME_PARAMETER, lDuration.Minutes + ":" + lDuration.Seconds } });
+            }
             base.Close();
         }
 
