@@ -15,10 +15,15 @@ namespace Com.IsartDigital.F2P.Biomes
         // Variables
         private Biome _Biome = null;
 
+        private bool _CollisionEnabled = true;
+
         private void Start() => _Biome = GetComponent<Biome>();
 
         public void ComputeCollision()
         {
+            if (!_CollisionEnabled)
+                return;
+
             // Collision
             if (_Biome.GridPosition == Player.GetInstance().GridPosition)
                 _OnPlayerCollision?.Invoke();
@@ -26,7 +31,10 @@ namespace Com.IsartDigital.F2P.Biomes
 
         public void ComputeAOECollision()
         {
-            // Collision computation
+            if (!_CollisionEnabled)
+                return;
+
+            // Collision computation (AOE)
             float lAngle = ((Mathf.PI * 2f) / CARDINAL_AOE) * Mathf.Rad2Deg;
             Player lPlayer = Player.GetInstance();
 
@@ -43,6 +51,10 @@ namespace Com.IsartDigital.F2P.Biomes
 
             ComputeCollision();
         }
+
+        public void EnableCollision() => _CollisionEnabled = true;
+
+        public void DisableCollision() => _CollisionEnabled = false;
 
         private void OnDestroy() => _Biome = null;
     }

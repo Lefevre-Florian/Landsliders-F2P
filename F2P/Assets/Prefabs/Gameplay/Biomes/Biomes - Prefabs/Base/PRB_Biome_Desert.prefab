@@ -8,9 +8,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8084758009786610639}
     m_Modifications:
+    - target: {fileID: 772714041782169893, guid: e439c090b32367649aff02f808afeaab, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2619550902792239899, guid: e439c090b32367649aff02f808afeaab, type: 3}
       propertyPath: m_Name
       value: PRB_Desert
+      objectReference: {fileID: 0}
+    - target: {fileID: 4660952343184417692, guid: e439c090b32367649aff02f808afeaab, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5934529532891977340, guid: e439c090b32367649aff02f808afeaab, type: 3}
       propertyPath: m_LocalScale.x
@@ -64,6 +72,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6729187910825526336, guid: e439c090b32367649aff02f808afeaab, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798918969784993702, guid: e439c090b32367649aff02f808afeaab, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743990353598642565, guid: e439c090b32367649aff02f808afeaab, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9120244414061313356, guid: e439c090b32367649aff02f808afeaab, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -82,6 +106,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Path
+      value: event:/GAME/played_desert
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data1
+      value: -1641192459
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data2
+      value: 1322886826
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data3
+      value: 336980652
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data4
+      value: 1648351276
+      objectReference: {fileID: 0}
     - target: {fileID: 1303455310275192841, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: m_Color.b
       value: 0.45995012
@@ -189,6 +233,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2875296992129550578}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1444239555862337456}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4309590179671702805}
   m_SourcePrefab: {fileID: 100100000, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
 --- !u!4 &8084758009786610639 stripped
 Transform:
@@ -219,3 +269,36 @@ MonoBehaviour:
   _BiomeTypeToReplace: 0000000001000000030000000400000005000000060000000700000008000000
   _IsRandomReplace: 0
   _SubstitutionBiome: 2
+  _Particles: {fileID: 2598604235871349991, guid: 2722e696db3cd5a4d830070adc70e9d3, type: 3}
+  _SoundEmitter: {fileID: 4309590179671702805}
+--- !u!114 &1444239555862337456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817954561399897485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c043bdba33b6140a0af83f6a311a2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4309590179671702805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817954561399897485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -1315790324
+      Data2: 1327728858
+      Data3: -1995592269
+      Data4: -1133229765
+    Path: event:/GAME/spreading_desert

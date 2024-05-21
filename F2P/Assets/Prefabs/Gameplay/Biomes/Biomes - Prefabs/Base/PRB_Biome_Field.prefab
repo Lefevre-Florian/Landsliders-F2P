@@ -8,6 +8,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Path
+      value: event:/GAME/played_field
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data1
+      value: 1256924596
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data2
+      value: 1149182398
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data3
+      value: -446402670
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data4
+      value: -1164114060
+      objectReference: {fileID: 0}
     - target: {fileID: 1303455310275192841, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -120,6 +140,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
       addedObject: {fileID: 333202221833708060}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8176581108869571695}
   m_SourcePrefab: {fileID: 100100000, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
 --- !u!1 &1215226676069808110 stripped
 GameObject:
@@ -160,6 +183,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8176581108869571695}
+        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Sound.SoundEmitter, Assembly-CSharp
+        m_MethodName: PlaySFXOnShot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -207,6 +242,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myQuest: 3
+--- !u!114 &8176581108869571695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215226676069808110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: 1078679781
+      Data2: 1172515824
+      Data3: 683270579
+      Data4: -1926326906
+    Path: event:/GAME/field_looting
 --- !u!4 &1923077027656481196 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
@@ -231,9 +285,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1923077027656481196}
     m_Modifications:
+    - target: {fileID: 121257887119717035, guid: ca607c9409b0bed4ab47a610cb5bf2e8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 752879072562566014, guid: ca607c9409b0bed4ab47a610cb5bf2e8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 943910719343629267, guid: ca607c9409b0bed4ab47a610cb5bf2e8, type: 3}
       propertyPath: m_Name
       value: PRB_Field
+      objectReference: {fileID: 0}
+    - target: {fileID: 1534702568104405095, guid: ca607c9409b0bed4ab47a610cb5bf2e8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1948794580091055585, guid: ca607c9409b0bed4ab47a610cb5bf2e8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148718723956759128, guid: ca607c9409b0bed4ab47a610cb5bf2e8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3029039822899872223, guid: ca607c9409b0bed4ab47a610cb5bf2e8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3288910486376800821, guid: ca607c9409b0bed4ab47a610cb5bf2e8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045168607174940358, guid: ca607c9409b0bed4ab47a610cb5bf2e8, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8638010508455359222, guid: ca607c9409b0bed4ab47a610cb5bf2e8, type: 3}
       propertyPath: m_LocalScale.x

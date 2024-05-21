@@ -1,4 +1,5 @@
 using com.isartdigital.f2p.gameplay.quest;
+using Com.IsartDigital.F2P.Sound;
 
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,22 @@ namespace Com.IsartDigital.F2P.Biomes
         [Space(2)]
         [SerializeField] private bool _IsRandomReplace = true;
         [SerializeField] private BiomeType _SubstitutionBiome = default;
+
+        [Header("Juiciness")]
+        [SerializeField] private GameObject _Particles = null;
+
+        [Header("Sound")]
+        [SerializeField] private SoundEmitter _SoundEmitter = null;
+
+        // Variables
+        private BiomeParticles _ParticleSystem = null;
+
+        public override void Start()
+        {
+            base.Start();
+
+            _ParticleSystem = GetComponent<BiomeParticles>();
+        }
 
         public void UpdateNeigbourhood()
         {
@@ -95,13 +112,31 @@ namespace Com.IsartDigital.F2P.Biomes
             Vector2 lDirection = default;
             Vector2 lNextPosition = default;
 
+            if (_SoundEmitter != null)
+                _SoundEmitter.PlaySFXOnShot();
+
             for (int i = 0; i < lLength; i++)
             {
                 lDirection = (lCards[i].GridPosition - m_Biome.GridPosition).normalized;
                 for (int j = 1; j < _Range; j++)
                 {
                     lNextPosition = m_Biome.GridPosition + lDirection * j;
-                    m_GridManager.ReplaceAtIndex(lNextPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform : CardPrefabDic.GetPrefab(_SubstitutionBiome).transform);
+                    
+                    if(lNextPosition.x % 1f != 0f && lNextPosition.y % 1f != 0f)
+                    {
+                        lNextPosition.x = lNextPosition.x % 1 <= 0.5f ? Mathf.FloorToInt(lNextPosition.x) : Mathf.CeilToInt(lNextPosition.x);
+                        lNextPosition.y = lNextPosition.y % 1 <= 0.5f ? Mathf.FloorToInt(lNextPosition.y) : Mathf.CeilToInt(lNextPosition.y);
+
+                        lNextPosition.x = lNextPosition.x + (Mathf.Sign(lDirection.x) * (j / 2));
+                        lNextPosition.y = lNextPosition.y + (Mathf.Sign(lDirection.y) * (j / 2));
+                    }
+
+                    m_GridManager.ReplaceAtIndex(lNextPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform 
+                                                                                   : CardPrefabDic.GetPrefab(_SubstitutionBiome).transform);
+
+                    if (_ParticleSystem != null && _Particles != null)
+                        _ParticleSystem.PlayOneshotParticles(_Particles, m_GridManager.GetWorldCoordinate(lNextPosition));
+
                     if (TryGetComponent<VortexQuest>(out VortexQuest vq)) vq.ValidQuest(lNextPosition);
                 }
             }
@@ -139,6 +174,12 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private void PerformedNeighbourhoodModification(Biome[] pBiomes)
         {
+            if (_ParticleSystem != null && _Particles != null)
+                _ParticleSystem.PlayOneshotParticles(_Particles);
+
+            if (_SoundEmitter != null)
+                _SoundEmitter.PlaySFXOnShot();
+
             int lLength = pBiomes.Length;
             for (int i = 0; i < lLength; i++)
                 m_GridManager.ReplaceAtIndex(pBiomes[i].GridPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform : CardPrefabDic.GetPrefab(_SubstitutionBiome).transform);

@@ -12,20 +12,17 @@ namespace Com.IsartDigital.F2P.UI.Screens
         [SerializeField] private bool _IsUsingLoadingScreen = false;
         [SerializeField] private int _GameBuildIDX = 0;
 
-        [Header("Application management")]
-        [SerializeField][Range(15, 120)] private int _TargetedFrameRate = 30;
-
         [Header("Screen")]
         [SerializeField] private TextMeshProUGUI _ExpLevelLabel = null;
 
         private void Start()
         {
-            Application.targetFrameRate = _TargetedFrameRate;
-
             // Reset timescale (in case)
             Time.timeScale = 1f;
 
-            _ExpLevelLabel.text = Save.data.exp.ToString();
+            UpdateExp();
+
+            Save.OnDataUpdated += UpdateExp;
         }
 
         public void Play()
@@ -37,5 +34,10 @@ namespace Com.IsartDigital.F2P.UI.Screens
             else
                 LoadManager.GetInstance().StartLoading(_GameBuildIDX);
         }
+
+        private void UpdateExp() => _ExpLevelLabel.text = Save.data.exp.ToString();
+
+        private void OnDestroy() => Save.OnDataUpdated -= UpdateExp;
+
     }
 }

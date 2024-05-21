@@ -8,6 +8,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Path
+      value: event:/GAME/played_swamp
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data1
+      value: 662988399
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data2
+      value: 1287057924
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data3
+      value: -1103102546
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data4
+      value: 101246815
+      objectReference: {fileID: 0}
     - target: {fileID: 1303455310275192841, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: m_Color.b
       value: 0.13654797
@@ -144,10 +164,7 @@ PrefabInstance:
       addedObject: {fileID: 8513031664465252616}
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8337362324417401145}
-    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6552882787028994283}
+      addedObject: {fileID: 3948805105576187820}
   m_SourcePrefab: {fileID: 100100000, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
 --- !u!1 &7305934453097383714 stripped
 GameObject:
@@ -196,9 +213,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 6552882787028994283}
-        m_TargetAssemblyTypeName: TriggerSurviveSwampQuest, Assembly-CSharp
-        m_MethodName: InvokeTrigger
+      - m_Target: {fileID: 3948805105576187820}
+        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Sound.SoundEmitter, Assembly-CSharp
+        m_MethodName: PlaySFXOnShot
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -208,7 +225,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &8337362324417401145
+--- !u!114 &3948805105576187820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,21 +234,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7305934453097383714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6eccfdfd00d20eb41bca697c12b76e14, type: 3}
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6552882787028994283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7305934453097383714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea5e26b1d13c78744984cc4879e2dbcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -1382910182
+      Data2: 1215336893
+      Data3: -372627036
+      Data4: -1632157102
+    Path: event:/GAME/poison_damage
 --- !u!4 &8002503781277092192 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
@@ -245,6 +257,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8002503781277092192}
     m_Modifications:
+    - target: {fileID: 1812685563798391936, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2205531200771009733, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811055539957516654, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3258832892507336386, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558005352204004270, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428055572505223894, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6001513207080209692, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.15
@@ -297,9 +333,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6198640056099210072, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547785207359876460, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619695827168415958, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8118460152122114975, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
       propertyPath: m_Name
       value: PRB_Swamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335900255331999197, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399214837599911942, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

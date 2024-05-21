@@ -8,6 +8,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Path
+      value: event:/GAME/played_forzenlake
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data1
+      value: -282406397
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data2
+      value: 1208782174
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data3
+      value: 2014521228
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data4
+      value: 1494548456
+      objectReference: {fileID: 0}
     - target: {fileID: 1303455310275192841, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -111,6 +131,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3894428989471003917}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8156503943800994923}
   m_SourcePrefab: {fileID: 100100000, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
 --- !u!4 &5072705720765086382 stripped
 Transform:
@@ -134,8 +157,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b13fc138a05a12a40970d46e03c479ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StoppingBiome: 06000000
+  _StoppingBiome: 06000000ffffffff
   _VFXFrozen: {fileID: 8518150010312492001, guid: b875958f313e6c346831e389d29ee288, type: 3}
+  _SFXFrozenEmitter: {fileID: 8156503943800994923}
+--- !u!114 &8156503943800994923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5478805542897906924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: 310102384
+      Data2: 1088459729
+      Data3: -1520008547
+      Data4: 732472714
+    Path: event:/GAME/freezing_card
 --- !u!1001 &8634055702446491831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -144,9 +187,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5072705720765086382}
     m_Modifications:
+    - target: {fileID: 62237064043687841, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 182351130934939688, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 247360424770754571, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}
       propertyPath: m_Name
       value: PRB_FrozenLake
+      objectReference: {fileID: 0}
+    - target: {fileID: 981532136713176782, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558138538184429905, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578864131633344642, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6274546229157288716, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}
       propertyPath: m_LocalScale.x

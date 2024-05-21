@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 694862315824671043}
   - component: {fileID: 3756919447971423051}
-  - component: {fileID: 2806813639658834540}
   - component: {fileID: 1663775179575542501}
+  - component: {fileID: 2806813639658834540}
+  - component: {fileID: 1784392447039090365}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6110220630346872215}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.75, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -86,21 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2806813639658834540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6110220630346872215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7341c466c6f40e04b946a8bc6fca078d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseGridPos: {x: 1, y: 1}
-  _LerpDuration: 1
-  isProtected: 0
 --- !u!61 &1663775179575542501
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,3 +132,40 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2806813639658834540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6110220630346872215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7341c466c6f40e04b946a8bc6fca078d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseGridPos: {x: 1, y: 1}
+  _LerpDuration: 1
+  _SlidingSFXEmitter: {fileID: 1784392447039090365}
+  _MovingSFXEmitter: {fileID: 0}
+  _ActualGridPos: {x: 0, y: 0}
+  isProtected: 0
+--- !u!114 &1784392447039090365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6110220630346872215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: 1275506128
+      Data2: 1310539607
+      Data3: -79368061
+      Data4: -352633241
+    Path: event:/GAME/slide

@@ -58,7 +58,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5267400807792268099, guid: 8b1748598685e9f418137255580bcde3, type: 3}
       propertyPath: m_Name
-      value: Vortex_upgraded
+      value: PRB_Biome_Monolithe_upgraded
+      objectReference: {fileID: 0}
+    - target: {fileID: 5933520431795780613, guid: 8b1748598685e9f418137255580bcde3, type: 3}
+      propertyPath: _Range
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,5 +1,6 @@
 using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.manager;
+using Com.IsartDigital.F2P.Sound;
 
 using System;
 using System.Collections;
@@ -34,6 +35,10 @@ public class Player : MonoBehaviour
     public Vector2 baseGridPos;
     [SerializeField] private float _LerpDuration;
 
+    [Header("Sound Effects")]
+    [SerializeField] private SoundEmitter _SlidingSFXEmitter = null;
+    [SerializeField] private SoundEmitter _MovingSFXEmitter = null;
+
     // Variables
     [HideInInspector]
     public Vector2 _ActualGridPos;
@@ -48,6 +53,7 @@ public class Player : MonoBehaviour
 
     private Action DoAction;
 
+    [HideInInspector]
     public bool isProtected = false;
 
     private GridManager _GridManager = null;
@@ -74,6 +80,8 @@ public class Player : MonoBehaviour
         GameManager.PlayerMoved.AddListener(SetModeFixed);
 
         _GridManager = GridManager.GetInstance();
+
+        GameFlowManager.PlayerLoaded.Invoke();
     }
 
     private void Update()
@@ -98,6 +106,13 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+
+    [HideInInspector]
+    public void SetPosition(Vector2 pPosition)
+    {
+        _ActualGridPos = _PreviousGridPos = pPosition;
+        transform.position = _GridManager.GetWorldCoordinate(pPosition);
     }
 
     #region State machine
@@ -127,6 +142,9 @@ public class Player : MonoBehaviour
 
     public void SetModeMove()
     {
+        if (_MovingSFXEmitter != null)
+            _MovingSFXEmitter.PlaySFXLooping();
+
         _CurrentState = State.Moving;
         DoAction = DoActionMove;
     }
@@ -145,13 +163,19 @@ public class Player : MonoBehaviour
             _ActualGridPos = _GridPosSelected;
 
             GameManager.PlayerMoved?.Invoke();
+
+            if (_MovingSFXEmitter != null)
+                _MovingSFXEmitter.StopSFXLoopingImmediate();
+
             SetModeVoid();
         }
     }
 
-    /// TEMPORARY METHOD WILL BE CHANGED
     public void SetModeSlide(Vector2 pPosition)
     {
+        if (_SlidingSFXEmitter != null)
+            _SlidingSFXEmitter.PlaySFXOnShot();
+
         _PreviousGridPos = _ActualGridPos;
         _ActualGridPos = pPosition;
         transform.position = _GridManager.GetWorldCoordinate(pPosition);
