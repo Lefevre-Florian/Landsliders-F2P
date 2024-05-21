@@ -15,6 +15,9 @@ namespace com.isartdigital.f2p.gameplay.quest
         private const int MAX_PHASE_TWO_CARD_FIELD = 3;
         private const int MAX_PHASE_THREE_SURVIVED = 3;
 
+        private const string QUEST_DESCR_SECOND_PHASE = "Harvest 3 field";
+        private const string QUEST_DESCR_THIRD_PHASE = "Survive 3 turn of poison";
+
         #region Tracking
         private const string TRACKER_NAME = "ftueComplete";
 
@@ -57,6 +60,7 @@ namespace com.isartdigital.f2p.gameplay.quest
                         _TutorialManager.UpdatePhase();
 
                         HandManager.OnDeckAltered.AddListener(ObserveFieldHarvesting);
+                        QuestUiManager.GetInstance().SetQuestDesc(QUEST_DESCR_SECOND_PHASE);
                     }
                     break;
                 case 2:
@@ -66,6 +70,7 @@ namespace com.isartdigital.f2p.gameplay.quest
                         _TutorialManager.UpdatePlayer();
 
                         HandManager.OnDeckAltered.RemoveListener(ObserveFieldHarvesting);
+                        QuestUiManager.GetInstance().SetQuestDesc(QUEST_DESCR_THIRD_PHASE);
                     }
                     break;
                 case 3:

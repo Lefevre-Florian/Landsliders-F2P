@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d308c0ee8fdf3544d81c00ab15157ebc, type: 3}
-  m_Name: Dialogue-Intro
+  m_Name: Advice
   m_EditorClassIdentifier: 
   _Dialogues:
-  - Guard-A-01
+  - Advice-A-01
+  - Advice-A-02
+  - Advice-A-03
+  - Advice-A-04
   _Animation: 0
-  _DisplaySprite: 0
+  _DialogueType: 1
