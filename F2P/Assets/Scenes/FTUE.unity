@@ -2983,6 +2983,18 @@ PrefabInstance:
       propertyPath: _GridSizePercent.x
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5908093654468578514, guid: cd2991d2c7e688c46ad73a5158eae7e7, type: 3}
+      propertyPath: _SFXEmitterDrawCards
+      value: 
+      objectReference: {fileID: 5228520700684496755}
+    - target: {fileID: 5908093654468578514, guid: cd2991d2c7e688c46ad73a5158eae7e7, type: 3}
+      propertyPath: _SFXEmitterGiveCards
+      value: 
+      objectReference: {fileID: 5228520700684496753}
+    - target: {fileID: 5908093654468578514, guid: cd2991d2c7e688c46ad73a5158eae7e7, type: 3}
+      propertyPath: _SFXEmitterLoseCards
+      value: 
+      objectReference: {fileID: 5228520700684496754}
     - target: {fileID: 7291853324815534500, guid: cd2991d2c7e688c46ad73a5158eae7e7, type: 3}
       propertyPath: m_Name
       value: Hand
@@ -2991,8 +3003,79 @@ PrefabInstance:
     - {fileID: 4632822547992440412, guid: cd2991d2c7e688c46ad73a5158eae7e7, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7291853324815534500, guid: cd2991d2c7e688c46ad73a5158eae7e7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5228520700684496755}
+    - targetCorrespondingSourceObject: {fileID: 7291853324815534500, guid: cd2991d2c7e688c46ad73a5158eae7e7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5228520700684496754}
+    - targetCorrespondingSourceObject: {fileID: 7291853324815534500, guid: cd2991d2c7e688c46ad73a5158eae7e7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5228520700684496753}
   m_SourcePrefab: {fileID: 100100000, guid: cd2991d2c7e688c46ad73a5158eae7e7, type: 3}
+--- !u!1 &5228520700684496752 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7291853324815534500, guid: cd2991d2c7e688c46ad73a5158eae7e7, type: 3}
+  m_PrefabInstance: {fileID: 5228520700684496751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5228520700684496753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5228520700684496752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -1540911798
+      Data2: 1321494291
+      Data3: -973859650
+      Data4: 908271878
+    Path: event:/GAME/card_getting
+--- !u!114 &5228520700684496754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5228520700684496752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -526718502
+      Data2: 1326273166
+      Data3: -159591250
+      Data4: -438349652
+    Path: event:/GAME/card_loosing
+--- !u!114 &5228520700684496755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5228520700684496752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -692495075
+      Data2: 1326808431
+      Data3: -255810937
+      Data4: 1226356684
+    Path: event:/GAME/card_picking
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

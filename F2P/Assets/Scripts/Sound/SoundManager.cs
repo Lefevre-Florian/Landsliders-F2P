@@ -101,6 +101,10 @@ namespace Com.IsartDigital.F2P.Sound
             }
 
             SceneManager.activeSceneChanged += LoadSceneBank;
+
+            #if UNITY_EDITOR
+            LoadBankGroup(_Banks.ToList<FMODBankScene>().FindAll(x => x.ScenesLinked.ToList().Contains(SceneManager.GetActiveScene().buildIndex)).ToArray());
+            #endif
         }
 
         private void LoadVCA(VCAType pVCA)

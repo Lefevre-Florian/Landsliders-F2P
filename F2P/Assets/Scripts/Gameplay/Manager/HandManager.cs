@@ -1,14 +1,17 @@
 using com.isartdigital.f2p.gameplay.quest;
-using Com.IsartDigital.F2P.Biomes;
-using Com.IsartDigital.F2P;
 using com.isartdigital.f2p.manager;
 
+using Com.IsartDigital.F2P.Biomes;
+using Com.IsartDigital.F2P;
+using Com.IsartDigital.F2P.Sound;
+
 using UnityEngine;
+using UnityEngine.Events;
 
 using System;
 using System.Collections.Generic;
-using UnityEngine.Events;
 using System.Linq;
+
 
 // Author (CR) : Elias Dridi
 public class HandManager : MonoBehaviour
@@ -64,18 +67,24 @@ public class HandManager : MonoBehaviour
     [SerializeField] private GameObject _DeckContainer;
     [SerializeField] private GameObject _HandContainer;
 
-    // Variables
+    [Header("Sound")]
+    [SerializeField] private SoundEmitter _SFXEmitterDrawCards = null;
+    [SerializeField] private SoundEmitter _SFXEmitterLoseCards = null;
+    [SerializeField] private SoundEmitter _SFXEmitterGiveCards = null;
 
+    // Variables
     [HideInInspector] public Vector2 _ScreenSizeInGameUnit;
     [HideInInspector] public Vector2 _GridSize;
 
     [HideInInspector] public GameObject[] _CardsSlot;
     [HideInInspector] public bool[] _AvailableCardSlots;
+
     private GameObject[] _Deck;
-
-    public int _TotalCards { get { return _Deck.Length + _CardInHand; } }
-
+    
     private List<Tuple<BiomeType, int>> _BiomePlayedTracking = new List<Tuple<BiomeType, int>>();
+
+    // Get & Set
+    public int _TotalCards { get { return _Deck.Length + _CardInHand; } }
 
     // Events
     public static UnityEvent<int, BiomeType> OnDeckAltered = new UnityEvent<int, BiomeType>();
@@ -98,6 +107,9 @@ public class HandManager : MonoBehaviour
     {
         if (_Deck.Length >= 1)
         {
+            if (_SFXEmitterDrawCards != null)
+                _SFXEmitterDrawCards.PlaySFXOnShot();
+
             for (int i = 0; i < _AvailableCardSlots.Length; i++)
             {
                 if (_AvailableCardSlots[i] == true)
@@ -136,6 +148,9 @@ public class HandManager : MonoBehaviour
     public void BurnCard(int pNbCards = 1)
     {
         Player.GetInstance().GetComponent<PlayerAnim>().SetAnimTrig(PlayerAnim.AnimTrig.LoseCard);
+
+        if (_SFXEmitterLoseCards != null)
+            _SFXEmitterLoseCards.PlaySFXOnShot();
 
         int lRemainingCardToRemove = pNbCards;
         if (lRemainingCardToRemove < _Deck.Length)
@@ -182,6 +197,9 @@ public class HandManager : MonoBehaviour
     public void AddCardToDeck(int pNbCards, bool pIsPredifined = false, BiomeType pType = default)
     {
         Player.GetInstance().GetComponent<PlayerAnim>().SetAnimTrig(PlayerAnim.AnimTrig.GainCard);
+
+        if (_SFXEmitterGiveCards != null)
+            _SFXEmitterGiveCards.PlaySFXOnShot();
 
         List<GameObject> lDeck = _Deck.ToList();
 
