@@ -32,7 +32,7 @@ public class SurviveCenterWitchQuest : MonoBehaviour
         if (_Timer == 0)
         {
             GameManager.GetInstance().OnTurnPassed -= UpdateCheck;
-            Debug.Log("Win");
+            WitchQuestManager.WitchWinEvent.Invoke();
         }
 
 

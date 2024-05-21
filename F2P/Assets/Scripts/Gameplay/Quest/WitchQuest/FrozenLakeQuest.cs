@@ -18,6 +18,6 @@ public class FrozenLakeQuest : MonoBehaviour
         Vector2Int playerPos = new Vector2Int(Mathf.RoundToInt(Player.GetInstance().GridPosition.x),
                                               Mathf.RoundToInt(Player.GetInstance().GridPosition.y));
 
-        if (GridManager.GetInstance()._Cards[playerPos.x, playerPos.y].GetComponent<Biome>().Type == BiomeType.glacier) Debug.Log("win");
+        if (GridManager.GetInstance()._Cards[playerPos.x, playerPos.y].GetComponent<Biome>().Type == BiomeType.glacier) WitchQuestManager.WitchWinEvent.Invoke(); ;
     }
 }

@@ -1,10 +1,8 @@
+using com.isartdigital.f2p.manager;
 using Com.IsartDigital.F2P.Gameplay.Events;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using static com.isartdigital.f2p.manager.QuestManager;
 
 public class WitchQuestManager : MonoBehaviour
 {
@@ -12,6 +10,8 @@ public class WitchQuestManager : MonoBehaviour
     public static WitchQuestsEnum currentQuest;
 
     [SerializeField] private WitchQuestsEnum currentQuestDebug;
+
+    public static UnityEvent WitchWinEvent = new UnityEvent();
 
     public enum WitchQuestsEnum
     {
@@ -26,6 +26,7 @@ public class WitchQuestManager : MonoBehaviour
     {
         Witch.OnWitchPosition.AddListener(GiveQuest);
         currentQuest = currentQuestDebug;
+        WitchWinEvent.AddListener(Win);
     }
 
     private void GiveQuest()
@@ -41,8 +42,15 @@ public class WitchQuestManager : MonoBehaviour
         Debug.Log(currentQuest);
     }
 
+    public void Win()
+    {
+        if (QuestManager.currentQuest == QuestManager.QuestsEnum.WitchQuest) QuestManager.ValidQuest.Invoke();
+        Debug.Log("Win");
+    }
+
     private void OnDestroy()
     {
         Witch.OnWitchPosition.RemoveListener(GiveQuest);
+        WitchWinEvent.RemoveListener(Win);
     }
 }

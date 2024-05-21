@@ -24,7 +24,7 @@ public class SurviveSwampQuest : MonoBehaviour
     {
         if (_Timer == 0) return;
         _Timer--;
-        if (_Timer == 0) Debug.Log("Win");
+        if (_Timer == 0) WitchQuestManager.WitchWinEvent.Invoke();
         
     }
 

@@ -32,7 +32,7 @@ public class AlignSwampQuest : MonoBehaviour
             if (!CheckBiomeAtIndex(lXIndexToCheck + Mathf.RoundToInt(currentDir.x), lYIndexToCheck + Mathf.RoundToInt(currentDir.y)) && 
                 !CheckBiomeAtIndex(lXIndexToCheck - 2 * Mathf.RoundToInt(currentDir.x), lYIndexToCheck - 2 * Mathf.RoundToInt(currentDir.y))) continue;
 
-            Debug.Log("WIN");
+            WitchQuestManager.WitchWinEvent.Invoke();
             return;
         }
     }

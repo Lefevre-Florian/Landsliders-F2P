@@ -30,6 +30,7 @@ namespace com.isartdigital.f2p.manager
             FlyingIslandQuest,
             CardQuest,
             VortexQuest,
+            WitchQuest,
 
             FTUE
         }
@@ -55,8 +56,8 @@ namespace com.isartdigital.f2p.manager
 
             }
 
-            QuestUiManager.GetInstance().SetQuestName(questDic[currentQuest].name);
-            QuestUiManager.GetInstance().SetQuestDesc(questDic[currentQuest].desc);
+           if(questDic.ContainsKey(currentQuest)) QuestUiManager.GetInstance().SetQuestName(questDic[currentQuest].name);
+           if (questDic.ContainsKey(currentQuest)) QuestUiManager.GetInstance().SetQuestDesc(questDic[currentQuest].desc);
 
             Debug.Log(currentQuest);
         }
