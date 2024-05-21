@@ -178,6 +178,8 @@ GameObject:
   m_Component:
   - component: {fileID: 15144045758770844}
   - component: {fileID: -3849888806905635349}
+  - component: {fileID: 7843834879335533732}
+  - component: {fileID: 2859658964189643564}
   m_Layer: 10
   m_Name: Wisp
   m_TagString: Untagged
@@ -215,6 +217,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Priority: 4
+  _SpawnSFXEmitter: {fileID: 7843834879335533732}
   _NbCardsAdded: 3
   _TurnBeforeDestroy: 2
+  _EffectSFXEmitter: {fileID: 2859658964189643564}
   _Particles: {fileID: 6683183824428460224, guid: 721a169ee1fc6e948955c2b08908d0a8, type: 3}
+--- !u!114 &7843834879335533732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7100505260429275719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: 551035456
+      Data2: 1180792396
+      Data3: -352218992
+      Data4: 353982669
+    Path: event:/GAME/spirit_appear
+--- !u!114 &2859658964189643564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7100505260429275719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -1931901552
+      Data2: 1317335477
+      Data3: -271180897
+      Data4: 165308878
+    Path: event:/GAME/spirit_looting

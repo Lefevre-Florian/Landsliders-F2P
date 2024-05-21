@@ -1,7 +1,8 @@
-using System;
-using System.Collections;
 using com.isartdigital.f2p.gameplay.manager;
+
 using Com.IsartDigital.F2P.Gameplay.Manager;
+using Com.IsartDigital.F2P.Sound;
+
 using UnityEngine;
 
 // Author (CR): Dorian Husson
@@ -9,7 +10,12 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
 {
     public class GameRandomEvent : MonoBehaviour
     {
+        [Header("Settings")]
         [SerializeField][Min(0)] protected int _Priority;
+
+        [Header("Sound")]
+        [SerializeField] private SoundEmitter _SpawnSFXEmitter = null;
+
         protected Vector2 _GridPosition;
 
         protected GameManager _GameManager = GameManager.GetInstance();
@@ -21,6 +27,9 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
         {
             _GameManager.OnEffectPlayed += OnRandomEventTriggered;
             _GridPosition = GridManager.GetInstance().GetGridCoordinate(transform.position);
+
+            if (_SpawnSFXEmitter != null)
+                _SpawnSFXEmitter.PlaySFXOnShot();
         }
 
         protected void OnRandomEventTriggered(int pPriority)

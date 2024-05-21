@@ -64,8 +64,6 @@ namespace Com.IsartDigital.F2P.Gameplay.Manager
 
         private GameObject _InstantiatedGameEvent;
 
-        [SerializeField] private GameObject _GridContainer;
-
         public List<WeightedGameEvent> _Events = new List<WeightedGameEvent>();
 
         private GameManager _Gamemanager;
