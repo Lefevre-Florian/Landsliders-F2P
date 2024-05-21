@@ -21,6 +21,20 @@ namespace Com.IsartDigital.F2P.FTUE
         private DialogueManager() : base() { }
         #endregion
 
+        public enum DisplayType
+        {
+            Character,
+            Advice,
+            Narration
+        }
+
+        [Serializable]
+        public struct DisplayPrefabs
+        {
+            public DisplayType type;
+            public GameObject prefab;
+        }
+
         private const char CSV_SEPARATOR = ';';
         private const char LINE_SEPARATOR = '\n';
 
@@ -29,6 +43,9 @@ namespace Com.IsartDigital.F2P.FTUE
 
         [Header("File")]
         [SerializeField] private TextAsset _DialogueCSV = null;
+
+        [Header("Prefabs")]
+        [SerializeField] private List<DisplayPrefabs> _Prefabs = new List<DisplayPrefabs>();
 
         // Variables
         private Dictionary<string, string> _Dialogues = null;
@@ -86,6 +103,8 @@ namespace Com.IsartDigital.F2P.FTUE
 
             return _Dialogues[pDialogueID];
         }
+
+        public GameObject GetDisplay(DisplayType pType) => _Prefabs.Find(x => x.type == pType).prefab;
 
         private void OnDestroy()
         {

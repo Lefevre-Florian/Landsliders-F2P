@@ -280,6 +280,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _DialogueCSV: {fileID: 4900000, guid: d4bd97ed0849e234a9d08fe3434c00bd, type: 3}
+  _Prefabs:
+  - type: 0
+    prefab: {fileID: 6973438908491267459, guid: b7bf6d2aca116294ca520f6b461543da, type: 3}
+  - type: 1
+    prefab: {fileID: 6973438908491267459, guid: 034a7b6e6e13a5048941e34d3f95a70a, type: 3}
+  - type: 2
+    prefab: {fileID: 6973438908491267459, guid: e0a2ed33cd468854d983833b516a82c8, type: 3}
 --- !u!4 &180416132
 Transform:
   m_ObjectHideFlags: 0

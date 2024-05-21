@@ -15,4 +15,4 @@ MonoBehaviour:
   _Dialogues:
   - Guard-A-01
   _Animation: 0
-  _DisplaySprite: 0
+  _DialogueType: 2

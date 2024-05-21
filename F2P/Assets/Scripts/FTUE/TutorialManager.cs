@@ -46,10 +46,6 @@ namespace Com.IsartDigital.F2P.FTUE
         [SerializeField] private DialogueLinePrinting _StoryNarrator = null;
         [SerializeField] private DialogueFlowSO _EndDialogue = null;
 
-        [Space(5)]
-        [Header("Prefabs")]
-        [SerializeField] private GameObject _PRBDialogueBox = null;
-
         // Variables
         private GameManager _GameManager = null;
         private GridManager _GridManager = null;
@@ -187,11 +183,11 @@ namespace Com.IsartDigital.F2P.FTUE
         private void UpdateDialogue() 
         {
             // Dialogues
-            GameObject lTextBox = Instantiate(_PRBDialogueBox, Hud.GetInstance().transform);
+            GameObject lTextBox = Instantiate(DialogueManager.GetInstance().GetDisplay(CurrentPhase.DialogueFlow[_DialoguePhaseIdx].Type), Hud.GetInstance().transform);
             _CurrentTextBox = lTextBox.GetComponent<DialogueWordPrinting>();
             _CurrentTextBox.SetDialogues(CurrentPhase.DialogueFlow[_DialoguePhaseIdx].Dialogues,
-                                         CurrentPhase.DialogueFlow[_DialoguePhaseIdx].Tween,
-                                         CurrentPhase.DialogueFlow[_DialoguePhaseIdx].DisplaySprite);
+                                         CurrentPhase.DialogueFlow[_DialoguePhaseIdx].Tween);
+
             if (CurrentPhase.DialogueFlow.Length > 1)
                 _CurrentTextBox.OnDialogueEnded.AddListener(ManageDialoguePhaseFlow);
         }
@@ -212,10 +208,9 @@ namespace Com.IsartDigital.F2P.FTUE
         private void EndFTUE()
         {
             // Last dialogue
-            GameObject lTextBox = Instantiate(_PRBDialogueBox, Hud.GetInstance().transform);
+            GameObject lTextBox = Instantiate(DialogueManager.GetInstance().GetDisplay(_EndDialogue.Type), Hud.GetInstance().transform);
             lTextBox.GetComponent<DialogueWordPrinting>().SetDialogues(_EndDialogue.Dialogues,
-                                                                       _EndDialogue.Tween,
-                                                                       _EndDialogue.DisplaySprite);
+                                                                       _EndDialogue.Tween);
 
             // Save
             Save.data.ftuecomplete = true;

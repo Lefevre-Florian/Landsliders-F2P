@@ -51,13 +51,10 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
                 PlayAnimation();
         }
 
-        public void SetDialogues(string[] pLineIDs, Animation pAnimationType = Animation.NONE, bool pDisplayIcon = true)
+        public void SetDialogues(string[] pLineIDs, Animation pAnimationType = Animation.NONE)
         {
             m_DialogueIDs = pLineIDs;
             _Type = pAnimationType;
-
-            if (!pDisplayIcon)
-                _CharacterRenderer.gameObject.SetActive(false);
         }
 
         protected override IEnumerator WriteDialogue()

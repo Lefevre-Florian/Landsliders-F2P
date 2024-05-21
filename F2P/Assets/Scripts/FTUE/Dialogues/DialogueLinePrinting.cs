@@ -15,8 +15,6 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
         // Variables
         private int _CurrentLineID = 0;
 
-        private string _Content = "";
-
         // Events
         [HideInInspector]
         public UnityEvent OnDialogueEnded;
