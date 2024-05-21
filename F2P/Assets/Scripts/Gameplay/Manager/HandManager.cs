@@ -260,7 +260,7 @@ public class HandManager : MonoBehaviour
     /// <returns></returns>
     private GameObject CreateCard(bool pIsDefined = false, BiomeType pType = default)
     {
-        GameObject lCard = Instantiate(pIsDefined ? CardPrefabDic.GetPrefab(pType) : CardPrefabDic.GetRandomPrefab());
+        GameObject lCard = Instantiate(pIsDefined ? CardPrefabDic.GetPrefab(pType) : CardPrefabDic.GetRandomPrefab(CardPrefabDic.prefabHandList, Save.data.exp));
         lCard.GetComponent<TEMPCard>().enabled = true;
         lCard.SetActive(false);
         lCard.transform.SetParent(_DeckContainer.transform, true);

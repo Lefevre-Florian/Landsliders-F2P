@@ -8,25 +8,26 @@ using UnityEngine;
 
 public class CardPrefabDic : MonoBehaviour
 {
-    [SerializeField] private CTGODic _Biomes;
+    [SerializeField] private CTGODic _BiomesHandDic;
+    [SerializeField] private CTGODic _BiomesMapDic;
     [SerializeField] private bool _IsForced = false;
 
-    private static Dictionary<BiomeType, Card> prefabDic;
-    private static List<Card> prefabList;
+    private static Dictionary<BiomeType, Card> prefabHandDic;
+    private static Dictionary<BiomeType, Card> prefabMapDic;
+    public static List<Card> prefabHandList;
+    public static List<Card> prefabMapList;
 
     private static float currentLevel = 0;
 
     private void Awake()
     {
-        if(_IsForced || Save.data == null)
+        prefabHandDic = _BiomesHandDic.ToDic();
+        prefabHandList = _BiomesHandDic.ToList();
+        prefabMapDic = _BiomesMapDic.ToDic();
+        prefabMapList = _BiomesMapDic.ToList();
+
+        if(!(_IsForced || Save.data == null))
         {
-            prefabDic = _Biomes.ToDic();
-            prefabList = _Biomes.ToList();
-        }
-        else
-        {
-            prefabDic = _Biomes.ToDic();
-            prefabList = _Biomes.ToList();
 
             int lLength = Save.data.cardPrefabs.Length;
             List<BiomeType> lKeys = new List<BiomeType>();
@@ -36,30 +37,30 @@ public class CardPrefabDic : MonoBehaviour
             Card lCard;
             for (int i = 0; i < lLength; i++)
             {
-                lCard = prefabDic[lKeys[i]];
+                lCard = prefabHandDic[lKeys[i]];
                 lCard.GO = Save.data.cardPrefabs[i];
-                prefabDic[lKeys[i]] = lCard;
+                prefabHandDic[lKeys[i]] = lCard;
             }
 
-            prefabDic.ToList().RemoveAll(x => !lKeys.Contains(x.Key));
+            prefabHandDic.ToList().RemoveAll(x => !lKeys.Contains(x.Key));
 
             for (int i = 0; i < lLength; i++)
-                prefabList[prefabList.FindIndex(x => x.GO.GetComponent<Biome>().Type == lKeys[i])] = prefabDic[lKeys[i]];
+                prefabHandList[prefabHandList.FindIndex(x => x.GO.GetComponent<Biome>().Type == lKeys[i])] = prefabHandDic[lKeys[i]];
         }
     }
 
-    public static GameObject GetRandomPrefab() 
+    public static GameObject GetRandomPrefab(List<Card> pList, float pEvaluator) 
     {
-        float lTotalWeight = GetTotalWeight();
+        float lTotalWeight = GetTotalWeight(pList, pEvaluator);
 
         float lRand = UnityEngine.Random.Range(0, lTotalWeight);
 
         float lCurrentProp = 0;
 
-        for (int i = 0; i < prefabList.Count; i++)
+        for (int i = 0; i < prefabHandList.Count; i++)
         {
-            lCurrentProp += prefabList[i].chanceToSpawn.Evaluate(currentLevel);
-            if (lRand < lCurrentProp) return prefabList[i].GO;
+            lCurrentProp += pList[i].chanceToSpawn.Evaluate(pEvaluator);
+            if (lRand < lCurrentProp) return prefabHandList[i].GO;
         }
 
         return null;
@@ -67,14 +68,14 @@ public class CardPrefabDic : MonoBehaviour
 
     public static GameObject GetPrefab(BiomeType type)
     {
-        return prefabDic[type].GO;
+        return prefabHandDic[type].GO;
     }
 
-    private static float GetTotalWeight()
+    private static float GetTotalWeight(List<Card> pList, float pEvaluator)
     {
         float ret = 0;
-        foreach (Card pCard in prefabList)
-            ret += pCard.chanceToSpawn.Evaluate(currentLevel);
+        foreach (Card pCard in pList)
+            ret += pCard.chanceToSpawn.Evaluate(pEvaluator);
 
         return ret;
     }

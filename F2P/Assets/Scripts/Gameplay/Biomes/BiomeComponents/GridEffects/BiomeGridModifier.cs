@@ -1,4 +1,5 @@
 using com.isartdigital.f2p.gameplay.quest;
+using com.isartdigital.f2p.manager;
 using Com.IsartDigital.F2P.Sound;
 
 using System;
@@ -131,7 +132,7 @@ namespace Com.IsartDigital.F2P.Biomes
                         lNextPosition.y = lNextPosition.y + (Mathf.Sign(lDirection.y) * (j / 2));
                     }
 
-                    m_GridManager.ReplaceAtIndex(lNextPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform 
+                    m_GridManager.ReplaceAtIndex(lNextPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab(CardPrefabDic.prefabMapList, (int)QuestManager.currentQuest).transform 
                                                                                    : CardPrefabDic.GetPrefab(_SubstitutionBiome).transform);
 
                     if (_ParticleSystem != null && _Particles != null)
@@ -182,7 +183,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
             int lLength = pBiomes.Length;
             for (int i = 0; i < lLength; i++)
-                m_GridManager.ReplaceAtIndex(pBiomes[i].GridPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab().transform : CardPrefabDic.GetPrefab(_SubstitutionBiome).transform);
+                m_GridManager.ReplaceAtIndex(pBiomes[i].GridPosition, (_IsRandomReplace) ? CardPrefabDic.GetRandomPrefab(CardPrefabDic.prefabMapList, (int)QuestManager.currentQuest).transform : CardPrefabDic.GetPrefab(_SubstitutionBiome).transform);
         }
     }
 }
