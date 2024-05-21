@@ -30,6 +30,7 @@ namespace com.isartdigital.f2p.manager
             FlyingIslandQuest,
             CardQuest,
             VortexQuest,
+            WitchQuest,
 
             FTUE
         }
@@ -49,14 +50,14 @@ namespace com.isartdigital.f2p.manager
                 string[] lQuestsArray = Enum.GetNames(typeof(QuestsEnum));
                 lQuestsArray.ToList().Remove(QuestsEnum.FTUE.ToString());
 
-                int rand = UnityEngine.Random.Range(1, lQuestsArray.Length);
+                int rand = UnityEngine.Random.Range(1, lQuestsArray.Length - 1);
 
                 currentQuest = (QuestsEnum)Enum.Parse(typeof(QuestsEnum), lQuestsArray[rand]);
 
             }
 
-            QuestUiManager.GetInstance().SetQuestName(questDic[currentQuest].name);
-            QuestUiManager.GetInstance().SetQuestDesc(questDic[currentQuest].desc);
+           if(questDic.ContainsKey(currentQuest)) QuestUiManager.GetInstance().SetQuestName(questDic[currentQuest].name);
+           if (questDic.ContainsKey(currentQuest)) QuestUiManager.GetInstance().SetQuestDesc(questDic[currentQuest].desc);
 
             Debug.Log(currentQuest);
         }
