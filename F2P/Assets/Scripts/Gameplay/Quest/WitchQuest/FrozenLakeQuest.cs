@@ -13,7 +13,7 @@ public class FrozenLakeQuest : MonoBehaviour
 
     private void CheckValidQuest()
     {
-        if (WitchQuestManager.currentQuest != WitchQuestManager.WitchQuestsEnum.FrozenLake) return;
+        if (WitchQuestManager.currentQuest != WitchQuestsEnum.FrozenLake) return;
 
         Vector2Int playerPos = new Vector2Int(Mathf.RoundToInt(Player.GetInstance().GridPosition.x),
                                               Mathf.RoundToInt(Player.GetInstance().GridPosition.y));

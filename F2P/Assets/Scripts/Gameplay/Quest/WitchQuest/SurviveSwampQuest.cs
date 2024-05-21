@@ -16,7 +16,7 @@ public class SurviveSwampQuest : MonoBehaviour
 
     public void StartCheck()
     {
-        if (WitchQuestManager.currentQuest != WitchQuestManager.WitchQuestsEnum.SurviveSwampQuest) return;
+        if (WitchQuestManager.currentQuest != WitchQuestsEnum.SurviveSwampQuest) return;
         if(_Timer == 0) _Timer = _TimeToComplete;
     }
 
