@@ -83,10 +83,14 @@ namespace Com.IsartDigital.F2P.Gameplay
         {
             float t = _Speed * Time.deltaTime;
 
-            transform.position = Vector3.MoveTowards(transform.position, _GridManager.GetWorldCoordinate((int)_ToPosition.x, (int)_ToPosition.y), t);
+            Vector3 lToPosition = _GridManager.GetWorldCoordinate((int)_ToPosition.x, (int)_ToPosition.y);
+            lToPosition.z = transform.position.z;
 
-            if (transform.position == (Vector3)_GridManager.GetWorldCoordinate((int)_ToPosition.x, (int)_ToPosition.y))
+            transform.position = Vector3.MoveTowards(transform.position, lToPosition, t);
+
+            if (transform.position == lToPosition)
             {
+                print("okay");
                 CheckDirection();
                 _CanMove = false;
                 SetModeRotate();

@@ -54,6 +54,7 @@ namespace Com.IsartDigital.F2P.Biomes
             if (_Displays == null)
                 return;
 
+            if (_Displays == null) return;
             int lLength = _Displays.Length;
             for (int i = 0; i < lLength; i++)
                 if (_Displays[i] != null)
