@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8880446058158332313
+--- !u!114 &-9009733103491765898
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/volcano_damage
+  m_Name: event:/GAME/played_monolith
   m_EditorClassIdentifier: 
-  Path: event:/GAME/volcano_damage
+  Path: event:/GAME/played_monolith
   Guid:
-    Data1: 1222266032
-    Data2: 1288209438
-    Data3: 1568191643
-    Data4: -2094435491
+    Data1: -403494256
+    Data2: 1171129716
+    Data3: -285094258
+    Data4: 970887427
   Banks:
-  - {fileID: -6962248908715406485}
+  - {fileID: 5780021015574079501}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -27,398 +27,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-7511952895028392108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/spirit_looting
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/spirit_looting
-  Guid:
-    Data1: -1931901552
-    Data2: 1317335477
-    Data3: -271180897
-    Data4: 165308878
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-7200675778245192870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/flaw_effect
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/flaw_effect
-  Guid:
-    Data1: -2026158575
-    Data2: 1328552531
-    Data3: -5337449
-    Data4: -1260064175
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-6962248908715406485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/GAME.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/FMOD SCOPA/Build/Desktop/GAME.bank
-  Name: GAME
-  StudioPath: bank:/GAME
-  lastModified: 638518893096144818
-  FileSizes:
-  - Name: Desktop
-    Value: 814688
-  Exists: 1
---- !u!114 &-6472104006545247870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/dragon
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/dragon
-  Guid:
-    Data1: 776021289
-    Data2: 1165136412
-    Data3: -737729118
-    Data4: -928671214
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-5945178239515088702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/witch
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/witch
-  Guid:
-    Data1: 2047000666
-    Data2: 1112348151
-    Data3: -400042098
-    Data4: 705569610
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-5277614235334670193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/fingergripping
-  m_EditorClassIdentifier: 
-  Path: event:/UI/fingergripping
-  Guid:
-    Data1: -820540232
-    Data2: 1269743226
-    Data3: -59619653
-    Data4: 1974636847
-  Banks:
-  - {fileID: 1383317968606715394}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-4264684370863290452
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/spirit_appear
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/spirit_appear
-  Guid:
-    Data1: 551035456
-    Data2: 1180792396
-    Data3: -352218992
-    Data4: 353982669
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-4200450738712898347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/goblin_treasure
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/goblin_treasure
-  Guid:
-    Data1: -138683583
-    Data2: 1228520522
-    Data3: -367993418
-    Data4: 899444034
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-4065795729997207473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/FMOD SCOPA/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638518893096154842
-  FileSizes:
-  - Name: Desktop
-    Value: 2604
-  Exists: 1
---- !u!114 &-3936958576667696537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/monolith_effect
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/monolith_effect
-  Guid:
-    Data1: -272962936
-    Data2: 1193632801
-    Data3: 542978971
-    Data4: -339637533
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-3929662033191273705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/monolith_connection
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/monolith_connection
-  Guid:
-    Data1: -1148817298
-    Data2: 1281009197
-    Data3: 994039972
-    Data4: 881166636
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-2372985115894139740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/witch_quest
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/witch_quest
-  Guid:
-    Data1: 1058322316
-    Data2: 1272871667
-    Data3: -1142398034
-    Data4: 1530744552
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-1477898766997452528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/flaw
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/flaw
-  Guid:
-    Data1: -1556491245
-    Data2: 1291932782
-    Data3: -1152713337
-    Data4: 1239153305
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-674324698934079582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/field_looting
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/field_looting
-  Guid:
-    Data1: 1078679781
-    Data2: 1172515824
-    Data3: 683270579
-    Data4: -1926326906
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-604573433592245307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/play_button
-  m_EditorClassIdentifier: 
-  Path: event:/UI/play_button
-  Guid:
-    Data1: 675113407
-    Data2: 1207162440
-    Data3: -1623149129
-    Data4: -608953553
-  Banks:
-  - {fileID: 1383317968606715394}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-593629106778010203
+--- !u!114 &-8130072501414752240
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -437,7 +46,513 @@ MonoBehaviour:
     Data3: -79368061
     Data4: -352633241
   Banks:
-  - {fileID: -6962248908715406485}
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-8048236093050455658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/played_volcano
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/played_volcano
+  Guid:
+    Data1: -512178071
+    Data2: 1314245427
+    Data3: 834453930
+    Data4: 1610915994
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6306624679846090223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/freezing_card
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/freezing_card
+  Guid:
+    Data1: 310102384
+    Data2: 1088459729
+    Data3: -1520008547
+    Data4: 732472714
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6282750179013564924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/witch_quest
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/witch_quest
+  Guid:
+    Data1: 1058322316
+    Data2: 1272871667
+    Data3: -1142398034
+    Data4: 1530744552
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6133377599381656424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/play_button
+  m_EditorClassIdentifier: 
+  Path: event:/UI/play_button
+  Guid:
+    Data1: 675113407
+    Data2: 1207162440
+    Data3: -1623149129
+    Data4: -608953553
+  Banks:
+  - {fileID: -2637945911149226402}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-6002705808267838180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/played_desert
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/played_desert
+  Guid:
+    Data1: -1641192459
+    Data2: 1322886826
+    Data3: 336980652
+    Data4: 1648351276
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5913644979611480137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/witch
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/witch
+  Guid:
+    Data1: 2047000666
+    Data2: 1112348151
+    Data3: -400042098
+    Data4: 705569610
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3932579627540223025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/played_swamp
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/played_swamp
+  Guid:
+    Data1: 662988399
+    Data2: 1287057924
+    Data3: -1103102546
+    Data4: 101246815
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3506229118189457988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/played_canyon
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/played_canyon
+  Guid:
+    Data1: 1889958044
+    Data2: 1190939752
+    Data3: -1546640996
+    Data4: -1226279609
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2947076010166184566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/field_looting
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/field_looting
+  Guid:
+    Data1: 1078679781
+    Data2: 1172515824
+    Data3: 683270579
+    Data4: -1926326906
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2637945911149226402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/UI.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/FMOD SCOPA/Build/Desktop/UI.bank
+  Name: UI
+  StudioPath: bank:/UI
+  lastModified: 638519003165170320
+  FileSizes:
+  - Name: Desktop
+    Value: 50752
+  Exists: 1
+--- !u!114 &-2039592566931951735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/goblin_treasure
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/goblin_treasure
+  Guid:
+    Data1: -138683583
+    Data2: 1228520522
+    Data3: -367993418
+    Data4: 899444034
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2031027089336813802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/laser_destroy
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/laser_destroy
+  Guid:
+    Data1: 1358379235
+    Data2: 1177135528
+    Data3: -1595752575
+    Data4: 1366450819
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-2022255494343421910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/changing_scene
+  m_EditorClassIdentifier: 
+  Path: event:/UI/changing_scene
+  Guid:
+    Data1: -1799796370
+    Data2: 1189581947
+    Data3: 2058319281
+    Data4: -766538623
+  Banks:
+  - {fileID: -2637945911149226402}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1605670380521634246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/upgrade
+  m_EditorClassIdentifier: 
+  Path: event:/UI/upgrade
+  Guid:
+    Data1: 1696387656
+    Data2: 1240223557
+    Data3: 514274445
+    Data4: -1387359060
+  Banks:
+  - {fileID: -2637945911149226402}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1305337885774525275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/flaw
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/flaw
+  Guid:
+    Data1: -1556491245
+    Data2: 1291932782
+    Data3: -1152713337
+    Data4: 1239153305
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1156568352078005226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/monolith_effect
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/monolith_effect
+  Guid:
+    Data1: -272962936
+    Data2: 1193632801
+    Data3: 542978971
+    Data4: -339637533
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-908428171292480841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/played_flyingisland
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/played_flyingisland
+  Guid:
+    Data1: 543415744
+    Data2: 1329386958
+    Data3: 1196131202
+    Data4: -290326074
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-671570793725157380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/spreading_desert
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/spreading_desert
+  Guid:
+    Data1: -1315790324
+    Data2: 1327728858
+    Data3: -1995592269
+    Data4: -1133229765
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-669913832063041354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/goblin_treasure_success
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/goblin_treasure_success
+  Guid:
+    Data1: -462866490
+    Data2: 1180331743
+    Data3: -1753197912
+    Data4: 1027920546
+  Banks:
+  - {fileID: 5780021015574079501}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -458,55 +573,55 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -4065795729997207473}
-  - {fileID: -6962248908715406485}
-  - {fileID: 3210550144965374733}
-  - {fileID: 1383317968606715394}
+  - {fileID: 7391608658828067301}
+  - {fileID: 1247950292147221911}
+  - {fileID: -2637945911149226402}
+  - {fileID: 5780021015574079501}
   EditorEvents:
-  - {fileID: 9120770866208446067}
-  - {fileID: 860186349600597371}
-  - {fileID: -7200675778245192870}
-  - {fileID: -1477898766997452528}
-  - {fileID: 4441688010095670135}
-  - {fileID: 7195881125589561502}
-  - {fileID: 7009307801885272177}
-  - {fileID: -6472104006545247870}
-  - {fileID: -4264684370863290452}
-  - {fileID: -4200450738712898347}
-  - {fileID: 2235008379058688191}
-  - {fileID: -5945178239515088702}
-  - {fileID: 1759036012050802756}
-  - {fileID: 1047423124160007015}
-  - {fileID: -3929662033191273705}
-  - {fileID: 7175580081939554670}
-  - {fileID: 7414804753018029337}
-  - {fileID: -3936958576667696537}
-  - {fileID: -2372985115894139740}
-  - {fileID: 4728014745289376130}
-  - {fileID: -7511952895028392108}
-  - {fileID: 5440804722640092641}
-  - {fileID: -8880446058158332313}
-  - {fileID: 4333070600267001342}
-  - {fileID: 2581201319885555750}
-  - {fileID: 1206482358864164143}
-  - {fileID: -593629106778010203}
-  - {fileID: 4641419446813836546}
-  - {fileID: -674324698934079582}
-  - {fileID: 6095771170417915414}
-  - {fileID: 4450769918753656292}
-  - {fileID: 8342388833677052041}
-  - {fileID: 3992242432852528012}
-  - {fileID: 6294255221653206848}
-  - {fileID: -5277614235334670193}
-  - {fileID: -604573433592245307}
+  - {fileID: 8602832578668388441}
+  - {fileID: -1305337885774525275}
+  - {fileID: 4881970881626012721}
+  - {fileID: 9180175889904944837}
+  - {fileID: 2014079891779623076}
+  - {fileID: 4170849421902018481}
+  - {fileID: -2039592566931951735}
+  - {fileID: -5913644979611480137}
+  - {fileID: -3932579627540223025}
+  - {fileID: -6306624679846090223}
+  - {fileID: -6282750179013564924}
+  - {fileID: -9009733103491765898}
+  - {fileID: 2883868352050682114}
+  - {fileID: -3506229118189457988}
+  - {fileID: -669913832063041354}
+  - {fileID: -8130072501414752240}
+  - {fileID: -2947076010166184566}
+  - {fileID: 7512045549580233372}
+  - {fileID: 7347788027139089182}
+  - {fileID: 8312448226662768842}
+  - {fileID: 5208670352465905367}
+  - {fileID: -6133377599381656424}
+  - {fileID: -671570793725157380}
+  - {fileID: 7494338966482294810}
+  - {fileID: 3385780485651060292}
+  - {fileID: 4277856198866239587}
+  - {fileID: -8048236093050455658}
+  - {fileID: 6121040918377414445}
+  - {fileID: 5423989685751764060}
+  - {fileID: -908428171292480841}
+  - {fileID: -6002705808267838180}
+  - {fileID: -2022255494343421910}
+  - {fileID: 252764185785947177}
+  - {fileID: -1156568352078005226}
+  - {fileID: -2031027089336813802}
+  - {fileID: -1605670380521634246}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 3210550144965374733}
+  - {fileID: 1247950292147221911}
   StringsBanks:
-  - {fileID: -4065795729997207473}
-  cacheTime: 638518893096154842
+  - {fileID: 7391608658828067301}
+  cacheTime: 638519003165170320
   cacheVersion: 131607
---- !u!114 &860186349600597371
+--- !u!114 &252764185785947177
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -516,16 +631,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/spreading_desert
+  m_Name: event:/GAME/monolith_connection
   m_EditorClassIdentifier: 
-  Path: event:/GAME/spreading_desert
+  Path: event:/GAME/monolith_connection
   Guid:
-    Data1: -1315790324
-    Data2: 1327728858
-    Data3: -1995592269
-    Data4: -1133229765
+    Data1: -1148817298
+    Data2: 1281009197
+    Data3: 994039972
+    Data4: 881166636
   Banks:
-  - {fileID: -6962248908715406485}
+  - {fileID: 5780021015574079501}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -533,162 +648,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &1047423124160007015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/played_volcano
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/played_volcano
-  Guid:
-    Data1: -512178071
-    Data2: 1314245427
-    Data3: 834453930
-    Data4: 1610915994
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &1206482358864164143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/goblin_treasure_success
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/goblin_treasure_success
-  Guid:
-    Data1: -462866490
-    Data2: 1180331743
-    Data3: -1753197912
-    Data4: 1027920546
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &1383317968606715394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/UI.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/FMOD SCOPA/Build/Desktop/UI.bank
-  Name: UI
-  StudioPath: bank:/UI
-  lastModified: 638518893096154842
-  FileSizes:
-  - Name: Desktop
-    Value: 34432
-  Exists: 1
---- !u!114 &1759036012050802756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/played_plain
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/played_plain
-  Guid:
-    Data1: -1959991964
-    Data2: 1231112296
-    Data3: 369719689
-    Data4: 26933971
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &2235008379058688191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/upgrade
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/upgrade
-  Guid:
-    Data1: 1696387656
-    Data2: 1240223557
-    Data3: 514274445
-    Data4: -1387359060
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &2581201319885555750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/played_flyingisland
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/played_flyingisland
-  Guid:
-    Data1: 543415744
-    Data2: 1329386958
-    Data3: 1196131202
-    Data4: -290326074
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &3210550144965374733
+--- !u!114 &1247950292147221911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -703,12 +663,12 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638518893096154842
+  lastModified: 638519003164917380
   FileSizes:
   - Name: Desktop
     Value: 1872
   Exists: 1
---- !u!114 &3992242432852528012
+--- !u!114 &2014079891779623076
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -718,16 +678,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/changing_scene
+  m_Name: event:/GAME/dragon
   m_EditorClassIdentifier: 
-  Path: event:/UI/changing_scene
+  Path: event:/GAME/dragon
   Guid:
-    Data1: -1799796370
-    Data2: 1189581947
-    Data3: 2058319281
-    Data4: -766538623
+    Data1: 776021289
+    Data2: 1165136412
+    Data3: -737729118
+    Data4: -928671214
   Banks:
-  - {fileID: 1383317968606715394}
+  - {fileID: 5780021015574079501}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -735,7 +695,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &4333070600267001342
+--- !u!114 &2883868352050682114
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -745,16 +705,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/played_field
+  m_Name: event:/GAME/spirit_looting
   m_EditorClassIdentifier: 
-  Path: event:/GAME/played_field
+  Path: event:/GAME/spirit_looting
   Guid:
-    Data1: 1256924596
-    Data2: 1149182398
-    Data3: -446402670
-    Data4: -1164114060
+    Data1: -1931901552
+    Data2: 1317335477
+    Data3: -271180897
+    Data4: 165308878
   Banks:
-  - {fileID: -6962248908715406485}
+  - {fileID: 5780021015574079501}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -762,250 +722,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &4441688010095670135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/goblin_treeasure_fail
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/goblin_treeasure_fail
-  Guid:
-    Data1: -1871147239
-    Data2: 1142443101
-    Data3: 384749699
-    Data4: -1123413770
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &4450769918753656292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/played_desert
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/played_desert
-  Guid:
-    Data1: -1641192459
-    Data2: 1322886826
-    Data3: 336980652
-    Data4: 1648351276
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &4641419446813836546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/laser_destroy
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/laser_destroy
-  Guid:
-    Data1: 1358379235
-    Data2: 1177135528
-    Data3: -1595752575
-    Data4: 1366450819
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &4728014745289376130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/played_monolith
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/played_monolith
-  Guid:
-    Data1: -403494256
-    Data2: 1171129716
-    Data3: -285094258
-    Data4: 970887427
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &5440804722640092641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/played_canyon
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/played_canyon
-  Guid:
-    Data1: 1889958044
-    Data2: 1190939752
-    Data3: -1546640996
-    Data4: -1226279609
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &6095771170417915414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/hardcurrency_jingle
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/hardcurrency_jingle
-  Guid:
-    Data1: -1239858711
-    Data2: 1179835731
-    Data3: -1903845213
-    Data4: -243897499
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &6294255221653206848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/ui_button
-  m_EditorClassIdentifier: 
-  Path: event:/UI/ui_button
-  Guid:
-    Data1: -1966368109
-    Data2: 1135783255
-    Data3: 1128577462
-    Data4: 933056761
-  Banks:
-  - {fileID: 1383317968606715394}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &7009307801885272177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/dragon_moving
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/dragon_moving
-  Guid:
-    Data1: -1652675297
-    Data2: 1272795424
-    Data3: 2114730376
-    Data4: 2056257365
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &7175580081939554670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/played_swamp
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/played_swamp
-  Guid:
-    Data1: 662988399
-    Data2: 1287057924
-    Data3: -1103102546
-    Data4: 101246815
-  Banks:
-  - {fileID: -6962248908715406485}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &7195881125589561502
+--- !u!114 &3385780485651060292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1024,7 +741,7 @@ MonoBehaviour:
     Data3: -372627036
     Data4: -1632157102
   Banks:
-  - {fileID: -6962248908715406485}
+  - {fileID: 5780021015574079501}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1032,7 +749,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &7414804753018029337
+--- !u!114 &4170849421902018481
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1042,16 +759,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/freezing_card
+  m_Name: event:/GAME/spirit_appear
   m_EditorClassIdentifier: 
-  Path: event:/GAME/freezing_card
+  Path: event:/GAME/spirit_appear
   Guid:
-    Data1: 310102384
-    Data2: 1088459729
-    Data3: -1520008547
-    Data4: 732472714
+    Data1: 551035456
+    Data2: 1180792396
+    Data3: -352218992
+    Data4: 353982669
   Banks:
-  - {fileID: -6962248908715406485}
+  - {fileID: 5780021015574079501}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1059,7 +776,162 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &8342388833677052041
+--- !u!114 &4277856198866239587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/played_plain
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/played_plain
+  Guid:
+    Data1: -1959991964
+    Data2: 1231112296
+    Data3: 369719689
+    Data4: 26933971
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4881970881626012721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/goblin_treeasure_fail
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/goblin_treeasure_fail
+  Guid:
+    Data1: -1871147239
+    Data2: 1142443101
+    Data3: 384749699
+    Data4: -1123413770
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5208670352465905367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/fingergripping
+  m_EditorClassIdentifier: 
+  Path: event:/UI/fingergripping
+  Guid:
+    Data1: -820540232
+    Data2: 1269743226
+    Data3: -59619653
+    Data4: 1974636847
+  Banks:
+  - {fileID: -2637945911149226402}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5423989685751764060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/played_field
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/played_field
+  Guid:
+    Data1: 1256924596
+    Data2: 1149182398
+    Data3: -446402670
+    Data4: -1164114060
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5780021015574079501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/GAME.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/FMOD SCOPA/Build/Desktop/GAME.bank
+  Name: GAME
+  StudioPath: bank:/GAME
+  lastModified: 638519003164815726
+  FileSizes:
+  - Name: Desktop
+    Value: 799168
+  Exists: 1
+--- !u!114 &6121040918377414445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/volcano_damage
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/volcano_damage
+  Guid:
+    Data1: 1222266032
+    Data2: 1288209438
+    Data3: 1568191643
+    Data4: -2094435491
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7347788027139089182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1078,7 +950,7 @@ MonoBehaviour:
     Data3: -99077451
     Data4: 16345513
   Banks:
-  - {fileID: -6962248908715406485}
+  - {fileID: 5780021015574079501}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1086,7 +958,108 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &9120770866208446067
+--- !u!114 &7391608658828067301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/FMOD SCOPA/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638519003164927382
+  FileSizes:
+  - Name: Desktop
+    Value: 2616
+  Exists: 1
+--- !u!114 &7494338966482294810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/flaw_effect
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/flaw_effect
+  Guid:
+    Data1: -2026158575
+    Data2: 1328552531
+    Data3: -5337449
+    Data4: -1260064175
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7512045549580233372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/hardcurrency_jingle
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/hardcurrency_jingle
+  Guid:
+    Data1: -1239858711
+    Data2: 1179835731
+    Data3: -1903845213
+    Data4: -243897499
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8312448226662768842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/ui_button
+  m_EditorClassIdentifier: 
+  Path: event:/UI/ui_button
+  Guid:
+    Data1: -1966368109
+    Data2: 1135783255
+    Data3: 1128577462
+    Data4: 933056761
+  Banks:
+  - {fileID: -2637945911149226402}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8602832578668388441
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1105,7 +1078,34 @@ MonoBehaviour:
     Data3: 2014521228
     Data4: 1494548456
   Banks:
-  - {fileID: -6962248908715406485}
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &9180175889904944837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/dragon_moving
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/dragon_moving
+  Guid:
+    Data1: -1652675297
+    Data2: 1272795424
+    Data3: 2114730376
+    Data4: 2056257365
+  Banks:
+  - {fileID: 5780021015574079501}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
