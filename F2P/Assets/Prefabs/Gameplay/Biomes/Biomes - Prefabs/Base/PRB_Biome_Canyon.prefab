@@ -125,9 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2e44949eb89dd4aa12f1ba1357509d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Renderer: {fileID: 1659205262842375310}
-  _CardLayer: {fileID: 21300000, guid: 2ccb2101866e215478d752d343323433, type: 3}
-  _MoveLayer: {fileID: 21300000, guid: f4e19aa3433b6f04f911e4407cdcfe1d, type: 3}
+  _Renderer: {fileID: 3343493496688429806}
+  _CardLayer: {fileID: 2100000, guid: fd14fa77210ad28438bd58c35ba6bb51, type: 2}
+  _MoveLayer: {fileID: 2100000, guid: ba9243b09f0d8424295e209b79cddd52, type: 2}
 --- !u!4 &4073555667556221482 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
@@ -141,6 +141,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4073555667556221482}
     m_Modifications:
+    - target: {fileID: 219972143535058203, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 219972143535058203, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ba9243b09f0d8424295e209b79cddd52, type: 2}
+    - target: {fileID: 404690197490630528, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 691923635917859700, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2071202880351957308, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.15
@@ -193,18 +209,54 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2114768395538445464, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2348305779831678521, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2897112843137624906, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4842366932268408094, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6111469334955727817, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
       propertyPath: m_Name
       value: PRB_Canyon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7049005151123367482, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8141902991499209606, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8269856490609439348, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015864419356314907, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9115748100680793558, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
---- !u!212 &1659205262842375310 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 4210206513366535035, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+--- !u!23 &3343493496688429806 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 219972143535058203, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
   m_PrefabInstance: {fileID: 3272717118207043573}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &3590885038888507081 stripped

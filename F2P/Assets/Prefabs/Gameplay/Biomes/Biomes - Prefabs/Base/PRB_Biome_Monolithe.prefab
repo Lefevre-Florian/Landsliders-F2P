@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4860772988200803585}
     m_Modifications:
+    - target: {fileID: 1664173894022862359, guid: 92c9d7014a86cd24588fb11ada826605, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2624319089702667378, guid: 92c9d7014a86cd24588fb11ada826605, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.15
@@ -60,9 +64,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3913040025612830876, guid: 92c9d7014a86cd24588fb11ada826605, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384851936611835603, guid: 92c9d7014a86cd24588fb11ada826605, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6726773598233486793, guid: 92c9d7014a86cd24588fb11ada826605, type: 3}
       propertyPath: m_Name
       value: PRB_Monolithe
+      objectReference: {fileID: 0}
+    - target: {fileID: 8128795329244534314, guid: 92c9d7014a86cd24588fb11ada826605, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8128795329244534314, guid: 92c9d7014a86cd24588fb11ada826605, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8128795329244534314, guid: 92c9d7014a86cd24588fb11ada826605, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8128795329244534314, guid: 92c9d7014a86cd24588fb11ada826605, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8188912324634156525, guid: 92c9d7014a86cd24588fb11ada826605, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787032318086579722, guid: 92c9d7014a86cd24588fb11ada826605, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

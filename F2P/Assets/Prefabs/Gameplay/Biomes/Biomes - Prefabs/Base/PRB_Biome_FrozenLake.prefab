@@ -187,9 +187,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5072705720765086382}
     m_Modifications:
+    - target: {fileID: 62237064043687841, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 182351130934939688, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 247360424770754571, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}
       propertyPath: m_Name
       value: PRB_FrozenLake
+      objectReference: {fileID: 0}
+    - target: {fileID: 981532136713176782, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2558138538184429905, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5578864131633344642, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6274546229157288716, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}
       propertyPath: m_LocalScale.x

@@ -30,6 +30,8 @@ public class HandManager : MonoBehaviour
     private const string TRACKER_BIOME_TYPE_PARAMETER = "biomeType";
     #endregion
 
+    private const int MAX_CARD_IN_DECK = 12;
+
     private void Awake()
     {
         if (_Instance != null)
@@ -205,8 +207,9 @@ public class HandManager : MonoBehaviour
     {
         ClearDeck();
 
-        _Deck = new GameObject[Save.data.startingdecknb];
-        for (int i = 0; i < Save.data.startingdecknb; i++)
+        int lLength = Save.data != null ? Save.data.startingdecknb : MAX_CARD_IN_DECK;
+        _Deck = new GameObject[lLength];
+        for (int i = 0; i < lLength; i++)
             _Deck[i] = CreateCard();
     }
 
