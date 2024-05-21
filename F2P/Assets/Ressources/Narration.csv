@@ -5,11 +5,13 @@ Bidoum-A-03;Bidoum: To start with, we need to learn how to move around and chang
 Bidoum-B-01;Bidoum: Perfect, you've understood perfectly how to use terranite cards! They're indispensable for survival these days. Now try to get even more of them!
 Bidoum-C-01;Bidoum: Whew, that was close! You handled the situation and the volcano very well, congratulations! I have a feeling you're going to be a great mayor... 
 Bidoum-C-02;Bidoum: Oh dear... I didn't notice where we were heading, look where we are! Do your best to resist the poison! 
-Bidoum-D-01;"Bidoum: We almost died because of me; you saved our lives... Thank you so much! After all these adventures, I think it's finally time to start building our city! Let’s go!"
-Narr-A-01;Welcome to the lands of Landorim. 
-Narr-A-02;A world where magic is king and the various races that populate this universe lived in perfect harmony. 
-Narr-A-03;"That was, until a meteorite made of a material filled with an extremely powerful magic called ""Terranite"". "
-Narr-A-04;The appearance of this material completely deregulated the world's ecosystem, making it much more dangerous with the arrival of more recurrent cataclysms. 
-Narr-A-05;All these problems led to the abandonment of traditional cities and the creation of itinerant towns, making it much easier for people to avoid danger. 
-Narr-A-06;30 years after this event, you and your best friend find yourselves in a rather peculiar situation... 
+Bidoum-D-01;Bidoum: We almost died because of me, you saved our lives... Thank you so much! After all these adventures, I think it's finally time to start building our city! Let’s go!
+Narr-A-01;Welcome to the lands of Landorim, where magic and the races that inhabit these lands live in perfect harmony.  
+Narr-A-02;"That was until a meteorite made of a powerful magical material called ""Terranite"" crashed into these lands."
+Narr-A-03;The appearance of this material made the world a much more dangerous place, leading to the creation of itinerant cities to avoid threats.  
+Narr-A-04;30 years after this event, you and your best friend find yourselves in trouble…
 Guard-A-01;Guard voice: Go away ! You're not welcome here anymore!
+Advice-A-01;Cliquez sur une carte pour l’inspecter. Puis jouez une carte de ta main.
+Advice-A-02;Déplacez la compagnie sur un biome juxtaposé.
+Advice-A-03;Si ta pioche atteint 0 cartes, l’expédition se conclue en un échec, soyez vigilant.e ! 
+Advice-A-04;Une quête vous est donnée en début de partie. Cette quête est votre condition de victoire.

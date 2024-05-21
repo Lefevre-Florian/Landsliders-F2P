@@ -1,10 +1,12 @@
 using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.manager;
 using Com.IsartDigital.F2P.Biomes;
+using Com.IsartDigital.F2P.Sound;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using UnityEngine;
 
 // Author (CR) : Elias Dridi
@@ -27,6 +29,9 @@ public class TEMPCard : MonoBehaviour
 
     [Space(2)]
     [SerializeField] private BiomeType[] _ForbiddenBiome = new BiomeType[] { BiomeType.Canyon, BiomeType.Myst};
+
+    [Header("Sound")]
+    [SerializeField] private SoundEmitter _SoundEmitter = null;
     
     // Variables
     private RaycastHit2D _Hit;
@@ -137,6 +142,9 @@ public class TEMPCard : MonoBehaviour
 
         currentState = State.Moving;
         DoAction = DoActionMoving;
+
+        if (_SoundEmitter != null)
+            _SoundEmitter.PlaySFXOnShot();
     }
 
     private void DoActionMoving()

@@ -30,6 +30,8 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
 
         private Animation _Type = Animation.NONE;
 
+        private Vector3 _InitialPosition = default;
+
         // Event
         public UnityEvent OnDialogueEnded;
         public UnityEvent OnDialogueStarted;
@@ -38,6 +40,9 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
         protected override void Start()
         {
             base.Start();
+
+            _InitialPosition = _DialogueBox.position;
+
             m_DialogueManager.OnScreenTouched += Next;
 
             if (_Type == Animation.NONE)
@@ -46,14 +51,13 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
                 PlayAnimation();
         }
 
-        public void SetDialogues(string[] pLineIDs, Animation pAnimationType = Animation.NONE, bool pDisplayIcon = true)
+        public void SetDialogues(string[] pLineIDs, Animation pAnimationType = Animation.NONE)
         {
             m_DialogueIDs = pLineIDs;
             _Type = pAnimationType;
-
-            if (!pDisplayIcon)
-                _CharacterRenderer.gameObject.SetActive(false);
         }
+
+        public void SetDialogue(string pLineID, Animation pAnimationTye = Animation.NONE) => SetDialogues(new string[] { pLineID }, pAnimationTye);
 
         protected override IEnumerator WriteDialogue()
         {
@@ -122,7 +126,19 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
         private void Next()
         {
             if (!_PrintFinished)
+            {
+                _PrintFinished = true;
+
+                if (m_DialogueWriter != null)
+                    StopAllCoroutines();
+                m_DialogueWriter = null;
+
+                _DialogueBox.position = _InitialPosition;
+                m_LabelUIText.maxVisibleCharacters = m_DialogueManager.GetDialogue(m_DialogueIDs[_DialogueIdx]).Length;
+
                 return;
+            }
+                
 
             // Skip to next dialogue
             if (_DialogueIdx == m_DialogueIDs.Length - 1)

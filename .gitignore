@@ -5,8 +5,6 @@
 /F2P/[Ll]ibrary/
 /F2P/[Tt]emp/
 /F2P/[Oo]bj/
-/F2P/[Bb]uild/
-/F2P/[Bb]uilds/
 /F2P/[Ll]ogs/
 /F2P/[Uu]ser[Ss]ettings/
 
@@ -66,6 +64,26 @@ crashlytics-build.properties
 
 # Packed Addressables
 /F2P/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+
+# If the source bank files are kept outside of the StreamingAssets folder then these can be ignored.
+# Log files can be ignored.
+fmod_editor.log
+
+# FMOD
+/F2P/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
+/F2P/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset.meta
+/Assets/StreamingAssets/*.bank
+/F2P/fmod.log
+/F2P/fmod_editor.log
+ 
+# FMOD studio (In folder FMOD)
+FMOD/**.user
+FMOD/**.unsaved
+FMOD/**.cache
+FMOD/**.restore
+run.bat
+debug.log
+.vsconfig
 
 # Temporary auto-generated Android Assets
 /F2P/[Aa]ssets/[Ss]treamingAssets/aa.meta

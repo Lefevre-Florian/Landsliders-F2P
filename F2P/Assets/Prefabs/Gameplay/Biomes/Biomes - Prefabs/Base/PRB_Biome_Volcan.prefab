@@ -39,6 +39,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Path
+      value: event:/GAME/played_volcano
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data1
+      value: -512178071
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data2
+      value: 1314245427
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data3
+      value: 834453930
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data4
+      value: 1610915994
+      objectReference: {fileID: 0}
     - target: {fileID: 1303455310275192841, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: m_Color.b
       value: 0.09119487
@@ -128,7 +148,16 @@ PrefabInstance:
       addedObject: {fileID: 1045741457130915142}
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 6540977694980214509}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4906436724934549735}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4029001507541559187}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2362331226234828490}
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2232661251403205102}
@@ -169,6 +198,39 @@ MonoBehaviour:
   _BiomeTypeToReplace: 0000000001000000020000000400000005000000060000000700000008000000
   _IsRandomReplace: 0
   _SubstitutionBiome: 0
+  _Particles: {fileID: 933335185411524344, guid: f6e95069b44d7ef47b3b5d90751d7bc3, type: 3}
+  _SoundEmitter: {fileID: 6540977694980214509}
+--- !u!114 &6540977694980214509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3912905057911434000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: 573851130
+      Data2: 1220704445
+      Data3: -99077451
+      Data4: 16345513
+    Path: event:/GAME/volcano_explosion
+--- !u!114 &4906436724934549735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3912905057911434000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c043bdba33b6140a0af83f6a311a2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4029001507541559187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +258,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -2362331226234828490}
+        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Sound.SoundEmitter, Assembly-CSharp
+        m_MethodName: PlaySFXOnShot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-2362331226234828490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3912905057911434000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: 1222266032
+      Data2: 1288209438
+      Data3: 1568191643
+      Data4: -2094435491
+    Path: event:/GAME/volcano_damage
 --- !u!114 &2232661251403205102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +327,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.Biome, Assembly-CSharp
           m_MethodName: PreciseSwitchRemoveByHandState
           m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 4759694817511133440}
+          m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeOracle, Assembly-CSharp
+          m_MethodName: StopPrediction
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -354,9 +459,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2e44949eb89dd4aa12f1ba1357509d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Renderer: {fileID: 105223767021252279}
-  _CardLayer: {fileID: 21300000, guid: 2ccb2101866e215478d752d343323433, type: 3}
-  _MoveLayer: {fileID: 21300000, guid: f4e19aa3433b6f04f911e4407cdcfe1d, type: 3}
+  _Renderer: {fileID: 2522834995825341656}
+  _CardLayer: {fileID: 2100000, guid: fd14fa77210ad28438bd58c35ba6bb51, type: 2}
+  _MoveLayer: {fileID: 2100000, guid: ba9243b09f0d8424295e209b79cddd52, type: 2}
 --- !u!114 &4598724416907114331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,9 +499,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4332480486215935314}
     m_Modifications:
+    - target: {fileID: 546271526274973032, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322095794739043626, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1872189666018141310, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
       propertyPath: m_Name
       value: PRB_Volcan
+      objectReference: {fileID: 0}
+    - target: {fileID: 1906317644148946996, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204698601407982472, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2690858462680923574, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316634586625129527, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4815441437027302946, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
       propertyPath: m_LocalScale.x
@@ -450,18 +579,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5676549602169244680, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665572726289291990, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7793039779594546795, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
---- !u!212 &105223767021252279 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 5240019529883761956, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
-  m_PrefabInstance: {fileID: 5318079953205351315}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &801218468649840049 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4815441437027302946, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+  m_PrefabInstance: {fileID: 5318079953205351315}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2522834995825341656 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7696498404540131147, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
   m_PrefabInstance: {fileID: 5318079953205351315}
   m_PrefabAsset: {fileID: 0}

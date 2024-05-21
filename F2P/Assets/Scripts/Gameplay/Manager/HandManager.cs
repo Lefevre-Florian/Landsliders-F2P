@@ -30,6 +30,8 @@ public class HandManager : MonoBehaviour
     private const string TRACKER_BIOME_TYPE_PARAMETER = "biomeType";
     #endregion
 
+    private const int MAX_CARD_IN_DECK = 12;
+
     private void Awake()
     {
         if (_Instance != null)
@@ -133,6 +135,8 @@ public class HandManager : MonoBehaviour
 
     public void BurnCard(int pNbCards = 1)
     {
+        Player.GetInstance().GetComponent<PlayerAnim>().SetAnimTrig(PlayerAnim.AnimTrig.LoseCard);
+
         int lRemainingCardToRemove = pNbCards;
         if (lRemainingCardToRemove < _Deck.Length)
         {
@@ -177,6 +181,8 @@ public class HandManager : MonoBehaviour
 
     public void AddCardToDeck(int pNbCards, bool pIsPredifined = false, BiomeType pType = default)
     {
+        Player.GetInstance().GetComponent<PlayerAnim>().SetAnimTrig(PlayerAnim.AnimTrig.GainCard);
+
         List<GameObject> lDeck = _Deck.ToList();
 
         if(lDeck.Count <= 0)
@@ -205,8 +211,9 @@ public class HandManager : MonoBehaviour
     {
         ClearDeck();
 
-        _Deck = new GameObject[GameManager.GetInstance().cardStocked];
-        for (int i = 0; i < _Deck.Length; i++)
+        int lLength = Save.data != null ? Save.data.startingdecknb : MAX_CARD_IN_DECK;
+        _Deck = new GameObject[lLength];
+        for (int i = 0; i < lLength; i++)
             _Deck[i] = CreateCard();
     }
 

@@ -16,7 +16,7 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
         [SerializeField] protected DialogueFlowSO m_FlowSO = null;
 
         [Header("Juiciness")]
-        [SerializeField][Min(1f)] protected float m_DisplayDuration = 1f;
+        [SerializeField][Min(0f)] protected float m_DisplayDuration = 1f;
 
         // Variables
         protected DialogueManager m_DialogueManager = null;

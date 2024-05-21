@@ -66,20 +66,24 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
 
         private void SkipTextPrinting()
         {
-            StopCoroutine(WriteLine(_CurrentLineID));
+            if(m_DialogueWriter != null)
+                StopCoroutine(m_DialogueWriter);
+            
             string lLines = "";
+            int lLength = m_DialogueIDs.Length;
 
-            if (_CurrentLineID >= m_DialogueIDs.Length)
-                _CurrentLineID = m_DialogueIDs.Length;
-
-            for (int i = 0; i < _CurrentLineID; i++)
+            for (int i = 0; i < lLength; i++)
             {
                 lLines += m_DialogueManager.GetDialogue(m_DialogueIDs[i]);
                 lLines += '\n';
             }
-
-            _CurrentLineID += 1;
             m_LabelUIText.text = lLines;
+
+            // End dialogue printing
+            _DisplayContinue.gameObject.SetActive(true);
+
+            m_DialogueManager.OnScreenTouched -= SkipTextPrinting;
+            m_DialogueManager.OnScreenTouched += WaitForContinue;
         }
 
         private void WaitForContinue()
