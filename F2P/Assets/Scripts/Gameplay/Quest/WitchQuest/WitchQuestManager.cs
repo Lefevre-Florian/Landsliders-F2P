@@ -1,4 +1,5 @@
 using com.isartdigital.f2p.manager;
+using Com.IsartDigital.F2P;
 using Com.IsartDigital.F2P.Gameplay.Events;
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,11 @@ public class WitchQuestManager : MonoBehaviour
 
     [SerializeField] public WitchQuestLabelsDic witchQuestLabels = new WitchQuestLabelsDic();
 
+    Dictionary<WitchQuestsEnum, WitchQuestText> _WitchQuestDic;
 
     private void Start()
     {
+        _WitchQuestDic = witchQuestLabels.ToDic();
         Witch.OnWitchPosition.AddListener(GiveQuest);
         currentQuest = currentQuestDebug;
         WitchWinEvent.AddListener(Win);
@@ -42,6 +45,13 @@ public class WitchQuestManager : MonoBehaviour
             currentQuest = (WitchQuestsEnum)Enum.Parse(typeof(WitchQuestsEnum), lQuestsArray[rand]);
         }
         if (currentQuest == WitchQuestsEnum.SurviveCenterQuest) SurviveCenterWitchQuest.StartEvent.Invoke();
+        if(_WitchQuestDic.ContainsKey(currentQuest))
+        {
+            WitchQuestUiManager.GetInstance().SetQuestName(_WitchQuestDic[currentQuest].name);
+            WitchQuestUiManager.GetInstance().SetQuestDesc(_WitchQuestDic[currentQuest].desc);
+            WitchQuestUiManager.GetInstance().SetQuestReward(_WitchQuestDic[currentQuest].reward);
+        }
+
         Debug.Log(currentQuest);
     }
 
@@ -63,9 +73,9 @@ public class WitchQuestLabelsDic
 {
     [SerializeField] WitchQuestLabelItem[] _Dict;
 
-    public Dictionary<WitchQuestsEnum, QuestText> ToDic()
+    public Dictionary<WitchQuestsEnum, WitchQuestText> ToDic()
     {
-        Dictionary<WitchQuestsEnum, QuestText> newDic = new Dictionary<WitchQuestsEnum, QuestText>();
+        Dictionary<WitchQuestsEnum, WitchQuestText> newDic = new Dictionary<WitchQuestsEnum, WitchQuestText>();
 
         foreach (WitchQuestLabelItem item in _Dict)
         {
@@ -83,7 +93,7 @@ public class WitchQuestLabelItem
     public WitchQuestsEnum key;
 
     [SerializeField]
-    public QuestText value;
+    public WitchQuestText value;
 }
 
 [Serializable]
