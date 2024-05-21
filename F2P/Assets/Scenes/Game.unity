@@ -961,7 +961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c32f52816a393f419a2634e48bf8a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _predifinedMap: {fileID: 11400000, guid: d90ed92abb0696d4bbe61c6d69458d8d, type: 2}
+  _predifinedMap: {fileID: 11400000, guid: 0205a3118a27fd945bd4ce1de9395770, type: 2}
 --- !u!114 &1061210648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1578,7 +1578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c530af9e6e97949b70a38278c33939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentQuestDebug: 1
+  currentQuestDebug: 0
 --- !u!114 &1150857209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1604,7 +1604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17aa8ce40a699244e9239b52f0866cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentQuestDebug: 3
+  currentQuestDebug: 0
   _QuestLabelsDic:
     _Dict: []
 --- !u!4 &1150857211

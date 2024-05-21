@@ -50,7 +50,7 @@ namespace com.isartdigital.f2p.manager
                 string[] lQuestsArray = Enum.GetNames(typeof(QuestsEnum));
                 lQuestsArray.ToList().Remove(QuestsEnum.FTUE.ToString());
 
-                int rand = UnityEngine.Random.Range(1, lQuestsArray.Length);
+                int rand = UnityEngine.Random.Range(1, lQuestsArray.Length - 1);
 
                 currentQuest = (QuestsEnum)Enum.Parse(typeof(QuestsEnum), lQuestsArray[rand]);
 

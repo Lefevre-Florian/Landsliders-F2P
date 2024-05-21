@@ -45,7 +45,7 @@ public class WitchQuestManager : MonoBehaviour
     public void Win()
     {
         if (QuestManager.currentQuest == QuestManager.QuestsEnum.WitchQuest) QuestManager.ValidQuest.Invoke();
-        Debug.Log("Win");
+        else HandManager.GetInstance().AddCardToDeck(4);
     }
 
     private void OnDestroy()
