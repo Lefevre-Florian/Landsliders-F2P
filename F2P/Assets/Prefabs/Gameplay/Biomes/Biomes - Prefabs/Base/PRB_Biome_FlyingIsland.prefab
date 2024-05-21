@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: m_Name
-      value: FlyingIlsands
+      value: PRB_Biome_FlyingIsland
       objectReference: {fileID: 0}
     - target: {fileID: 8295392945309103686, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: _Type
@@ -294,9 +294,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4553345476396427566}
     m_Modifications:
+    - target: {fileID: 352009959264133837, guid: 3ee8dfa0044ff7d44bf14f23ec42d397, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 448824104900668984, guid: 3ee8dfa0044ff7d44bf14f23ec42d397, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 559176418426828454, guid: 3ee8dfa0044ff7d44bf14f23ec42d397, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3033768460856860459, guid: 3ee8dfa0044ff7d44bf14f23ec42d397, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3898357912621401153, guid: 3ee8dfa0044ff7d44bf14f23ec42d397, type: 3}
       propertyPath: m_Name
       value: PRB_FlyingIsland
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189454992843146319, guid: 3ee8dfa0044ff7d44bf14f23ec42d397, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971949199337519450, guid: 3ee8dfa0044ff7d44bf14f23ec42d397, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5111437822960574817, guid: 3ee8dfa0044ff7d44bf14f23ec42d397, type: 3}
       propertyPath: m_LocalScale.x
@@ -348,6 +372,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5111437822960574817, guid: 3ee8dfa0044ff7d44bf14f23ec42d397, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8341325197807750951, guid: 3ee8dfa0044ff7d44bf14f23ec42d397, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9052025839841736899, guid: 3ee8dfa0044ff7d44bf14f23ec42d397, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
