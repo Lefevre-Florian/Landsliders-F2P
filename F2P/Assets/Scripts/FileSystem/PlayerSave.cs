@@ -22,6 +22,8 @@ namespace Com.IsartDigital.F2P
         // Gameplay related
         public float softcurrency = 0f;
         public float hardcurrency = 0f;
+        public bool xpdoubled;
+        public int startingdecknb = 12;
 
         public float exp = 0f;
 
