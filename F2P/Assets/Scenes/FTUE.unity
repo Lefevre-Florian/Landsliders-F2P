@@ -230,10 +230,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17aa8ce40a699244e9239b52f0866cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentQuestDebug: 7
+  currentQuestDebug: 8
   _QuestLabelsDic:
     _Dict:
-    - key: 7
+    - key: 8
       value:
         name: Tutoriel
         desc: ...
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8e12a34cd3d114baa581b45fe5766b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myQuest: 7
+  myQuest: 8
 --- !u!1 &180416130
 GameObject:
   m_ObjectHideFlags: 0
