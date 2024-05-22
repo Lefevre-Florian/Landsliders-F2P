@@ -53,12 +53,16 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
 
         public void Pause()
         {
+            GameFlowManager.Paused?.Invoke();
+
             Time.timeScale = 0f;
             _PauseScreen.gameObject.SetActive(true);
         }
 
         public void Resume()
         {
+            GameFlowManager.Resumed?.Invoke();
+
             Time.timeScale = 1f;
             _PauseScreen.gameObject.SetActive(false);
         }

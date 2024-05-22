@@ -363,6 +363,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 3287015596430958360}
+          m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeFeedback, Assembly-CSharp
+          m_MethodName: DisplayAdditionalLayer
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 7488741472889718749, guid: 006fec806a740ca46b94333a90b61fee, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - time: 0
     method:
       m_PersistentCalls:
@@ -421,6 +433,18 @@ MonoBehaviour:
         - m_Target: {fileID: 4759694817511133440}
           m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeOracle, Assembly-CSharp
           m_MethodName: StopPrediction
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 3287015596430958360}
+          m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeFeedback, Assembly-CSharp
+          m_MethodName: StopDisplayingAdditionalLayer
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -578,6 +602,18 @@ PrefabInstance:
     - target: {fileID: 4815441437027302946, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436001407459332845, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436001407459332845, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436001407459332845, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 5676549602169244680, guid: 7e8fa54afd03b5841b645493ebcabcf7, type: 3}
       propertyPath: m_Layer
