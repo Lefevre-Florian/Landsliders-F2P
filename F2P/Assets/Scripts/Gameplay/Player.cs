@@ -1,5 +1,6 @@
 using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.manager;
+
 using Com.IsartDigital.F2P.Sound;
 
 using System;
@@ -25,6 +26,8 @@ public class Player : MonoBehaviour
 
     private const string CARDPLAYED_TAG = "CardPlayed";
 
+    private const int NB_DIRECTION = 8;
+
     public enum State
     {
         Fixed,
@@ -38,6 +41,10 @@ public class Player : MonoBehaviour
     [Header("Sound Effects")]
     [SerializeField] private SoundEmitter _SlidingSFXEmitter = null;
     [SerializeField] private SoundEmitter _MovingSFXEmitter = null;
+
+    [Header("Feedbacks")]
+    [SerializeField] private GameObject _MoveSFXPrefab = null;
+    [SerializeField] private GameObject _GoBackForbidSFXPrefab = null;
 
     // Variables
     [HideInInspector]
@@ -54,6 +61,9 @@ public class Player : MonoBehaviour
     private Action DoAction;
 
     private bool _IsPaused = false;
+
+    private GameObject[] _MoveSFXs = new GameObject[NB_DIRECTION];
+    private GameObject _GoBackSFX = null;
 
     [HideInInspector]
     public bool isProtected = false;
@@ -76,8 +86,13 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        _GoBackSFX = Instantiate(_GoBackForbidSFXPrefab, transform);
+        _GoBackSFX.transform.position = transform.position;
+        _GoBackSFX.SetActive(false);
+
         _ActualGridPos = baseGridPos;
         _PreviousGridPos = baseGridPos;
+
         GameManager.CardPlaced.AddListener(SetModeMovable);
         GameManager.PlayerMoved.AddListener(SetModeFixed);
 
@@ -145,15 +160,36 @@ public class Player : MonoBehaviour
     public void SetModeMovable()
     {
         if (!isProtected)
+        {
+            // Display sfx
+            CreateMovementSFXs();
+            if(_PreviousGridPos != _ActualGridPos)
+            {
+                _GoBackSFX.transform.position = _GridManager.GetWorldCoordinate(_PreviousGridPos);
+                _GoBackSFX.SetActive(true);
+            }
+
             StartCoroutine(DelayedStateMovable());
+        }
         else
+        {
             GameManager.PlayerMoved.Invoke();
+        }
     }
 
     public void SetModeVoid() => DoAction = null;
 
     public void SetModeMove()
     {
+        // Hide sfx
+        int lLength = _MoveSFXs.Length;
+        for (int i = 0; i < lLength; i++)
+            if (_MoveSFXs[i] != null)
+                Destroy(_MoveSFXs[i]);
+
+        _GoBackSFX.SetActive(false);
+
+        // Play sound
         if (_MovingSFXEmitter != null)
             _MovingSFXEmitter.PlaySFXLooping();
 
@@ -196,6 +232,38 @@ public class Player : MonoBehaviour
         GameManager.PlayerMoved?.Invoke();
     }
     #endregion
+
+    private void CreateMovementSFXs()
+    {
+        int lLength = NB_DIRECTION;
+        float lAngle = ((Mathf.PI * 2f) / NB_DIRECTION) * Mathf.Rad2Deg;
+
+        Vector2 lSample;
+
+        for (int i = 0; i < lLength; i++)
+        {
+            lSample = _ActualGridPos + (Vector2)(Quaternion.AngleAxis(lAngle * i, Vector3.forward) * Vector3.up);
+
+            lSample.x = lSample.x % 1 <= 0.5f ? Mathf.FloorToInt(lSample.x) : Mathf.CeilToInt(lSample.x);
+            lSample.y = lSample.y % 1 <= 0.5f ? Mathf.FloorToInt(lSample.y) : Mathf.CeilToInt(lSample.y);
+
+            if (lSample.x < 0f 
+                || lSample.x >= _GridManager._NumCard.x 
+                || lSample.y < 0f 
+                || lSample.y >= _GridManager._NumCard.y)
+                continue;
+
+            if (lSample != _PreviousGridPos && _GridManager.GetCardByGridCoordinate(lSample).IsWalkable)
+            {
+                _MoveSFXs[i] = Instantiate(_MoveSFXPrefab, transform);
+                _MoveSFXs[i].transform.position = _GridManager.GetWorldCoordinate(lSample);
+            }
+            else
+            {
+                _MoveSFXs[i] = null;
+            }
+        }
+    }
 
     private void OnDestroy()
     {

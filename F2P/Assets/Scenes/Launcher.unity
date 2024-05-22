@@ -725,7 +725,7 @@ PrefabInstance:
     - target: {fileID: 5626164147251936759, guid: 2efce65dcbf07144c83b9c4f22ba5a4b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 25add541f5e88c24b8fa9dea0af46350, type: 3}
+      objectReference: {fileID: 21300000, guid: af99e9ce97272d84e94db82baee4eea7, type: 3}
     - target: {fileID: 5926650459597102201, guid: 2efce65dcbf07144c83b9c4f22ba5a4b, type: 3}
       propertyPath: m_Name
       value: PRB_SplashScreen
@@ -736,11 +736,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6867085545200101791, guid: 2efce65dcbf07144c83b9c4f22ba5a4b, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 151
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6867085545200101791, guid: 2efce65dcbf07144c83b9c4f22ba5a4b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -75.5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
