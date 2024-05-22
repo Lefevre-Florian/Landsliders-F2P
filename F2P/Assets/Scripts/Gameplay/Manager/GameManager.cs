@@ -1,5 +1,6 @@
 using com.isartdigital.f2p.gameplay.manager;
 using Com.IsartDigital.F2P;
+using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P.Gameplay;
 
 using System;
@@ -118,6 +119,7 @@ public class GameManager : MonoBehaviour
 
         CardPlaced.AddListener(SetModeMovingPlayer);
         PlayerMoved.AddListener(SetModeBiomeEffect);
+        OnAllEffectPlayed += CheckDesertLose;
 
         _GameStartTime = DateTime.UtcNow;
     }
@@ -221,6 +223,22 @@ public class GameManager : MonoBehaviour
 
         NextTurn();
     }
+
+    private void CheckDesertLose()
+    {
+        GameObject[,] lCard = GridManager.GetInstance()._Cards;
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if (lCard[i, j].GetComponent<Biome>().Type != BiomeType.desert) return;
+            }
+        }
+
+        SetModeGameover();
+    }
+
     #endregion
 
     private void OnDestroy()
@@ -233,5 +251,7 @@ public class GameManager : MonoBehaviour
 
         CardPlaced.RemoveAllListeners();
         PlayerMoved.RemoveAllListeners();
+
+        OnAllEffectPlayed -= CheckDesertLose;
     }
 }

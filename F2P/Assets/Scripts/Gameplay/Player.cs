@@ -1,6 +1,6 @@
 using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.manager;
-
+using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P.Sound;
 
 using System;
@@ -95,6 +95,7 @@ public class Player : MonoBehaviour
 
         GameManager.CardPlaced.AddListener(SetModeMovable);
         GameManager.PlayerMoved.AddListener(SetModeFixed);
+        GameManager.PlayerMoved.AddListener(CheckPlayerCanMove);
 
         _GridManager = GridManager.GetInstance();
 
@@ -265,6 +266,30 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void CheckPlayerCanMove()
+    {
+        Vector3 baseDir = Vector3.right;
+
+        for (int i = 0; i < 8; i++)
+        {
+            Vector3 dir =  Quaternion.AngleAxis(45 * i, Vector3.forward) * baseDir;
+            dir.x = Mathf.RoundToInt(dir.x);
+            dir.y = Mathf.RoundToInt(dir.y);
+
+            Vector2Int currentIndex = new Vector2Int(Mathf.RoundToInt(GridPosition.x) + Mathf.RoundToInt(dir.x),
+                                                     Mathf.RoundToInt(GridPosition.y) + Mathf.RoundToInt(dir.y));
+
+            if (currentIndex.x < 0 || currentIndex.x > 2 || currentIndex.y < 0 || currentIndex.y > 2) continue;
+
+            if (GridManager.GetInstance()._Cards[currentIndex.x, currentIndex.y].GetComponent<Biome>().GridPosition == PreviousGridPosition) continue;
+
+            if (GridManager.GetInstance()._Cards[currentIndex.x, currentIndex.y].GetComponent<Biome>().IsWalkable) return;
+
+        }
+
+        GameManager.GetInstance().SetModeGameover();
+    }
+
     private void OnDestroy()
     {
         if (_Instance != this)
@@ -274,6 +299,7 @@ public class Player : MonoBehaviour
 
         GameManager.CardPlaced.RemoveListener(SetModeMovable);
         GameManager.PlayerMoved.RemoveListener(SetModeFixed);
+        GameManager.PlayerMoved.RemoveListener(CheckPlayerCanMove);
 
         GameFlowManager.Paused.RemoveListener(OnPause);
         GameFlowManager.Resumed.RemoveListener(OnResume);
