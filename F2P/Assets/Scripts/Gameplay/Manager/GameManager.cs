@@ -1,5 +1,6 @@
 using com.isartdigital.f2p.gameplay.manager;
 using Com.IsartDigital.F2P;
+using Com.IsartDigital.F2P.FileSystem;
 using Com.IsartDigital.F2P.Gameplay;
 
 using System;
@@ -170,6 +171,8 @@ public class GameManager : MonoBehaviour
         currentState = State.GameEnd;
         playerCanMove = false;
 
+        Save.data.exp += Save.data.xpdoubled ? 6 : 3;
+        DatabaseManager.GetInstance().WriteDataToSaveFile();
         // Track game duration
         TimeSpan lDuration = (DateTime.UtcNow - _GameStartTime).Duration();
         DataTracker.GetInstance().SendAnalytics(TRACKER_NAME, 
@@ -177,6 +180,8 @@ public class GameManager : MonoBehaviour
                                                     { TRACKER_GAME_DURATION_TURN_PARAMETER, _TurnNumber},
                                                     {TRACKER_GAME_DURATION_REALTIME_PARAMETER,  lDuration.Minutes + ":" + lDuration.Seconds}
                                                 });
+
+       
 
         OnGameover?.Invoke(true);
     }

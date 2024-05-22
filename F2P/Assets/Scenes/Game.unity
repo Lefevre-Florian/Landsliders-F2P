@@ -1875,7 +1875,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentQuestDebug: 0
   _QuestLabelsDic:
-    _Dict: []
+    _Dict:
+    - key: 1
+      value:
+        name: Apocalypse Now
+        desc: Trigger an erupting volcano at the center of the map and survive it
+    - key: 3
+      value:
+        name: Time to Harvest
+        desc: Create a field producing at least 4 cards
+    - key: 2
+      value:
+        name: The Great Canyon
+        desc: Replace a Canyon
+    - key: 5
+      value:
+        name: Collector
+        desc: Add 7 cards to your deck in 4 turns
+    - key: 4
+      value:
+        name: Soft Landing
+        desc: Have a floating island surrounded by plains when it lands
+    - key: 6
+      value:
+        name: Where am I
+        desc: Be on a biome altered by Terranite Monoliths
+    - key: 7
+      value:
+        name: Witch Quest
+        desc: Complete a Witch Quest
 --- !u!4 &1150857211
 Transform:
   m_ObjectHideFlags: 0
@@ -2995,6 +3023,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2748246671456272197, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_fontSize
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748246671456272197, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 3010752030824676568, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -3022,6 +3058,10 @@ PrefabInstance:
     - target: {fileID: 3010752030824676568, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437968276079631442, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 74.2583
       objectReference: {fileID: 0}
     - target: {fileID: 3901114907079579687, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3130,6 +3170,22 @@ PrefabInstance:
     - target: {fileID: 4276773080372793231, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561038331150787552, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1065.2781
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561038331150787552, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 105.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561038331150787552, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 5.5115
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561038331150787552, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -74.258
       objectReference: {fileID: 0}
     - target: {fileID: 4803329268400056286, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: _WinScreen
