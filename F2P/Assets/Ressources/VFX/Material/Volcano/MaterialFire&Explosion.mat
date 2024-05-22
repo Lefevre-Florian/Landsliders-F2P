@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Material explosion volcan
-  m_Shader: {fileID: -6465566751694194690, guid: 3b3c35138154f344d98795958a5a5e32, type: 3}
+  m_Name: Material feu explosion
+  m_Shader: {fileID: -6465566751694194690, guid: c4f87a16b410f114b911c371bad5276d, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -69,7 +69,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Noise:
-        m_Texture: {fileID: 2800000, guid: 82f3f388e08596c4eaf4507d0896d09f, type: 3}
+        m_Texture: {fileID: 2800000, guid: b9c7826f3eb4f19469a424dfd04e70a4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -109,7 +109,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DisolveSlider1: 0.401
+    - _DisolveSlider1: 0.491
     - _DisolveSlider2: 0.679
     - _DstBlend: 0
     - _DstBlendAlpha: 0
