@@ -38,7 +38,7 @@ namespace Com.IsartDigital.F2P.UI
         [SerializeField] private TextMeshProUGUI _FragReqLabel = null;
 
         // Variables
-        private RawImage _Image = null;
+        private Texture2D _Texture = null;
 
         private string _Name = "";
         private string _Description = "";
@@ -46,8 +46,6 @@ namespace Com.IsartDigital.F2P.UI
         private int _FragmentRequired = 0;
 
         private int _ID = 0;
-
-        private GameObject _Prefab = null;
 
         private UpgradeScreen _UpgradeScreen = null;
         private ConsentAskScreen _ConsentScreen = null;
@@ -63,7 +61,7 @@ namespace Com.IsartDigital.F2P.UI
                 Draw();
         }
 
-        public void Enable(int pId, UpgradeScreen pUpgradeScreen, ConsentAskScreen pConsentScreen)
+        public void Enable(int pId, Texture2D pRenderer, UpgradeScreen pUpgradeScreen, ConsentAskScreen pConsentScreen)
         {
             _ID = pId;
 
@@ -73,13 +71,8 @@ namespace Com.IsartDigital.F2P.UI
             _Description = lResult[1].ToString();
             _FragmentRequired = Convert.ToInt32(lResult[2]);
 
-            TexturePhotographer l3DModelRenderer = TexturePhotographer.GetInstance();
-            _Image = GetComponent<RawImage>();
-
-            _Prefab = Save.data.cardPrefabs[Save.data.cards.ToList().IndexOf(pId)].transform.GetChild(0).gameObject;
-            _Image.texture = l3DModelRenderer.CreateTextureBiome(ImageSize, 
-                                                                 _Prefab,
-                                                                 new Vector2(.5f, .5f));
+            _Texture = pRenderer;
+            GetComponent<RawImage>().texture = _Texture;
 
             Draw();
 
@@ -133,7 +126,7 @@ namespace Com.IsartDigital.F2P.UI
 
             Draw();
             _UpgradeScreen.Open();
-            _UpgradeScreen.SetContent(_Description, _Prefab);
+            _UpgradeScreen.SetContent(_Description, _Texture);
         } 
         #endregion
 
