@@ -1,5 +1,6 @@
 using Com.IsartDigital.F2P.FTUE.Dialogues;
-using Com.IsartDigital.F2P.UI.UIHUD;
+
+using TMPro;
 
 using UnityEngine;
 
@@ -13,7 +14,11 @@ namespace Com.IsartDigital.F2P.FTUE
         private const int ADVICE_ID_PLAYER_MOVED = 2;
         private const int ADVICE_ID_THIRD_PHASE_STARTED = 3;
 
+        [Header("Advices")]
         [SerializeField] private DialogueFlowSO _Advices = null;
+        [Space(2)]
+        [SerializeField] private GameObject _AdviceScreen = null;
+        [SerializeField] private TextMeshProUGUI _AdviceText = null;
 
         [Header("Hand Flow")]
         [SerializeField] private Animator _HandGameobject = null;
@@ -25,12 +30,16 @@ namespace Com.IsartDigital.F2P.FTUE
 
         // Variables
         private TutorialManager _TutorialManager = null;
+        private DialogueManager _DialogueManager = null;
 
         private bool _FirstMoved = false;
         private bool _FirstCardPlaced = false;
 
         private void Start()
         {
+            _AdviceScreen.SetActive(false);
+            _DialogueManager = DialogueManager.GetInstance();
+
             _TutorialManager = TutorialManager.GetInstance();
             _TutorialManager.OnDialogueEnded += FirstAdvice;
             _TutorialManager.OnDialogueEnded += FinalAdvice;
@@ -66,6 +75,10 @@ namespace Com.IsartDigital.F2P.FTUE
                 CreateAdvice(ADVICE_ID_CARD_PLACED);
                 _FirstCardPlaced = true;
             }
+            else
+            {
+                _AdviceScreen.SetActive(false);
+            }
         }
 
         private void ThirdAdvice()
@@ -87,8 +100,8 @@ namespace Com.IsartDigital.F2P.FTUE
 
         private void CreateAdvice(int pID)
         {
-            Instantiate(DialogueManager.GetInstance().GetDisplay(_Advices.Type), Hud.GetInstance().transform)
-                                                     .GetComponent<DialogueWordPrinting>().SetDialogue(_Advices.Dialogues[pID]);
+            _AdviceScreen.SetActive(true);
+            _AdviceText.text = _DialogueManager.GetDialogue(_Advices.Dialogues[pID]);
         }
 
         private void OnDestroy()
