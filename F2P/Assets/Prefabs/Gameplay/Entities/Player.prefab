@@ -150,6 +150,8 @@ MonoBehaviour:
   _LerpDuration: 1
   _SlidingSFXEmitter: {fileID: 1784392447039090365}
   _MovingSFXEmitter: {fileID: 0}
+  _MoveSFXPrefab: {fileID: 8935247132286412243, guid: bb6e9bf3949f5c948acb8fc414caf0c3, type: 3}
+  _GoBackForbidSFXPrefab: {fileID: 7488741472889718749, guid: ead78e3735631c94a8716e4a4886a3de, type: 3}
   _ActualGridPos: {x: 0, y: 0}
   isProtected: 0
 --- !u!114 &1784392447039090365
