@@ -19,6 +19,19 @@ public class CardPrefabDic : MonoBehaviour
 
     private static float currentLevel = 0;
 
+    private static int[] lvlExp = new int[] {
+        84,
+        261,
+        450,
+        864,
+        1449,
+        2109,
+        2844,
+        3654,
+        6534,
+        7644
+    };
+
     private void Awake()
     {
         prefabHandDic = _BiomesHandDic.ToDic();
@@ -78,6 +91,21 @@ public class CardPrefabDic : MonoBehaviour
             ret += pCard.chanceToSpawn.Evaluate(pEvaluator);
 
         return ret;
+    }
+
+    public static int GetCurrentLvl()
+    {
+        int lvl = 1;
+        float lExp = Save.data.exp;
+
+        int iterator = lvlExp.Count();
+        for (int i = 0; i < iterator; i++)
+        {
+            if (lExp > lvlExp[i]) ++lvl;
+            else return lvl;
+        }
+
+        return lvl;
     }
 }
 
