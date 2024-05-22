@@ -67,7 +67,7 @@ Material:
     m_Ints: []
     m_Floats:
     - Vector1_AE706A7C: 1
-    - _Fade_value: 1
+    - _Fade_value: 0.4
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Speed: 1

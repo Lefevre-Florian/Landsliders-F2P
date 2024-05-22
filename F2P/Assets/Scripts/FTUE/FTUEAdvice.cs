@@ -15,6 +15,14 @@ namespace Com.IsartDigital.F2P.FTUE
 
         [SerializeField] private DialogueFlowSO _Advices = null;
 
+        [Header("Hand Flow")]
+        [SerializeField] private Animator _HandGameobject = null;
+
+        [Space(5)]
+        [SerializeField] private string _HandPointingAnimation = "";
+        [SerializeField] private string _HandGrabbingAnimation = "";
+        [SerializeField] private string _HandRequestMoveAnimation = "";
+
         // Variables
         private TutorialManager _TutorialManager = null;
 
@@ -29,18 +37,32 @@ namespace Com.IsartDigital.F2P.FTUE
 
             GameManager.CardPlaced.AddListener(SecondAdvice);
             GameManager.PlayerMoved.AddListener(ThirdAdvice);
+
+            TEMPCard.OnFocus += VisualHandAdvice;
         }
 
         private void FirstAdvice()
         {
             if (_TutorialManager.CurrentPhaseID == 1 && _TutorialManager.Tick == 0)
+            {
+                _HandGameobject.SetTrigger(_HandPointingAnimation);
                 CreateAdvice(ADVICE_ID_LAUNCH);
+            }    
+        }
+
+        private void VisualHandAdvice(bool pState)
+        {
+            if(_TutorialManager.CurrentPhaseID == 1 && _TutorialManager.Tick == 0)
+            {
+                _HandGameobject.SetBool(_HandGrabbingAnimation, pState);
+            }
         }
 
         private void SecondAdvice()
         {
             if (!_FirstCardPlaced)
             {
+                _HandGameobject.SetBool(_HandRequestMoveAnimation, true);
                 CreateAdvice(ADVICE_ID_CARD_PLACED);
                 _FirstCardPlaced = true;
             }
@@ -50,6 +72,8 @@ namespace Com.IsartDigital.F2P.FTUE
         {
             if (!_FirstMoved)
             {
+                Destroy(_HandGameobject.gameObject);
+
                 CreateAdvice(ADVICE_ID_PLAYER_MOVED);
                 _FirstMoved = true;
             }    
@@ -75,6 +99,8 @@ namespace Com.IsartDigital.F2P.FTUE
                 _TutorialManager.OnDialogueEnded += FinalAdvice;
             }
             _TutorialManager = null;
+
+            TEMPCard.OnFocus -= VisualHandAdvice;
 
             GameManager.CardPlaced.RemoveListener(SecondAdvice);
             GameManager.PlayerMoved.RemoveListener(ThirdAdvice);
