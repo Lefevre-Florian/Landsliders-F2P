@@ -1,5 +1,6 @@
 using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.manager;
+
 using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P.Sound;
 
@@ -51,9 +52,12 @@ public class TEMPCard : MonoBehaviour
 
     public static event Action<bool> OnFocus;
 
-    void Start()
+    private void Start()
     {
-        _HandManager = HandManager.GetInstance();      
+        _HandManager = HandManager.GetInstance();
+
+        GameFlowManager.Paused.AddListener(OnPause);
+        GameFlowManager.Resumed.AddListener(OnResume);
     }
 
     private void Update()
@@ -61,6 +65,10 @@ public class TEMPCard : MonoBehaviour
       if(DoAction!=null)   
         DoAction();
     }
+
+    private void OnPause() => GetComponent<Collider2D>().enabled = false;
+
+    private void OnResume() => GetComponent<Collider2D>().enabled = true;
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -187,5 +195,11 @@ public class TEMPCard : MonoBehaviour
         currentState |= State.Played;
         OnPlaced?.Invoke();
         enabled = false;
+    }
+
+    private void OnDestroy()
+    {
+        GameFlowManager.Paused.RemoveListener(OnPause);
+        GameFlowManager.Resumed.RemoveListener(OnResume);
     }
 }

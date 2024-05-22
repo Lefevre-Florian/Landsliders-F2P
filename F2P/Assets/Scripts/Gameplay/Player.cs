@@ -53,6 +53,8 @@ public class Player : MonoBehaviour
 
     private Action DoAction;
 
+    private bool _IsPaused = false;
+
     [HideInInspector]
     public bool isProtected = false;
 
@@ -82,10 +84,16 @@ public class Player : MonoBehaviour
         _GridManager = GridManager.GetInstance();
 
         GameFlowManager.PlayerLoaded.Invoke();
+
+        GameFlowManager.Resumed.AddListener(OnResume);
+        GameFlowManager.Paused.AddListener(OnPause);
     }
 
     private void Update()
     {
+        if (_IsPaused)
+            return;
+
         DoAction?.Invoke();
 
         if (Input.GetMouseButtonUp(0) && _CurrentState == State.Movable)
@@ -107,6 +115,10 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    private void OnPause() => _IsPaused = true;
+
+    private void OnResume() => _IsPaused = false;
 
     [HideInInspector]
     public void SetPosition(Vector2 pPosition)
@@ -194,5 +206,8 @@ public class Player : MonoBehaviour
 
         GameManager.CardPlaced.RemoveListener(SetModeMovable);
         GameManager.PlayerMoved.RemoveListener(SetModeFixed);
+
+        GameFlowManager.Paused.RemoveListener(OnPause);
+        GameFlowManager.Resumed.RemoveListener(OnResume);
     }
 }
