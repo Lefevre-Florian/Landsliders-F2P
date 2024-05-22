@@ -26,6 +26,10 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
         [SerializeField] private Transform _LoseScreen = null;
         [SerializeField] private Transform _WinScreen = null;
 
+        [Header("Sign")]
+        [SerializeField] private GameObject _HandTurnMask = null;
+        [SerializeField] private GameObject _PlayerTurnMask = null;
+
         [Header("Scene management")]
         [SerializeField] private int _MainMenuIDX = 0;
         [SerializeField] private bool _UseLoadingScreen = false;
@@ -49,6 +53,12 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
             _GameManager.OnGameover += DisplayGameEndPanel;
 
             _PauseScreen.gameObject.SetActive(false);
+
+            // Flow (Renderer)
+            SwitchToCardMode();
+
+            _GameManager.OnAllEffectPlayed += SwitchToCardMode;
+            GameManager.CardPlaced.AddListener(SwitchToMoveMode);
         }
 
         public void Pause()
@@ -90,6 +100,19 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
                 LoadManager.GetInstance().StartLoading(pSceneIDX);
         }
 
+        /// Rendering turn phases
+        private void SwitchToMoveMode()
+        {
+            _HandTurnMask.SetActive(true);
+            _PlayerTurnMask.SetActive(false);
+        }
+
+        private void SwitchToCardMode()
+        {
+            _HandTurnMask.SetActive(false);
+            _PlayerTurnMask.SetActive(true);
+        }
+
         private void OnDestroy()
         {
             if (_Instance == this)
@@ -97,7 +120,10 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
                 _Instance = null;
 
                 _GameManager.OnGameover -= DisplayGameEndPanel;
+                _GameManager.OnAllEffectPlayed -= SwitchToCardMode;
                 _GameManager = null;
+
+                GameManager.CardPlaced.RemoveListener(SwitchToMoveMode);
             }
         }
     }
