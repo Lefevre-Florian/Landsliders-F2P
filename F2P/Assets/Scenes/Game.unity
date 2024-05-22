@@ -1216,7 +1216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c32f52816a393f419a2634e48bf8a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _predifinedMap: {fileID: 11400000, guid: 0205a3118a27fd945bd4ce1de9395770, type: 2}
+  _predifinedMap: {fileID: 11400000, guid: 2f91f36d9a603084fb7879e053741fb9, type: 2}
 --- !u!114 &1061210648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1242,7 +1242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MaxGameEventsNumber: 3
-  _GameEventChance: 0.33
+  _GameEventChance: 0
   _EtheralRift: {fileID: 8149821949770973124, guid: 806f15beba4f9e04eb9bd269db15f90f, type: 3}
   _DragonLair: {fileID: 6087476990557836528, guid: 32c0595fe4bed8144b59f4e1c9421115, type: 3}
   _Witch: {fileID: 1284007911230468281, guid: e33e8248a04cd5642a3d41315b9fb62b, type: 3}
