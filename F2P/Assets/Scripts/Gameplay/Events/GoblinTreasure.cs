@@ -14,7 +14,7 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
         [SerializeField] private int _NbCardsAdded = 3;
         [SerializeField] private int _NbCardsBurnt = 2;
         [SerializeField] [Range(0f, 1f)] private float _TreasureChance = 0.5f;
-        [SerializeField] private int _SoftCurrencyReward = 60;
+        [SerializeField] private int _SoftCurrencyReward = 10;
 
         [Header("Sound")]
         [SerializeField] private SoundEmitter _PositiveOutcomeSFXEmitter = null;
