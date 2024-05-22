@@ -37,6 +37,8 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
         // Variables
         private GameManager _GameManager = null;
 
+        private GameObject _CurrentActiveLayer = null;
+
         private void Awake()
         {
             if(_Instance != null)
@@ -103,15 +105,27 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
         /// Rendering turn phases
         private void SwitchToMoveMode()
         {
-            _HandTurnMask.SetActive(true);
-            _PlayerTurnMask.SetActive(false);
+            TEMPCard.OnFocus -= SwitchCurrentLayerState;
+
+            SwitchLayerState(_HandTurnMask, true);
+            SwitchLayerState(_PlayerTurnMask, false);
+
+            _CurrentActiveLayer = _HandTurnMask;
         }
 
         private void SwitchToCardMode()
         {
-            _HandTurnMask.SetActive(false);
-            _PlayerTurnMask.SetActive(true);
+            SwitchLayerState(_HandTurnMask, false);
+            SwitchLayerState(_PlayerTurnMask, true);
+
+            _CurrentActiveLayer = _PlayerTurnMask;
+            TEMPCard.OnFocus += SwitchCurrentLayerState;
         }
+
+
+        private void SwitchLayerState(GameObject pLayer, bool pState) => pLayer.SetActive(pState);
+
+        private void SwitchCurrentLayerState(bool pState) => _CurrentActiveLayer.SetActive(!pState);
 
         private void OnDestroy()
         {
@@ -124,6 +138,7 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
                 _GameManager = null;
 
                 GameManager.CardPlaced.RemoveListener(SwitchToMoveMode);
+                TEMPCard.OnFocus -= SwitchCurrentLayerState;
             }
         }
     }
