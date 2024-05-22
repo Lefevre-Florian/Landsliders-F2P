@@ -1216,7 +1216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c32f52816a393f419a2634e48bf8a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _predifinedMap: {fileID: 11400000, guid: 2f91f36d9a603084fb7879e053741fb9, type: 2}
+  _predifinedMap: {fileID: 0}
 --- !u!114 &1061210648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1845,9 +1845,24 @@ MonoBehaviour:
     _Dict:
     - key: 1
       value:
-        name: Align Swamp
-        desc: C dans le titre
-        reward: Tout
+        name: Big Swamp
+        desc: Align 3 swamps
+        reward: 4 cards
+    - key: 2
+      value:
+        name: The antidote
+        desc: Survive 3 rounds of swamp poison
+        reward: 4 cards
+    - key: 3
+      value:
+        name: The Frozen Lands
+        desc: End your turn on a glacier tile
+        reward: 4 cards
+    - key: 4
+      value:
+        name: All roads lead to the Center
+        desc: Survive 3 turns without going to the center of the map
+        reward: 4 cards
 --- !u!114 &1150857209
 MonoBehaviour:
   m_ObjectHideFlags: 0

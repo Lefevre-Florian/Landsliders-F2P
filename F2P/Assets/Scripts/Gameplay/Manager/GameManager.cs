@@ -164,7 +164,8 @@ public class GameManager : MonoBehaviour
     {
         currentState = State.GameEnd;
         playerCanMove = false;
-
+        Save.data.softcurrency += 20;
+        DatabaseManager.GetInstance().WriteDataToSaveFile();
         OnGameover?.Invoke(false);
     }
 
@@ -174,6 +175,7 @@ public class GameManager : MonoBehaviour
         playerCanMove = false;
 
         Save.data.exp += Save.data.xpdoubled ? 6 : 3;
+        Save.data.softcurrency += 60;
         DatabaseManager.GetInstance().WriteDataToSaveFile();
         // Track game duration
         TimeSpan lDuration = (DateTime.UtcNow - _GameStartTime).Duration();
