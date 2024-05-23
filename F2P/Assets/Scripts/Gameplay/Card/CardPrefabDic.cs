@@ -70,7 +70,6 @@ public class CardPrefabDic : MonoBehaviour
 
     private static float GetTotalWeight()
     {
-        Debug.Log((int)QuestManager.currentQuest);
         float ret = 0;
         foreach (Card pCard in prefabList)
             ret += pCard.chanceToSpawn.Evaluate((int)QuestManager.currentQuest);
