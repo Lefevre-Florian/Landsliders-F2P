@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="Bank" id="{b47fca70-1e27-4ecf-bdd2-693c239169d5}">
+		<property name="name">
+			<value>FTUE</value>
+		</property>
+		<relationship name="folder">
+			<destination>{9e787ba1-a72e-4ada-8a11-79a1260c7141}</destination>
+		</relationship>
+	</object>
+</objects>
