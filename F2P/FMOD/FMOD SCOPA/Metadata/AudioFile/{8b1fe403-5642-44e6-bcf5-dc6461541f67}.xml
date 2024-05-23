@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{8b1fe403-5642-44e6-bcf5-dc6461541f67}">
+		<property name="assetPath">
+			<value>Bidoum_FinFTUE3.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>9.926541666666667</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b96f2628-958f-4f43-aa99-54224e96a477}</destination>
+		</relationship>
+	</object>
+</objects>

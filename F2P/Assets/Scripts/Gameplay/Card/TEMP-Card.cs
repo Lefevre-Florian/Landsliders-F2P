@@ -253,7 +253,7 @@ public class TEMPCard : MonoBehaviour
 
         currentState |= State.Played;
         OnPlaced?.Invoke();
-        if (_Explication != null) _Explication.SetActive(false);
+        /*if (_Explication != null) _Explication.SetActive(false);*/
         enabled = false;
     }
 

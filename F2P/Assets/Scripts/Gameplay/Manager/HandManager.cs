@@ -84,7 +84,7 @@ public class HandManager : MonoBehaviour
     private List<Tuple<BiomeType, int>> _BiomePlayedTracking = new List<Tuple<BiomeType, int>>();
 
     // Get & Set
-    public int _TotalCards { get { return _Deck.Length + _CardInHand; } }
+    public int _TotalCards { get { return DeckCount + _HandContainer.transform.childCount; } }
 
     public int DeckCount { get { return _Deck != null ? _Deck.Length : (Save.data != null ? Save.data.startingdecknb : MAX_CARD_IN_DECK); } }
 
