@@ -2305,8 +2305,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5751250867472221138}
   - {fileID: 8115934669799472595}
+  - {fileID: 5751250867472221138}
   m_Father: {fileID: 658056767325953536}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3173,6 +3173,7 @@ MonoBehaviour:
   _WinScreen: {fileID: 7911945344973230480}
   _HandTurnMask: {fileID: 3408671923846663181}
   _PlayerTurnMask: {fileID: 6154006917797626032}
+  _DeckCountLabel: {fileID: 0}
   _MainMenuIDX: 1
   _UseLoadingScreen: 0
 --- !u!1 &5662230753421264551

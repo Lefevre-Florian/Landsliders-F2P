@@ -19,7 +19,6 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
             public string id;
         }
 
-        [SerializeField] private TextMeshProUGUI _DisplayContinue = null;
         [SerializeField] private Image _DisplayImage = null;
 
         [Header("Flow")]
@@ -48,8 +47,6 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
 
             if (m_DialogueIDs.Length > 0)
                 DisplayText();
-
-            _DisplayContinue.gameObject.SetActive(false);
         }
 
         protected override IEnumerator WriteDialogue()
@@ -106,9 +103,6 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
             }
 
             StopCoroutine(m_DialogueWriter);
-
-            _DisplayContinue.gameObject.SetActive(true);
-
             m_DialogueManager.OnScreenTouched -= SkipTextPrinting;
             m_DialogueManager.OnScreenTouched += WaitForContinue;
         }
@@ -125,9 +119,6 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
             if (_CurrentLineID == _Pages.Length)
             {
                 StopAllCoroutines();
-
-                _DisplayContinue.gameObject.SetActive(true);
-
                 m_DialogueManager.OnScreenTouched -= SkipTextPrinting;
                 m_DialogueManager.OnScreenTouched += WaitForContinue;
             }

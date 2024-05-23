@@ -106,10 +106,10 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.294
+    m_Value: 0.14
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.307
+    m_Value: 0.212
   rounded:
     m_OverrideState: 0
     m_Value: 0
@@ -146,10 +146,10 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.17917918
-          value: 0.22008574
-          inSlope: 0.10475111
-          outSlope: 0.10475111
+          time: 0.17282717
+          value: 0.23717946
+          inSlope: 0
+          outSlope: 0
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -347,7 +347,7 @@ MonoBehaviour:
     m_Value: 0
   contrast:
     m_OverrideState: 1
-    m_Value: 23
+    m_Value: 19
   colorFilter:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}

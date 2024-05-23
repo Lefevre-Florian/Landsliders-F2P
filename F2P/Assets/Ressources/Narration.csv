@@ -1,18 +1,18 @@
 ﻿Dialogue key (ID);Content => Dialogue
-Bidoum-A-01;Bidoum: I can't believe we got run out of town like that. What a bunch of ingrates... All this for a lack of food? If that's all it took, I'd should have gone hunting myself! 
-Bidoum-A-02;Bidoum: Still... I think it's the perfect time to make our dream come true! To create our own travelling city! The biggest in the world!
+Bidoum-A-01;Bidoum: I can't believe we got run out of town like that. What a bunch of ingrates... All this for a lack of food ? If that's all it took, I'd should have gone hunting myself ! 
+Bidoum-A-02;Bidoum: Still... I think it's the perfect time to make our dream come true ! To create our own travelling city ! The biggest in the world !
 Bidoum-A-03;Bidoum: To start with, we need to learn how to move around and change the biomes around us using our Terranite cards. That's the basics for a travelling city. 
-Bidoum-B-01;Bidoum: Perfect, you've understood perfectly how to use terranite cards! They're indispensable for survival these days. Now try to get even more of them!
-Bidoum-C-01;Bidoum: Whew, that was close! You handled the situation and the volcano very well, congratulations! I have a feeling you're going to be a great mayor... 
+Bidoum-B-01;Bidoum: Perfect, you've understood perfectly how to use terranite cards ! They're indispensable for survival these days. Now try to get even more of them !
+Bidoum-C-01;Bidoum: Whew, that was close ! You handled the situation and the volcano very well, congratulations ! I have a feeling you're going to be a great mayor... 
 Bidoum-C-02;Bidoum: Oh dear... I didn't notice where we were heading, look where we are! Do your best to resist the poison! 
-Bidoum-D-01;Bidoum: We almost died because of me, you saved our lives... Thank you so much! After all these adventures, I think it's finally time to start building our city! Let’s go!
+Bidoum-D-01;Bidoum: We almost died because of me, you saved our lives... Thank you so much ! After all these adventures, I think it's finally time to start building our city  ! Let’s go !
 Narr-A-01;Welcome to the lands of Landorim, where magic and the races that inhabit these lands live in perfect harmony.  
 Narr-A-02;"That was until a meteorite made of a powerful magical material called ""Terranite"" crashed into these lands."
 Narr-A-03;The appearance of this material made the world a much more dangerous place, leading to the creation of itinerant cities to avoid threats.  
 Narr-A-04;30 years after this event, you and your best friend find yourselves in trouble…
-Guard-A-01;Guard voice: Go away ! You're not welcome here anymore!
+Guard-A-01;Guard voice: Go away ! You're not welcome here anymore !
 Advice-A-01;Play a card from your hand onto a biome.
 Advice-A-02;Press the card to inspect it.
 Advice-A-03;Move the compagny to a biome with an aura.
-Advice-A-04;If your pile reaches 0 and you have no cards in hand, you lose the game.
+Advice-A-04;Playing or drawing reduce your pile by 1, if it reaches 0  you lose the game.
 Advice-A-05;Complete your quest in order to win !
