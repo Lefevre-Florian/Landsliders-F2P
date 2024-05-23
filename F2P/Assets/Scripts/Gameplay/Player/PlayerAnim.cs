@@ -24,7 +24,7 @@ public class PlayerAnim : MonoBehaviour
     public void SetPlayerRot(Vector3 pos)
     {
         model.LookAt(pos);
-        model.eulerAngles = new Vector3(0, model.eulerAngles.y, 0);
+        model.localEulerAngles = new Vector3(0,- model.eulerAngles.y, 0);
     }
 
     public void SetAnimTrig(AnimTrig pTrig)
