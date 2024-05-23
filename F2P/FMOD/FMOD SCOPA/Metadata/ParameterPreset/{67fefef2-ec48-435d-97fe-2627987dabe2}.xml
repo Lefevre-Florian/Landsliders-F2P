@@ -16,13 +16,20 @@
 			<value>2</value>
 		</property>
 		<property name="maximum">
-			<value>4</value>
+			<value>11</value>
 		</property>
 		<property name="enumerationLabels">
 			<value>TEXT1</value>
 			<value>TEXT2</value>
 			<value>TEXT3</value>
 			<value>TEXT4</value>
+			<value>GUARD</value>
+			<value>BID1</value>
+			<value>BID2</value>
+			<value>BID3</value>
+			<value>FIN FTUE1</value>
+			<value>FIN FTUE2</value>
+			<value>FIN FTUE3</value>
 		</property>
 		<property name="initialValue">
 			<value>0</value>
