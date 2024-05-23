@@ -10,6 +10,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.Events;
+using Com.IsartDigital.F2P.Sound;
 
 // Author (CR): Elias Dridi
 public class GameManager : MonoBehaviour
@@ -63,6 +64,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Game flow")]
     [SerializeField][Range(0.1f, 1f)] private float _SecondsBetweenEachPriorityExecution = 0.5f;
+
+    [Header("Sound")]
+    [SerializeField] private SoundEmitter _WinJingle = null;
+    [SerializeField] private SoundEmitter _LooseJingle = null;
 
     // Variables
     private int _CurrentPriority = 1;
@@ -162,6 +167,9 @@ public class GameManager : MonoBehaviour
 
     public void SetModeGameover()
     {
+        if (_LooseJingle != null)
+            _LooseJingle.PlaySFXOnShot();
+
         currentState = State.GameEnd;
         playerCanMove = false;
         Save.data.softcurrency += 20;
@@ -171,6 +179,9 @@ public class GameManager : MonoBehaviour
 
     public void SetModeWin()
     {
+        if (_WinJingle != null)
+            _WinJingle.PlaySFXOnShot();
+
         currentState = State.GameEnd;
         playerCanMove = false;
 

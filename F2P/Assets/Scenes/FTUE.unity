@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 153804693}
   - component: {fileID: 153804694}
   - component: {fileID: 153804695}
+  - component: {fileID: 153804696}
   m_Layer: 0
   m_Name: QuestManager
   m_TagString: Untagged
@@ -236,7 +237,8 @@ MonoBehaviour:
     - key: 8
       value:
         name: Tutorial
-        desc: ...
+        desc: 
+  _QuestCompletedSFXEmitter: {fileID: 153804696}
 --- !u!114 &153804695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +252,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myQuest: 8
+--- !u!114 &153804696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153804692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: 485438514
+      Data2: 1277897897
+      Data3: 707427974
+      Data4: -385878621
+    Path: event:/GAME/mainquest_completed
 --- !u!1 &156490198
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +308,7 @@ MonoBehaviour:
       Data4: 1782631195
     Path: event:/MUSIC/MUS_Cardgame
   _Type: 1
+  _FadeParameter: 
 --- !u!4 &156490200
 Transform:
   m_ObjectHideFlags: 0
@@ -2796,6 +2818,8 @@ MonoBehaviour:
   _Player: {fileID: 6110220630346872215, guid: fc2c9f220e004af41a39e714ffc80dfa, type: 3}
   _BasePlayerGridPos: {x: 0, y: 1}
   _SecondsBetweenEachPriorityExecution: 0.25
+  _WinJingle: {fileID: 0}
+  _LooseJingle: {fileID: 0}
   cardPlayed: 0
   playerMoved: 0
   playerCanMove: 0

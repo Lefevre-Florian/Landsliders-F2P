@@ -270,6 +270,7 @@ MonoBehaviour:
       Data4: 1782631195
     Path: event:/MUSIC/MUS_Cardgame
   _Type: 1
+  _FadeParameter: 
 --- !u!4 &249466671
 Transform:
   m_ObjectHideFlags: 0
@@ -1470,6 +1471,8 @@ MonoBehaviour:
   _Player: {fileID: 6110220630346872215, guid: fc2c9f220e004af41a39e714ffc80dfa, type: 3}
   _BasePlayerGridPos: {x: 1, y: 1}
   _SecondsBetweenEachPriorityExecution: 0.25
+  _WinJingle: {fileID: 0}
+  _LooseJingle: {fileID: 0}
   cardPlayed: 0
   playerMoved: 0
   playerCanMove: 0
@@ -2682,10 +2685,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1150857211}
   - component: {fileID: 1150857210}
+  - component: {fileID: 1150857213}
   - component: {fileID: 1150857209}
   - component: {fileID: 1150857208}
   - component: {fileID: 1150857207}
   - component: {fileID: 1150857206}
+  - component: {fileID: 1150857212}
   m_Layer: 0
   m_Name: QuestContainer
   m_TagString: Untagged
@@ -2753,6 +2758,7 @@ MonoBehaviour:
         name: All roads lead to the Center
         desc: Survive 3 turns without going to the center of the map
         reward: 4 cards
+  _WitchQuestCompletedSFXEmitter: {fileID: 1150857212}
 --- !u!114 &1150857209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2809,6 +2815,7 @@ MonoBehaviour:
       value:
         name: The Witch Path
         desc: Complete a Witch Quest
+  _QuestCompletedSFXEmitter: {fileID: 1150857213}
 --- !u!4 &1150857211
 Transform:
   m_ObjectHideFlags: 0
@@ -2824,6 +2831,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1150857212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150857205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -1011732716
+      Data2: 1080887387
+      Data3: 1359741841
+      Data4: -84200884
+    Path: event:/GAME/witchquest_completed
+--- !u!114 &1150857213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150857205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: 485438514
+      Data2: 1277897897
+      Data3: 707427974
+      Data4: -385878621
+    Path: event:/GAME/mainquest_completed
 --- !u!1001 &1155669985
 PrefabInstance:
   m_ObjectHideFlags: 0
