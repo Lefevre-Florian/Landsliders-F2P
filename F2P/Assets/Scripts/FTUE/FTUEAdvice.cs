@@ -11,11 +11,9 @@ namespace Com.IsartDigital.F2P.FTUE
     {
         private const int ADVICE_ID_LAUNCH = 0;
         private const int ADVICE_ID_CARD_PLACED = 1;
-        private const int ADVICE_ID_CARD_INSPECT = 3;
+        private const int ADVICE_ID_CARD_INSPECT = 4;
         private const int ADVICE_ID_PLAYER_MOVED = 2;
-        private const int ADVICE_ID_THIRD_PHASE_STARTED = 4;
-
-        private const int CARD_PLACED_TRIGGER = 2;
+        private const int ADVICE_ID_THIRD_PHASE_STARTED = 3;
 
         [Header("Advices")]
         [SerializeField] private DialogueFlowSO _Advices = null;
@@ -36,7 +34,6 @@ namespace Com.IsartDigital.F2P.FTUE
         private DialogueManager _DialogueManager = null;
 
         private bool _FirstMoved = false;
-        private int _CardPlaced = 0;
 
         private bool _FirstCardPlaced = false;
 
@@ -47,7 +44,6 @@ namespace Com.IsartDigital.F2P.FTUE
 
             _TutorialManager = TutorialManager.GetInstance();
             _TutorialManager.OnDialogueEnded += FirstAdvice;
-            _TutorialManager.OnDialogueEnded += FinalAdvice;
 
             GameManager.CardPlaced.AddListener(SecondAdvice);
             GameManager.PlayerMoved.AddListener(ThirdAdvice);
@@ -94,13 +90,21 @@ namespace Com.IsartDigital.F2P.FTUE
 
                 CreateAdvice(ADVICE_ID_PLAYER_MOVED);
                 _FirstMoved = true;
+
+                TEMPCard.OnFocus += AdviceHideWhenCardSelected;
             }    
         }
 
-        private void FinalAdvice()
+        public void FourthAdvice()
         {
-            if (_TutorialManager.CurrentPhaseID == 3 && _TutorialManager.Tick == 0)
-                CreateAdvice(ADVICE_ID_THIRD_PHASE_STARTED);
+            CreateAdvice(ADVICE_ID_THIRD_PHASE_STARTED);
+            TEMPCard.OnFocus += AdviceHideWhenCardSelected;
+        }
+
+        private void AdviceHideWhenCardSelected(bool pState)
+        {
+            TEMPCard.OnFocus -= AdviceHideWhenCardSelected;
+            _AdviceScreen.SetActive(false);
         }
 
         private void CreateAdvice(int pID)
@@ -112,10 +116,7 @@ namespace Com.IsartDigital.F2P.FTUE
         private void OnDestroy()
         {
             if(_TutorialManager != null)
-            {
                 _TutorialManager.OnDialogueEnded += FirstAdvice;
-                _TutorialManager.OnDialogueEnded += FinalAdvice;
-            }
             _TutorialManager = null;
 
             TEMPCard.OnFocus -= VisualHandAdvice;

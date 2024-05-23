@@ -4,6 +4,8 @@ using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P.FTUE;
 
 using System;
+using System.Collections;
+using UnityEngine;
 
 // Author (CR) : Lefevre Florian
 namespace com.isartdigital.f2p.gameplay.quest
@@ -60,11 +62,12 @@ namespace com.isartdigital.f2p.gameplay.quest
                         _TutorialManager.UpdatePhase();
 
                         HandManager.OnDeckAltered.AddListener(ObserveFieldHarvesting);
-                        QuestUiManager.GetInstance().SetQuestDesc(QUEST_DESCR_SECOND_PHASE);
+                        _GameManager.OnAllEffectPlayed += DisplayQuest;
                     }
                     break;
                 case 2:
-                    if(_FieldHarvested == MAX_PHASE_TWO_CARD_FIELD)
+
+                    if (_FieldHarvested == MAX_PHASE_TWO_CARD_FIELD)
                     {
                         _TutorialManager.UpdatePhase();
                         _TutorialManager.UpdatePlayer();
@@ -93,6 +96,24 @@ namespace com.isartdigital.f2p.gameplay.quest
             }
         }
 
+        private void DisplayQuest()
+        {
+            if (_TutorialManager.Tick == 1 && _TutorialManager.CurrentPhaseID == 2)
+                StartCoroutine(Delay());
+        }
+
+        private IEnumerator Delay()
+        {
+            yield return new WaitForSeconds(1);
+
+            QuestUiManager.GetInstance().SetQuestDesc(QUEST_DESCR_SECOND_PHASE);
+            _GameManager.OnAllEffectPlayed -= DisplayQuest;
+
+            TutorialManager.GetInstance().GetComponent<FTUEAdvice>().FourthAdvice();
+
+            StopCoroutine(Delay());
+        }
+
         private void ObserveFieldHarvesting(int pNb, BiomeType pType)
         {
             if (pType == BiomeType.field)
@@ -119,6 +140,9 @@ namespace com.isartdigital.f2p.gameplay.quest
             _GameManager = null;
 
             HandManager.OnDeckAltered.RemoveListener(ObserveFieldHarvesting);
+
+            //CLEAR
+            StopAllCoroutines();
         }
     }
 }
