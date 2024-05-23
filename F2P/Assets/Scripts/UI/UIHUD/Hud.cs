@@ -76,6 +76,8 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
             GameManager.CardPlaced.AddListener(UpdateHealth);
             GameManager.CardPlaced.AddListener(SwitchToMoveMode);
 
+
+            print(_HandManager.DeckCount);
             UpdateHealth();
 
             HandManager.OnDeckAltered.AddListener(WrapperUpdateHealth);

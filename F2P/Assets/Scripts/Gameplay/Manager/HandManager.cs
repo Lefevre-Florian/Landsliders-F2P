@@ -86,7 +86,7 @@ public class HandManager : MonoBehaviour
     // Get & Set
     public int _TotalCards { get { return _Deck.Length + _CardInHand; } }
 
-    public int DeckCount { get { return _Deck.Length; } }
+    public int DeckCount { get { return _Deck != null ? _Deck.Length : (Save.data != null ? Save.data.startingdecknb : MAX_CARD_IN_DECK); } }
 
     // Events
     public static UnityEvent<int, BiomeType> OnDeckAltered = new UnityEvent<int, BiomeType>();
