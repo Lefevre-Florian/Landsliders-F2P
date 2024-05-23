@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{0c74f3a9-53b6-4a07-8fce-bf6ac990d9dd}">
+	<object class="AudioFile" id="{6823f273-8a7d-42d3-ab61-fde4db117886}">
 		<property name="assetPath">
 			<value>Witch_laugh_03.wav</value>
 		</property>
@@ -11,7 +11,7 @@
 			<value>1</value>
 		</property>
 		<property name="length">
-			<value>1.9301250000000001</value>
+			<value>5</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{b96f2628-958f-4f43-aa99-54224e96a477}</destination>

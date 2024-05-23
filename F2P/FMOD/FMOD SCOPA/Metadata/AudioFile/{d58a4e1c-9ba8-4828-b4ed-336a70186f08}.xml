@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{a598edc0-7801-42c7-8a3a-d2fee036dcf9}">
+	<object class="AudioFile" id="{d58a4e1c-9ba8-4828-b4ed-336a70186f08}">
 		<property name="assetPath">
-			<value>Witch_laugh_01.wav</value>
+			<value>Witch_Help.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
@@ -11,7 +11,7 @@
 			<value>1</value>
 		</property>
 		<property name="length">
-			<value>1.6388333333333334</value>
+			<value>5</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{b96f2628-958f-4f43-aa99-54224e96a477}</destination>
