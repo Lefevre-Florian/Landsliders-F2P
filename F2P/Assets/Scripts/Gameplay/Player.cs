@@ -196,7 +196,14 @@ public class Player : MonoBehaviour
 
         _CurrentState = State.Moving;
         DoAction = DoActionMove;
+
         GetComponent<PlayerAnim>().SetAnimTrig(PlayerAnim.AnimTrig.Transition);
+
+        Vector3 lDir = _GridManager.GetWorldCoordinate((int)_GridPosSelected.x, (int)_GridPosSelected.y) -
+                          _GridManager.GetWorldCoordinate((int)_ActualGridPos.x, (int)_ActualGridPos.y);
+        lDir = lDir.normalized;
+
+        GetComponent<PlayerAnim>().SetPlayerRot(transform.position + lDir);
     }
 
     private void DoActionMove()
