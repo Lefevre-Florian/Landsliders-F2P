@@ -305,3 +305,4 @@ MonoBehaviour:
   _CardButtonPrefab: {fileID: 8332070894704155793, guid: d177d3e9c60ab794c98e8a3f986ba17e, type: 3}
   _UpgradeScreen: {fileID: 0}
   _ConsentScreen: {fileID: 0}
+  _CardTextures: []
