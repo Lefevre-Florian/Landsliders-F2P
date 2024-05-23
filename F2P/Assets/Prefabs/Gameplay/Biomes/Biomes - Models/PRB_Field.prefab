@@ -343,6 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _AnimationSpeedRatio: 1
+  _EntranceTrigger: Entrance
   _FlipAnimationSpeed: 1.5
 --- !u!210 &8189876555007210491
 SortingGroup:
@@ -898,7 +899,7 @@ GameObject:
   - component: {fileID: 2238457539720797132}
   - component: {fileID: 494234941621167009}
   - component: {fileID: 660650394556183770}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1110,7 +1111,7 @@ GameObject:
   - component: {fileID: 2421038744746462933}
   - component: {fileID: 7221269549015651319}
   - component: {fileID: 8291636100139913995}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Explication
   m_TagString: Untagged
   m_Icon: {fileID: 0}

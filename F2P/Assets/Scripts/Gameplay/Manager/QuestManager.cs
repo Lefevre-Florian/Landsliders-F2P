@@ -42,11 +42,8 @@ namespace com.isartdigital.f2p.manager
             GameFlowManager.LoadMap.AddListener(Init);
             ValidQuest.AddListener(WinDebug);
             questDic = _QuestLabelsDic.ToDic();
-        }
 
-        private void Init()
-        {
-            if(currentQuestDebug == QuestsEnum.NONE)
+            if (currentQuestDebug == QuestsEnum.NONE)
             {
                 string[] lQuestsArray = Enum.GetNames(typeof(QuestsEnum));
                 lQuestsArray.ToList().Remove(QuestsEnum.FTUE.ToString());
@@ -56,11 +53,13 @@ namespace com.isartdigital.f2p.manager
                 currentQuest = (QuestsEnum)Enum.Parse(typeof(QuestsEnum), lQuestsArray[rand]);
 
             }
+        }
 
+        private void Init()
+        {
+            
            if(questDic.ContainsKey(currentQuest)) QuestUiManager.GetInstance().SetQuestName(questDic[currentQuest].name);
            if (questDic.ContainsKey(currentQuest)) QuestUiManager.GetInstance().SetQuestDesc(questDic[currentQuest].desc);
-
-            Debug.Log(currentQuest);
         }
 
         private void WinDebug()

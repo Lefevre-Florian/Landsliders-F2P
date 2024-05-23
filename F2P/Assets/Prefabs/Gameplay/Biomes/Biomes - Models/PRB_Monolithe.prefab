@@ -658,6 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _AnimationSpeedRatio: 1
+  _EntranceTrigger: Entrance
   _FlipAnimationSpeed: 1.5
 --- !u!210 &4903910692728033560
 SortingGroup:

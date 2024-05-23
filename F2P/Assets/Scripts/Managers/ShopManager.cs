@@ -10,15 +10,38 @@ using System.Reflection.Emit;
 using TMPro;
 using System;
 using UnityEngine.UI;
+using Com.IsartDigital.F2P.UI.Screens;
 
 public class ShopManager : MonoBehaviour
 {
+
+    #region Singleton
+    private static ShopManager _Instance = null;
+
+    public static ShopManager GetInstance()
+    {
+        if (_Instance == null)
+            _Instance = new ShopManager();
+        return _Instance;
+    }
+
+    private ShopManager() : base() { }
+    #endregion
+
     [SerializeField]
     private GameObject _HardCurrencyLabel;
     [SerializeField]
     private GameObject _SoftCurrencyLabel;
 
     private GameObject _ButtonObject;
+
+    [HideInInspector] public int pendingFragments;
+    [HideInInspector] public int pendingCurrency;
+    [HideInInspector] public bool _Softcurrecy;
+    [HideInInspector] public bool _Chest;
+    [HideInInspector] public bool _RandomChest;
+
+    [SerializeField]private ShopConsentScreen _ConsentScreen;
 
     [SerializeField] private GameObject _XPDoubledObject;
     [SerializeField] private GameObject _DeckUpgradeObject;
@@ -49,6 +72,16 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private int _LegendaryShardNB;
     [SerializeField] private int _DailyChestShardNB;
 
+
+    private void Awake()
+    {
+        if (_Instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+        _Instance = this;
+    }
     private void Start()
     {
         if (Save.data.xpdoubled)
@@ -69,6 +102,26 @@ public class ShopManager : MonoBehaviour
             _FreeClaimObject.GetComponentInChildren<TextMeshProUGUI>().text = _FreeClaimObject.GetComponent<CountDown>().countdownText.ToString();
             _FreeClaimObject.GetComponent<Button>().enabled = false;
         }
+    }
+
+    public void ShowConfirmationChest(int pFragments)
+    {
+        pendingFragments = pFragments;
+        _Chest = true;
+        _ConsentScreen.Open();
+    }
+
+    public void ShowConfirmationRandomChest()
+    {
+        _RandomChest = true;
+        _ConsentScreen.Open();
+    }
+
+    public void ShowConfirmationSoftCurrency(int pSoftCurrency)
+    {
+        pendingCurrency = pSoftCurrency;
+        _Softcurrecy = true;
+        _ConsentScreen.Open();
     }
 
     public void BuyHardCurrency(int pHardCurrency)
@@ -94,9 +147,9 @@ public class ShopManager : MonoBehaviour
             _SoftCurrencyLabel.GetComponentInChildren<TextMeshProUGUI>().text = Save.data.softcurrency.ToString();
             _HardCurrencyLabel.GetComponentInChildren<TextMeshProUGUI>().text = Save.data.hardcurrency.ToString();
             DatabaseManager.GetInstance().WriteDataToSaveFile();
-            print("PurchaseComplet");
+            
         }
-        print("PurchaseFailed");
+        
     }
 
     public void DailyChest(int pFragments)
@@ -119,9 +172,8 @@ public class ShopManager : MonoBehaviour
             _ButtonObject.GetComponent<Button>().enabled = false;
 
             DatabaseManager.GetInstance().WriteDataToSaveFile();
-            print("PurchaseComplet");
+            
         }
-        else print("PurchasedFailed");    
     }
 
     public void GetButtonObject(GameObject pGameObject)
@@ -153,6 +205,8 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    
+
     public void Chest(int pFragments)
     {
         int pPrice = 0;
@@ -171,7 +225,8 @@ public class ShopManager : MonoBehaviour
             }
             Save.data.hardcurrency -= pPrice;
             _HardCurrencyLabel.GetComponentInChildren<TextMeshProUGUI>().text = Save.data.hardcurrency.ToString();
-            DatabaseManager.GetInstance().WriteDataToSaveFile();   
+            DatabaseManager.GetInstance().WriteDataToSaveFile();
+   
         }
     }
 
@@ -181,7 +236,7 @@ public class ShopManager : MonoBehaviour
         {
             int lCardLength = Save.data.cards.Length;
             int lChosenCard = UnityEngine.Random.Range(0, lCardLength);
-            print(lChosenCard);
+            
             Save.data.fragments[lChosenCard].fragment += pFragments;
             Save.data.softcurrency -= _DailyShardPrice;
             _SoftCurrencyLabel.GetComponentInChildren<TextMeshProUGUI>().text = Save.data.softcurrency.ToString();

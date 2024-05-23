@@ -19,6 +19,7 @@ namespace Com.IsartDigital.F2P.UI.Screens
         {
             public BiomeType type;
             public Texture2D texture;
+            public Sprite explication;
         }
 
         [Header("Utils")]
@@ -61,11 +62,15 @@ namespace Com.IsartDigital.F2P.UI.Screens
             List<BiomeTexture> lTextures = _CardTextures.ToList();
             int lLength = Save.data.cards.Length;
 
+            BiomeType lCurrentType = default;
             for (int i = 0; i < lLength; i++)
             {
+                lCurrentType = Save.data.cardPrefabs[i].GetComponent<Biome>().Type;
+
                 lCard = Instantiate(_CardButtonPrefab, _Container).GetComponent<CustomCardButton>();
                 lCard.Enable(Save.data.cards[i], 
-                            lTextures.Find(x => x.type == Save.data.cardPrefabs[i].GetComponent<Biome>().Type).texture, 
+                            lTextures.Find(x => x.type == lCurrentType).texture,
+                            lTextures.Find(x => x.type == lCurrentType).explication,
                             _UpgradeScreen, 
                             _ConsentScreen);
             }

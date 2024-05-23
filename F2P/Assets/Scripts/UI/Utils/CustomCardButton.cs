@@ -35,6 +35,7 @@ namespace Com.IsartDigital.F2P.UI
         [SerializeField] private RectTransform _LockedStateOverlay = null;
 
         [Header("UI - State : Default")]
+        [SerializeField] private Image _ExplicationIcon = null;
         [SerializeField] private TextMeshProUGUI _FragReqLabel = null;
 
         // Variables
@@ -61,7 +62,7 @@ namespace Com.IsartDigital.F2P.UI
                 Draw();
         }
 
-        public void Enable(int pId, Texture2D pRenderer, UpgradeScreen pUpgradeScreen, ConsentAskScreen pConsentScreen)
+        public void Enable(int pId, Texture2D pRenderer, Sprite pExplication, UpgradeScreen pUpgradeScreen, ConsentAskScreen pConsentScreen)
         {
             _ID = pId;
 
@@ -72,6 +73,11 @@ namespace Com.IsartDigital.F2P.UI
             _FragmentRequired = Convert.ToInt32(lResult[2]);
 
             _Texture = pRenderer;
+            if (pExplication == null)
+                _ExplicationIcon.gameObject.SetActive(false);
+            else
+                _ExplicationIcon.sprite = pExplication;
+
             GetComponent<RawImage>().texture = _Texture;
 
             Draw();

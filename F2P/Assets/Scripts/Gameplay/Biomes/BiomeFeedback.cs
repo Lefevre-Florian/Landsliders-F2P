@@ -4,25 +4,22 @@ namespace Com.IsartDigital.F2P.Biomes
 {
     public class BiomeFeedback : MonoBehaviour
     {
-        [SerializeField] private MeshRenderer _Renderer = null;
+        [SerializeField] private SpriteRenderer _Renderer = null;
 
         [Header("Feedbacks")]
-        [SerializeField] private Material _CardLayer = null;
-        [SerializeField] private Material _MoveLayer = null;
+        [SerializeField] private Sprite _CardLayer = null;
+        [SerializeField] private Sprite _MoveLayer = null;
 
         // Variables
-        private Material _BaseLayer = null;
-
         private Biome _Biome = null;
 
         private GameObject _AdditionalLayer = null;
 
         // Get & Set
-        public Material CurrentLayer { get { return _Renderer.material; } }
+        public Sprite CurrentLayer { get { return _Renderer.sprite; } }
 
         private void Start()
         {
-            _BaseLayer = _Renderer.material;
             _Biome = GetComponent<Biome>();
 
             if (!_Biome.IsReady)
@@ -91,14 +88,14 @@ namespace Com.IsartDigital.F2P.Biomes
         private void CardFocus(bool pFocusState)
         {
             if (pFocusState)
-                _Renderer.material = _CardLayer;
+                _Renderer.sprite = _CardLayer;
             else
-                _Renderer.material = _BaseLayer;
+                _Renderer.sprite = null;
         }
 
-        private void EnableMoveLayer() => _Renderer.material = _MoveLayer;
+        private void EnableMoveLayer() => _Renderer.sprite = _MoveLayer;
 
-        private void DisableMoveLayer() => _Renderer.material = _BaseLayer;
+        private void DisableMoveLayer() => _Renderer.sprite = null;
 
         private void OnDestroy()
         {

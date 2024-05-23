@@ -107,7 +107,6 @@ namespace Com.IsartDigital.F2P.Biomes
             _Renderer = transform.GetChild(0)
                                  .GetComponent<CardRenderer>();
 
-            print(gameObject.name + _Renderer);
             if(_Renderer != null)
             {
                 _Renderer.EnableAnimation();

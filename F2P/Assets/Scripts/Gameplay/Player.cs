@@ -74,6 +74,8 @@ public class Player : MonoBehaviour
     public Vector2 GridPosition { get { return _ActualGridPos; } }
     public Vector2 PreviousGridPosition { get { return _PreviousGridPos; } }
 
+    public bool _InFTUE = false;
+
     private void Awake()
     {
         if(_Instance != null)
@@ -196,7 +198,14 @@ public class Player : MonoBehaviour
 
         _CurrentState = State.Moving;
         DoAction = DoActionMove;
+
         GetComponent<PlayerAnim>().SetAnimTrig(PlayerAnim.AnimTrig.Transition);
+
+        Vector3 lDir = _GridManager.GetWorldCoordinate((int)_GridPosSelected.x, (int)_GridPosSelected.y) -
+                          _GridManager.GetWorldCoordinate((int)_ActualGridPos.x, (int)_ActualGridPos.y);
+        lDir = lDir.normalized;
+
+        GetComponent<PlayerAnim>().SetPlayerRot(transform.position + lDir);
     }
 
     private void DoActionMove()
@@ -268,6 +277,8 @@ public class Player : MonoBehaviour
 
     private void CheckPlayerCanMove()
     {
+        if (_InFTUE) return;
+
         Vector3 baseDir = Vector3.right;
 
         for (int i = 0; i < 8; i++)

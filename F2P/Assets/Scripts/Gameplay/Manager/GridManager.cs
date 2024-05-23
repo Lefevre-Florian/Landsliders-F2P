@@ -1,5 +1,6 @@
 using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.quest;
+using com.isartdigital.f2p.manager;
 using Com.IsartDigital.F2P.Biomes;
 
 using System.Collections.Generic;

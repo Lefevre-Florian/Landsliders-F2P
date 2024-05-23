@@ -1,4 +1,5 @@
 using com.isartdigital.f2p.gameplay.quest;
+using com.isartdigital.f2p.manager;
 using Com.IsartDigital.F2P.Sound;
 
 using System;

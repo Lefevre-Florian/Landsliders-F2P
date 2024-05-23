@@ -1,3 +1,4 @@
+using com.isartdigital.f2p.manager;
 using Com.IsartDigital.F2P;
 using Com.IsartDigital.F2P.Biomes;
 
@@ -8,25 +9,22 @@ using UnityEngine;
 
 public class CardPrefabDic : MonoBehaviour
 {
-    [SerializeField] private CTGODic _Biomes;
+    [SerializeField] private CTGODic _BiomesHandDic;
     [SerializeField] private bool _IsForced = false;
 
     private static Dictionary<BiomeType, Card> prefabDic;
-    private static List<Card> prefabList;
+    public static List<Card> prefabList;
 
     private static float currentLevel = 0;
 
+
     private void Awake()
     {
-        if(_IsForced || Save.data == null)
+        prefabDic = _BiomesHandDic.ToDic();
+        prefabList = _BiomesHandDic.ToList();
+
+        if(!(_IsForced || Save.data == null))
         {
-            prefabDic = _Biomes.ToDic();
-            prefabList = _Biomes.ToList();
-        }
-        else
-        {
-            prefabDic = _Biomes.ToDic();
-            prefabList = _Biomes.ToList();
 
             int lLength = Save.data.cardPrefabs.Length;
             List<BiomeType> lKeys = new List<BiomeType>();
@@ -58,7 +56,7 @@ public class CardPrefabDic : MonoBehaviour
 
         for (int i = 0; i < prefabList.Count; i++)
         {
-            lCurrentProp += prefabList[i].chanceToSpawn.Evaluate(currentLevel);
+            lCurrentProp += prefabList[i].chanceToSpawn.Evaluate((int)QuestManager.currentQuest);
             if (lRand < lCurrentProp) return prefabList[i].GO;
         }
 
@@ -74,10 +72,11 @@ public class CardPrefabDic : MonoBehaviour
     {
         float ret = 0;
         foreach (Card pCard in prefabList)
-            ret += pCard.chanceToSpawn.Evaluate(currentLevel);
+            ret += pCard.chanceToSpawn.Evaluate((int)QuestManager.currentQuest);
 
         return ret;
     }
+
 }
 
 [Serializable]
