@@ -11,7 +11,8 @@ Narr-A-02;"That was until a meteorite made of a powerful magical material called
 Narr-A-03;The appearance of this material made the world a much more dangerous place, leading to the creation of itinerant cities to avoid threats.  
 Narr-A-04;30 years after this event, you and your best friend find yourselves in trouble…
 Guard-A-01;Guard voice: Go away ! You're not welcome here anymore!
-Advice-A-01;Drag and drop the card onto the biome
-Advice-A-02;Déplacez la compagnie sur un biome juxtaposé.
-Advice-A-03;Si ta pioche atteint 0 cartes, l’expédition se conclue en un échec, soyez vigilant.e ! 
-Advice-A-04;Une quête vous est donnée en début de partie. Cette quête est votre condition de victoire.
+Advice-A-01;Play a card from your hand onto a biome.
+Advice-A-02;Press the card to inspect it.
+Advice-A-03;Move the compagny to a biome with an aura.
+Advice-A-04;If your pile reaches 0 and you have no cards in hand, you lose the game.
+Advice-A-05;A quest is given to you at the start of the game. Complete it in order to win.

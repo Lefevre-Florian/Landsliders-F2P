@@ -11,8 +11,11 @@ namespace Com.IsartDigital.F2P.FTUE
     {
         private const int ADVICE_ID_LAUNCH = 0;
         private const int ADVICE_ID_CARD_PLACED = 1;
+        private const int ADVICE_ID_CARD_INSPECT = 3;
         private const int ADVICE_ID_PLAYER_MOVED = 2;
-        private const int ADVICE_ID_THIRD_PHASE_STARTED = 3;
+        private const int ADVICE_ID_THIRD_PHASE_STARTED = 4;
+
+        private const int CARD_PLACED_TRIGGER = 2;
 
         [Header("Advices")]
         [SerializeField] private DialogueFlowSO _Advices = null;
@@ -33,6 +36,8 @@ namespace Com.IsartDigital.F2P.FTUE
         private DialogueManager _DialogueManager = null;
 
         private bool _FirstMoved = false;
+        private int _CardPlaced = 0;
+
         private bool _FirstCardPlaced = false;
 
         private void Start()
