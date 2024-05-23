@@ -111,10 +111,10 @@ namespace Com.IsartDigital.F2P.Biomes
                                                 Mathf.RoundToInt(lPlayer.GridPosition.y + lDirection.y));
 
             // Check if the next position is valid
-            if (lNextPosition.x > _GridManager._NumCard.x
+            if (lNextPosition.x > _GridManager._NumCard.x - 1
                || lNextPosition.x < 0
                || lNextPosition.y < 0
-               || lNextPosition.y > _GridManager._NumCard.y)
+               || lNextPosition.y > _GridManager._NumCard.y - 1)
                 return;
 
             Biome lNextBiome = _GridManager.GetCardByGridCoordinate(lNextPosition);
