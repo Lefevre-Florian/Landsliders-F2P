@@ -97,7 +97,7 @@ namespace com.isartdigital.f2p.gameplay.manager
                 {
                     float lYPos = _GridSize.y * y;
 
-                    GameObject lPrefabToInstantiate = _Cards[lXArrayIndex, lYArrayIndex] == null ? CardPrefabDic.GetRandomPrefab(CardPrefabDic.prefabMapList, (int)QuestManager.currentQuest) : _Cards[lXArrayIndex, lYArrayIndex];
+                    GameObject lPrefabToInstantiate = _Cards[lXArrayIndex, lYArrayIndex] == null ? CardPrefabDic.GetRandomPrefab() : _Cards[lXArrayIndex, lYArrayIndex];
 
                     _Cards[lXArrayIndex, lYArrayIndex] = Instantiate( lPrefabToInstantiate,
                                                                      new Vector3(lXPos + _Offset.x, lYPos + _Offset.y, 0),
