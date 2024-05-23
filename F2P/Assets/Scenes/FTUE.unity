@@ -3343,6 +3343,10 @@ PrefabInstance:
       value: 0.20754719
       objectReference: {fileID: 0}
     - target: {fileID: 4803329268400056286, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: _HealthUI
+      value: 
+      objectReference: {fileID: 1471252759428463889}
+    - target: {fileID: 4803329268400056286, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: _WinScreen
       value: 
       objectReference: {fileID: 1471252759428463885}
@@ -3573,6 +3577,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5415446868097734589, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2076626846}
+    - targetCorrespondingSourceObject: {fileID: 5415446868097734589, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1471252759428463889}
     - targetCorrespondingSourceObject: {fileID: 1426310422175395092, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1471252759428463894}
@@ -3609,6 +3616,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4974484456934305071, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
   m_PrefabInstance: {fileID: 1471252759428463884}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1471252759428463889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342306354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b7b30dfa1f99f4eaa3298a4a6bfada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _CounterLabel: {fileID: 517964744}
+  _Counter: {fileID: 1361800615}
+  _Duration: 0.5
 --- !u!1 &1471252759428463890 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1426310422175395092, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
