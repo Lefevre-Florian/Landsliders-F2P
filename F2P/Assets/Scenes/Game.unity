@@ -483,6 +483,16 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &561711945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6154006917797626032, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+  m_PrefabInstance: {fileID: 1471252759428463884}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &561711946 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3408671923846663181, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+  m_PrefabInstance: {fileID: 1471252759428463884}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &564700396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3186,21 +3196,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4561038331150787552, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1065.2781
+    - target: {fileID: 4716654634293918956, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9254902
       objectReference: {fileID: 0}
-    - target: {fileID: 4561038331150787552, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 105.33
+    - target: {fileID: 4716654634293918956, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_Color.b
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4561038331150787552, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 5.5115
+    - target: {fileID: 4716654634293918956, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_Color.g
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4561038331150787552, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -74.258
+    - target: {fileID: 4716654634293918956, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_Color.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4803329268400056286, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: _WinScreen
@@ -3210,6 +3220,14 @@ PrefabInstance:
       propertyPath: _MainMenuIDX
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4803329268400056286, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: _HandTurnMask
+      value: 
+      objectReference: {fileID: 561711946}
+    - target: {fileID: 4803329268400056286, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: _PlayerTurnMask
+      value: 
+      objectReference: {fileID: 561711945}
     - target: {fileID: 4958223636154410619, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3272,7 +3290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5415446868097734589, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_Name
-      value: PRB_Hud
+      value: Hud
       objectReference: {fileID: 0}
     - target: {fileID: 6378968212669057471, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3437,6 +3455,22 @@ PrefabInstance:
     - target: {fileID: 7597562359623823201, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284993169584060698, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284993169584060698, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284993169584060698, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284993169584060698, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_Color.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
