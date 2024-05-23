@@ -56,6 +56,9 @@ namespace Com.IsartDigital.F2P.FTUE
         private int _DialoguePhaseIdx = 0;
 
         private DateTime _FTUEStartTime = default;
+
+        private bool _NarrationSkipped = true;
+
         // Get & Set
         public FTUEPhaseSO CurrentPhase { get { return _Phase[_PhaseID - 1]; } }
 
@@ -96,9 +99,14 @@ namespace Com.IsartDigital.F2P.FTUE
             _FTUEStartTime = DateTime.UtcNow;
 
             if (_StoryNarrator.isActiveAndEnabled)
-                _StoryNarrator.OnDialogueEnded.AddListener(UpdateDialogue);
+            {
+                _NarrationSkipped = false;
+                _StoryNarrator.OnDialogueEnded.AddListener(StartFTUE);
+            }
             else
-                UpdateDialogue();
+            {
+                StartFTUE();
+            }
         }
 
         public void UpdatePhase()
@@ -116,13 +124,21 @@ namespace Com.IsartDigital.F2P.FTUE
         #region FTUE Gampelay
         public void UpdatePlayer()
         {
+            if (CurrentPhaseID == 1 && _TurnIdx == 0 && !_NarrationSkipped)
+                Player.GetInstance().gameObject.SetActive(false); 
+
             Player.GetInstance().SetPosition(CurrentPhase.StartPosition);
             if (CurrentPhaseID == 3)
                 Player.GetInstance().AddComponent<DeckEffect>()
                                     .SetEffect(3, 1, DeckEffect.AlterationType.Negative);
         }
 
-        private void UpdateHand() => HandManager.GetInstance().CreateHand(CurrentPhase.StartNBCards);
+        private void UpdateHand()
+        {
+            HandManager.GetInstance().CreateHand(CurrentPhase.StartNBCards);
+            if (!(CurrentPhaseID == 1 && _TurnIdx == 0))
+                Hud.GetInstance().UpdateHealth();
+        }
 
         private void UpdateDeck()
         {
@@ -136,6 +152,9 @@ namespace Com.IsartDigital.F2P.FTUE
                 lCards[i] = new Tuple<BiomeType, int>(CurrentPhase.Decks[lIdx].deck.cards[i].type,
                                                       CurrentPhase.Decks[lIdx].deck.cards[i].quantity);
             HandManager.GetInstance().CreateDeck(lCards);
+
+            if (!(CurrentPhaseID == 1 && _TurnIdx == 0))
+                Hud.GetInstance().UpdateHealth();
 
             if (CurrentPhase.Decks[lIdx].updateHand)
                 UpdateHand();
@@ -183,6 +202,15 @@ namespace Com.IsartDigital.F2P.FTUE
         #endregion
 
         #region FTUE Dialogue and Juiciness
+        /// <summary>
+        /// Played after the narration panel (if active)
+        /// </summary>
+        private void StartFTUE()
+        {
+            Player.GetInstance().gameObject.SetActive(true);
+            UpdateDialogue();
+        }
+
         private void UpdateDialogue() 
         {
             // Dialogues
@@ -259,6 +287,9 @@ namespace Com.IsartDigital.F2P.FTUE
                 GameFlowManager.HandLoaded.RemoveListener(UpdateHand);
 
                 QuestManager.ValidQuest.RemoveListener(EndFTUE);
+
+                if (_StoryNarrator != null)
+                    _StoryNarrator.OnDialogueEnded.RemoveListener(StartFTUE);
             }
         }
     }

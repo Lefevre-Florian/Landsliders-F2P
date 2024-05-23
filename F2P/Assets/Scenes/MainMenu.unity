@@ -1425,7 +1425,6 @@ Transform:
   m_Children:
   - {fileID: 1286451818}
   - {fileID: 1215573681}
-  - {fileID: 1066610310}
   - {fileID: 337649123}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1614,11 +1613,6 @@ MonoBehaviour:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2646202355053139763, guid: 838192997033d4c438261d899fa76305, type: 3}
   m_PrefabInstance: {fileID: 8541802969604723490}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1066610310 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7503488287599980504, guid: 9c8a33b1af0d81c4c9e4d529ff735349, type: 3}
-  m_PrefabInstance: {fileID: 1167675439}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1097761729
 PrefabInstance:
@@ -1974,8 +1968,12 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 927547436}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5303027909718028920, guid: 9c8a33b1af0d81c4c9e4d529ff735349, type: 3}
+      propertyPath: _UIContainer
+      value: 
+      objectReference: {fileID: 1129044558}
     - target: {fileID: 7503488287599980504, guid: 9c8a33b1af0d81c4c9e4d529ff735349, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6541,3 +6539,4 @@ SceneRoots:
   - {fileID: 1129044562}
   - {fileID: 618050855}
   - {fileID: 880029043}
+  - {fileID: 1167675439}
