@@ -1,3 +1,4 @@
+using Com.IsartDigital.F2P.Sound;
 using TMPro;
 
 using UnityEngine;
@@ -15,6 +16,9 @@ namespace Com.IsartDigital.F2P.UI.Screens
         [Header("Screen")]
         [SerializeField] private TextMeshProUGUI _ExpLevelLabel = null;
 
+        [Header("Sound")]
+        [SerializeField] private MusicEmitter _Music = null;
+
         private void Start()
         {
             // Reset timescale (in case)
@@ -23,6 +27,13 @@ namespace Com.IsartDigital.F2P.UI.Screens
             UpdateExp();
 
             Save.OnDataUpdated += UpdateExp;
+        }
+
+        public override void Open()
+        {
+            base.Open();
+            if(_Music != null)
+                _Music.SetImmediateFade(0);
         }
 
         public void Play()

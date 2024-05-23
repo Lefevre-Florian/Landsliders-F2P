@@ -1603,6 +1603,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7503488287599980504, guid: 9c8a33b1af0d81c4c9e4d529ff735349, type: 3}
   m_PrefabInstance: {fileID: 1167675439}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1073259426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1073259428}
+  - component: {fileID: 1073259427}
+  m_Layer: 0
+  m_Name: MusicEmitter
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!114 &1073259427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073259426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe33f383e2ed43b42b25984e4096561a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MusicEvent:
+    Guid:
+      Data1: -280913606
+      Data2: 1128467790
+      Data3: -125533567
+      Data4: 1782631195
+    Path: event:/MUSIC/MUS_Cardgame
+  _Type: 0
+  _FadeParameter: InShop
+--- !u!4 &1073259428
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073259426}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1097761729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2035,6 +2088,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 809401218}
+    - target: {fileID: 1172150034957494502, guid: 478d4c030b26b4a4688f8053081f74cd, type: 3}
+      propertyPath: _Music
+      value: 
+      objectReference: {fileID: 1073259427}
     - target: {fileID: 1172150034957494502, guid: 478d4c030b26b4a4688f8053081f74cd, type: 3}
       propertyPath: _IsUsingLoadingScreen
       value: 1
@@ -3594,6 +3651,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -300
       objectReference: {fileID: 0}
+    - target: {fileID: 2877981770120767223, guid: d4da026f3522cf242a3078d56de4b836, type: 3}
+      propertyPath: _Music
+      value: 
+      objectReference: {fileID: 1073259427}
     - target: {fileID: 2995832444424376536, guid: d4da026f3522cf242a3078d56de4b836, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3
@@ -6329,4 +6390,5 @@ SceneRoots:
   - {fileID: 1129044562}
   - {fileID: 618050855}
   - {fileID: 880029043}
+  - {fileID: 1073259428}
   - {fileID: 297891697}

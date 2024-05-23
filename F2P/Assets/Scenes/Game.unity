@@ -268,7 +268,8 @@ MonoBehaviour:
       Data2: 1128467790
       Data3: -125533567
       Data4: 1782631195
-    Path: event:/MUSIC/MUS_Gameplay
+    Path: event:/MUSIC/MUS_Cardgame
+  _Type: 1
 --- !u!4 &249466671
 Transform:
   m_ObjectHideFlags: 0
