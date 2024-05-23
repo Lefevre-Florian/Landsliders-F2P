@@ -1,7 +1,9 @@
+using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P.FileSystem;
 
 using System;
-
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +14,13 @@ namespace Com.IsartDigital.F2P.UI.Screens
     {
         private const string CMD_TOTAL_CARDS = "SELECT COUNT(id) FROM BIOME WHERE level = 1";
 
+        [Serializable]
+        public struct BiomeTexture
+        {
+            public BiomeType type;
+            public Texture2D texture;
+        }
+
         [Header("Utils")]
         [SerializeField] private RectTransform _Container = null;
         [SerializeField] private GameObject _CardButtonPrefab = null;
@@ -19,6 +28,9 @@ namespace Com.IsartDigital.F2P.UI.Screens
         [Space(5)]
         [SerializeField] private UpgradeScreen _UpgradeScreen = null;
         [SerializeField] private ConsentAskScreen _ConsentScreen = null;
+
+        [Space(5)]
+        [SerializeField] private BiomeTexture[] _CardTextures = new BiomeTexture[0];
 
         // Variables
         private bool _Loaded = false;
@@ -46,12 +58,16 @@ namespace Com.IsartDigital.F2P.UI.Screens
         {
             CustomCardButton lCard;
 
+            List<BiomeTexture> lTextures = _CardTextures.ToList();
             int lLength = Save.data.cards.Length;
 
             for (int i = 0; i < lLength; i++)
             {
                 lCard = Instantiate(_CardButtonPrefab, _Container).GetComponent<CustomCardButton>();
-                lCard.Enable(Save.data.cards[i], _UpgradeScreen, _ConsentScreen);
+                lCard.Enable(Save.data.cards[i], 
+                            lTextures.Find(x => x.type == Save.data.cardPrefabs[i].GetComponent<Biome>().Type).texture, 
+                            _UpgradeScreen, 
+                            _ConsentScreen);
             }
         }
     }

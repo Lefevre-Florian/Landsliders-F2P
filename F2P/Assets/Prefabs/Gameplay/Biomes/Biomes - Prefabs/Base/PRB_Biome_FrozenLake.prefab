@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2707025486543356891, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _Explication
+      value: 
+      objectReference: {fileID: 2122446276975290206}
     - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: _SoundReference.Path
       value: event:/GAME/played_forzenlake
@@ -268,6 +272,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}
+--- !u!1 &2122446276975290206 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7684867533676228585, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}
+  m_PrefabInstance: {fileID: 8634055702446491831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2360441903195722683 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6274546229157288716, guid: 653483ddf6d705b438fc0eb650a46962, type: 3}

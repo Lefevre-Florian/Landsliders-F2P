@@ -9,7 +9,7 @@ namespace com.isartdigital.f2p.gameplay.quest
     {
         public void CheckWin(int nbCardGive)
         {
-            if (nbCardGive < 6) return;
+            if (nbCardGive < 4) return;
             QuestManager.ValidQuest.Invoke(); ;
         }
     }

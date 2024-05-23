@@ -1216,7 +1216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c32f52816a393f419a2634e48bf8a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _predifinedMap: {fileID: 11400000, guid: 0205a3118a27fd945bd4ce1de9395770, type: 2}
+  _predifinedMap: {fileID: 0}
 --- !u!114 &1061210648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1242,7 +1242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MaxGameEventsNumber: 3
-  _GameEventChance: 0.33
+  _GameEventChance: 0
   _EtheralRift: {fileID: 8149821949770973124, guid: 806f15beba4f9e04eb9bd269db15f90f, type: 3}
   _DragonLair: {fileID: 6087476990557836528, guid: 32c0595fe4bed8144b59f4e1c9421115, type: 3}
   _Witch: {fileID: 1284007911230468281, guid: e33e8248a04cd5642a3d41315b9fb62b, type: 3}
@@ -1845,9 +1845,24 @@ MonoBehaviour:
     _Dict:
     - key: 1
       value:
-        name: Align Swamp
-        desc: C dans le titre
-        reward: Tout
+        name: Big Swamp
+        desc: Align 3 swamps
+        reward: 4 cards
+    - key: 2
+      value:
+        name: The antidote
+        desc: Survive 3 rounds of swamp poison
+        reward: 4 cards
+    - key: 3
+      value:
+        name: The Frozen Lands
+        desc: End your turn on a glacier tile
+        reward: 4 cards
+    - key: 4
+      value:
+        name: All roads lead to the Center
+        desc: Survive 3 turns without going to the center of the map
+        reward: 4 cards
 --- !u!114 &1150857209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1875,7 +1890,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentQuestDebug: 0
   _QuestLabelsDic:
-    _Dict: []
+    _Dict:
+    - key: 1
+      value:
+        name: Apocalypse Now
+        desc: Trigger an erupting volcano at the center of the map and survive it
+    - key: 3
+      value:
+        name: Time to Harvest
+        desc: Create a field producing at least 4 cards
+    - key: 2
+      value:
+        name: The Great Canyon
+        desc: Replace a Canyon
+    - key: 5
+      value:
+        name: Collector
+        desc: Add 7 cards to your deck in 4 turns
+    - key: 4
+      value:
+        name: Soft Landing
+        desc: Have a floating island surrounded by plains when it lands
+    - key: 6
+      value:
+        name: Where am I
+        desc: Be on a biome altered by Terranite Monoliths
+    - key: 7
+      value:
+        name: Witch Quest
+        desc: Complete a Witch Quest
 --- !u!4 &1150857211
 Transform:
   m_ObjectHideFlags: 0
@@ -2995,6 +3038,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2748246671456272197, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_fontSize
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748246671456272197, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 3010752030824676568, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -3022,6 +3073,10 @@ PrefabInstance:
     - target: {fileID: 3010752030824676568, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437968276079631442, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 74.2583
       objectReference: {fileID: 0}
     - target: {fileID: 3901114907079579687, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3130,6 +3185,22 @@ PrefabInstance:
     - target: {fileID: 4276773080372793231, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561038331150787552, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1065.2781
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561038331150787552, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 105.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561038331150787552, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 5.5115
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561038331150787552, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -74.258
       objectReference: {fileID: 0}
     - target: {fileID: 4803329268400056286, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: _WinScreen

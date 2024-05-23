@@ -110,6 +110,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2624319089702667378, guid: 92c9d7014a86cd24588fb11ada826605, type: 3}
   m_PrefabInstance: {fileID: 798749196643159052}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7130380769142823914 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7629530625913100262, guid: 92c9d7014a86cd24588fb11ada826605, type: 3}
+  m_PrefabInstance: {fileID: 798749196643159052}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8636784093233811024
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -118,6 +123,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2707025486543356891, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _Explication
+      value: 
+      objectReference: {fileID: 7130380769142823914}
     - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: _SoundReference.Path
       value: event:/GAME/played_monolith

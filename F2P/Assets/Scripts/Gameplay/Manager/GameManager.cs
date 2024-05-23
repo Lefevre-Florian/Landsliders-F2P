@@ -1,5 +1,7 @@
 using com.isartdigital.f2p.gameplay.manager;
 using Com.IsartDigital.F2P;
+using Com.IsartDigital.F2P.FileSystem;
+using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P.Gameplay;
 
 using System;
@@ -118,6 +120,7 @@ public class GameManager : MonoBehaviour
 
         CardPlaced.AddListener(SetModeMovingPlayer);
         PlayerMoved.AddListener(SetModeBiomeEffect);
+        OnAllEffectPlayed += CheckDesertLose;
 
         _GameStartTime = DateTime.UtcNow;
     }
@@ -161,7 +164,8 @@ public class GameManager : MonoBehaviour
     {
         currentState = State.GameEnd;
         playerCanMove = false;
-
+        Save.data.softcurrency += 20;
+        DatabaseManager.GetInstance().WriteDataToSaveFile();
         OnGameover?.Invoke(false);
     }
 
@@ -170,6 +174,9 @@ public class GameManager : MonoBehaviour
         currentState = State.GameEnd;
         playerCanMove = false;
 
+        Save.data.exp += Save.data.xpdoubled ? 6 : 3;
+        Save.data.softcurrency += 60;
+        DatabaseManager.GetInstance().WriteDataToSaveFile();
         // Track game duration
         TimeSpan lDuration = (DateTime.UtcNow - _GameStartTime).Duration();
         DataTracker.GetInstance().SendAnalytics(TRACKER_NAME, 
@@ -177,6 +184,8 @@ public class GameManager : MonoBehaviour
                                                     { TRACKER_GAME_DURATION_TURN_PARAMETER, _TurnNumber},
                                                     {TRACKER_GAME_DURATION_REALTIME_PARAMETER,  lDuration.Minutes + ":" + lDuration.Seconds}
                                                 });
+
+       
 
         OnGameover?.Invoke(true);
     }
@@ -221,6 +230,22 @@ public class GameManager : MonoBehaviour
 
         NextTurn();
     }
+
+    private void CheckDesertLose()
+    {
+        GameObject[,] lCard = GridManager.GetInstance()._Cards;
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if (lCard[i, j].GetComponent<Biome>().Type != BiomeType.desert) return;
+            }
+        }
+
+        SetModeGameover();
+    }
+
     #endregion
 
     private void OnDestroy()
@@ -233,5 +258,7 @@ public class GameManager : MonoBehaviour
 
         CardPlaced.RemoveAllListeners();
         PlayerMoved.RemoveAllListeners();
+
+        OnAllEffectPlayed -= CheckDesertLose;
     }
 }

@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2707025486543356891, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _Explication
+      value: 
+      objectReference: {fileID: 5751981097589653957}
     - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: _SoundReference.Path
       value: event:/GAME/played_canyon
@@ -262,5 +266,10 @@ MeshRenderer:
 --- !u!4 &3590885038888507081 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2071202880351957308, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
+  m_PrefabInstance: {fileID: 3272717118207043573}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5751981097589653957 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7113473768416470576, guid: d08f89a745c579f4da8f12442ebc5d87, type: 3}
   m_PrefabInstance: {fileID: 3272717118207043573}
   m_PrefabAsset: {fileID: 0}
