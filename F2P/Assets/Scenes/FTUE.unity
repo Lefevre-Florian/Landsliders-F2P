@@ -2520,9 +2520,6 @@ MonoBehaviour:
   - path: Music
     _Type: 2
     isLoaded: 0
-  - path: FTUE
-    _Type: 1
-    isLoaded: 0
   _Banks:
   - path: GAME
     _Type: 1
