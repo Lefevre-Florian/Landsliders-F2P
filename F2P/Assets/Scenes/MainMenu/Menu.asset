@@ -99,10 +99,10 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.24118072
-          value: 0.18099546
-          inSlope: 0.45297778
-          outSlope: 0.45297778
+          time: 0.22077923
+          value: 0.19017106
+          inSlope: -0.34684652
+          outSlope: -0.34684652
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
@@ -321,7 +321,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.238
+    m_Value: 0.12
   smoothness:
     m_OverrideState: 1
     m_Value: 1

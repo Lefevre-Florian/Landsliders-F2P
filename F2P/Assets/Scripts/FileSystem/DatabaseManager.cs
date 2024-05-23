@@ -77,6 +77,10 @@ namespace Com.IsartDigital.F2P.FileSystem
             lPath = Application.dataPath + DATABASE_PATH + DATABASE_NAME;
             #elif UNITY_ANDROID
             lPath = Application.persistentDataPath + DATABASE_NAME;
+            if (!File.Exists(lPath))
+            {
+                StartCoroutine(CopyDatabase());
+            }
             #endif
 
             SqliteConnection lDB = new SqliteConnection(DATABASE_SOURCE + lPath);
@@ -215,10 +219,6 @@ namespace Com.IsartDigital.F2P.FileSystem
             }
             else
             {
-                #if UNITY_ANDROID && !UNITY_EDITOR
-                CopyDatabase();
-                #endif
-
                 // New save
                 Save.data = new PlayerSave();
                 Save.data.startTime = DateTime.UtcNow;

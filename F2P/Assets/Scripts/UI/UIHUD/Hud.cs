@@ -146,7 +146,7 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
 
         private void SwitchCurrentLayerState(bool pState) => _CurrentActiveLayer.SetActive(!pState);
 
-        public void UpdateHealth() => _DeckCountLabel.text = _HandManager.DeckCount.ToString();
+        public void UpdateHealth() => _DeckCountLabel.text = _HandManager._TotalCards.ToString();
 
         private void WrapperUpdateHealth(int pCount, BiomeType pType) => UpdateHealth();
 
