@@ -8,6 +8,7 @@ using Com.IsartDigital.F2P.FTUE.Dialogues;
 using Com.IsartDigital.F2P.UI.UIHUD;
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -107,6 +108,14 @@ namespace Com.IsartDigital.F2P.FTUE
             {
                 StartFTUE();
             }
+
+            StartCoroutine(SetPlayerFtue());
+        }
+
+        IEnumerator SetPlayerFtue()
+        {
+            yield return new WaitForEndOfFrame();
+            Player.GetInstance()._InFTUE = true;
         }
 
         public void UpdatePhase()
