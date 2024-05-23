@@ -298,7 +298,7 @@ public class Player : MonoBehaviour
 
         }
 
-        //GameManager.GetInstance().SetModeGameover();
+        GameManager.GetInstance().SetModeGameover();
     }
 
     private void OnDestroy()
