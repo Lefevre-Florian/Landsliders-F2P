@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Dialogues:
   - Advice-A-01
-  - Advice-A-02
   - Advice-A-03
   - Advice-A-04
+  - Advice-A-05
+  - Advice-A-02
   _Animation: 0
   _DialogueType: 1

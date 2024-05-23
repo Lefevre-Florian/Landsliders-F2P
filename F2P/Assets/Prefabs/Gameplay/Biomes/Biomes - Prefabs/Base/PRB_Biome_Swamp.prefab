@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2707025486543356891, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _Explication
+      value: 
+      objectReference: {fileID: 6806443813000750535}
     - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: _SoundReference.Path
       value: event:/GAME/played_swamp
@@ -380,5 +384,10 @@ PrefabInstance:
 --- !u!4 &4400763812517215160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6001513207080209692, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+  m_PrefabInstance: {fileID: 7951966239842088612}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6806443813000750535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3471808828087931747, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
   m_PrefabInstance: {fileID: 7951966239842088612}
   m_PrefabAsset: {fileID: 0}

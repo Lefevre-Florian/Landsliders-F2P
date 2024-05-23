@@ -45,6 +45,8 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
 
             m_DialogueManager.OnScreenTouched += Next;
 
+            GameFlowManager.Paused?.Invoke();
+
             if (_Type == Animation.NONE)
                 DisplayText();
             else
@@ -144,6 +146,8 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
             if (_DialogueIdx == m_DialogueIDs.Length - 1)
             {
                 OnDialogueEnded?.Invoke();
+                GameFlowManager.Resumed?.Invoke();
+
                 Destroy(gameObject);
                 return;
             }

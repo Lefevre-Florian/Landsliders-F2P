@@ -6,6 +6,7 @@ using Com.IsartDigital.F2P.Biomes;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 // Author (CR): Paul Vincencini
 namespace com.isartdigital.f2p.gameplay.manager
@@ -42,6 +43,8 @@ namespace com.isartdigital.f2p.gameplay.manager
         private const string CARDPLAYED_TAG = "CardPlayed";
 
         [HideInInspector] public GameObject[,] _Cards = new GameObject[3,3];
+
+        [HideInInspector] public UnityEvent GridGenerated = new UnityEvent();
 
         // Get / Set 
         public List<Biome> Biomes {
@@ -117,6 +120,8 @@ namespace com.isartdigital.f2p.gameplay.manager
                 }
                 lXArrayIndex++;
             }
+
+            GridGenerated?.Invoke();
         }
 
         #region Coordinates Utils

@@ -9,6 +9,7 @@ using Com.IsartDigital.F2P.FileSystem;
 using System.Reflection.Emit;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
@@ -16,6 +17,17 @@ public class ShopManager : MonoBehaviour
     private GameObject _HardCurrencyLabel;
     [SerializeField]
     private GameObject _SoftCurrencyLabel;
+
+    private GameObject _ButtonObject;
+
+    [SerializeField] private GameObject _XPDoubledObject;
+    [SerializeField] private GameObject _DeckUpgradeObject;
+    [SerializeField] private GameObject _FreeClaimObject;
+    [SerializeField] private GameObject _XPMoneyIcon;
+    [SerializeField] private GameObject _DeckMoneyIcon;
+
+
+    private const string BOUGHTSTRING = "Bought";
 
     [SerializeField] private int _CommonChestPrice;
     [SerializeField] private int _RareChestPrice;
@@ -31,13 +43,34 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private int _FifthSCPrice;
     [SerializeField] private int _SixthSCPrice;
 
-
+    
     [SerializeField] private int _CommonShardNB;
     [SerializeField] private int _RareShardNB;
     [SerializeField] private int _LegendaryShardNB;
     [SerializeField] private int _DailyChestShardNB;
 
-    
+    private void Start()
+    {
+        if (Save.data.xpdoubled)
+        {
+            _XPDoubledObject.transform.GetChild(0).GetComponent<Button>().enabled = false;
+            _XPDoubledObject.GetComponentInChildren<TextMeshProUGUI>().text = BOUGHTSTRING;
+            _XPMoneyIcon.gameObject.SetActive(false);
+        }
+        if (Save.data.startingdecknb == 14)
+        {
+            _DeckUpgradeObject.transform.GetChild(0).GetComponent<Button>().enabled = false;
+            _DeckUpgradeObject.GetComponentInChildren<TextMeshProUGUI>().text = BOUGHTSTRING;
+            _DeckMoneyIcon.gameObject.SetActive(false);
+        }
+        if (Save.data.freegiftclaim)
+        {
+            _FreeClaimObject.GetComponent<CountDown>().enabled = true;
+            _FreeClaimObject.GetComponentInChildren<TextMeshProUGUI>().text = _FreeClaimObject.GetComponent<CountDown>().countdownText.ToString();
+            _FreeClaimObject.GetComponent<Button>().enabled = false;
+        }
+    }
+
     public void BuyHardCurrency(int pHardCurrency)
     {
         Save.data.hardcurrency += pHardCurrency;
@@ -80,10 +113,20 @@ public class ShopManager : MonoBehaviour
             }
             Save.data.softcurrency -= _DailyChestShardPrice;
             _SoftCurrencyLabel.GetComponentInChildren<TextMeshProUGUI>().text = Save.data.softcurrency.ToString();
+            _ButtonObject.GetComponent<CountDown>().enabled = true;
+            _ButtonObject.transform.parent.GetChild(1).gameObject.SetActive(false);
+            _ButtonObject.GetComponentInChildren<TextMeshProUGUI>().text = _FreeClaimObject.GetComponent<CountDown>().countdownText.ToString();
+            _ButtonObject.GetComponent<Button>().enabled = false;
+
             DatabaseManager.GetInstance().WriteDataToSaveFile();
             print("PurchaseComplet");
         }
         else print("PurchasedFailed");    
+    }
+
+    public void GetButtonObject(GameObject pGameObject)
+    {
+        _ButtonObject = pGameObject;
     }
 
     public void DeckUpgrade()
@@ -91,6 +134,9 @@ public class ShopManager : MonoBehaviour
         if(Save.data.startingdecknb < 14)
         {
             Save.data.startingdecknb += 2;
+            _DeckUpgradeObject.transform.GetChild(0).GetComponent<Button>().enabled = false;
+            _DeckUpgradeObject.GetComponentInChildren<TextMeshProUGUI>().text = BOUGHTSTRING;
+            _DeckMoneyIcon.gameObject.SetActive(false);
             DatabaseManager.GetInstance().WriteDataToSaveFile();
         }
     }
@@ -100,18 +146,19 @@ public class ShopManager : MonoBehaviour
         if (!Save.data.xpdoubled)
         {
             Save.data.xpdoubled = true;
+            _XPDoubledObject.transform.GetChild(0).GetComponent<Button>().enabled = false;
+            _XPDoubledObject.GetComponentInChildren<TextMeshProUGUI>().text = BOUGHTSTRING;
+            _XPMoneyIcon.gameObject.SetActive(false);
             DatabaseManager.GetInstance().WriteDataToSaveFile();
         }
     }
 
     public void Chest(int pFragments)
     {
-        int pPrice;
+        int pPrice = 0;
         if (pFragments == _CommonShardNB) pPrice = _CommonChestPrice;
         else if (pFragments == _RareShardNB) pPrice = _RareChestPrice;
         else if (pFragments == _LegendaryShardNB) pPrice = _LegendaryChestPrice;
-        else pPrice = 0;
-
         if (Save.data.hardcurrency >= pPrice)
         {
             int lCardLength = Save.data.cards.Length;
@@ -124,12 +171,8 @@ public class ShopManager : MonoBehaviour
             }
             Save.data.hardcurrency -= pPrice;
             _HardCurrencyLabel.GetComponentInChildren<TextMeshProUGUI>().text = Save.data.hardcurrency.ToString();
-            DatabaseManager.GetInstance().WriteDataToSaveFile();
-            print("PurchaseComplet");
+            DatabaseManager.GetInstance().WriteDataToSaveFile();   
         }
-
-        else print("PurchasedFailed");
-        
     }
 
     public void Shard(int pFragments)
@@ -142,11 +185,30 @@ public class ShopManager : MonoBehaviour
             Save.data.fragments[lChosenCard].fragment += pFragments;
             Save.data.softcurrency -= _DailyShardPrice;
             _SoftCurrencyLabel.GetComponentInChildren<TextMeshProUGUI>().text = Save.data.softcurrency.ToString();
+            _ButtonObject.GetComponent<CountDown>().enabled = true;
+            _ButtonObject.transform.GetChild(0).gameObject.SetActive(false);
+            _ButtonObject.GetComponentInChildren<TextMeshProUGUI>().text = _FreeClaimObject.GetComponent<CountDown>().countdownText.ToString();
+            _ButtonObject.GetComponent<Button>().enabled = false;
             DatabaseManager.GetInstance().WriteDataToSaveFile();
-
-            print("PurchaseComplet");
         }
-        else print("PurchasedFailed");
+        
+    }
+
+    public void FreeClaim(int pFragments)
+    {
+        int lCardLength = Save.data.cards.Length;
+        while (pFragments > 0)
+        {
+            int lChosenCard = UnityEngine.Random.Range(0, lCardLength);
+            int lRandomFragments = UnityEngine.Random.Range(1, pFragments);
+            Save.data.fragments[lChosenCard].fragment += lRandomFragments;
+            pFragments -= lRandomFragments;
+        }
+        Save.data.freegiftclaim = true;
+        _FreeClaimObject.GetComponent<CountDown>().enabled = true;
+        _FreeClaimObject.GetComponentInChildren<TextMeshProUGUI>().text = _FreeClaimObject.GetComponent<CountDown>().countdownText.ToString();
+        _FreeClaimObject.GetComponent<Button>().enabled = false;
+        DatabaseManager.GetInstance().WriteDataToSaveFile();
     }
 
     public void RandomChest()
@@ -196,11 +258,11 @@ public class ShopManager : MonoBehaviour
             Save.data.hardcurrency -= _LuckyChestPrice;
             _HardCurrencyLabel.GetComponentInChildren<TextMeshProUGUI>().text = Save.data.hardcurrency.ToString();
             DatabaseManager.GetInstance().WriteDataToSaveFile();    
-            print("PurchaseComplet");
+            
         }
-        print("PurchaseFailed");
+        
     }
 
-
+  
 
 }

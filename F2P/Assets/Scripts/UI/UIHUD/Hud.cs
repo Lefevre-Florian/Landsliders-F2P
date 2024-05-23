@@ -1,3 +1,7 @@
+using Com.IsartDigital.F2P.Biomes;
+
+using TMPro;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,12 +30,22 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
         [SerializeField] private Transform _LoseScreen = null;
         [SerializeField] private Transform _WinScreen = null;
 
+        [Header("Sign")]
+        [SerializeField] private GameObject _HandTurnMask = null;
+        [SerializeField] private GameObject _PlayerTurnMask = null;
+
+        [Space(2)]
+        [SerializeField] private TextMeshProUGUI _DeckCountLabel = null;
+
         [Header("Scene management")]
         [SerializeField] private int _MainMenuIDX = 0;
         [SerializeField] private bool _UseLoadingScreen = false;
 
         // Variables
         private GameManager _GameManager = null;
+        private HandManager _HandManager = null;
+
+        private GameObject _CurrentActiveLayer = null;
 
         private void Awake()
         {
@@ -48,17 +62,39 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
             _GameManager = GameManager.GetInstance();
             _GameManager.OnGameover += DisplayGameEndPanel;
 
+            _HandManager = HandManager.GetInstance();
+
             _PauseScreen.gameObject.SetActive(false);
+
+            // Flow (Renderer)
+            SwitchToCardMode();
+
+            _GameManager.OnAllEffectPlayed += SwitchToCardMode;
+
+
+            // Flow load hand
+            GameManager.CardPlaced.AddListener(UpdateHealth);
+            GameManager.CardPlaced.AddListener(SwitchToMoveMode);
+
+
+            print(_HandManager.DeckCount);
+            UpdateHealth();
+
+            HandManager.OnDeckAltered.AddListener(WrapperUpdateHealth);
         }
 
         public void Pause()
         {
+            GameFlowManager.Paused?.Invoke();
+
             Time.timeScale = 0f;
             _PauseScreen.gameObject.SetActive(true);
         }
 
         public void Resume()
         {
+            GameFlowManager.Resumed?.Invoke();
+
             Time.timeScale = 1f;
             _PauseScreen.gameObject.SetActive(false);
         }
@@ -86,6 +122,34 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
                 LoadManager.GetInstance().StartLoading(pSceneIDX);
         }
 
+        /// Rendering turn phases
+        private void SwitchToMoveMode()
+        {
+            TEMPCard.OnFocus -= SwitchCurrentLayerState;
+
+            SwitchLayerState(_HandTurnMask, true);
+            SwitchLayerState(_PlayerTurnMask, false);
+
+            _CurrentActiveLayer = _HandTurnMask;
+        }
+
+        private void SwitchToCardMode()
+        {
+            SwitchLayerState(_HandTurnMask, false);
+            SwitchLayerState(_PlayerTurnMask, true);
+
+            _CurrentActiveLayer = _PlayerTurnMask;
+            TEMPCard.OnFocus += SwitchCurrentLayerState;
+        }
+
+        private void SwitchLayerState(GameObject pLayer, bool pState) => pLayer.SetActive(pState);
+
+        private void SwitchCurrentLayerState(bool pState) => _CurrentActiveLayer.SetActive(!pState);
+
+        public void UpdateHealth() => _DeckCountLabel.text = _HandManager.DeckCount.ToString();
+
+        private void WrapperUpdateHealth(int pCount, BiomeType pType) => UpdateHealth();
+
         private void OnDestroy()
         {
             if (_Instance == this)
@@ -93,7 +157,14 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
                 _Instance = null;
 
                 _GameManager.OnGameover -= DisplayGameEndPanel;
+                _GameManager.OnAllEffectPlayed -= SwitchToCardMode;
                 _GameManager = null;
+
+                GameManager.CardPlaced.RemoveListener(SwitchToMoveMode);
+                GameManager.CardPlaced.RemoveListener(UpdateHealth);
+
+                HandManager.OnDeckAltered.RemoveListener(WrapperUpdateHealth);
+                TEMPCard.OnFocus -= SwitchCurrentLayerState;
             }
         }
     }

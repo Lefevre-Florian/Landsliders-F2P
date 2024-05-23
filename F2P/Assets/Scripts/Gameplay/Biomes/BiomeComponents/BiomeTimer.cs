@@ -77,7 +77,11 @@ namespace Com.IsartDigital.F2P.Biomes
                 _InternalTimer = _Timer;
 
             if (_Label != null)
+            {
+                _Label.transform.parent.GetComponent<Canvas>().worldCamera = Camera.main;
                 _Label.text = _InternalTimer.ToString();
+            }
+                
         }
 
         private void OnDestroy()

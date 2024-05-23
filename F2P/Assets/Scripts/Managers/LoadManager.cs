@@ -28,6 +28,9 @@ namespace Com.IsartDigital.F2P.UI
         [Header("Prefabs")]
         [SerializeField] private GameObject _LoadingScreenPrefab;
 
+        [Header("Utils")]
+        [SerializeField] private GameObject _UIContainer = null;
+
         // Variables
         private Coroutine _LoadingTimer = null;
 
@@ -57,6 +60,8 @@ namespace Com.IsartDigital.F2P.UI
         /// <returns></returns>
         private IEnumerator LoadingScene(int pScnIDX)
         {
+            _UIContainer.SetActive(false);
+
             GameObject lLoadingScreen = Instantiate(_LoadingScreenPrefab, transform.parent);
 
             AsyncOperation lAsyncLoader = SceneManager.LoadSceneAsync(pScnIDX);

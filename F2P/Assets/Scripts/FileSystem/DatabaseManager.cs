@@ -77,11 +77,6 @@ namespace Com.IsartDigital.F2P.FileSystem
             lPath = Application.dataPath + DATABASE_PATH + DATABASE_NAME;
             #elif UNITY_ANDROID
             lPath = Application.persistentDataPath + DATABASE_NAME;
-            
-            if (!File.Exists(lPath))
-            {
-                _Session = StartCoroutine(CopyDatabase());
-            }
             #endif
 
             SqliteConnection lDB = new SqliteConnection(DATABASE_SOURCE + lPath);
