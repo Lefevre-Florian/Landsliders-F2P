@@ -1,3 +1,7 @@
+using Com.IsartDigital.F2P.Biomes;
+
+using TMPro;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,12 +34,16 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
         [SerializeField] private GameObject _HandTurnMask = null;
         [SerializeField] private GameObject _PlayerTurnMask = null;
 
+        [Space(2)]
+        [SerializeField] private TextMeshProUGUI _DeckCountLabel = null;
+
         [Header("Scene management")]
         [SerializeField] private int _MainMenuIDX = 0;
         [SerializeField] private bool _UseLoadingScreen = false;
 
         // Variables
         private GameManager _GameManager = null;
+        private HandManager _HandManager = null;
 
         private GameObject _CurrentActiveLayer = null;
 
@@ -54,13 +62,23 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
             _GameManager = GameManager.GetInstance();
             _GameManager.OnGameover += DisplayGameEndPanel;
 
+            _HandManager = HandManager.GetInstance();
+
             _PauseScreen.gameObject.SetActive(false);
 
             // Flow (Renderer)
             SwitchToCardMode();
 
             _GameManager.OnAllEffectPlayed += SwitchToCardMode;
+
+
+            // Flow load hand
+            GameManager.CardPlaced.AddListener(UpdateHealth);
             GameManager.CardPlaced.AddListener(SwitchToMoveMode);
+
+            UpdateHealth();
+
+            HandManager.OnDeckAltered.AddListener(WrapperUpdateHealth);
         }
 
         public void Pause()
@@ -122,10 +140,13 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
             TEMPCard.OnFocus += SwitchCurrentLayerState;
         }
 
-
         private void SwitchLayerState(GameObject pLayer, bool pState) => pLayer.SetActive(pState);
 
         private void SwitchCurrentLayerState(bool pState) => _CurrentActiveLayer.SetActive(!pState);
+
+        public void UpdateHealth() => _DeckCountLabel.text = _HandManager.DeckCount.ToString();
+
+        private void WrapperUpdateHealth(int pCount, BiomeType pType) => UpdateHealth();
 
         private void OnDestroy()
         {
@@ -138,6 +159,9 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
                 _GameManager = null;
 
                 GameManager.CardPlaced.RemoveListener(SwitchToMoveMode);
+                GameManager.CardPlaced.RemoveListener(UpdateHealth);
+
+                HandManager.OnDeckAltered.RemoveListener(WrapperUpdateHealth);
                 TEMPCard.OnFocus -= SwitchCurrentLayerState;
             }
         }

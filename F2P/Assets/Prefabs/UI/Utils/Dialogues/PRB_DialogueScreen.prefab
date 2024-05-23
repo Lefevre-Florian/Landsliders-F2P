@@ -570,7 +570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LabelUIText: {fileID: 7228113793607035598}
-  m_DisplayDuration: 2.5
+  m_DisplayDuration: 1
   _AnimationDuration: 1
   _DialogueBox: {fileID: 5008251918128552970}
   _CharacterRenderer: {fileID: 6482306603087596648}

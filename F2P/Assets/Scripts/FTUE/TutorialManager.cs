@@ -133,7 +133,12 @@ namespace Com.IsartDigital.F2P.FTUE
                                     .SetEffect(3, 1, DeckEffect.AlterationType.Negative);
         }
 
-        private void UpdateHand() => HandManager.GetInstance().CreateHand(CurrentPhase.StartNBCards);
+        private void UpdateHand()
+        {
+            HandManager.GetInstance().CreateHand(CurrentPhase.StartNBCards);
+            if (!(CurrentPhaseID == 1 && _TurnIdx == 0))
+                Hud.GetInstance().UpdateHealth();
+        }
 
         private void UpdateDeck()
         {
@@ -147,6 +152,9 @@ namespace Com.IsartDigital.F2P.FTUE
                 lCards[i] = new Tuple<BiomeType, int>(CurrentPhase.Decks[lIdx].deck.cards[i].type,
                                                       CurrentPhase.Decks[lIdx].deck.cards[i].quantity);
             HandManager.GetInstance().CreateDeck(lCards);
+
+            if (!(CurrentPhaseID == 1 && _TurnIdx == 0))
+                Hud.GetInstance().UpdateHealth();
 
             if (CurrentPhase.Decks[lIdx].updateHand)
                 UpdateHand();
