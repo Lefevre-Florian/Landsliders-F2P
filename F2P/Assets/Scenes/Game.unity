@@ -2806,7 +2806,7 @@ MonoBehaviour:
         desc: Be on a biome altered by Terranite Monoliths
     - key: 7
       value:
-        name: Witch Quest
+        name: The Witch Path
         desc: Complete a Witch Quest
 --- !u!4 &1150857211
 Transform:
