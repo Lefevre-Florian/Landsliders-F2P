@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1740976208247641879}
   - component: {fileID: 1391488775470668730}
   - component: {fileID: 971134675495411336}
+  - component: {fileID: 8550998688872510964}
   m_Layer: 0
   m_Name: Dragon
   m_TagString: Untagged
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _NbCardsBurnt: 4
   _FlySFXEmitter: {fileID: 971134675495411336}
+  _BreathSFXEmitter: {fileID: 8550998688872510964}
 --- !u!114 &971134675495411336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,6 +69,25 @@ MonoBehaviour:
       Data3: 2114730376
       Data4: 2056257365
     Path: event:/GAME/dragon_moving
+--- !u!114 &8550998688872510964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4436327880437374050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: 171964418
+      Data2: 1297324700
+      Data3: -894007675
+      Data4: 652956786
+    Path: event:/GAME/dragon_breath
 --- !u!1001 &2594374647293670711
 PrefabInstance:
   m_ObjectHideFlags: 0

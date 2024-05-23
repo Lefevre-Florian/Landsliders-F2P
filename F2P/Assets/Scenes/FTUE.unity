@@ -2795,6 +2795,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1584301609}
   - component: {fileID: 1584301608}
+  - component: {fileID: 1584301611}
+  - component: {fileID: 1584301610}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2818,8 +2820,8 @@ MonoBehaviour:
   _Player: {fileID: 6110220630346872215, guid: fc2c9f220e004af41a39e714ffc80dfa, type: 3}
   _BasePlayerGridPos: {x: 0, y: 1}
   _SecondsBetweenEachPriorityExecution: 0.25
-  _WinJingle: {fileID: 0}
-  _LooseJingle: {fileID: 0}
+  _WinJingle: {fileID: 1584301611}
+  _LooseJingle: {fileID: 1584301610}
   cardPlayed: 0
   playerMoved: 0
   playerCanMove: 0
@@ -2841,6 +2843,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1007060143}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1584301610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584301607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: 1312698984
+      Data2: 1238938177
+      Data3: 839789980
+      Data4: 743484004
+    Path: event:/GAME/loose_jingle
+--- !u!114 &1584301611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584301607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -61357557
+      Data2: 1077576666
+      Data3: 32715441
+      Data4: -2139295896
+    Path: event:/GAME/win_jingle
 --- !u!4 &1587467352 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
