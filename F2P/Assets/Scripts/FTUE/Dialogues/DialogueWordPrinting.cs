@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using System.Collections;
 
 using UnityEngine;
@@ -8,6 +10,8 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
 {
     public class DialogueWordPrinting : DialogueScreen
     {
+        private const string FMOD_PARAM = "FTE PHASES";
+
         [Header("Juiciness")]
         [SerializeField][Min(0.5f)] private float _AnimationDuration = 1f;
 
@@ -32,6 +36,9 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
 
         private Vector3 _InitialPosition = default;
 
+        private Dialogue[] _Dialogues = new Dialogue[0];
+        private EventInstance _AudioInstance = default;
+
         // Event
         public UnityEvent OnDialogueEnded;
         public UnityEvent OnDialogueStarted;
@@ -53,13 +60,11 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
                 PlayAnimation();
         }
 
-        public void SetDialogues(string[] pLineIDs, Animation pAnimationType = Animation.NONE)
+        public void SetDialogues(DialogueFlowSO pLineIDs, Animation pAnimationType = Animation.NONE)
         {
-            m_DialogueIDs = pLineIDs;
+            _Dialogues = pLineIDs.Dialogues;
             _Type = pAnimationType;
         }
-
-        public void SetDialogue(string pLineID, Animation pAnimationTye = Animation.NONE) => SetDialogues(new string[] { pLineID }, pAnimationTye);
 
         protected override IEnumerator WriteDialogue()
         {
@@ -67,17 +72,27 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
 
             _PrintFinished = false;
 
-            string lCurrent = m_DialogueManager.GetDialogue(m_DialogueIDs[_DialogueIdx]);
-            float lPromptTime = m_DisplayDuration / lCurrent.Length;
+            string lCurrent = m_DialogueManager.GetDialogue(_Dialogues[_DialogueIdx].ID);
+            float lPromptTime = _Dialogues[_DialogueIdx].Voicing.Duration / lCurrent.Length;
 
             int lLength = lCurrent.Length;
             m_LabelUIText.maxVisibleCharacters = 0;
             m_LabelUIText.text = lCurrent;
 
+            _AudioInstance = RuntimeManager.CreateInstance(_Dialogues[_DialogueIdx].Voicing.Audio);
+            _AudioInstance.setParameterByName(FMOD_PARAM, _Dialogues[_DialogueIdx].Voicing.FMODKey);
+            _AudioInstance.start();
+
             for (int i = 0; i < lLength; i++)
             {
                 m_LabelUIText.maxVisibleCharacters += 1;
                 yield return new WaitForSeconds(lPromptTime);
+            }
+
+            if (_AudioInstance.isValid())
+            {
+                _AudioInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                _AudioInstance.release();
             }
 
             OnDialoguePaused?.Invoke();
@@ -131,19 +146,25 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
             {
                 _PrintFinished = true;
 
+                if(_AudioInstance.isValid())
+                {
+                    _AudioInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    _AudioInstance.release();
+                }
+
                 if (m_DialogueWriter != null)
                     StopAllCoroutines();
                 m_DialogueWriter = null;
 
                 _DialogueBox.position = _InitialPosition;
-                m_LabelUIText.maxVisibleCharacters = m_DialogueManager.GetDialogue(m_DialogueIDs[_DialogueIdx]).Length;
+                m_LabelUIText.maxVisibleCharacters = m_DialogueManager.GetDialogue(_Dialogues[_DialogueIdx].ID).Length;
 
                 return;
             }
                 
 
             // Skip to next dialogue
-            if (_DialogueIdx == m_DialogueIDs.Length - 1)
+            if (_DialogueIdx == _Dialogues.Length - 1)
             {
                 OnDialogueEnded?.Invoke();
                 GameFlowManager.Resumed?.Invoke();
@@ -164,6 +185,12 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
             OnDialogueEnded.RemoveAllListeners();
             OnDialoguePaused.RemoveAllListeners();
             OnDialogueStarted.RemoveAllListeners();
+
+            if (_AudioInstance.isValid())
+            {
+                _AudioInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                _AudioInstance.release();
+            }
 
             base.OnDestroy();
         }

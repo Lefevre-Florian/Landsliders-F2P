@@ -225,7 +225,7 @@ namespace Com.IsartDigital.F2P.FTUE
             // Dialogues
             GameObject lTextBox = Instantiate(DialogueManager.GetInstance().GetDisplay(CurrentPhase.DialogueFlow[_DialoguePhaseIdx].Type), Hud.GetInstance().transform);
             _CurrentTextBox = lTextBox.GetComponent<DialogueWordPrinting>();
-            _CurrentTextBox.SetDialogues(CurrentPhase.DialogueFlow[_DialoguePhaseIdx].Dialogues,
+            _CurrentTextBox.SetDialogues(CurrentPhase.DialogueFlow[_DialoguePhaseIdx],
                                          CurrentPhase.DialogueFlow[_DialoguePhaseIdx].Tween);
 
             if (CurrentPhase.DialogueFlow.Length > 1)
@@ -263,7 +263,7 @@ namespace Com.IsartDigital.F2P.FTUE
         {
             // Last dialogue
             GameObject lTextBox = Instantiate(DialogueManager.GetInstance().GetDisplay(_EndDialogue.Type), Hud.GetInstance().transform);
-            lTextBox.GetComponent<DialogueWordPrinting>().SetDialogues(_EndDialogue.Dialogues,
+            lTextBox.GetComponent<DialogueWordPrinting>().SetDialogues(_EndDialogue,
                                                                        _EndDialogue.Tween);
 
             // Save

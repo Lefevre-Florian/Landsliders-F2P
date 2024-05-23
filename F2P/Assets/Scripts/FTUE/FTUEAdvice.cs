@@ -110,7 +110,7 @@ namespace Com.IsartDigital.F2P.FTUE
         private void CreateAdvice(int pID)
         {
             _AdviceScreen.SetActive(true);
-            _AdviceText.text = _DialogueManager.GetDialogue(_Advices.Dialogues[pID]);
+            _AdviceText.text = _DialogueManager.GetDialogue(_Advices.Dialogues[pID].ID);
         }
 
         private void OnDestroy()
