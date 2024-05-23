@@ -1,7 +1,8 @@
+using FMOD.Studio;
+using FMODUnity;
+
 using System;
 using System.Collections;
-
-using TMPro;
 
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,12 +18,16 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
         {
             public Sprite image;
             public string id;
+            public string audioValue;
         }
+
+        private const string FMOD_PARAMETER = "FTE PHASES";
 
         [SerializeField] private Image _DisplayImage = null;
 
         [Header("Flow")]
         [SerializeField] private StoryPage[] _Pages = new StoryPage[0];
+        [SerializeField] private EventReference _AudioDialogue = default;
 
         [Space(2)]
         [SerializeField][Range(.01f, 10f)] private float _TimeBeforeSwitchingPage = 0.5f;
@@ -32,6 +37,8 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
         private string _CurrentLine = "";
 
         private bool _Skip = false;
+
+        private EventInstance _DialogueInstance = default;
 
         // Events
         [HideInInspector]
@@ -58,9 +65,14 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
 
             float lSpeed = 1f / _TimeBeforeSwitchingPage;
 
+            _DialogueInstance = RuntimeManager.CreateInstance(_AudioDialogue);
+            _DialogueInstance.start();
+
             while (_CurrentLineID <= m_DialogueIDs.Length - 1)
             {
                 _Skip = false;
+                _DialogueInstance.setParameterByName(FMOD_PARAMETER, _CurrentLineID);
+                _DialogueInstance.start();
 
                 m_LabelUIText.text = "";
 
@@ -98,9 +110,12 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
                         yield return new WaitForEndOfFrame();
                     }
                 }
-                
+
                 _CurrentLineID += 1;
             }
+
+            if (_DialogueInstance.isValid())
+                _DialogueInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
             StopCoroutine(m_DialogueWriter);
             m_DialogueManager.OnScreenTouched -= SkipTextPrinting;
@@ -137,6 +152,9 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
                 m_DialogueManager.OnScreenTouched -= SkipTextPrinting;
                 m_DialogueManager.OnScreenTouched -= WaitForContinue;
             }
+
+            if (_DialogueInstance.isValid())
+                _DialogueInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
             OnDialogueEnded.RemoveAllListeners();
             base.OnDestroy();

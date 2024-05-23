@@ -517,6 +517,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: m_DisplayDuration
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _AudioDialogue.Path
+      value: event:/GAME/fTE_narra
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
       propertyPath: _Pages.Array.data[0].id
       value: Narr-A-01
       objectReference: {fileID: 0}
@@ -531,6 +539,22 @@ PrefabInstance:
     - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
       propertyPath: _Pages.Array.data[3].id
       value: Narr-A-04
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _AudioDialogue.Guid.Data1
+      value: 28128172
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _AudioDialogue.Guid.Data2
+      value: 1165871743
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _AudioDialogue.Guid.Data3
+      value: -842602865
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _AudioDialogue.Guid.Data4
+      value: -377576391
       objectReference: {fileID: 0}
     - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
       propertyPath: _Pages.Array.data[0].image
@@ -548,6 +572,42 @@ PrefabInstance:
       propertyPath: _Pages.Array.data[3].image
       value: 
       objectReference: {fileID: 21300000, guid: f7fbe7f9ec1d41742b8a182d88494f90, type: 3}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[0].audio.Path
+      value: event:/GAME/fTE_narra
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[0].audioValue
+      value: TEXT1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[1].audioValue
+      value: TEXT2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[2].audioValue
+      value: TEXT3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[3].audioValue
+      value: TEXT4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[0].audio.Guid.Data1
+      value: 28128172
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[0].audio.Guid.Data2
+      value: 1165871743
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[0].audio.Guid.Data3
+      value: -842602865
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[0].audio.Guid.Data4
+      value: -377576391
+      objectReference: {fileID: 0}
     - target: {fileID: 7155843257178268184, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2460,11 +2520,18 @@ MonoBehaviour:
   - path: Music
     _Type: 2
     isLoaded: 0
+  - path: FTUE
+    _Type: 1
+    isLoaded: 0
   _Banks:
   - path: GAME
     _Type: 1
     isLoaded: 0
     _ScenesLinked: 0200000003000000
+  - path: FTUE
+    _Type: 1
+    isLoaded: 0
+    _ScenesLinked: 03000000
   _VCATypes:
   - _VCAPath: vca:/Music
     _Type: 2

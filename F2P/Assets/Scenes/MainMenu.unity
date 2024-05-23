@@ -2093,6 +2093,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1073259427}
     - target: {fileID: 1172150034957494502, guid: 478d4c030b26b4a4688f8053081f74cd, type: 3}
+      propertyPath: _AmbianceSFXEmitter
+      value: 
+      objectReference: {fileID: 2040455427}
+    - target: {fileID: 1172150034957494502, guid: 478d4c030b26b4a4688f8053081f74cd, type: 3}
       propertyPath: _IsUsingLoadingScreen
       value: 1
       objectReference: {fileID: 0}
@@ -3122,6 +3126,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2040455426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2040455428}
+  - component: {fileID: 2040455427}
+  m_Layer: 0
+  m_Name: Ambiance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2040455427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040455426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: 1996663504
+      Data2: 1084370435
+      Data3: 101852339
+      Data4: -1642250707
+    Path: event:/GAME/amb_menu
+--- !u!4 &2040455428
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040455426}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2126104014 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2205030273184119925, guid: d4da026f3522cf242a3078d56de4b836, type: 3}
@@ -6390,5 +6445,6 @@ SceneRoots:
   - {fileID: 1129044562}
   - {fileID: 618050855}
   - {fileID: 880029043}
-  - {fileID: 1073259428}
   - {fileID: 297891697}
+  - {fileID: 1073259428}
+  - {fileID: 2040455428}
