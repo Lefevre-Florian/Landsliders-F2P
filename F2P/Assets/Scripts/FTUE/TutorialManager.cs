@@ -146,7 +146,7 @@ namespace Com.IsartDigital.F2P.FTUE
         {
             HandManager.GetInstance().CreateHand(CurrentPhase.StartNBCards);
             if (!(CurrentPhaseID == 1 && _TurnIdx == 0))
-                Hud.GetInstance().UpdateHealth();
+                Hud.GetInstance().Lifebar.UpdateHealth();
         }
 
         private void UpdateDeck()
@@ -163,7 +163,7 @@ namespace Com.IsartDigital.F2P.FTUE
             HandManager.GetInstance().CreateDeck(lCards);
 
             if (!(CurrentPhaseID == 1 && _TurnIdx == 0))
-                Hud.GetInstance().UpdateHealth();
+                Hud.GetInstance().Lifebar.UpdateHealth();
 
             if (CurrentPhase.Decks[lIdx].updateHand)
                 UpdateHand();
