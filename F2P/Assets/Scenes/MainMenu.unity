@@ -1976,6 +1976,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 927547436}
     m_Modifications:
+    - target: {fileID: 5303027909718028920, guid: 9c8a33b1af0d81c4c9e4d529ff735349, type: 3}
+      propertyPath: _UIContainer
+      value: 
+      objectReference: {fileID: 1129044558}
     - target: {fileID: 7503488287599980504, guid: 9c8a33b1af0d81c4c9e4d529ff735349, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
