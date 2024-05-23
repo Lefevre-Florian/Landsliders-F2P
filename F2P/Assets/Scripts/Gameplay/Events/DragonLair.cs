@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using com.isartdigital.f2p.gameplay.manager;
 using UnityEngine;
 
 // Author (CR): Dorian Husson

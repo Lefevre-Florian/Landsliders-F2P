@@ -93,6 +93,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e439c090b32367649aff02f808afeaab, type: 3}
+--- !u!1 &3845211208835014118 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 954471583390804785, guid: e439c090b32367649aff02f808afeaab, type: 3}
+  m_PrefabInstance: {fileID: 4062838270696928983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7654350025993478315 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5934529532891977340, guid: e439c090b32367649aff02f808afeaab, type: 3}
@@ -106,6 +111,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2707025486543356891, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _Explication
+      value: 
+      objectReference: {fileID: 3845211208835014118}
     - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: _SoundReference.Path
       value: event:/GAME/played_desert

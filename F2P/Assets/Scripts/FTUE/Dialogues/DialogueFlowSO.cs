@@ -10,12 +10,12 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
         [SerializeField] private string[] _Dialogues = new string[0];
 
         [SerializeField] private DialogueWordPrinting.Animation _Animation = DialogueWordPrinting.Animation.NONE;
-        [SerializeField] private bool _DisplaySprite = true;
+        [SerializeField] private DialogueManager.DisplayType _DialogueType = default;
 
         public string[] Dialogues { get { return _Dialogues; } }
 
         public DialogueWordPrinting.Animation Tween { get { return _Animation; } }
 
-        public bool DisplaySprite { get { return _DisplaySprite; } }
+        public DialogueManager.DisplayType Type { get { return _DialogueType; } }
     }
 }

@@ -80,6 +80,7 @@ namespace Com.IsartDigital.F2P.Biomes
             lBiomes.RemoveAll(x => x.Type == _Biome.Type);
             lBiomes.RemoveAll(x => x.GetComponent<BiomeFreeze>() != null);
             lBiomes.RemoveAll(x => _StoppingBiome.Contains(x.Type));
+            lBiomes.RemoveAll(x => x == null);
 
             // Recheck biomes states after every conditions were applied
             if (lBiomes.Count == 0)

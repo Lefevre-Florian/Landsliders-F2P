@@ -15,6 +15,8 @@ namespace Com.IsartDigital.F2P.Biomes
 
         private Biome _Biome = null;
 
+        private GameObject _AdditionalLayer = null;
+
         // Get & Set
         public Material CurrentLayer { get { return _Renderer.material; } }
 
@@ -27,6 +29,24 @@ namespace Com.IsartDigital.F2P.Biomes
                 _Biome.OnReady += Enable;
             else
                 Enable();
+        }
+
+        public void DisplayAdditionalLayer(GameObject pAdditionalLayer)
+        {
+            if (_AdditionalLayer != null)
+                Destroy(_AdditionalLayer);
+
+            _AdditionalLayer = Instantiate(pAdditionalLayer, transform);
+            _AdditionalLayer.transform.position = transform.position;
+        }
+
+        public void StopDisplayingAdditionalLayer()
+        {
+            if (_AdditionalLayer == null)
+                return;
+
+            Destroy(_AdditionalLayer);
+            _AdditionalLayer = null;
         }
 
         private void Enable()

@@ -29,6 +29,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - upgrades
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0b27cbed53480974abb244226e55714b
+    m_Address: 2DTextures
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - default
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 55c16f3f451f3354c98c3c10aba4798d, type: 2}
   m_SchemaSet:

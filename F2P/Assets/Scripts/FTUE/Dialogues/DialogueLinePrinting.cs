@@ -1,21 +1,38 @@
+using System;
 using System.Collections;
 
 using TMPro;
 
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 // Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.FTUE.Dialogues
 {
     public class DialogueLinePrinting : DialogueScreen
     {
+        [Serializable]
+        public struct StoryPage
+        {
+            public Sprite image;
+            public string id;
+        }
+
         [SerializeField] private TextMeshProUGUI _DisplayContinue = null;
+        [SerializeField] private Image _DisplayImage = null;
+
+        [Header("Flow")]
+        [SerializeField] private StoryPage[] _Pages = new StoryPage[0];
+
+        [Space(2)]
+        [SerializeField][Range(.01f, 10f)] private float _TimeBeforeSwitchingPage = 0.5f;
 
         // Variables
         private int _CurrentLineID = 0;
+        private string _CurrentLine = "";
 
-        private string _Content = "";
+        private bool _Skip = false;
 
         // Events
         [HideInInspector]
@@ -24,10 +41,13 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
         protected override void Start()
         {
             base.Start();
+            int lLength = _Pages.Length;
+            m_DialogueIDs = new string[lLength];
+            for (int i = 0; i < lLength; i++)
+                m_DialogueIDs[i] = _Pages[i].id;
+
             if (m_DialogueIDs.Length > 0)
-            {
                 DisplayText();
-            }
 
             _DisplayContinue.gameObject.SetActive(false);
         }
@@ -36,13 +56,53 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
         {
             m_DialogueManager.OnScreenTouched += SkipTextPrinting;
 
-            int lLength = m_DialogueIDs.Length;
+            int lLineLength = _CurrentLine.Length;
+            float t = m_DisplayDuration / lLineLength;
+
+            float lSpeed = 1f / _TimeBeforeSwitchingPage;
+
             while (_CurrentLineID <= m_DialogueIDs.Length - 1)
             {
-                yield return WriteLine(_CurrentLineID);
+                _Skip = false;
 
+                m_LabelUIText.text = "";
+
+                _DisplayImage.color = new Color(_DisplayImage.color.r, _DisplayImage.color.g, _DisplayImage.color.b, 1f);
+                _DisplayImage.sprite = _Pages[_CurrentLineID].image;
+                _CurrentLine = m_DialogueManager.GetDialogue(_Pages[_CurrentLineID].id);
+
+                lLineLength = _CurrentLine.Length;
+                t = m_DisplayDuration / lLineLength;
+                for (int i = 0; i < lLineLength; i++)
+                {
+                    yield return new WaitForSeconds(t);
+                    m_LabelUIText.text += _CurrentLine[i];
+
+                    if (_Skip)
+                    {
+                        m_LabelUIText.text = "";
+                        m_LabelUIText.text = _CurrentLine;
+
+                        break;
+                    }
+                }
+
+                if (!_Skip && _CurrentLineID < m_DialogueIDs.Length - 1)
+                {
+                    t = 0;
+                    while (t < 1f)
+                    {
+                        t += Time.deltaTime * lSpeed;
+                        _DisplayImage.color = new Color(_DisplayImage.color.r, 
+                                                        _DisplayImage.color.g, 
+                                                        _DisplayImage.color.b, 
+                                                        1f - t);
+
+                        yield return new WaitForEndOfFrame();
+                    }
+                }
+                
                 _CurrentLineID += 1;
-                m_LabelUIText.text += '\n';
             }
 
             StopCoroutine(m_DialogueWriter);
@@ -53,35 +113,24 @@ namespace Com.IsartDigital.F2P.FTUE.Dialogues
             m_DialogueManager.OnScreenTouched += WaitForContinue;
         }
 
-        private IEnumerator WriteLine(int pID)
-        {
-            string lLine = m_DialogueManager.GetDialogue(m_DialogueIDs[pID]);
-
-            int lLength = lLine.Length;
-            float t = m_DisplayDuration / lLength;
-            for (int i = 0; i < lLength; i++)
-            {
-                yield return new WaitForSeconds(t);
-                m_LabelUIText.text += lLine[i];
-            }
-        }
 
         private void SkipTextPrinting()
         {
-            StopCoroutine(WriteLine(_CurrentLineID));
-            string lLines = "";
-
-            if (_CurrentLineID >= m_DialogueIDs.Length)
-                _CurrentLineID = m_DialogueIDs.Length;
-
-            for (int i = 0; i < _CurrentLineID; i++)
+            if (!_Skip)
             {
-                lLines += m_DialogueManager.GetDialogue(m_DialogueIDs[i]);
-                lLines += '\n';
+                _Skip = true;   
             }
 
-            _CurrentLineID += 1;
-            m_LabelUIText.text = lLines;
+            // End dialogue printing
+            if (_CurrentLineID == _Pages.Length)
+            {
+                StopAllCoroutines();
+
+                _DisplayContinue.gameObject.SetActive(true);
+
+                m_DialogueManager.OnScreenTouched -= SkipTextPrinting;
+                m_DialogueManager.OnScreenTouched += WaitForContinue;
+            }
         }
 
         private void WaitForContinue()

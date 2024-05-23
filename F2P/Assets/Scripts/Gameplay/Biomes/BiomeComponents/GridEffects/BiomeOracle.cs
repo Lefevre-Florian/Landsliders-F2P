@@ -54,10 +54,12 @@ namespace Com.IsartDigital.F2P.Biomes
             if (_Displays == null)
                 return;
 
+            if (_Displays == null) return;
             int lLength = _Displays.Length;
             for (int i = 0; i < lLength; i++)
-                Destroy(_Displays[i].gameObject);
-            
+                if (_Displays[i] != null)
+                    Destroy(_Displays[i].gameObject);
+
             _GameManager.OnTurnPassed -= Predict;
         }
 
@@ -81,6 +83,14 @@ namespace Com.IsartDigital.F2P.Biomes
                 foreach (Transform lItem in _Displays)
                     if(lItem != null)
                         Destroy(lItem.gameObject);
+
+            // Security graphics clear process
+            if (_LayerContainer.childCount != 0)
+            {
+                int lChildCount = _LayerContainer.childCount;
+                for (int i = lChildCount - 1; i >= 0; i--)
+                    Destroy(_LayerContainer.GetChild(i).gameObject);
+            }
 
             if (_StackMemory == null || _StackMemory.Length == 0)
                 return;

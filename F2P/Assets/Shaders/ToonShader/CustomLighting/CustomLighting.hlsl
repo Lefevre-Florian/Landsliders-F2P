@@ -95,7 +95,8 @@ void MainLightCookie_float(float3 WorldPos, out float3 Cookie){
 
 /*
 - Samples the Shadowmap for the Main Light, based on the World Position passed in. (Position node)
-- For shadows to work in the Unlit Graph, the following keywords must be defined in the blackboard :
+- For shadows to work in the Unlit Graph, the follo
+g keywords must be defined in the blackboard :
 	- Enum Keyword, Global Multi-Compile "_MAIN_LIGHT", with entries :
 		- "SHADOWS"
 		- "SHADOWS_CASCADE"

@@ -385,6 +385,7 @@ MonoBehaviour:
   - Master
   Banks:
   - GAME
+  - Music
   - UI
   BanksToLoad: []
   LiveUpdatePort: 9264

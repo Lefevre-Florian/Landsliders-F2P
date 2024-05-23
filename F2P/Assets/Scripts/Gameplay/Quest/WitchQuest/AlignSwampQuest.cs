@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class AlignSwampQuest : MonoBehaviour
 {
-    private WitchQuestManager.WitchQuestsEnum myQuest = WitchQuestManager.WitchQuestsEnum.AlignSwampQuest;
+    private WitchQuestsEnum myQuest = WitchQuestsEnum.AlignSwampQuest;
 
     private void Start()
     {
@@ -17,7 +17,7 @@ public class AlignSwampQuest : MonoBehaviour
 
     private void CheckAroundCanyon()
     {
-        if(myQuest != WitchQuestManager.WitchQuestsEnum.AlignSwampQuest) return;
+        if(myQuest != WitchQuestsEnum.AlignSwampQuest) return;
         Vector3 baseDir = Vector3.up;
         Vector3 currentDir;
         for (int i = 0; i < 8; i++)

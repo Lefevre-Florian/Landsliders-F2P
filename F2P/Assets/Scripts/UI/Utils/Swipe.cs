@@ -15,15 +15,24 @@ namespace Com.IsartDigital.F2P.UI
 
         [Header("Settings")]
         [SerializeField][Range(.1f, .8f)] private float _SwipeMinPercent = .25f;
+        [SerializeField][Range(.1f, 1f)] private float _SwipeDuration = .25f;
 
         [Header("Sound")]
         [SerializeField] private SoundEmitter _SoundEmitter = null;
 
         // Variables
-        private float _StartPosition = 0f;
+        private float _InputStart = 0f;
         private int _CurrentScreenIdx = 0;
 
         private Action _Action = null;
+
+        private float _ElapsedTime = 0f;
+        private float _Speed = 0f;
+
+        private Vector3 _InitialPosition = default;
+        private Vector3 _EndPosition = default;
+
+        private int _Direction = 0;
         
         private Screen[] _ScreenNavigation = null;
         private Screen[] _LockScreens = null;
@@ -41,6 +50,8 @@ namespace Com.IsartDigital.F2P.UI
                     _LockScreens[i].OnScreenOpened += DisableSwipe;
                 }
             }
+
+            _Speed = 1f / _SwipeDuration;
 
             //Check which screen is open
             lLength = _SwipeContainer.childCount;
@@ -67,7 +78,7 @@ namespace Com.IsartDigital.F2P.UI
 
         private void SetModeTrack()
         {
-            _StartPosition = 0f;
+            _InputStart = 0f;
             _Action = DoActionTrack;
         }
 
@@ -77,7 +88,7 @@ namespace Com.IsartDigital.F2P.UI
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _StartPosition = Input.mousePosition.x / UnityEngine.Device.Screen.width;
+                _InputStart = Input.mousePosition.x / UnityEngine.Device.Screen.width;
                 SetModeSwipe();
             }
         }
@@ -86,21 +97,58 @@ namespace Com.IsartDigital.F2P.UI
         {
             if (Input.GetMouseButtonUp(0))
             {
-                float lSize = _StartPosition - (Input.mousePosition.x / UnityEngine.Device.Screen.width);
+                float lSize = _InputStart - (Input.mousePosition.x / UnityEngine.Device.Screen.width);
                 if(Mathf.Abs(lSize) >= _SwipeMinPercent)
                 {
-                    int lSide = (int)Mathf.Sign(lSize);
-                    if(_CurrentScreenIdx + lSide >= 0 && _CurrentScreenIdx + lSide < _ScreenNavigation.Length)
+                    _Direction = (int)Mathf.Sign(lSize);
+                    if(_CurrentScreenIdx + _Direction >= 0 && _CurrentScreenIdx + _Direction < _ScreenNavigation.Length)
                     {
                         _ScreenNavigation[_CurrentScreenIdx].Close();
-                        _ScreenNavigation[_CurrentScreenIdx + lSide].Open();
-
-                        _CurrentScreenIdx += lSide;
+                        _ScreenNavigation[_CurrentScreenIdx + _Direction].Open();
+                        _CurrentScreenIdx += _Direction;
 
                         _SoundEmitter.PlaySFXOnShot();
+                        SetModeAnimate();
+                    }
+                    else
+                    {
+                        SetModeTrack();
                     }
                 }
+                else
+                {
+                    SetModeTrack();
+                }
+            }
+        }
+
+        private void SetModeAnimate()
+        {
+            _ElapsedTime = 0f;
+
+            _EndPosition = _ScreenNavigation[_CurrentScreenIdx].transform.position;
+            _InitialPosition = _EndPosition + Vector3.right * _Direction * UnityEngine.Screen.width;
+
+            _ScreenNavigation[_CurrentScreenIdx].transform.position = _InitialPosition;
+
+            _Action = DoActionAnimate;
+        }
+
+        private void DoActionAnimate()
+        {
+            _ElapsedTime += Time.deltaTime * _Speed;
+            if(_ElapsedTime >= 1f)
+            {
+                _ElapsedTime = 0f;
+
+                _ScreenNavigation[_CurrentScreenIdx].transform.position = _EndPosition;
+                _ScreenNavigation[_CurrentScreenIdx].Open();
+
                 SetModeTrack();
+            }
+            else
+            {
+                _ScreenNavigation[_CurrentScreenIdx].transform.position = Vector3.Lerp(_InitialPosition, _EndPosition, _ElapsedTime);
             }
         }
 

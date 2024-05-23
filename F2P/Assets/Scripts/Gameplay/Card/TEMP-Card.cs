@@ -1,5 +1,6 @@
 using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.manager;
+
 using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P.Sound;
 
@@ -16,11 +17,18 @@ public class TEMPCard : MonoBehaviour
     {
         InHand,
         Moving,
-        Played
+        Played,
+        Focus
     }
     
     private const string CARDPLAYED_TAG = "CardPlayed";
     private const string PLAYER_NAME = "Player";
+    [SerializeField] private GameObject _Explication;
+
+    private float _HoldThreshold = 0.075f; 
+
+    private bool _IsHolding = false;
+    private float _HoldTimer = 0.0f;
 
     // Inspector
     [Header("Card")]
@@ -51,9 +59,12 @@ public class TEMPCard : MonoBehaviour
 
     public static event Action<bool> OnFocus;
 
-    void Start()
+    private void Start()
     {
-        _HandManager = HandManager.GetInstance();      
+        _HandManager = HandManager.GetInstance();
+
+        GameFlowManager.Paused.AddListener(OnPause);
+        GameFlowManager.Resumed.AddListener(OnResume);
     }
 
     private void Update()
@@ -61,6 +72,10 @@ public class TEMPCard : MonoBehaviour
       if(DoAction!=null)   
         DoAction();
     }
+
+    private void OnPause() => GetComponent<Collider2D>().enabled = false;
+
+    private void OnResume() => GetComponent<Collider2D>().enabled = true;
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -122,6 +137,7 @@ public class TEMPCard : MonoBehaviour
     {
         currentState = State.InHand;
         gameObject.SetActive(true);
+        GetComponent<BoxCollider2D>().enabled = true;
         DoAction = DoActionInHand;        
     }
 
@@ -131,9 +147,60 @@ public class TEMPCard : MonoBehaviour
          _Hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         
         if (!_Hit) return;
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (_Hit.collider.transform == transform)
+            {
+                // Start the hold timer
+                _IsHolding = true;
+                _HoldTimer = 0.0f;
+            }
+        }
 
-        if (Input.GetMouseButtonDown(0) && _Hit.collider.transform == transform)
-            SetModeMoving();
+        if (Input.GetMouseButton(0) && _IsHolding && _Hit.collider.transform == transform)
+        {
+            _HoldTimer += Time.deltaTime;
+
+            if (_HoldTimer > _HoldThreshold)
+            {
+                SetModeMoving();
+                _IsHolding = false;
+            }
+        }
+
+        else if (Input.GetMouseButtonUp(0) && _IsHolding && _Hit.collider.transform == transform)
+        {
+            if (_HoldTimer <= _HoldThreshold)
+            {
+                // It's a single tap action, enter focus mode
+                SetModeFocus();
+            }
+
+            // Reset the holding state
+            _IsHolding = false;
+            _HoldTimer = 0.0f;
+        }
+
+       
+    }
+
+    public void SetModeFocus()
+    {
+        currentState = State.Focus;
+        GetComponent<BoxCollider2D>().enabled = false;
+        transform.localScale = new Vector3(5,5,1); transform.localPosition = new Vector3(0,0,-8);
+        DoAction = DoActionFocus;
+    }
+
+    private void DoActionFocus()
+    {
+        if (Input.GetMouseButtonDown(0)) 
+        { 
+            transform.localScale = new Vector3(1, 1, 1); 
+            transform.localPosition = snapPos; 
+            SetModeInHand();
+        }
+
     }
 
     public void SetModeMoving()
@@ -186,6 +253,13 @@ public class TEMPCard : MonoBehaviour
 
         currentState |= State.Played;
         OnPlaced?.Invoke();
+        if (_Explication != null) _Explication.SetActive(false);
         enabled = false;
+    }
+
+    private void OnDestroy()
+    {
+        GameFlowManager.Paused.RemoveListener(OnPause);
+        GameFlowManager.Resumed.RemoveListener(OnResume);
     }
 }
