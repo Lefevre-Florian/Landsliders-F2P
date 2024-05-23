@@ -59,8 +59,6 @@ namespace com.isartdigital.f2p.manager
 
            if(questDic.ContainsKey(currentQuest)) QuestUiManager.GetInstance().SetQuestName(questDic[currentQuest].name);
            if (questDic.ContainsKey(currentQuest)) QuestUiManager.GetInstance().SetQuestDesc(questDic[currentQuest].desc);
-
-            Debug.Log(currentQuest);
         }
 
         private void WinDebug()
