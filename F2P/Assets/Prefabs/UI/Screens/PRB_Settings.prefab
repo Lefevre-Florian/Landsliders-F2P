@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 690462221845966817}
   - component: {fileID: 8558115645234801136}
   - component: {fileID: 1630350505485867151}
+  - component: {fileID: 3911730968162494270}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -149,9 +150,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 70, y: 67}
+  m_AnchoredPosition: {x: 250, y: 167}
   m_SizeDelta: {x: 360, y: 200}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0.49999994, y: 0.5000001}
 --- !u!222 &8192063387686363113
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -209,7 +210,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -258,6 +259,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8468492082660329855}
+        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.UI.UIHUD.AnimatorControl,
+          Assembly-CSharp
+        m_MethodName: PlayAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1630350505485867151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +291,27 @@ MonoBehaviour:
       Data3: 1128577462
       Data4: 933056761
     Path: event:/UI/ui_button
+--- !u!95 &3911730968162494270
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789451788534348177}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a422aea7364e4d04782fc749b9d0ad7b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1083112648325198670
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,6 +362,7 @@ GameObject:
   - component: {fileID: 2960639746945869279}
   - component: {fileID: 3844563187612854589}
   - component: {fileID: 1245624991856223295}
+  - component: {fileID: 7186861728120880525}
   m_Layer: 5
   m_Name: Sound
   m_TagString: Untagged
@@ -350,9 +386,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 100, y: 350}
+  m_AnchoredPosition: {x: 230, y: 480}
   m_SizeDelta: {x: 260, y: 260}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.49999997}
 --- !u!222 &1317859617977714305
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -410,7 +446,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -465,6 +501,27 @@ MonoBehaviour:
   onToggleChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &7186861728120880525
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818225614371561607}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6496c523d0650714da9894ca2f054b51, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1870912403083755419
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +533,8 @@ GameObject:
   - component: {fileID: 1064162746762895087}
   - component: {fileID: 7448793856526914779}
   - component: {fileID: 8961914671189728885}
+  - component: {fileID: 1425335406480565910}
+  - component: {fileID: 8468492082660329855}
   m_Layer: 5
   m_Name: PRB_Settings
   m_TagString: Untagged
@@ -527,6 +586,40 @@ MonoBehaviour:
   _SFXSlider: {fileID: 6445752505279082194}
   _MusicSlider: {fileID: 4557786929326541684}
   _GlobalSoundToggle: {fileID: 1245624991856223295}
+--- !u!95 &1425335406480565910
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870912403083755419}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5dc25b02a6fe05b48a2b33f8441b6d77, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8468492082660329855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870912403083755419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7b92dfe90cb9fd47905c5f1f5ae7fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Play: Out
 --- !u!1 &2680060353400122213
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,8 +654,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 122, y: 122}
+  m_AnchoredPosition: {x: -16.464783, y: 0}
+  m_SizeDelta: {x: 154.9296, y: 122}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7831868371130819257
 CanvasRenderer:
@@ -585,14 +678,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.19215688, g: 0.10980393, b: 0.08627451, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 33b475990f475fd458fa085d66190416, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3668f3e0956468543a6cd8b24c05fb79, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

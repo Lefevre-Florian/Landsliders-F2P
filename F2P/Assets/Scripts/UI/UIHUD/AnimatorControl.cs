@@ -10,7 +10,7 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
 
         private Animator _Animator;
 
-        private void PlayAnimation()
+        public void PlayAnimation()
         {
             if (_Animator != null)
             {

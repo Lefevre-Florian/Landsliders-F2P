@@ -759,6 +759,7 @@ GameObject:
   - component: {fileID: 335752527566552871}
   - component: {fileID: 3010752030824676568}
   - component: {fileID: 7197481927308513100}
+  - component: {fileID: 7301812416328560498}
   m_Layer: 5
   m_Name: PauseBtn
   m_TagString: Untagged
@@ -782,9 +783,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 42, y: -62}
-  m_SizeDelta: {x: 167, y: 167}
-  m_Pivot: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 125.49646, y: -145.4961}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 0.49999988, y: 0.50000054}
 --- !u!222 &7902651283180916948
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -910,6 +911,27 @@ MonoBehaviour:
       Data3: 1128577462
       Data4: 933056761
     Path: event:/UI/ui_button
+--- !u!95 &7301812416328560498
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426310422175395092}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 561fb06723b529548aa51f780b0ccab3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1597104990564314454
 GameObject:
   m_ObjectHideFlags: 0
@@ -3945,6 +3967,7 @@ MonoBehaviour:
   _PauseScreen: {fileID: 5980275830428676693}
   _LoseScreen: {fileID: 5979940545188701387}
   _WinScreen: {fileID: 7911945344973230480}
+  _CodexScreen: {fileID: 0}
   _HandTurnMask: {fileID: 3408671923846663181}
   _PlayerTurnMask: {fileID: 6154006917797626032}
   _MainMenuIDX: 1
