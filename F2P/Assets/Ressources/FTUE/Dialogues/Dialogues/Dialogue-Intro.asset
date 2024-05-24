@@ -13,6 +13,16 @@ MonoBehaviour:
   m_Name: Dialogue-Intro
   m_EditorClassIdentifier: 
   _Dialogues:
-  - Guard-A-01
+  - _DialogueID: Guard-A-01
+    _Audio:
+      _Audio:
+        Guid:
+          Data1: -1422727454
+          Data2: 1202568461
+          Data3: 1164662949
+          Data4: -186946279
+        Path: event:/GAME/fTE_vox_postnarra
+      _Duration: 2
+      _FMODKey: 4
   _Animation: 0
   _DialogueType: 2

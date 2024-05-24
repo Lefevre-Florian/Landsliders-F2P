@@ -19,6 +19,7 @@ namespace Com.IsartDigital.F2P.Gameplay
 
         [Header("Sound")]
         [SerializeField] private SoundEmitter _FlySFXEmitter = null;
+        [SerializeField] private SoundEmitter _BreathSFXEmitter = null;
 
         // Variables
         private Direction[] _Directions;
@@ -189,6 +190,9 @@ namespace Com.IsartDigital.F2P.Gameplay
 
         private void OnPlayerPosition()
         {
+            if (_BreathSFXEmitter != null)
+                _BreathSFXEmitter.PlaySFXOnShot();
+
             _HandManager.BurnCard(_NbCardsBurnt);
             _CardBurnt = true;
         }

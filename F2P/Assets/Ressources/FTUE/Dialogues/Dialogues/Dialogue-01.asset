@@ -13,7 +13,38 @@ MonoBehaviour:
   m_Name: Dialogue-01
   m_EditorClassIdentifier: 
   _Dialogues:
-  - Bidoum-A-01
-  - Bidoum-A-02
-  - Bidoum-A-03
+  - _DialogueID: Bidoum-A-01
+    _Audio:
+      _Audio:
+        Guid:
+          Data1: -1422727454
+          Data2: 1202568461
+          Data3: 1164662949
+          Data4: -186946279
+        Path: event:/GAME/fTE_vox_postnarra
+      _Duration: 10.25
+      _FMODKey: 5
+  - _DialogueID: Bidoum-A-02
+    _Audio:
+      _Audio:
+        Guid:
+          Data1: -1422727454
+          Data2: 1202568461
+          Data3: 1164662949
+          Data4: -186946279
+        Path: event:/GAME/fTE_vox_postnarra
+      _Duration: 7.68
+      _FMODKey: 6
+  - _DialogueID: Bidoum-A-03
+    _Audio:
+      _Audio:
+        Guid:
+          Data1: -1422727454
+          Data2: 1202568461
+          Data3: 1164662949
+          Data4: -186946279
+        Path: event:/GAME/fTE_vox_postnarra
+      _Duration: 6.5
+      _FMODKey: 7
   _Animation: 3
+  _DialogueType: 0

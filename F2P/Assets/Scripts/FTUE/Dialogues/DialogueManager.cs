@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using System;
 using System.Collections.Generic;
 
@@ -113,6 +115,5 @@ namespace Com.IsartDigital.F2P.FTUE
                 _Instance = null;
             }
         }
-
     }
 }

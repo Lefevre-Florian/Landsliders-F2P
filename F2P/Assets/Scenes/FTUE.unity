@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 153804693}
   - component: {fileID: 153804694}
   - component: {fileID: 153804695}
+  - component: {fileID: 153804696}
   m_Layer: 0
   m_Name: QuestManager
   m_TagString: Untagged
@@ -311,7 +312,8 @@ MonoBehaviour:
     - key: 8
       value:
         name: Tutorial
-        desc: ...
+        desc: 
+  _QuestCompletedSFXEmitter: {fileID: 153804696}
 --- !u!114 &153804695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,6 +327,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myQuest: 8
+--- !u!114 &153804696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153804692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: 485438514
+      Data2: 1277897897
+      Data3: 707427974
+      Data4: -385878621
+    Path: event:/GAME/mainquest_completed
 --- !u!1 &156490198
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,6 +382,9 @@ MonoBehaviour:
       Data3: -125533567
       Data4: 1782631195
     Path: event:/MUSIC/MUS_Cardgame
+  _Type: 1
+  _FadeParameter: Music during FTUE
+  _ImmediateStart: 0
 --- !u!4 &156490200
 Transform:
   m_ObjectHideFlags: 0
@@ -569,6 +593,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: m_DisplayDuration
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _AudioDialogue.Path
+      value: event:/GAME/fTE_narra
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
       propertyPath: _Pages.Array.data[0].id
       value: Narr-A-01
       objectReference: {fileID: 0}
@@ -583,6 +615,22 @@ PrefabInstance:
     - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
       propertyPath: _Pages.Array.data[3].id
       value: Narr-A-04
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _AudioDialogue.Guid.Data1
+      value: 28128172
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _AudioDialogue.Guid.Data2
+      value: 1165871743
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _AudioDialogue.Guid.Data3
+      value: -842602865
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _AudioDialogue.Guid.Data4
+      value: -377576391
       objectReference: {fileID: 0}
     - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
       propertyPath: _Pages.Array.data[0].image
@@ -600,6 +648,42 @@ PrefabInstance:
       propertyPath: _Pages.Array.data[3].image
       value: 
       objectReference: {fileID: 21300000, guid: f7fbe7f9ec1d41742b8a182d88494f90, type: 3}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[0].audio.Path
+      value: event:/GAME/fTE_narra
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[0].audioValue
+      value: TEXT1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[1].audioValue
+      value: TEXT2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[2].audioValue
+      value: TEXT3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[3].audioValue
+      value: TEXT4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[0].audio.Guid.Data1
+      value: 28128172
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[0].audio.Guid.Data2
+      value: 1165871743
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[0].audio.Guid.Data3
+      value: -842602865
+      objectReference: {fileID: 0}
+    - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: _Pages.Array.data[0].audio.Guid.Data4
+      value: -377576391
+      objectReference: {fileID: 0}
     - target: {fileID: 7155843257178268184, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1150,6 +1234,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ef7a134f1ecff8d4c83bd134126c8686, type: 2}
   _StoryNarrator: {fileID: 373833943}
   _EndDialogue: {fileID: 11400000, guid: 6730611f783156849a0d4105e8619643, type: 2}
+  _MusicEmitter: {fileID: 156490199}
 --- !u!4 &708899413
 Transform:
   m_ObjectHideFlags: 0
@@ -2266,11 +2351,18 @@ MonoBehaviour:
   - path: Music
     _Type: 2
     isLoaded: 0
+  - path: FTUE
+    _Type: 1
+    isLoaded: 0
   _Banks:
   - path: GAME
     _Type: 1
     isLoaded: 0
     _ScenesLinked: 0200000003000000
+  - path: FTUE
+    _Type: 1
+    isLoaded: 0
+    _ScenesLinked: 03000000
   _VCATypes:
   - _VCAPath: vca:/Music
     _Type: 2
@@ -2564,6 +2656,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1584301609}
   - component: {fileID: 1584301608}
+  - component: {fileID: 1584301611}
+  - component: {fileID: 1584301610}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2587,6 +2681,8 @@ MonoBehaviour:
   _Player: {fileID: 6110220630346872215, guid: fc2c9f220e004af41a39e714ffc80dfa, type: 3}
   _BasePlayerGridPos: {x: 0, y: 1}
   _SecondsBetweenEachPriorityExecution: 0.25
+  _WinJingle: {fileID: 1584301611}
+  _LooseJingle: {fileID: 1584301610}
   cardPlayed: 0
   playerMoved: 0
   playerCanMove: 0
@@ -2608,6 +2704,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1007060143}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1584301610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584301607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: 1312698984
+      Data2: 1238938177
+      Data3: 839789980
+      Data4: 743484004
+    Path: event:/GAME/loose_jingle
+--- !u!114 &1584301611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584301607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -61357557
+      Data2: 1077576666
+      Data3: 32715441
+      Data4: -2139295896
+    Path: event:/GAME/win_jingle
 --- !u!4 &1587467352 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2848605299535493053, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
