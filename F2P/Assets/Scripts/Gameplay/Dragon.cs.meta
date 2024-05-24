@@ -3,7 +3,9 @@ guid: 4917499d88c84d841a8824c4ad64cca9
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _FlySFXEmitter: {instanceID: 0}
+  - _Particles: {fileID: 5695040472422341286, guid: b88e22d3755ede84c8d406e04f3f4b90, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

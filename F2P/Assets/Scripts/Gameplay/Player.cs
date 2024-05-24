@@ -266,10 +266,11 @@ public class Player : MonoBehaviour
             lSample.x = lSample.x % 1 <= 0.5f ? Mathf.FloorToInt(lSample.x) : Mathf.CeilToInt(lSample.x);
             lSample.y = lSample.y % 1 <= 0.5f ? Mathf.FloorToInt(lSample.y) : Mathf.CeilToInt(lSample.y);
 
+            print(lSample + ":" + _GridManager._NumCard);
             if (lSample.x < 0f 
-                || lSample.x >= _GridManager._NumCard.x 
+                || lSample.x > _GridManager._NumCard.x 
                 || lSample.y < 0f 
-                || lSample.y >= _GridManager._NumCard.y)
+                || lSample.y > _GridManager._NumCard.y)
                 continue;
 
             if (lSample != _PreviousGridPos && _GridManager.GetCardByGridCoordinate(lSample).IsWalkable)

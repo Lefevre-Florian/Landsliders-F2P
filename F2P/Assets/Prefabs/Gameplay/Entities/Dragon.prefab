@@ -50,6 +50,7 @@ MonoBehaviour:
   _NbCardsBurnt: 5
   _FlySFXEmitter: {fileID: 971134675495411336}
   _BreathSFXEmitter: {fileID: 8550998688872510964}
+  _Particles: {fileID: 5695040472422341286, guid: b88e22d3755ede84c8d406e04f3f4b90, type: 3}
 --- !u!114 &971134675495411336
 MonoBehaviour:
   m_ObjectHideFlags: 0

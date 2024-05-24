@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3307112218122664447, guid: 9ecdca61ebdebf74ebb6c924964c2014, type: 3}
       propertyPath: m_Name
-      value: Grassland_upgraded
+      value: PRB_Biome_Grassland_upgraded
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
