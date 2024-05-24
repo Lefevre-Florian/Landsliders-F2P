@@ -639,19 +639,19 @@ PrefabInstance:
     - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
       propertyPath: _Pages.Array.data[0].image
       value: 
-      objectReference: {fileID: 21300000, guid: 00eee6451d047344ca4867fdc0c49dca, type: 3}
+      objectReference: {fileID: 21300000, guid: f7fbe7f9ec1d41742b8a182d88494f90, type: 3}
     - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
       propertyPath: _Pages.Array.data[1].image
       value: 
-      objectReference: {fileID: 21300000, guid: 77d17ded4d6f6b949949718c099c5c29, type: 3}
+      objectReference: {fileID: 21300000, guid: 97767100795ed6a49927273dde3b099d, type: 3}
     - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
       propertyPath: _Pages.Array.data[2].image
       value: 
-      objectReference: {fileID: 21300000, guid: 1b228600986fe7147980ef82d438b2a4, type: 3}
+      objectReference: {fileID: 21300000, guid: 00eee6451d047344ca4867fdc0c49dca, type: 3}
     - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
       propertyPath: _Pages.Array.data[3].image
       value: 
-      objectReference: {fileID: 21300000, guid: f7fbe7f9ec1d41742b8a182d88494f90, type: 3}
+      objectReference: {fileID: 21300000, guid: 02f9763bb81b5994099c5ecd19516d9a, type: 3}
     - target: {fileID: 5801668951615881158, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
       propertyPath: _Pages.Array.data[0].audio.Path
       value: event:/GAME/fTE_narra
