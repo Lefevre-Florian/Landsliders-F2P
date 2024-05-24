@@ -136,7 +136,6 @@ namespace com.isartdigital.f2p.gameplay.manager
         {
             if(pX > 2 || pX < 0 || pY > 2 || pY < 0)
             {
-                Debug.Log("Les parametres rentré sont : pX = " + pX.ToString() + ", pY = " + pY.ToString() + "Cependant la fonction a pour intervale x[0,2] et y[0,2]");
                 return Vector2.zero;
             }
 

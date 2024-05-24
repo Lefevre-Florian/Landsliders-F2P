@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2806813639658834540}
   - component: {fileID: 1784392447039090365}
   - component: {fileID: 3705407753027666919}
+  - component: {fileID: 5846695575889906465}
+  - component: {fileID: 3107921326612533793}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -151,7 +153,8 @@ MonoBehaviour:
   baseGridPos: {x: 1, y: 1}
   _LerpDuration: 1
   _SlidingSFXEmitter: {fileID: 1784392447039090365}
-  _MovingSFXEmitter: {fileID: 0}
+  _MovingSFXEmitter: {fileID: 5846695575889906465}
+  _CardClickedSFXEmitter: {fileID: 3107921326612533793}
   _MoveSFXPrefab: {fileID: 8935247132286412243, guid: bb6e9bf3949f5c948acb8fc414caf0c3, type: 3}
   _GoBackForbidSFXPrefab: {fileID: 7488741472889718749, guid: ead78e3735631c94a8716e4a4886a3de, type: 3}
   _ForbidCardPlacedSFX: {fileID: 7756597406749556402}
@@ -190,6 +193,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 7344092253430194717}
+--- !u!114 &5846695575889906465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6110220630346872215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -1513868914
+      Data2: 1304700506
+      Data3: 19250350
+      Data4: -913285555
+    Path: event:/GAME/player_moving
+--- !u!114 &3107921326612533793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6110220630346872215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: 1373707728
+      Data2: 1239545342
+      Data3: -1749303921
+      Data4: 264217666
+    Path: event:/GAME/touching_card
 --- !u!1 &7756597406749556402
 GameObject:
   m_ObjectHideFlags: 0
