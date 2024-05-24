@@ -5,6 +5,7 @@ using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P.Biomes.Effects;
 using Com.IsartDigital.F2P.FileSystem;
 using Com.IsartDigital.F2P.FTUE.Dialogues;
+using Com.IsartDigital.F2P.Sound;
 using Com.IsartDigital.F2P.UI.UIHUD;
 
 using System;
@@ -46,6 +47,7 @@ namespace Com.IsartDigital.F2P.FTUE
         [Space(5)]
         [SerializeField] private DialogueLinePrinting _StoryNarrator = null;
         [SerializeField] private DialogueFlowSO _EndDialogue = null;
+        [SerializeField] private MusicEmitter _MusicEmitter = null;
 
         // Variables
         private GameManager _GameManager = null;
@@ -216,6 +218,8 @@ namespace Com.IsartDigital.F2P.FTUE
         /// </summary>
         private void StartFTUE()
         {
+            _MusicEmitter.Play();
+
             Player.GetInstance().gameObject.SetActive(true);
             UpdateDialogue();
         }

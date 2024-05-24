@@ -308,7 +308,8 @@ MonoBehaviour:
       Data4: 1782631195
     Path: event:/MUSIC/MUS_Cardgame
   _Type: 1
-  _FadeParameter: 
+  _FadeParameter: Music during FTUE
+  _ImmediateStart: 0
 --- !u!4 &156490200
 Transform:
   m_ObjectHideFlags: 0
@@ -1324,6 +1325,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ef7a134f1ecff8d4c83bd134126c8686, type: 2}
   _StoryNarrator: {fileID: 373833943}
   _EndDialogue: {fileID: 11400000, guid: 6730611f783156849a0d4105e8619643, type: 2}
+  _MusicEmitter: {fileID: 156490199}
 --- !u!4 &708899413
 Transform:
   m_ObjectHideFlags: 0

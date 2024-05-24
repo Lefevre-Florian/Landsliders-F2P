@@ -18,6 +18,9 @@ namespace Com.IsartDigital.F2P.Sound
         [Space(5)]
         [SerializeField] private string _FadeParameter = "";
 
+        [Space(5)]
+        [SerializeField] private bool _ImmediateStart = true;
+
         // Variables
         private EventInstance _Instance = default;
 
@@ -28,7 +31,8 @@ namespace Com.IsartDigital.F2P.Sound
             _Instance = RuntimeManager.CreateInstance(_MusicEvent);
             _Instance.setParameterByName(MUSIC_BY_SCENE_FMOD_PARAMETER, (int)_Type);
 
-            _Instance.start();
+            if(_ImmediateStart)
+                _Instance.start();
         }
 
         public void SetFade(float pDuration)
@@ -75,6 +79,10 @@ namespace Com.IsartDigital.F2P.Sound
         }
 
         public void SetImmediateFade(int pValue) => _Instance.setParameterByName(_FadeParameter, pValue);
+
+        public void Play() => _Instance.start();
+
+        public void Stop() => _Instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
         private void OnDestroy()
         {
