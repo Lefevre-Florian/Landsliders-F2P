@@ -182,8 +182,7 @@ public class HandManager : MonoBehaviour
             lRemainingCardToRemove -= _Deck.Length;
             _Deck = new GameObject[0];
 
-
-            if (lRemainingCardToRemove > _CardInHand)
+            if (lRemainingCardToRemove >= _CardInHand)
             {
                 GameManager.GetInstance().SetModeGameover();
             }
