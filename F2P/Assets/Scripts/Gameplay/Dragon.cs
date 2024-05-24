@@ -20,6 +20,9 @@ namespace Com.IsartDigital.F2P.Gameplay
         [Header("Sound")]
         [SerializeField] private SoundEmitter _FlySFXEmitter = null;
 
+        [Header("Juiciness")]
+        [SerializeField] private GameObject _Particles;
+
         // Variables
         private Direction[] _Directions;
         private int _RandomIndex;
@@ -189,8 +192,9 @@ namespace Com.IsartDigital.F2P.Gameplay
 
         private void OnPlayerPosition()
         {
-            _HandManager.BurnCard(_NbCardsBurnt);
             _CardBurnt = true;
+            _HandManager.BurnCard(_NbCardsBurnt);
+            Instantiate(_Particles, transform.position, Quaternion.identity);
         }
 
         private void OnDestroy()
