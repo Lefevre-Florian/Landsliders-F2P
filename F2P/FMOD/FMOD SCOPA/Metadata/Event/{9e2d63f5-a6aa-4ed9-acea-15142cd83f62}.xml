@@ -108,6 +108,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{bf1ccad3-3992-4e40-bb60-09040ab189b2}" />
 	<object class="SingleSound" id="{e4439540-003a-48c2-a7fc-b7b7c8ba913a}">
+		<property name="volume">
+			<value>5</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{360c8b79-881f-476a-9924-901bf3867714}</destination>
 		</relationship>
@@ -116,7 +119,7 @@
 	<object class="MixerBusFader" id="{72b63f01-2e3d-4ddf-9cd5-cc4f8fe862a2}" />
 	<object class="GainEffect" id="{973677f4-638c-4997-9ffa-a661738341f1}">
 		<property name="gain">
-			<value>5.5</value>
+			<value>7.5</value>
 		</property>
 	</object>
 </objects>

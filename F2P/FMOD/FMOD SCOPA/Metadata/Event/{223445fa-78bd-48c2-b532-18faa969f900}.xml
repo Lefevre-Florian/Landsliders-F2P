@@ -5,7 +5,7 @@
 			<value>volcano_explosion</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{6c393826-499e-418a-89cf-ffcd5f899b23}</destination>
@@ -77,7 +77,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{2dde6870-6711-4a1a-9e53-0dc2a92a7f38}">
 		<property name="volume">
-			<value>-4</value>
+			<value>8</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{89a58629-30b4-4517-84b4-34c8b531b26c}</destination>
@@ -91,7 +91,7 @@
 	</object>
 	<object class="MultiSound" id="{da17082d-d5c6-4666-954c-46612a585079}">
 		<relationship name="sounds">
-			<destination>{4f0ad147-22c3-4f65-9db4-8a3a27c54d50}</destination>
+			<destination>{070dbfae-d712-4270-ab1f-4ea8f174234d}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{eeb89fae-5cec-4e01-a1d6-cf7e78725057}">
@@ -106,9 +106,12 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{9b54b0b0-c3de-4f43-86d5-a4d4548212ab}" />
-	<object class="SingleSound" id="{4f0ad147-22c3-4f65-9db4-8a3a27c54d50}">
+	<object class="SingleSound" id="{070dbfae-d712-4270-ab1f-4ea8f174234d}">
+		<property name="volume">
+			<value>4.5</value>
+		</property>
 		<relationship name="audioFile">
-			<destination>{f2cfce02-a050-4bdd-ab8c-0a23c59ac349}</destination>
+			<destination>{759046e5-39e2-4340-ae74-ba637a2462cd}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{e0754882-30ad-4c3f-b01d-4e1505a790a0}" />

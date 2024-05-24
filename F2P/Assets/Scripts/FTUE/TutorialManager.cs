@@ -5,6 +5,7 @@ using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P.Biomes.Effects;
 using Com.IsartDigital.F2P.FileSystem;
 using Com.IsartDigital.F2P.FTUE.Dialogues;
+using Com.IsartDigital.F2P.Sound;
 using Com.IsartDigital.F2P.UI.UIHUD;
 
 using System;
@@ -46,6 +47,7 @@ namespace Com.IsartDigital.F2P.FTUE
         [Space(5)]
         [SerializeField] private DialogueLinePrinting _StoryNarrator = null;
         [SerializeField] private DialogueFlowSO _EndDialogue = null;
+        [SerializeField] private MusicEmitter _MusicEmitter = null;
 
         // Variables
         private GameManager _GameManager = null;
@@ -216,6 +218,8 @@ namespace Com.IsartDigital.F2P.FTUE
         /// </summary>
         private void StartFTUE()
         {
+            _MusicEmitter.Play();
+
             Player.GetInstance().gameObject.SetActive(true);
             UpdateDialogue();
         }
@@ -225,7 +229,7 @@ namespace Com.IsartDigital.F2P.FTUE
             // Dialogues
             GameObject lTextBox = Instantiate(DialogueManager.GetInstance().GetDisplay(CurrentPhase.DialogueFlow[_DialoguePhaseIdx].Type), Hud.GetInstance().transform);
             _CurrentTextBox = lTextBox.GetComponent<DialogueWordPrinting>();
-            _CurrentTextBox.SetDialogues(CurrentPhase.DialogueFlow[_DialoguePhaseIdx].Dialogues,
+            _CurrentTextBox.SetDialogues(CurrentPhase.DialogueFlow[_DialoguePhaseIdx],
                                          CurrentPhase.DialogueFlow[_DialoguePhaseIdx].Tween);
 
             if (CurrentPhase.DialogueFlow.Length > 1)
@@ -263,7 +267,7 @@ namespace Com.IsartDigital.F2P.FTUE
         {
             // Last dialogue
             GameObject lTextBox = Instantiate(DialogueManager.GetInstance().GetDisplay(_EndDialogue.Type), Hud.GetInstance().transform);
-            lTextBox.GetComponent<DialogueWordPrinting>().SetDialogues(_EndDialogue.Dialogues,
+            lTextBox.GetComponent<DialogueWordPrinting>().SetDialogues(_EndDialogue,
                                                                        _EndDialogue.Tween);
 
             // Save

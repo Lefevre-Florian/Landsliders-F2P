@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{dc8c9745-0592-45d9-a1dd-74944912d7cc}">
+	<object class="AudioFile" id="{759046e5-39e2-4340-ae74-ba637a2462cd}">
 		<property name="assetPath">
-			<value>upgrade.wav</value>
+			<value>volcano_explosion.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
@@ -11,7 +11,7 @@
 			<value>1</value>
 		</property>
 		<property name="length">
-			<value>1.8333333333333333</value>
+			<value>4</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{b96f2628-958f-4f43-aa99-54224e96a477}</destination>

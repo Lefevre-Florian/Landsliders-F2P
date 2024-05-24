@@ -1,10 +1,14 @@
 using com.isartdigital.f2p.manager;
 using Com.IsartDigital.F2P;
 using Com.IsartDigital.F2P.Gameplay.Events;
+using Com.IsartDigital.F2P.Sound;
 using System;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Events;
+
+// Author (CR) : Paul Vincencini
 public enum WitchQuestsEnum
 {
     NONE,
@@ -26,6 +30,9 @@ public class WitchQuestManager : MonoBehaviour
     [SerializeField] public WitchQuestLabelsDic witchQuestLabels = new WitchQuestLabelsDic();
 
     Dictionary<WitchQuestsEnum, WitchQuestText> _WitchQuestDic;
+
+    [Header("Sound")]
+    [SerializeField] private SoundEmitter _WitchQuestCompletedSFXEmitter = null;
 
     private void Start()
     {
@@ -57,6 +64,9 @@ public class WitchQuestManager : MonoBehaviour
 
     public void Win()
     {
+        if (_WitchQuestCompletedSFXEmitter != null)
+            _WitchQuestCompletedSFXEmitter.PlaySFXOnShot();
+
         if (QuestManager.currentQuest == QuestManager.QuestsEnum.WitchQuest) QuestManager.ValidQuest.Invoke();
         else HandManager.GetInstance().AddCardToDeck(4);
     }
