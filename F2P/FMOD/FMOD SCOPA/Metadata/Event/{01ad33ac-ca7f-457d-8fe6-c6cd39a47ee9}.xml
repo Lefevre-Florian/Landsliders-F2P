@@ -560,7 +560,7 @@
 			<value>32</value>
 		</property>
 		<property name="length">
-			<value>12</value>
+			<value>11.166666666666664</value>
 		</property>
 		<relationship name="triggerConditions">
 			<destination>{298908b6-90c9-41d9-af59-2149f55b37d3}</destination>
