@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1583379108595261290}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.125, y: 0, z: 0}
+  m_LocalPosition: {x: 123.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -203,12 +203,14 @@ MonoBehaviour:
   _NumCard: {x: 3, y: 3}
   _GridSizePercent: {x: 1, y: 0}
   _Offset: {x: 0, y: 0}
-  _IsGridPredefined: 0
   _CardBackgroundPrefab: {fileID: 3380951766127524745, guid: fd18193cb9cd61544aa1d4fca20c8bee, type: 3}
-  _ScreenSizeInGameUnit: {x: 3.125, y: 5}
-  _GridSize: {x: 3.125, y: 0}
+  _ScreenSizeInGameUnit: {x: 123.75, y: 220}
+  _GridSize: {x: 123.75, y: 0}
   _CardSize: 0
   _CardRatio: 0
+  GridGenerated:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4642753369078820197
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +239,7 @@ Transform:
   m_GameObject: {fileID: 4642753369078820197}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.125, y: 0, z: 0}
+  m_LocalPosition: {x: -123.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -384,7 +386,7 @@ Transform:
   m_GameObject: {fileID: 5332686387119499155}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.125, y: 0, z: 0}
+  m_LocalPosition: {x: -123.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -825,7 +827,7 @@ Transform:
   m_GameObject: {fileID: 6863363538277277954}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.125, y: 0, z: 0}
+  m_LocalPosition: {x: -123.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -972,7 +974,7 @@ Transform:
   m_GameObject: {fileID: 8018985915167383236}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.125, y: 0, z: 0}
+  m_LocalPosition: {x: 123.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1266,7 +1268,7 @@ Transform:
   m_GameObject: {fileID: 9036935919510382664}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.125, y: 0, z: 0}
+  m_LocalPosition: {x: 123.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -1,3 +1,4 @@
+using com.isartdigital.f2p.gameplay.manager;
 using com.isartdigital.f2p.gameplay.quest;
 using com.isartdigital.f2p.manager;
 using Com.IsartDigital.F2P.Sound;
@@ -51,6 +52,7 @@ namespace Com.IsartDigital.F2P.Biomes
 
         public void UpdateNeigbourhood()
         {
+            //ref GameObject[,] go = ref GridManager.GetInstance()._Cards;
             List<Biome> lBiomes = GetNeighbourBiomes(_Range);
             if (lBiomes == null || lBiomes.Count == 0)
                 return;
@@ -65,6 +67,7 @@ namespace Com.IsartDigital.F2P.Biomes
                 Debug.LogError("Must be of type" + typeof(IBiomeSupplier));
                 return;
             }
+
 
             Vector2[] lPositions = (pSupplier as IBiomeSupplier).SupplyBiomes();
             if(lPositions != null && lPositions.Length > 0)
@@ -97,6 +100,8 @@ namespace Com.IsartDigital.F2P.Biomes
 
         public void UpdateBetweenTypeNeighbour()
         {
+            ref GameObject[,] go = ref GridManager.GetInstance()._Cards;
+
             float lRnd = UnityEngine.Random.Range(MIN, MAX);
             if (lRnd > _ChanceOfModification)
                 return;

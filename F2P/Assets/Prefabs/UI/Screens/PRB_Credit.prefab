@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8110066534562080061}
   - component: {fileID: 348103368935030249}
   - component: {fileID: 6737880976987010039}
+  - component: {fileID: 7616255969889111343}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -38,9 +39,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -50, y: 50}
+  m_AnchoredPosition: {x: -273.27258, y: 159.82776}
   m_SizeDelta: {x: 448.2326, y: 220.4855}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 0.5, y: 0.49999982}
 --- !u!222 &5874910958021530452
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -98,7 +99,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -185,6 +186,27 @@ MonoBehaviour:
       Data3: 1128577462
       Data4: 933056761
     Path: event:/UI/ui_button
+--- !u!95 &7616255969889111343
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429749083118729287}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 054d33a9b41f8804b9bf8431c66cd4bc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2177007319236995056
 GameObject:
   m_ObjectHideFlags: 0

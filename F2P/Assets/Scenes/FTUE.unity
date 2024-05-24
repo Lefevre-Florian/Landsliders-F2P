@@ -688,6 +688,14 @@ PrefabInstance:
       propertyPath: _Pages.Array.data[0].audio.Guid.Data4
       value: -377576391
       objectReference: {fileID: 0}
+    - target: {fileID: 5843489879044012626, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: m_fontSize
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 5843489879044012626, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 85
+      objectReference: {fileID: 0}
     - target: {fileID: 7155843257178268184, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

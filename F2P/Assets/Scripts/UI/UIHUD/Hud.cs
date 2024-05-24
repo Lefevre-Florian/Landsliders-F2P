@@ -25,6 +25,7 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
         [SerializeField] private Transform _PauseScreen = null;
         [SerializeField] private Transform _LoseScreen = null;
         [SerializeField] private Transform _WinScreen = null;
+        [SerializeField] private Transform _CodexScreen = null;
 
         [Header("Sign")]
         [SerializeField] private GameObject _HandTurnMask = null;
@@ -81,8 +82,24 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
         {
             GameFlowManager.Resumed?.Invoke();
 
-            Time.timeScale = 1f;
+            Time.timeScale = 0f;
             _PauseScreen.gameObject.SetActive(false);
+        }
+
+        public void OpenCodex()
+        {
+            GameFlowManager.Paused?.Invoke();
+
+            Time.timeScale = 1f;
+            _CodexScreen.gameObject.SetActive(true);
+        }
+
+        public void CloseCodex()
+        {
+            GameFlowManager.Resumed?.Invoke();
+
+            Time.timeScale = 1f;
+            _CodexScreen.gameObject.SetActive(false);
         }
 
         public void Retry() => LoadScene(SceneManager.GetActiveScene().buildIndex);
