@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 5724536946819989422}
   - component: {fileID: -6316274802318646526}
   - component: {fileID: 217848904662049391}
+  - component: {fileID: 6912844416082475670}
   m_Layer: 10
   m_Name: DragonLair
   m_TagString: Untagged
@@ -134,6 +135,7 @@ MonoBehaviour:
   _SpawnSFXEmitter: {fileID: 217848904662049391}
   _Dragon: {fileID: 4436327880437374050, guid: dae2f1d4df155df4aadb717d6c467750, type: 3}
   _NbCardsAdded: 4
+  _DragonCollectedSFXEmitter: {fileID: 6912844416082475670}
 --- !u!114 &217848904662049391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,3 +155,22 @@ MonoBehaviour:
       Data3: -737729118
       Data4: -928671214
     Path: event:/GAME/dragon
+--- !u!114 &6912844416082475670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6087476990557836528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -1554519735
+      Data2: 1144447471
+      Data3: 1866697615
+      Data4: 1718731867
+    Path: event:/GAME/vox_dragon

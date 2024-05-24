@@ -239,73 +239,6 @@ MonoBehaviour:
   _SCNFtueIdx: 3
   _SCNGameIdx: 1
   _TargetedFrameRate: 30
---- !u!1 &445910051
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 445910053}
-  - component: {fileID: 445910052}
-  m_Layer: 0
-  m_Name: SoundManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!114 &445910052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 445910051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cd59735461ba5441b9c3eabe9f2672e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _AlwaysLoadedBank:
-  - path: UI
-    _Type: 1
-    isLoaded: 0
-  - path: Music
-    _Type: 2
-    isLoaded: 0
-  _Banks:
-  - path: GAME
-    _Type: 1
-    isLoaded: 0
-    _ScenesLinked: 0200000003000000
-  - path: FTUE
-    _Type: 1
-    isLoaded: 0
-    _ScenesLinked: 03000000
-  _VCATypes:
-  - _VCAPath: vca:/Music
-    _Type: 2
-  - _VCAPath: vca:/SFX
-    _Type: 2
-  - _VCAPath: vca:/Master
-    _Type: 0
---- !u!4 &445910053
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 445910051}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 800, y: 175, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &581463120
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,6 +478,73 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &880212583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 880212585}
+  - component: {fileID: 880212584}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!114 &880212584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880212583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cd59735461ba5441b9c3eabe9f2672e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _AlwaysLoadedBank:
+  - path: UI
+    _Type: 1
+    isLoaded: 0
+  - path: Music
+    _Type: 2
+    isLoaded: 0
+  _Banks:
+  - path: GAME
+    _Type: 1
+    isLoaded: 0
+    _ScenesLinked: 0200000003000000
+  - path: FTUE
+    _Type: 1
+    isLoaded: 0
+    _ScenesLinked: 03000000
+  _VCATypes:
+  - _VCAPath: vca:/Music
+    _Type: 2
+  - _VCAPath: vca:/SFX
+    _Type: 2
+  - _VCAPath: vca:/Master
+    _Type: 0
+--- !u!4 &880212585
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880212583}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.043682143, y: -0.0033004805, z: -9.953146}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1371599887
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,4 +772,4 @@ SceneRoots:
   - {fileID: 581463124}
   - {fileID: 237273132}
   - {fileID: 347457828}
-  - {fileID: 445910053}
+  - {fileID: 880212585}
