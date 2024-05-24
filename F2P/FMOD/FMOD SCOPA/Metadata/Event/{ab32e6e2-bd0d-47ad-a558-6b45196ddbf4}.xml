@@ -63,6 +63,9 @@
 		</relationship>
 	</object>
 	<object class="MixerInput" id="{abf40504-4ec1-4dd8-9012-085213c46af2}">
+		<relationship name="masters">
+			<destination>{15379a81-8c4c-47d0-b100-9ee0eec8b175}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{9ddd2f9f-b108-44b1-aaec-9a6739c8445c}</destination>
 		</relationship>
@@ -246,6 +249,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{1a0dc213-4982-4900-9977-537271ddb879}">
+		<property name="volume">
+			<value>1</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{0045bd08-f195-407a-8cc1-58aa85e2df64}</destination>
 		</relationship>
@@ -280,7 +286,6 @@
 		<property name="length">
 			<value>0.30675000000000008</value>
 		</property>
-		<property name="name" />
 		<property name="commandType">
 			<value>1</value>
 		</property>
@@ -326,7 +331,6 @@
 		<property name="length">
 			<value>0.30675000000000008</value>
 		</property>
-		<property name="name" />
 		<property name="commandType">
 			<value>1</value>
 		</property>
@@ -369,7 +373,6 @@
 		<property name="length">
 			<value>0.30675000000000008</value>
 		</property>
-		<property name="name" />
 		<property name="commandType">
 			<value>1</value>
 		</property>
@@ -412,7 +415,6 @@
 		<property name="length">
 			<value>0.30675000000000008</value>
 		</property>
-		<property name="name" />
 		<property name="commandType">
 			<value>1</value>
 		</property>
@@ -455,7 +457,6 @@
 		<property name="length">
 			<value>0.30675000000000008</value>
 		</property>
-		<property name="name" />
 		<property name="commandType">
 			<value>1</value>
 		</property>
@@ -498,7 +499,6 @@
 		<property name="length">
 			<value>0.30675000000000008</value>
 		</property>
-		<property name="name" />
 		<property name="commandType">
 			<value>1</value>
 		</property>
@@ -544,7 +544,6 @@
 		<property name="length">
 			<value>0.30675000000000008</value>
 		</property>
-		<property name="name" />
 		<property name="commandType">
 			<value>1</value>
 		</property>
@@ -587,7 +586,6 @@
 		<property name="length">
 			<value>0.30675000000000008</value>
 		</property>
-		<property name="name" />
 		<property name="commandType">
 			<value>1</value>
 		</property>
@@ -1706,7 +1704,7 @@
 			<value>64</value>
 		</property>
 		<property name="length">
-			<value>6.6979480930096305</value>
+			<value>9.926541666666667</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{3e7546c1-691c-4745-8735-fdefcf4fe6fa}</destination>
@@ -1726,7 +1724,7 @@
 			<value>64</value>
 		</property>
 		<property name="length">
-			<value>6.6979480930096287</value>
+			<value>9.9265416666666653</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{3e7546c1-691c-4745-8735-fdefcf4fe6fa}</destination>
@@ -1746,7 +1744,7 @@
 			<value>64</value>
 		</property>
 		<property name="length">
-			<value>6.5779115611264505</value>
+			<value>9.9265416666666599</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{3e7546c1-691c-4745-8735-fdefcf4fe6fa}</destination>
@@ -1766,7 +1764,7 @@
 			<value>64</value>
 		</property>
 		<property name="length">
-			<value>6.6200294145372212</value>
+			<value>9.9265416666666582</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{3e7546c1-691c-4745-8735-fdefcf4fe6fa}</destination>
@@ -1786,7 +1784,7 @@
 			<value>64</value>
 		</property>
 		<property name="length">
-			<value>6.6979480930096251</value>
+			<value>9.9265416666666617</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{3e7546c1-691c-4745-8735-fdefcf4fe6fa}</destination>
@@ -1806,7 +1804,7 @@
 			<value>64</value>
 		</property>
 		<property name="length">
-			<value>6.6979480930096287</value>
+			<value>9.9265416666666653</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{3e7546c1-691c-4745-8735-fdefcf4fe6fa}</destination>
@@ -1826,7 +1824,7 @@
 			<value>64</value>
 		</property>
 		<property name="length">
-			<value>6.6979480930096287</value>
+			<value>9.9265416666666653</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{3e7546c1-691c-4745-8735-fdefcf4fe6fa}</destination>

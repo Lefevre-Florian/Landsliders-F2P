@@ -219,6 +219,7 @@ namespace Com.IsartDigital.F2P.FTUE
         private void StartFTUE()
         {
             _MusicEmitter.Play();
+            _MusicEmitter.SetImmediateFade(1);
 
             Player.GetInstance().gameObject.SetActive(true);
             UpdateDialogue();

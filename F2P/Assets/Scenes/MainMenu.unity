@@ -528,11 +528,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SoundReference:
     Guid:
-      Data1: -1966368109
-      Data2: 1135783255
-      Data3: 1128577462
-      Data4: 933056761
-    Path: event:/UI/ui_button
+      Data1: -1239858711
+      Data2: 1179835731
+      Data3: -1903845213
+      Data4: -243897499
+    Path: event:/UI/hardcurrency_jingle
 --- !u!1001 &400242893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -986,11 +986,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SoundReference:
     Guid:
-      Data1: -1966368109
-      Data2: 1135783255
-      Data3: 1128577462
-      Data4: 933056761
-    Path: event:/UI/ui_button
+      Data1: -1239858711
+      Data2: 1179835731
+      Data3: -1903845213
+      Data4: -243897499
+    Path: event:/UI/hardcurrency_jingle
 --- !u!1 &750167803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,6 +1187,18 @@ PrefabInstance:
     - target: {fileID: 1946682801412205127, guid: 0a2dfef94edcba04b91ff0b6116a8627, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557786929326541684, guid: 0a2dfef94edcba04b91ff0b6116a8627, type: 3}
+      propertyPath: m_Value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557786929326541684, guid: 0a2dfef94edcba04b91ff0b6116a8627, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557786929326541684, guid: 0a2dfef94edcba04b91ff0b6116a8627, type: 3}
+      propertyPath: m_MinValue
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6776490786727723926, guid: 0a2dfef94edcba04b91ff0b6116a8627, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1417,7 +1429,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1286451818}
-  - {fileID: 1893289309}
   - {fileID: 1066610310}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1440,11 +1451,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SoundReference:
     Guid:
-      Data1: -1966368109
-      Data2: 1135783255
-      Data3: 1128577462
-      Data4: 933056761
-    Path: event:/UI/ui_button
+      Data1: -1239858711
+      Data2: 1179835731
+      Data3: -1903845213
+      Data4: -243897499
+    Path: event:/UI/hardcurrency_jingle
 --- !u!1001 &1001496087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2865,11 +2876,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SoundReference:
     Guid:
-      Data1: -1966368109
-      Data2: 1135783255
-      Data3: 1128577462
-      Data4: 933056761
-    Path: event:/UI/ui_button
+      Data1: -1239858711
+      Data2: 1179835731
+      Data3: -1903845213
+      Data4: -243897499
+    Path: event:/UI/hardcurrency_jingle
 --- !u!1 &1545455891 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5440422199307662719, guid: d4da026f3522cf242a3078d56de4b836, type: 3}
@@ -2968,11 +2979,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SoundReference:
     Guid:
-      Data1: -1966368109
-      Data2: 1135783255
-      Data3: 1128577462
-      Data4: 933056761
-    Path: event:/UI/ui_button
+      Data1: -1239858711
+      Data2: 1179835731
+      Data3: -1903845213
+      Data4: -243897499
+    Path: event:/UI/hardcurrency_jingle
 --- !u!114 &1656312582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3030,6 +3041,68 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1667867648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1667867650}
+  - component: {fileID: 1667867649}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!114 &1667867649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667867648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cd59735461ba5441b9c3eabe9f2672e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _AlwaysLoadedBank:
+  - path: UI
+    _Type: 1
+    isLoaded: 0
+  - path: Music
+    _Type: 2
+    isLoaded: 0
+  _Banks:
+  - path: GAME
+    _Type: 1
+    isLoaded: 0
+    _ScenesLinked: 0200000003000000
+  - path: FTUE
+    _Type: 1
+    isLoaded: 0
+    _ScenesLinked: 03000000
+  _SFXVcaPath: vca:/SFX
+  _MusicVcaPath: vca:/Music
+--- !u!4 &1667867650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667867648}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.043682143, y: -0.0033004805, z: -9.953146}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1721081952 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1197765685883463433, guid: d4da026f3522cf242a3078d56de4b836, type: 3}
@@ -3055,78 +3128,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SoundReference:
     Guid:
-      Data1: -1966368109
-      Data2: 1135783255
-      Data3: 1128577462
-      Data4: 933056761
-    Path: event:/UI/ui_button
---- !u!1 &1893289308
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1893289309}
-  - component: {fileID: 1893289310}
-  m_Layer: 0
-  m_Name: SoundManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &1893289309
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893289308}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 800, y: 175, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 927547436}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1893289310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893289308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cd59735461ba5441b9c3eabe9f2672e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _AlwaysLoadedBank:
-  - path: UI
-    _Type: 1
-    isLoaded: 0
-  - path: Music
-    _Type: 2
-    isLoaded: 0
-  _Banks:
-  - path: GAME
-    _Type: 1
-    isLoaded: 0
-    _ScenesLinked: 0200000003000000
-  - path: FTUE
-    _Type: 1
-    isLoaded: 0
-    _ScenesLinked: 03000000
-  _VCATypes:
-  - _VCAPath: vca:/Music
-    _Type: 2
-  - _VCAPath: vca:/SFX
-    _Type: 2
-  - _VCAPath: vca:/Master
-    _Type: 0
+      Data1: -1239858711
+      Data2: 1179835731
+      Data3: -1903845213
+      Data4: -243897499
+    Path: event:/UI/hardcurrency_jingle
 --- !u!114 &2019218737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6523,3 +6529,4 @@ SceneRoots:
   - {fileID: 297891697}
   - {fileID: 1073259428}
   - {fileID: 2040455428}
+  - {fileID: 1667867650}
