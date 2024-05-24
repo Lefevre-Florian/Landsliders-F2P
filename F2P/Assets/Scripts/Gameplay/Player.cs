@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
     [Header("Feedbacks")]
     [SerializeField] private GameObject _MoveSFXPrefab = null;
     [SerializeField] private GameObject _GoBackForbidSFXPrefab = null;
+    [SerializeField] private GameObject _ForbidCardPlacedSFX = null;
 
     // Variables
     [HideInInspector]
@@ -96,6 +97,10 @@ public class Player : MonoBehaviour
         _PreviousGridPos = baseGridPos;
 
         GameManager.CardPlaced.AddListener(SetModeMovable);
+        GameManager.CardPlaced.AddListener(HideVFX);
+
+        GameManager.GetInstance().OnTurnPassed += ShowVFX;
+
         GameManager.PlayerMoved.AddListener(SetModeFixed);
         GameManager.PlayerMoved.AddListener(CheckPlayerCanMove);
 
@@ -275,6 +280,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void ShowVFX() => _ForbidCardPlacedSFX.SetActive(true);
+
+    private void HideVFX() => _ForbidCardPlacedSFX.SetActive(false);
+
     private void CheckPlayerCanMove()
     {
         if (_InFTUE) return;
@@ -314,5 +323,9 @@ public class Player : MonoBehaviour
 
         GameFlowManager.Paused.RemoveListener(OnPause);
         GameFlowManager.Resumed.RemoveListener(OnResume);
+
+        GameManager.GetInstance().OnTurnPassed -= ShowVFX;
+
+        GameManager.CardPlaced.RemoveListener(HideVFX);
     }
 }
