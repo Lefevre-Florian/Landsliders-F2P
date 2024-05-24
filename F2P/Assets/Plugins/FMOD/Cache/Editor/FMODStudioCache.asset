@@ -123,11 +123,38 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638519137498858874
+  lastModified: 638521409157828867
   FileSizes:
   - Name: Desktop
-    Value: 1725632
+    Value: 3422176
   Exists: 1
+--- !u!114 &-6541625138305272535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/amb_menu
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/amb_menu
+  Guid:
+    Data1: 1996663504
+    Data2: 1084370435
+    Data3: 101852339
+    Data4: -1642250707
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 83000
 --- !u!114 &-6306624679846090223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +290,71 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-5730048075629301278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/fTE_narra/FTE PHASES
+  m_EditorClassIdentifier: 
+  Name: FTE PHASES
+  StudioPath: 
+  Min: 0
+  Max: 10
+  Default: 0
+  ID:
+    data1: 911067252
+    data2: 3118190312
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - TEXT1
+  - TEXT2
+  - TEXT3
+  - TEXT4
+  - GUARD
+  - BID1
+  - BID2
+  - BID3
+  - FIN FTUE1
+  - FIN FTUE2
+  - FIN FTUE3
+  Exists: 1
+--- !u!114 &-5196360522200144423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MUSIC/MUS_Cardgame
+  m_EditorClassIdentifier: 
+  Path: event:/MUSIC/MUS_Cardgame
+  Guid:
+    Data1: -280913606
+    Data2: 1128467790
+    Data3: -125533567
+    Data4: 1782631195
+  Banks:
+  - {fileID: -7806775572545794022}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 9206188368818752404}
+  - {fileID: 3180930370068206932}
+  - {fileID: 6249992647465084085}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 152000
 --- !u!114 &-3932579627540223025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,7 +478,7 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638519003165170320
+  lastModified: 638520710437542665
   FileSizes:
   - Name: Desktop
     Value: 50752
@@ -607,6 +699,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-814252725663570061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/dragon_breath
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/dragon_breath
+  Guid:
+    Data1: 171964418
+    Data2: 1297324700
+    Data3: -894007675
+    Data4: 652956786
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-671570793725157380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,13 +841,21 @@ MonoBehaviour:
   - {fileID: -9019006626956032672}
   - {fileID: 715652780334046976}
   - {fileID: -3036255723052544999}
-  - {fileID: 9066422693089636410}
+  - {fileID: -814252725663570061}
+  - {fileID: 4858925506790195525}
+  - {fileID: 7256918785281715062}
+  - {fileID: 6127567624646935808}
+  - {fileID: 4914571754365641776}
+  - {fileID: 436463615004566903}
+  - {fileID: -6541625138305272535}
+  - {fileID: 3749824044847701887}
+  - {fileID: -5196360522200144423}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1247950292147221911}
   StringsBanks:
   - {fileID: 7391608658828067301}
-  cacheTime: 638519137498858874
+  cacheTime: 638521409157828867
   cacheVersion: 131607
 --- !u!114 &252764185785947177
 MonoBehaviour:
@@ -757,6 +884,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &436463615004566903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/fTE_narra
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/fTE_narra
+  Guid:
+    Data1: 28128172
+    Data2: 1165871743
+    Data3: -842602865
+    Data4: -377576391
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -5730048075629301278}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 58000
 --- !u!114 &715652780334046976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -799,7 +954,7 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638519137498599838
+  lastModified: 638518893096154842
   FileSizes:
   - Name: Desktop
     Value: 1872
@@ -858,6 +1013,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &3180930370068206932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MUS_Cardgame/Grab
+  m_EditorClassIdentifier: 
+  Name: Grab
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1787514460
+    data2: 1728066814
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &3385780485651060292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -885,6 +1064,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &3749824044847701887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/fTE_vox_postnarra
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/fTE_vox_postnarra
+  Guid:
+    Data1: -1422727454
+    Data2: 1202568461
+    Data3: 1164662949
+    Data4: -186946279
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 7942323387443274881}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 71926
 --- !u!114 &4170849421902018481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -939,6 +1146,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &4858925506790195525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/witchquest_completed
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/witchquest_completed
+  Guid:
+    Data1: -1011732716
+    Data2: 1080887387
+    Data3: 1359741841
+    Data4: -84200884
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &4881970881626012721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -957,6 +1191,33 @@ MonoBehaviour:
     Data2: 1142443101
     Data3: 384749699
     Data4: -1123413770
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4914571754365641776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/vox_witch_laught
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/vox_witch_laught
+  Guid:
+    Data1: -113041093
+    Data2: 1188731496
+    Data3: 927866558
+    Data4: 1719011188
   Banks:
   - {fileID: 5780021015574079501}
   IsStream: 0
@@ -1062,10 +1323,10 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/GAME.bank
   Name: GAME
   StudioPath: bank:/GAME
-  lastModified: 638519137498539643
+  lastModified: 638521409157371307
   FileSizes:
   - Name: Desktop
-    Value: 853728
+    Value: 4331904
   Exists: 1
 --- !u!114 &6121040918377414445
 MonoBehaviour:
@@ -1094,6 +1355,59 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &6127567624646935808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/mainquest_completed
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/mainquest_completed
+  Guid:
+    Data1: 485438514
+    Data2: 1277897897
+    Data3: 707427974
+    Data4: -385878621
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6249992647465084085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MUS_Cardgame/SCENE
+  m_EditorClassIdentifier: 
+  Name: SCENE
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1953026289
+    data2: 3600618519
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - MENU
+  - GAMEPLAY
+  Exists: 1
 --- !u!114 &7027038422923354342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1112,6 +1426,33 @@ MonoBehaviour:
     Data2: 1094529657
     Data3: -2130611325
     Data4: 1621273746
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7256918785281715062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/vox_witch
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/vox_witch
+  Guid:
+    Data1: -1622057186
+    Data2: 1207556738
+    Data3: -1514004596
+    Data4: -365448321
   Banks:
   - {fileID: 5780021015574079501}
   IsStream: 0
@@ -1163,10 +1504,10 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638519137498609868
+  lastModified: 638521409157381316
   FileSizes:
   - Name: Desktop
-    Value: 3002
+    Value: 3562
   Exists: 1
 --- !u!114 &7494338966482294810
 MonoBehaviour:
@@ -1222,6 +1563,41 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &7942323387443274881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/fTE_vox_postnarra/FTE PHASES
+  m_EditorClassIdentifier: 
+  Name: FTE PHASES
+  StudioPath: 
+  Min: 0
+  Max: 10
+  Default: 0
+  ID:
+    data1: 911067252
+    data2: 3118190312
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - TEXT1
+  - TEXT2
+  - TEXT3
+  - TEXT4
+  - GUARD
+  - BID1
+  - BID2
+  - BID3
+  - FIN FTUE1
+  - FIN FTUE2
+  - FIN FTUE3
+  Exists: 1
 --- !u!114 &8312448226662768842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1276,33 +1652,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &9066422693089636410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MUSIC/MUS_Gameplay
-  m_EditorClassIdentifier: 
-  Path: event:/MUSIC/MUS_Gameplay
-  Guid:
-    Data1: -280913606
-    Data2: 1128467790
-    Data3: -125533567
-    Data4: 1782631195
-  Banks:
-  - {fileID: -7806775572545794022}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 72000
 --- !u!114 &9180175889904944837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1330,3 +1679,27 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &9206188368818752404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MUS_Cardgame/InShop
+  m_EditorClassIdentifier: 
+  Name: InShop
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3707851536
+    data2: 696261621
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1

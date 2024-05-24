@@ -88,9 +88,9 @@ namespace Com.IsartDigital.F2P.Biomes
             _CanBeRemoved = pState;
         }
 
-        public void Remove()
+        public void Remove(int x, int y)
         {
-            GridManager.GetInstance().RemoveAtIndex(_GridPosition);
+            GridManager.GetInstance().RemoveAtIndex(new Vector2(x,y));
             Destroy(gameObject);
         }
 
@@ -108,6 +108,7 @@ namespace Com.IsartDigital.F2P.Biomes
                                        .GetGridCoordinate(transform.position);
 
             _GameManager = GameManager.GetInstance();
+
             if (_Priority != 0)
                 _GameManager.OnEffectPlayed += TriggerPriority;
 
