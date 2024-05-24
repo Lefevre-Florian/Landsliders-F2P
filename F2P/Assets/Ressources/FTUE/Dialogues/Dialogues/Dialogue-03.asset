@@ -22,7 +22,7 @@ MonoBehaviour:
           Data3: 1164662949
           Data4: -186946279
         Path: event:/GAME/fTE_vox_postnarra
-      _Duration: 16.65
+      _Duration: 9
       _FMODKey: 9
   - _DialogueID: Bidoum-C-02
     _Audio:
@@ -33,7 +33,7 @@ MonoBehaviour:
           Data3: 1164662949
           Data4: -186946279
         Path: event:/GAME/fTE_vox_postnarra
-      _Duration: 16.65
-      _FMODKey: 9
+      _Duration: 7
+      _FMODKey: 10
   _Animation: 0
   _DialogueType: 0
