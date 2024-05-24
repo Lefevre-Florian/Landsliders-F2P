@@ -249,6 +249,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{1a0dc213-4982-4900-9977-537271ddb879}">
+		<property name="volume">
+			<value>1</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{0045bd08-f195-407a-8cc1-58aa85e2df64}</destination>
 		</relationship>
@@ -283,7 +286,6 @@
 		<property name="length">
 			<value>0.30675000000000008</value>
 		</property>
-		<property name="name" />
 		<property name="commandType">
 			<value>1</value>
 		</property>
@@ -329,7 +331,6 @@
 		<property name="length">
 			<value>0.30675000000000008</value>
 		</property>
-		<property name="name" />
 		<property name="commandType">
 			<value>1</value>
 		</property>
@@ -372,7 +373,6 @@
 		<property name="length">
 			<value>0.30675000000000008</value>
 		</property>
-		<property name="name" />
 		<property name="commandType">
 			<value>1</value>
 		</property>
@@ -415,7 +415,6 @@
 		<property name="length">
 			<value>0.30675000000000008</value>
 		</property>
-		<property name="name" />
 		<property name="commandType">
 			<value>1</value>
 		</property>
@@ -458,7 +457,6 @@
 		<property name="length">
 			<value>0.30675000000000008</value>
 		</property>
-		<property name="name" />
 		<property name="commandType">
 			<value>1</value>
 		</property>
@@ -501,7 +499,6 @@
 		<property name="length">
 			<value>0.30675000000000008</value>
 		</property>
-		<property name="name" />
 		<property name="commandType">
 			<value>1</value>
 		</property>
@@ -547,7 +544,6 @@
 		<property name="length">
 			<value>0.30675000000000008</value>
 		</property>
-		<property name="name" />
 		<property name="commandType">
 			<value>1</value>
 		</property>
@@ -590,7 +586,6 @@
 		<property name="length">
 			<value>0.30675000000000008</value>
 		</property>
-		<property name="name" />
 		<property name="commandType">
 			<value>1</value>
 		</property>
