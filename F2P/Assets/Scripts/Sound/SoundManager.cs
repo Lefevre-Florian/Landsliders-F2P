@@ -27,16 +27,6 @@ namespace Com.IsartDigital.F2P.Sound
         #endregion
         
         [Serializable]
-        public class VCAType
-        {
-            [SerializeField] private string _VCAPath = "vca:/";
-            [SerializeField] private SoundType _Type = SoundType.VFX;
-
-            public string VCAPath { get { return _VCAPath; } }
-            public SoundType Type { get { return _Type; } }
-        }
-
-        [Serializable]
         public class FMODBankScene : FMODBank
         {
             [Header("Scene")]
@@ -50,12 +40,14 @@ namespace Com.IsartDigital.F2P.Sound
         [SerializeField] private FMODBankScene[] _Banks = default;
 
         [Header("VCA")]
-        [SerializeField] private VCAType[] _VCATypes = null;
+        [SerializeField] private string _SFXVcaPath = "vca:/SFX";
+        [SerializeField] private string _MusicVcaPath = "vca:/Music";
 
         // Variables
         private List<FMODBankScene> _LoadedBanks = new List<FMODBankScene>();
 
-        private Dictionary<SoundType, List<VCA>> _VCAs = new Dictionary<SoundType, List<VCA>>();
+        private VCA _SFXVca = default;
+        private VCA _MusicVca = default;
 
         private void Awake()
         {
@@ -87,17 +79,13 @@ namespace Com.IsartDigital.F2P.Sound
                 RuntimeManager.UnloadBank(_Banks[i].path);
             }
 
-            if(_VCATypes != null && _VCATypes.Length != 0)
-            {
-                lLength = _VCATypes.Length;
-                for (int i = 0; i < lLength; i++)
-                    LoadVCA(_VCATypes[i]);
+            _SFXVca = RuntimeManager.GetVCA(_SFXVcaPath);
+            _MusicVca = RuntimeManager.GetVCA(_MusicVcaPath);
 
-                if(Save.data != null)
-                {
-                    UpdateVolume(SoundType.VFX, Save.data.sfxVolume * Convert.ToInt32(Save.data.soundStatus));
-                    UpdateVolume(SoundType.MUSIC, Save.data.musicVolume * Convert.ToInt32(Save.data.soundStatus));
-                }
+            if (Save.data != null)
+            {
+                UpdateVolume(SoundType.VFX, Save.data.sfxVolume * Convert.ToInt32(Save.data.soundStatus));
+                UpdateVolume(SoundType.MUSIC, Save.data.musicVolume * Convert.ToInt32(Save.data.soundStatus));
             }
 
             SceneManager.activeSceneChanged += LoadSceneBank;
@@ -105,17 +93,6 @@ namespace Com.IsartDigital.F2P.Sound
             #if UNITY_EDITOR
             LoadBankGroup(_Banks.ToList<FMODBankScene>().FindAll(x => x.ScenesLinked.ToList().Contains(SceneManager.GetActiveScene().buildIndex)).ToArray());
             #endif
-        }
-
-        private void LoadVCA(VCAType pVCA)
-        {
-            if (string.IsNullOrEmpty(pVCA.VCAPath))
-                return;
-
-            if (_VCAs.ContainsKey(pVCA.Type))
-                _VCAs[pVCA.Type].Add(RuntimeManager.GetVCA(pVCA.VCAPath));
-            else
-                _VCAs.Add(pVCA.Type, new List<VCA>() { RuntimeManager.GetVCA(pVCA.VCAPath) });
         }
 
         private void LoadSceneBank(Scene pOldScene, Scene pNextScene)
@@ -173,33 +150,17 @@ namespace Com.IsartDigital.F2P.Sound
 
         public void UpdateVolume(SoundType pType, float pValue)
         {
-            if (_VCAs.Count == 0)
-                return;
-
-            int lLength = 0;
-            pValue = (float)Math.Round(pValue * 2, 2);
-
             switch (pType)
             {
                 case SoundType.GLOBAL:
-                    foreach (KeyValuePair<SoundType, List<VCA>> lItem in _VCAs)
-                    {
-                        lLength = lItem.Value.Count;
-                        for (int i = 0; i < lLength; i++)
-                        {
-                            if (lItem.Key == SoundType.MUSIC)
-                                _VCAs[lItem.Key][i].setVolume(Save.data != null ? Save.data.musicVolume * Convert.ToInt32(Save.data.soundStatus) : pValue);
-                            else if(lItem.Key == SoundType.VFX)
-                                _VCAs[lItem.Key][i].setVolume(Save.data != null ? Save.data.sfxVolume * Convert.ToInt32(Save.data.soundStatus) : pValue);
-                        }
-                    }
+                    _SFXVca.setVolume(Save.data != null ? Save.data.sfxVolume * Convert.ToInt32(Save.data.soundStatus) : pValue);
+                    _MusicVca.setVolume(Save.data != null ? Save.data.musicVolume * Convert.ToInt32(Save.data.soundStatus) : pValue);
                     break;
-
-                case SoundType.VFX | SoundType.MUSIC:
-                    lLength = _VCAs[pType].Count;
-                    print(pType);
-                    for (int i = 0; i < lLength; i++)
-                        _VCAs[pType][i].setVolume(pValue);
+                case SoundType.VFX:
+                    _SFXVca.setVolume(pValue);
+                    break;
+                case SoundType.MUSIC:
+                    _MusicVca.setVolume(pValue);
                     break;
             }
         }
