@@ -125,7 +125,7 @@ public class GameManager : MonoBehaviour
 
         CardPlaced.AddListener(SetModeMovingPlayer);
         PlayerMoved.AddListener(SetModeBiomeEffect);
-        OnAllEffectPlayed += CheckDesertLose;
+        OnAllEffectPlayed += OnTurnPassed;
 
         _GameStartTime = DateTime.UtcNow;
     }
@@ -207,6 +207,7 @@ public class GameManager : MonoBehaviour
     {
         while (_CurrentPriority != _MaxPriority + 1)
         {
+
             OnEffectPlayed?.Invoke(_CurrentPriority);
             _CurrentPriority += 1;
 
@@ -270,6 +271,6 @@ public class GameManager : MonoBehaviour
         CardPlaced.RemoveAllListeners();
         PlayerMoved.RemoveAllListeners();
 
-        OnAllEffectPlayed -= CheckDesertLose;
+        OnAllEffectPlayed -= OnTurnPassed;
     }
 }
