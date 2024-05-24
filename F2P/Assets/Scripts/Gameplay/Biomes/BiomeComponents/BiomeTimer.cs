@@ -56,6 +56,15 @@ namespace Com.IsartDigital.F2P.Biomes
 
         public void StopTicking() => _GameManager.OnTurnPassed -= ClockTicking;
 
+        public void ResetTicking()
+        {
+            StopTicking();
+
+            _InternalTimer = _Timer;
+            ClockTicking();
+            _InternalTimer = _Timer;
+        }
+
         public void SetCurrentTimer(int pTick)
         {
             while (_InternalTimer != pTick)

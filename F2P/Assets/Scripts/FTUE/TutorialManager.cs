@@ -205,7 +205,7 @@ namespace Com.IsartDigital.F2P.FTUE
                     lBiome.GetComponent<BiomePlayerContact>().DisableCollision();
                 }
                 else if (lBiome.Type == BiomeType.desert || lBiome.Type == BiomeType.swamp)
-                    lBiome.locked = true;
+                    lBiome.Lock();
             }
         }
         #endregion

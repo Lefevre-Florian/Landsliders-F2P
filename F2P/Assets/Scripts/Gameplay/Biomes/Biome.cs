@@ -52,6 +52,8 @@ namespace Com.IsartDigital.F2P.Biomes
         public event Action<bool> OnWalkableStateChanged;
         public event Action<bool> OnRemovableStateChanged;
 
+        public UnityEvent OnLocked = new UnityEvent();
+
         private void Start()
         {
             TEMPCard lCard = GetComponent<TEMPCard>();
@@ -65,6 +67,11 @@ namespace Com.IsartDigital.F2P.Biomes
                     lCard.OnPlaced += PlaySoundAwake;
             }
                 
+        }
+        public void Lock()
+        {
+            locked = true;
+            OnLocked?.Invoke();
         }
 
         public void PreciseSwitchWalkableState(bool pState)
@@ -132,6 +139,8 @@ namespace Com.IsartDigital.F2P.Biomes
 
             if(_Priority != 0 && _GameManager != null)
                 _GameManager.OnEffectPlayed -= TriggerPriority;
+
+            OnLocked.RemoveAllListeners();
 
             onTriggered = null;
             _GameManager = null;
