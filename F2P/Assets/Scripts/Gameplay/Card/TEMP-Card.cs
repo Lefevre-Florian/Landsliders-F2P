@@ -103,7 +103,7 @@ public class TEMPCard : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.name != PLAYER_NAME && collision.GetComponent<TEMPCard>().currentState != State.InHand && collision.GetComponent<Biome>().Type != GetComponent<Biome>().Type
+        if (collision.name != PLAYER_NAME && collision.GetComponent<TEMPCard>().currentState != State.InHand
             && !_ForbiddenBiome.Contains(collision.GetComponent<Biome>().Type) && collision.GetComponent<CardContainer>().gridPosition != Player.GetInstance()._ActualGridPos)
         {
             if (_CollidingObjects.Count > 1)
@@ -219,7 +219,6 @@ public class TEMPCard : MonoBehaviour
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + Vector3.forward * 2);
         if (Input.GetMouseButtonUp(0) 
             && _Snapable 
-            && _SnapParent.GetComponent<Biome>().Type != GetComponent<Biome>().Type
             && _SnapParent.GetComponent<Biome>().CanBeRemoved)
         {
             CardContainer lContainer = GetComponent<CardContainer>();
@@ -238,9 +237,10 @@ public class TEMPCard : MonoBehaviour
             
             SetModePlayed();
         }
-        else if (Input.GetMouseButtonUp(0) && !_Snapable) 
+        else if (Input.GetMouseButtonUp(0)) 
         {
             OnFocus?.Invoke(false);
+            snapPos = _HandManager._CardsSlot[handIndex].transform.position;
 
             transform.position = snapPos;
             SetModeInHand();
