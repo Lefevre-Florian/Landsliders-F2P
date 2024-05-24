@@ -576,10 +576,10 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638521551440100968
+  lastModified: 638521619553137345
   FileSizes:
   - Name: Desktop
-    Value: 1842400
+    Value: 1850880
   Exists: 1
 --- !u!114 &-2051149168240736506
 MonoBehaviour:
@@ -865,6 +865,33 @@ MonoBehaviour:
   - FIN FTUE3
   - FIN FTUE4
   Exists: 1
+--- !u!114 &-744602490027470481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/hardcurrency_jingle
+  m_EditorClassIdentifier: 
+  Path: event:/UI/hardcurrency_jingle
+  Guid:
+    Data1: -1239858711
+    Data2: 1179835731
+    Data3: -1903845213
+    Data4: -243897499
+  Banks:
+  - {fileID: -2637945911149226402}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-671570793725157380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -956,7 +983,6 @@ MonoBehaviour:
   - {fileID: -669913832063041354}
   - {fileID: -8130072501414752240}
   - {fileID: -2947076010166184566}
-  - {fileID: 7512045549580233372}
   - {fileID: 7347788027139089182}
   - {fileID: 8312448226662768842}
   - {fileID: 5208670352465905367}
@@ -994,12 +1020,14 @@ MonoBehaviour:
   - {fileID: 672431440102040512}
   - {fileID: 2520057730182497580}
   - {fileID: 16620696363120561}
+  - {fileID: 4273361662119850683}
+  - {fileID: -744602490027470481}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1247950292147221911}
   StringsBanks:
   - {fileID: 7391608658828067301}
-  cacheTime: 638521569805941115
+  cacheTime: 638521629007851860
   cacheVersion: 131607
 --- !u!114 &16620696363120561
 MonoBehaviour:
@@ -1078,7 +1106,8 @@ MonoBehaviour:
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: 7134516315166556297}
   MinDistance: 1
   MaxDistance: 20
   Length: 83000
@@ -1151,10 +1180,10 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638521569805927688
+  lastModified: 638521604381326210
   FileSizes:
   - Name: Desktop
-    Value: 2178
+    Value: 2194
   Exists: 1
 --- !u!114 &2014079891779623076
 MonoBehaviour:
@@ -1327,7 +1356,7 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/FTUE.bank
   Name: FTUE
   StudioPath: bank:/FTUE
-  lastModified: 638521551438452564
+  lastModified: 638521629007851860
   FileSizes:
   - Name: Desktop
     Value: 1284224
@@ -1350,6 +1379,33 @@ MonoBehaviour:
     Data2: 1180792396
     Data3: -352218992
     Data4: 353982669
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4273361662119850683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/vox_dragon
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/vox_dragon
+  Guid:
+    Data1: -1554519735
+    Data2: 1144447471
+    Data3: 1866697615
+    Data4: 1718731867
   Banks:
   - {fileID: 5780021015574079501}
   IsStream: 0
@@ -1509,10 +1565,10 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/GAME.bank
   Name: GAME
   StudioPath: bank:/GAME
-  lastModified: 638521569805832240
+  lastModified: 638521604381229561
   FileSizes:
   - Name: Desktop
-    Value: 1441056
+    Value: 1654336
   Exists: 1
 --- !u!114 &6020974756420664720
 MonoBehaviour:
@@ -1622,6 +1678,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &7134516315166556297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/amb_menu/InShop
+  m_EditorClassIdentifier: 
+  Name: InShop
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3707851536
+    data2: 696261621
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &7347788027139089182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1664,10 +1744,10 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638521569805941115
+  lastModified: 638521604381336257
   FileSizes:
   - Name: Desktop
-    Value: 3846
+    Value: 3894
   Exists: 1
 --- !u!114 &7439668432392018276
 MonoBehaviour:
@@ -1723,33 +1803,6 @@ MonoBehaviour:
     Data2: 1328552531
     Data3: -5337449
     Data4: -1260064175
-  Banks:
-  - {fileID: 5780021015574079501}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &7512045549580233372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/hardcurrency_jingle
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/hardcurrency_jingle
-  Guid:
-    Data1: -1239858711
-    Data2: 1179835731
-    Data3: -1903845213
-    Data4: -243897499
   Banks:
   - {fileID: 5780021015574079501}
   IsStream: 0
