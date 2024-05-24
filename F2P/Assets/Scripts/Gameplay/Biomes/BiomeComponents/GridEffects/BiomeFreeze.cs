@@ -63,7 +63,7 @@ namespace Com.IsartDigital.F2P.Biomes
             Biome lBiome = _GridManager.GetCardByGridCoordinate(pTarget);
 
             lBiome.AddComponent<BiomeFreeze>();
-            lBiome.GetComponent<Biome>().locked = true;
+            lBiome.GetComponent<Biome>().Lock();
 
             Instantiate(_VFXFrozen, lBiome.transform);
         }
