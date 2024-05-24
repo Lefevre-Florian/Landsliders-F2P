@@ -6337,9 +6337,17 @@ PrefabInstance:
       propertyPath: _UpgradeScreen
       value: 
       objectReference: {fileID: 542816655}
+    - target: {fileID: 6995810403319572733, guid: 838192997033d4c438261d899fa76305, type: 3}
+      propertyPath: _CardTextures.Array.data[0].explication
+      value: 
+      objectReference: {fileID: 21300000, guid: 8f37739a1fb30fa418a5d41a3a409e2b, type: 3}
     - target: {fileID: 7154859939745616260, guid: 838192997033d4c438261d899fa76305, type: 3}
       propertyPath: m_Name
       value: PRB_DeckScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154859939745616260, guid: 838192997033d4c438261d899fa76305, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
