@@ -174,7 +174,12 @@ namespace com.isartdigital.f2p.gameplay.manager
         /// </summary>
         /// <param name="pPosition">Grid position format</param>
         /// <returns></returns>
-        public Biome GetCardByGridCoordinate(Vector2 pPosition) => _Cards[(int)pPosition.x, (int)pPosition.y]?.GetComponent<Biome>();
+        public Biome GetCardByGridCoordinate(Vector2 pPosition)
+        {
+            int x = Mathf.RoundToInt(Mathf.Clamp(pPosition.x, 0, 2));
+            int y = Mathf.RoundToInt(Mathf.Clamp(pPosition.y, 0, 2));
+            return _Cards[x, y]?.GetComponent<Biome>(); 
+        }
         #endregion
 
         #region Grid management
