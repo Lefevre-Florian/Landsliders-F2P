@@ -291,11 +291,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _SoundReference:
     Guid:
-      Data1: -1966368109
-      Data2: 1135783255
-      Data3: 1128577462
-      Data4: 933056761
-    Path: event:/UI/ui_button
+      Data1: 1696387656
+      Data2: 1240223557
+      Data3: 514274445
+      Data4: -1387359060
+    Path: event:/UI/upgrade
 --- !u!1 &3004293812190638618
 GameObject:
   m_ObjectHideFlags: 0

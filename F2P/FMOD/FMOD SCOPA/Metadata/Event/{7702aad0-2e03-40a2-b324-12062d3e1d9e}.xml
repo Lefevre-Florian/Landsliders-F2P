@@ -33,7 +33,7 @@
 			<destination>{f4505ffe-6352-405e-a477-46f7ccee2171}</destination>
 		</relationship>
 		<relationship name="banks">
-			<destination>{e5fe6fbe-80e9-4ed9-a41a-98e7bc9c9c2a}</destination>
+			<destination>{fbe4f085-73dd-41b1-a543-c4572f9c353b}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{cf0d1a19-3a90-47fb-af9b-7debab2a1b22}">
@@ -93,6 +93,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{cd1fbb04-10ca-4d0c-b8a6-497063b796f7}">
+		<property name="volume">
+			<value>3.5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{62588430-c225-439a-8c5d-6933ea32e4a9}</destination>
 		</relationship>

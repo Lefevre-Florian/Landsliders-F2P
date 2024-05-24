@@ -1,3 +1,5 @@
+using Com.IsartDigital.F2P.Sound;
+
 using TMPro;
 
 using UnityEngine;
@@ -15,6 +17,10 @@ namespace Com.IsartDigital.F2P.UI.Screens
         [Header("Screen")]
         [SerializeField] private TextMeshProUGUI _ExpLevelLabel = null;
 
+        [Header("Sound")]
+        [SerializeField] private MusicEmitter _Music = null;
+        [SerializeField] private SoundEmitter _AmbianceSFXEmitter = null;
+
         private void Start()
         {
             // Reset timescale (in case)
@@ -23,10 +29,23 @@ namespace Com.IsartDigital.F2P.UI.Screens
             UpdateExp();
 
             Save.OnDataUpdated += UpdateExp;
+
+            if (_AmbianceSFXEmitter != null)
+                _AmbianceSFXEmitter.PlaySFXLooping();
+        }
+
+        public override void Open()
+        {
+            base.Open();
+            if(_Music != null)
+                _Music.SetImmediateFade(0);
         }
 
         public void Play()
         {
+            if (_AmbianceSFXEmitter != null)
+                _AmbianceSFXEmitter.StopSFXLoopingFade();
+
             Save.data.totalGame += 1;
 
             if (!_IsUsingLoadingScreen)

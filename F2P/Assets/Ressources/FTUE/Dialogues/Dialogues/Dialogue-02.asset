@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: Dialogue-02
   m_EditorClassIdentifier: 
   _Dialogues:
-  - Bidoum-B-01
+  - _DialogueID: Bidoum-B-01
+    _Audio:
+      _Audio:
+        Guid:
+          Data1: -1422727454
+          Data2: 1202568461
+          Data3: 1164662949
+          Data4: -186946279
+        Path: event:/GAME/fTE_vox_postnarra
+      _Duration: 10
+      _FMODKey: 8
+  _Animation: 0
+  _DialogueType: 0

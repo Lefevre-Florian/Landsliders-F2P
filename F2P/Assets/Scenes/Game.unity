@@ -221,6 +221,9 @@ MonoBehaviour:
       Data3: -125533567
       Data4: 1782631195
     Path: event:/MUSIC/MUS_Cardgame
+  _Type: 1
+  _FadeParameter: 
+  _ImmediateStart: 1
 --- !u!4 &249466671
 Transform:
   m_ObjectHideFlags: 0
@@ -738,6 +741,8 @@ MonoBehaviour:
   _Player: {fileID: 6110220630346872215, guid: fc2c9f220e004af41a39e714ffc80dfa, type: 3}
   _BasePlayerGridPos: {x: 1, y: 1}
   _SecondsBetweenEachPriorityExecution: 0.25
+  _WinJingle: {fileID: 0}
+  _LooseJingle: {fileID: 0}
   cardPlayed: 0
   playerMoved: 0
   playerCanMove: 0
@@ -1927,6 +1932,7 @@ MonoBehaviour:
         name: All roads lead to the Center
         desc: Survive 3 turns without going to the center of the map
         reward: 4 cards
+  _WitchQuestCompletedSFXEmitter: {fileID: 0}
 --- !u!114 &1150857209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1983,6 +1989,7 @@ MonoBehaviour:
       value:
         name: The Witch Path
         desc: Complete a Witch Quest
+  _QuestCompletedSFXEmitter: {fileID: 0}
 --- !u!4 &1150857211
 Transform:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ namespace Com.IsartDigital.F2P.Gameplay
 
         [Header("Sound")]
         [SerializeField] private SoundEmitter _FlySFXEmitter = null;
+        [SerializeField] private SoundEmitter _BreathSFXEmitter = null;
 
         [Header("Juiciness")]
         [SerializeField] private GameObject _Particles;
@@ -192,6 +193,10 @@ namespace Com.IsartDigital.F2P.Gameplay
 
         private void OnPlayerPosition()
         {
+            if (_BreathSFXEmitter != null)
+                _BreathSFXEmitter.PlaySFXOnShot();
+
+            _HandManager.BurnCard(_NbCardsBurnt);
             _CardBurnt = true;
             _HandManager.BurnCard(_NbCardsBurnt);
             Instantiate(_Particles, transform.position, Quaternion.identity);

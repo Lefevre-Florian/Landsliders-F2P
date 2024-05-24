@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{dff856dc-7b41-4e0a-9443-cee9b2786834}">
+		<property name="name">
+			<value>Music during FTUE</value>
+		</property>
+		<relationship name="folder">
+			<destination>{bc1a8f77-e0c1-4407-9043-8f56b4b3669a}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{41006311-6e0d-402e-8414-f1cef8f20fea}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{41006311-6e0d-402e-8414-f1cef8f20fea}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

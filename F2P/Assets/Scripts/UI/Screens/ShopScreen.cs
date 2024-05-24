@@ -1,6 +1,11 @@
+using Com.IsartDigital.F2P.Sound;
+
 using System;
 using System.Collections.Generic;
 
+using UnityEngine;
+
+// Author (CR) : Elias Dridi & Florian Lefevre
 namespace Com.IsartDigital.F2P.UI
 {
     public class ShopScreen : Screen
@@ -9,6 +14,8 @@ namespace Com.IsartDigital.F2P.UI
         private const string TRACKER_NAME = "timeInShop";
         private const string TRACKER_TIME_PARAMETER = "timeInSecondMinute";
         #endregion
+
+        [SerializeField] private MusicEmitter _Music = null;
 
         // Variables
         private DateTime _StartTime = default;
@@ -24,6 +31,9 @@ namespace Com.IsartDigital.F2P.UI
         {
             _StartTime = DateTime.UtcNow;
             base.Open();
+
+            if (_Music != null)
+                _Music.SetImmediateFade(1);
         }
 
         public override void Close()

@@ -1,4 +1,5 @@
 using Com.IsartDigital.F2P;
+using Com.IsartDigital.F2P.Sound;
 
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,9 @@ namespace com.isartdigital.f2p.manager
 
         [SerializeField] private QuestLabelsDic _QuestLabelsDic = new QuestLabelsDic();
         private static Dictionary<QuestsEnum, QuestText> questDic;
+
+        [Header("Sound")]
+        [SerializeField] private SoundEmitter _QuestCompletedSFXEmitter = null;
 
         public enum QuestsEnum
         {
@@ -64,8 +68,8 @@ namespace com.isartdigital.f2p.manager
 
         private void WinDebug()
         {
-            Debug.Log("Win");
-
+            if (_QuestCompletedSFXEmitter != null)
+                _QuestCompletedSFXEmitter.PlaySFXOnShot();
             GameManager.GetInstance().SetModeWin();
         }
 
