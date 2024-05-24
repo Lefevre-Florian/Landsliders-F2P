@@ -418,7 +418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 249466671}
-  - component: {fileID: 249466670}
+  - component: {fileID: 249466672}
   m_Layer: 0
   m_Name: MusicEmitter
   m_TagString: Untagged
@@ -426,28 +426,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &249466670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249466669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe33f383e2ed43b42b25984e4096561a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _MusicEvent:
-    Guid:
-      Data1: -280913606
-      Data2: 1128467790
-      Data3: -125533567
-      Data4: 1782631195
-    Path: event:/MUSIC/MUS_Cardgame
-  _Type: 1
-  _FadeParameter: 
-  _ImmediateStart: 1
 --- !u!4 &249466671
 Transform:
   m_ObjectHideFlags: 0
@@ -463,6 +441,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &249466672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249466669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 772ff39e18fa807479abc1f8bbbe8ca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MusicEvent:
+    Guid:
+      Data1: -280913606
+      Data2: 1128467790
+      Data3: -125533567
+      Data4: 1782631195
+    Path: event:/MUSIC/MUS_Cardgame
+  _Type: 1
+  _FadeParameter: Grab
+  _ImmediateStart: 1
 --- !u!1 &269031804
 GameObject:
   m_ObjectHideFlags: 0

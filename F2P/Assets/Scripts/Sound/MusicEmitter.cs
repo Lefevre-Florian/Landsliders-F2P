@@ -26,7 +26,7 @@ namespace Com.IsartDigital.F2P.Sound
 
         private Coroutine _Coroutine = null;
 
-        private void Start()
+        protected virtual void Start()
         {
             _Instance = RuntimeManager.CreateInstance(_MusicEvent);
             _Instance.setParameterByName(MUSIC_BY_SCENE_FMOD_PARAMETER, (int)_Type);
@@ -84,7 +84,7 @@ namespace Com.IsartDigital.F2P.Sound
 
         public void Stop() => _Instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             if (_Instance.isValid())
                 _Instance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
