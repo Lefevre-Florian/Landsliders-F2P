@@ -699,6 +699,7 @@ GameObject:
   - component: {fileID: 1061210647}
   - component: {fileID: 1061210648}
   - component: {fileID: 1061210649}
+  - component: {fileID: 1061210650}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1399,7 +1400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MaxGameEventsNumber: 3
-  _GameEventChance: 0
+  _GameEventChance: 0.33
   _EtheralRift: {fileID: 8149821949770973124, guid: 806f15beba4f9e04eb9bd269db15f90f, type: 3}
   _DragonLair: {fileID: 6087476990557836528, guid: 32c0595fe4bed8144b59f4e1c9421115, type: 3}
   _Witch: {fileID: 1284007911230468281, guid: e33e8248a04cd5642a3d41315b9fb62b, type: 3}
@@ -1419,6 +1420,18 @@ MonoBehaviour:
     weight: 14
   - gameEvent: 5
     weight: 10
+--- !u!114 &1061210650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061210643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2ca31dbadf489944b644d992f782e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1087800625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2738,6 +2751,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1060975887}
+    - target: {fileID: 7459082442432692932, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8043947561000646965, guid: 7d731fe2512fbf24e967855ee94cd0d8, type: 3}
       propertyPath: m_SizeDelta.y
       value: 2560

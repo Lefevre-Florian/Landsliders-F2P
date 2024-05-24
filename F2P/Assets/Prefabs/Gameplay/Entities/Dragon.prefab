@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4917499d88c84d841a8824c4ad64cca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _NbCardsBurnt: 4
+  _NbCardsBurnt: 5
   _FlySFXEmitter: {fileID: 971134675495411336}
 --- !u!114 &971134675495411336
 MonoBehaviour:
