@@ -1188,6 +1188,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4557786929326541684, guid: 0a2dfef94edcba04b91ff0b6116a8627, type: 3}
+      propertyPath: m_Value
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557786929326541684, guid: 0a2dfef94edcba04b91ff0b6116a8627, type: 3}
+      propertyPath: m_MaxValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4557786929326541684, guid: 0a2dfef94edcba04b91ff0b6116a8627, type: 3}
+      propertyPath: m_MinValue
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6776490786727723926, guid: 0a2dfef94edcba04b91ff0b6116a8627, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3052,13 +3064,8 @@ MonoBehaviour:
     _Type: 1
     isLoaded: 0
     _ScenesLinked: 03000000
-  _VCATypes:
-  - _VCAPath: vca:/Music
-    _Type: 2
-  - _VCAPath: vca:/SFX
-    _Type: 2
-  - _VCAPath: vca:/Master
-    _Type: 0
+  _SFXVcaPath: vca:/SFX
+  _MusicVcaPath: vca:/Music
 --- !u!4 &1667867650
 Transform:
   m_ObjectHideFlags: 0

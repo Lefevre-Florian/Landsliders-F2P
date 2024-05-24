@@ -4017,7 +4017,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fda9a41f25ed9614fb1c41e6f7ba3c9a, type: 3}
---- !u!1 &2010858072
+--- !u!1 &1986842796
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4025,8 +4025,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2010858074}
-  - component: {fileID: 2010858073}
+  - component: {fileID: 1986842798}
+  - component: {fileID: 1986842797}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -4034,13 +4034,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &2010858073
+--- !u!114 &1986842797
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2010858072}
+  m_GameObject: {fileID: 1986842796}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cd59735461ba5441b9c3eabe9f2672e, type: 3}
@@ -4062,20 +4062,15 @@ MonoBehaviour:
     _Type: 1
     isLoaded: 0
     _ScenesLinked: 03000000
-  _VCATypes:
-  - _VCAPath: vca:/Music
-    _Type: 2
-  - _VCAPath: vca:/SFX
-    _Type: 2
-  - _VCAPath: vca:/Master
-    _Type: 0
---- !u!4 &2010858074
+  _SFXVcaPath: vca:/SFX
+  _MusicVcaPath: vca:/Music
+--- !u!4 &1986842798
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2010858072}
+  m_GameObject: {fileID: 1986842796}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.043682143, y: -0.0033004805, z: -9.953146}
@@ -4857,4 +4852,4 @@ SceneRoots:
   - {fileID: 1980377571}
   - {fileID: 1150857211}
   - {fileID: 269031806}
-  - {fileID: 2010858074}
+  - {fileID: 1986842798}
