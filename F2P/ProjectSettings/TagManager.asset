@@ -46,3 +46,9 @@ TagManager:
   - name: Event
     uniqueID: 1039606305
     locked: 0
+  - name: Mist
+    uniqueID: 4247345543
+    locked: 0
+  - name: UI
+    uniqueID: 3674745427
+    locked: 0
