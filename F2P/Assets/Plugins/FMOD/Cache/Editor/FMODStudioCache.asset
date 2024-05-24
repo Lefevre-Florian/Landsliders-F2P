@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9085481508578300754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/mainquest_completed
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/mainquest_completed
+  Guid:
+    Data1: 485438514
+    Data2: 1277897897
+    Data3: 707427974
+    Data4: -385878621
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-9019006626956032672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54,41 +81,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-8201186660560377765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/fTE_narra/FTE PHASES
-  m_EditorClassIdentifier: 
-  Name: FTE PHASES
-  StudioPath: 
-  Min: 0
-  Max: 10
-  Default: 0
-  ID:
-    data1: 911067252
-    data2: 3118190312
-  Type: 2
-  IsGlobal: 0
-  Labels:
-  - TEXT1
-  - TEXT2
-  - TEXT3
-  - TEXT4
-  - GUARD
-  - BID1
-  - BID2
-  - BID3
-  - FIN FTUE1
-  - FIN FTUE2
-  - FIN FTUE3
-  Exists: 1
 --- !u!114 &-8130072501414752240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +135,32 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-7817176564207721438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MUS_Cardgame/SCENE
+  m_EditorClassIdentifier: 
+  Name: SCENE
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1953026289
+    data2: 3600618519
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - MENU
+  - GAMEPLAY
+  Exists: 1
 --- !u!114 &-7806775572545794022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,12 +176,12 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638520909623410801
+  lastModified: 638521459906108233
   FileSizes:
   - Name: Desktop
-    Value: 3422176
+    Value: 3423712
   Exists: 1
---- !u!114 &-7391658241318102138
+--- !u!114 &-6869312315254955726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,7 +208,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-6915199505077352241
+--- !u!114 &-6656188812148177758
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,24 +218,51 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/fTE_vox_postnarra
+  m_Name: event:/GAME/fTE_narra
   m_EditorClassIdentifier: 
-  Path: event:/GAME/fTE_vox_postnarra
+  Path: event:/GAME/fTE_narra
   Guid:
-    Data1: -1422727454
-    Data2: 1202568461
-    Data3: 1164662949
-    Data4: -186946279
+    Data1: 28128172
+    Data2: 1165871743
+    Data3: -842602865
+    Data4: -377576391
   Banks:
-  - {fileID: 5780021015574079501}
+  - {fileID: 3388582397319282026}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters:
-  - {fileID: 8634718663078577452}
+  - {fileID: -905620043090913394}
   MinDistance: 1
   MaxDistance: 20
-  Length: 71926
+  Length: 58306
+--- !u!114 &-6623371607669584627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/win_jingle
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/win_jingle
+  Guid:
+    Data1: -61357557
+    Data2: 1077576666
+    Data3: 32715441
+    Data4: -2139295896
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-6306624679846090223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,6 +398,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-5474340472866494242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/fTE_vox_postnarra
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/fTE_vox_postnarra
+  Guid:
+    Data1: -1422727454
+    Data2: 1202568461
+    Data3: 1164662949
+    Data4: -186946279
+  Banks:
+  - {fileID: 3388582397319282026}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 8905465202147910973}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 74233
 --- !u!114 &-3932579627540223025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,34 +507,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-2969695733389465480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/fTE_narra
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/fTE_narra
-  Guid:
-    Data1: 28128172
-    Data2: 1165871743
-    Data3: -842602865
-    Data4: -377576391
-  Banks:
-  - {fileID: 5780021015574079501}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -8201186660560377765}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 58000
 --- !u!114 &-2947076010166184566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,7 +534,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-2740944123181319499
+--- !u!114 &-2798288986259993455
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -499,14 +544,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/mainquest_completed
+  m_Name: event:/GAME/dragon_breath
   m_EditorClassIdentifier: 
-  Path: event:/GAME/mainquest_completed
+  Path: event:/GAME/dragon_breath
   Guid:
-    Data1: 485438514
-    Data2: 1277897897
-    Data3: 707427974
-    Data4: -385878621
+    Data1: 171964418
+    Data2: 1297324700
+    Data3: -894007675
+    Data4: 652956786
   Banks:
   - {fileID: 5780021015574079501}
   IsStream: 0
@@ -531,11 +576,43 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638520113893835595
+  lastModified: 638520982751501702
   FileSizes:
   - Name: Desktop
-    Value: 50752
+    Value: 1847552
   Exists: 1
+--- !u!114 &-2051149168240736506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MUSIC/MUS_Cardgame
+  m_EditorClassIdentifier: 
+  Path: event:/MUSIC/MUS_Cardgame
+  Guid:
+    Data1: -280913606
+    Data2: 1128467790
+    Data3: -125533567
+    Data4: 1782631195
+  Banks:
+  - {fileID: -7806775572545794022}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 2848994219831007565}
+  - {fileID: 3362706768965959851}
+  - {fileID: -7817176564207721438}
+  - {fileID: 8581343980640794826}
+  - {fileID: 7439668432392018276}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 152000
 --- !u!114 &-2039592566931951735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -637,33 +714,6 @@ MonoBehaviour:
     Data4: -1387359060
   Banks:
   - {fileID: -2637945911149226402}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-1462620896952391298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/vox_witch_laught
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/vox_witch_laught
-  Guid:
-    Data1: -113041093
-    Data2: 1188731496
-    Data3: 927866558
-    Data4: 1719011188
-  Banks:
-  - {fileID: 5780021015574079501}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -779,6 +829,42 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-905620043090913394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/fTE_narra/FTE PHASES
+  m_EditorClassIdentifier: 
+  Name: FTE PHASES
+  StudioPath: 
+  Min: 0
+  Max: 11
+  Default: 0
+  ID:
+    data1: 911067252
+    data2: 3118190312
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - TEXT1
+  - TEXT2
+  - TEXT3
+  - TEXT4
+  - GUARD
+  - BID1
+  - BID2
+  - BID3
+  - FIN FTUE1
+  - FIN FTUE2
+  - FIN FTUE3
+  - FIN FTUE4
+  Exists: 1
 --- !u!114 &-671570793725157380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,30 +919,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-444053070028460964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/MUS_Cardgame/InShop
-  m_EditorClassIdentifier: 
-  Name: InShop
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3707851536
-    data2: 696261621
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,6 +937,7 @@ MonoBehaviour:
   - {fileID: -2637945911149226402}
   - {fileID: 5780021015574079501}
   - {fileID: -7806775572545794022}
+  - {fileID: 3388582397319282026}
   EditorEvents:
   - {fileID: 8602832578668388441}
   - {fileID: -1305337885774525275}
@@ -918,21 +981,23 @@ MonoBehaviour:
   - {fileID: -9019006626956032672}
   - {fileID: 715652780334046976}
   - {fileID: -3036255723052544999}
-  - {fileID: 8825349258384971548}
-  - {fileID: -7391658241318102138}
-  - {fileID: 459360707726819103}
-  - {fileID: -2740944123181319499}
-  - {fileID: -1462620896952391298}
-  - {fileID: -2969695733389465480}
-  - {fileID: 4658517317392825629}
-  - {fileID: -6915199505077352241}
-  - {fileID: 5558035189109322286}
+  - {fileID: -6656188812148177758}
+  - {fileID: -5474340472866494242}
+  - {fileID: -2798288986259993455}
+  - {fileID: -6623371607669584627}
+  - {fileID: -6869312315254955726}
+  - {fileID: 1178739363763859795}
+  - {fileID: -9085481508578300754}
+  - {fileID: 6020974756420664720}
+  - {fileID: 6364929710140737824}
+  - {fileID: -2051149168240736506}
+  - {fileID: 672431440102040512}
   EditorParameters: []
   MasterBanks:
   - {fileID: 1247950292147221911}
   StringsBanks:
   - {fileID: 7391608658828067301}
-  cacheTime: 638520909623410801
+  cacheTime: 638521469552980150
   cacheVersion: 131607
 --- !u!114 &252764185785947177
 MonoBehaviour:
@@ -961,7 +1026,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &459360707726819103
+--- !u!114 &672431440102040512
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -971,23 +1036,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/vox_witch
+  m_Name: event:/GAME/amb_menu
   m_EditorClassIdentifier: 
-  Path: event:/GAME/vox_witch
+  Path: event:/GAME/amb_menu
   Guid:
-    Data1: -1622057186
-    Data2: 1207556738
-    Data3: -1514004596
-    Data4: -365448321
+    Data1: 1996663504
+    Data2: 1084370435
+    Data3: 101852339
+    Data4: -1642250707
   Banks:
-  - {fileID: 5780021015574079501}
-  IsStream: 0
+  - {fileID: -2637945911149226402}
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 83000
 --- !u!114 &715652780334046976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,6 +1080,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &1178739363763859795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/vox_witch
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/vox_witch
+  Guid:
+    Data1: -1622057186
+    Data2: 1207556738
+    Data3: -1514004596
+    Data4: -365448321
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &1247950292147221911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1030,7 +1122,7 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638519035325890480
+  lastModified: 638520988030642649
   FileSizes:
   - Name: Desktop
     Value: 1872
@@ -1062,7 +1154,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &2218371377130815785
+--- !u!114 &2848994219831007565
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1072,16 +1164,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/MUS_Cardgame/Grab
+  m_Name: parameter:/MUS_Cardgame/InShop
   m_EditorClassIdentifier: 
-  Name: Grab
+  Name: InShop
   StudioPath: 
   Min: 0
   Max: 1
   Default: 0
   ID:
-    data1: 1787514460
-    data2: 1728066814
+    data1: 3707851536
+    data2: 696261621
   Type: 0
   IsGlobal: 0
   Labels: []
@@ -1113,6 +1205,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &3362706768965959851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MUS_Cardgame/Grab
+  m_EditorClassIdentifier: 
+  Name: Grab
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1787514460
+    data2: 1728066814
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &3385780485651060292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1140,6 +1256,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &3388582397319282026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/FTUE.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/FMOD SCOPA/Build/Desktop/FTUE.bank
+  Name: FTUE
+  StudioPath: bank:/FTUE
+  lastModified: 638521464939396471
+  FileSizes:
+  - Name: Desktop
+    Value: 1278112
+  Exists: 1
 --- !u!114 &4170849421902018481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1194,33 +1330,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &4658517317392825629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/amb_menu
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/amb_menu
-  Guid:
-    Data1: 1996663504
-    Data2: 1084370435
-    Data3: 101852339
-    Data4: -1642250707
-  Banks:
-  - {fileID: 5780021015574079501}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 83000
 --- !u!114 &4881970881626012721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1329,36 +1438,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &5558035189109322286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MUSIC/MUS_Cardgame
-  m_EditorClassIdentifier: 
-  Path: event:/MUSIC/MUS_Cardgame
-  Guid:
-    Data1: -280913606
-    Data2: 1128467790
-    Data3: -125533567
-    Data4: 1782631195
-  Banks:
-  - {fileID: -7806775572545794022}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -444053070028460964}
-  - {fileID: 2218371377130815785}
-  - {fileID: 7595900934494459554}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 152000
 --- !u!114 &5780021015574079501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1374,11 +1453,38 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/GAME.bank
   Name: GAME
   StudioPath: bank:/GAME
-  lastModified: 638520909623210620
+  lastModified: 638521469552980150
   FileSizes:
   - Name: Desktop
-    Value: 4331904
+    Value: 1426240
   Exists: 1
+--- !u!114 &6020974756420664720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/vox_witch_laught
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/vox_witch_laught
+  Guid:
+    Data1: -113041093
+    Data2: 1188731496
+    Data3: 927866558
+    Data4: 1719011188
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &6121040918377414445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1397,6 +1503,33 @@ MonoBehaviour:
     Data2: 1288209438
     Data3: 1568191643
     Data4: -2094435491
+  Banks:
+  - {fileID: 5780021015574079501}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &6364929710140737824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/GAME/loose_jingle
+  m_EditorClassIdentifier: 
+  Path: event:/GAME/loose_jingle
+  Guid:
+    Data1: 1312698984
+    Data2: 1238938177
+    Data3: 839789980
+    Data4: 743484004
   Banks:
   - {fileID: 5780021015574079501}
   IsStream: 0
@@ -1475,10 +1608,46 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638520909623210620
+  lastModified: 638520988030663977
   FileSizes:
   - Name: Desktop
-    Value: 3562
+    Value: 3750
+  Exists: 1
+--- !u!114 &7439668432392018276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MUS_Cardgame/FTE PHASES
+  m_EditorClassIdentifier: 
+  Name: FTE PHASES
+  StudioPath: 
+  Min: 0
+  Max: 11
+  Default: 0
+  ID:
+    data1: 911067252
+    data2: 3118190312
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - TEXT1
+  - TEXT2
+  - TEXT3
+  - TEXT4
+  - GUARD
+  - BID1
+  - BID2
+  - BID3
+  - FIN FTUE1
+  - FIN FTUE2
+  - FIN FTUE3
+  - FIN FTUE4
   Exists: 1
 --- !u!114 &7494338966482294810
 MonoBehaviour:
@@ -1534,32 +1703,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &7595900934494459554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/MUS_Cardgame/SCENE
-  m_EditorClassIdentifier: 
-  Name: SCENE
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 1953026289
-    data2: 3600618519
-  Type: 2
-  IsGlobal: 0
-  Labels:
-  - MENU
-  - GAMEPLAY
-  Exists: 1
 --- !u!114 &8312448226662768842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1587,6 +1730,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &8581343980640794826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/MUS_Cardgame/Music during FTUE
+  m_EditorClassIdentifier: 
+  Name: Music during FTUE
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3985898831
+    data2: 1258911586
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &8602832578668388441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1614,7 +1781,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &8634718663078577452
+--- !u!114 &8905465202147910973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1629,7 +1796,7 @@ MonoBehaviour:
   Name: FTE PHASES
   StudioPath: 
   Min: 0
-  Max: 10
+  Max: 11
   Default: 0
   ID:
     data1: 911067252
@@ -1648,34 +1815,8 @@ MonoBehaviour:
   - FIN FTUE1
   - FIN FTUE2
   - FIN FTUE3
+  - FIN FTUE4
   Exists: 1
---- !u!114 &8825349258384971548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/GAME/dragon_breath
-  m_EditorClassIdentifier: 
-  Path: event:/GAME/dragon_breath
-  Guid:
-    Data1: 171964418
-    Data2: 1297324700
-    Data3: -894007675
-    Data4: 652956786
-  Banks:
-  - {fileID: 5780021015574079501}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &9180175889904944837
 MonoBehaviour:
   m_ObjectHideFlags: 0
