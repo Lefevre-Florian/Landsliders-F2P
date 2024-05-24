@@ -466,7 +466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6973438908491267459, guid: 034a7b6e6e13a5048941e34d3f95a70a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8358661112361680748, guid: 034a7b6e6e13a5048941e34d3f95a70a, type: 3}
       propertyPath: m_Pivot.x
@@ -782,7 +782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8671154880835711980, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8744957121446804440, guid: 1da4e7a7a4213b448bce71220a8fe1c7, type: 3}
       propertyPath: m_fontColor.b
@@ -2539,7 +2539,8 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Com.IsartDigital.F2P.UI.UIHUD.Hud, Assembly-CSharp
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1425335406480565910, guid: 0a2dfef94edcba04b91ff0b6116a8627, type: 3}
     m_RemovedGameObjects:
     - {fileID: 3640547633322040363, guid: 0a2dfef94edcba04b91ff0b6116a8627, type: 3}
     m_AddedGameObjects:
