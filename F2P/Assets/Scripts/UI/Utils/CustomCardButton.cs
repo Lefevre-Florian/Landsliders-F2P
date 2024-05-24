@@ -26,6 +26,8 @@ namespace Com.IsartDigital.F2P.UI
         private const string TRACKER_BIOME_NAME_PARAMETER = "biomeType";
         #endregion
 
+        private const string MAX_LEVEL = "Level Max !";
+
         private const string CMD_QUERY = "SELECT name, description, fragment FROM BIOME WHERE id = ";
         private const string CMD_UPGRADE_QUERY = "SELECT id, name, description, fragment FROM BIOME WHERE id = (SELECT fk_upgrade FROM BIOME WHERE id = ";
 
@@ -156,7 +158,10 @@ namespace Com.IsartDigital.F2P.UI
                 }
             }
             else
-                _LockedStateOverlay.gameObject.SetActive(true);
+            {
+                _DefaultStateOverlay.gameObject.SetActive(true);
+                _FragReqLabel.text = MAX_LEVEL;
+            }
         }
 
         private void OnDestroy() => ClearUpgrade();
