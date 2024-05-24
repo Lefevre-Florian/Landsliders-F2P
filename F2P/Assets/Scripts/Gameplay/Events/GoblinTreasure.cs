@@ -4,6 +4,7 @@ using UnityEngine;
 
 using Com.IsartDigital.F2P.FileSystem;
 using Com.IsartDigital.F2P.Sound;
+using Com.IsartDigital.F2P.UI.UIHUD;
 
 // Author (CR): Dorian Husson
 namespace Com.IsartDigital.F2P.Gameplay.Events
@@ -41,6 +42,8 @@ namespace Com.IsartDigital.F2P.Gameplay.Events
 
                     if (_PositiveOutcomeSFXEmitter != null)
                         _PositiveOutcomeSFXEmitter.PlaySFXOnShot();
+
+                    Hud.GetInstance()._GoldBonus += 60;
 
                     Instantiate(_ParticlesWin, transform.position, Quaternion.identity);
                 }

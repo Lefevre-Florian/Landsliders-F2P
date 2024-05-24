@@ -2786,9 +2786,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lorem
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc67303f93bb92a429a5742dea54a89b, type: 2}
   m_sharedMaterial: {fileID: -2716179961975768915, guid: dc67303f93bb92a429a5742dea54a89b, type: 2}
@@ -3277,7 +3275,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lorem
+  m_text: '+ 3
 
 '
   m_isRightToLeft: 0
@@ -3973,6 +3971,8 @@ MonoBehaviour:
   _MainMenuIDX: 1
   _UseLoadingScreen: 0
   _HealthUI: {fileID: 8664182139127912516}
+  _GoldBonus: 0
+  winGoldLabel: {fileID: 7372982229460496300}
 --- !u!114 &5037455970968156650
 MonoBehaviour:
   m_ObjectHideFlags: 0

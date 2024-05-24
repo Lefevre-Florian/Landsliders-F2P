@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -42,6 +43,10 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
         private GameManager _GameManager = null;
 
         private GameObject _CurrentActiveLayer = null;
+
+        [Header("End Screen label")]
+        [HideInInspector] public int _GoldBonus = 0;
+        [SerializeField] private TextMeshProUGUI winGoldLabel;
 
         // Get & Set
         public DeckLifebar Lifebar { get { return _HealthUI; } }
@@ -111,7 +116,10 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
             _PauseButton.SetActive(false);
 
             if (pStatus)
+            {
                 _WinScreen.gameObject.SetActive(true);
+                winGoldLabel.text = "+ " + (60 + _GoldBonus).ToString();
+            }
             else
                 _LoseScreen.gameObject.SetActive(true);
         }
