@@ -67,10 +67,7 @@ namespace Com.IsartDigital.F2P.Biomes.Effects
             if (_Type == AlterationType.Negative && !_Player.isProtected)
                 _Deck.BurnCard(_ImpactStats);
             else if (_Type == AlterationType.Positive)
-            {
                 _Deck.AddCardToDeck(_ImpactStats);
-                if (TryGetComponent<FieldQuest>(out FieldQuest fq)) fq.CheckWin(_ImpactStats);
-            }
         }
 
         private void OnDestroy()

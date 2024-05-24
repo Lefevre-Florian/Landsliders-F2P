@@ -176,7 +176,7 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638521551439869419
+  lastModified: 638521648825947803
   FileSizes:
   - Name: Desktop
     Value: 3428096
@@ -576,7 +576,7 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638521635283822583
+  lastModified: 638521648826141316
   FileSizes:
   - Name: Desktop
     Value: 1850880
@@ -1027,7 +1027,7 @@ MonoBehaviour:
   - {fileID: 1247950292147221911}
   StringsBanks:
   - {fileID: 7391608658828067301}
-  cacheTime: 638521635283822583
+  cacheTime: 638521671136321862
   cacheVersion: 131607
 --- !u!114 &16620696363120561
 MonoBehaviour:
@@ -1180,7 +1180,7 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638521604381326210
+  lastModified: 638521648825636819
   FileSizes:
   - Name: Desktop
     Value: 2194
@@ -1356,7 +1356,7 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/FTUE.bank
   Name: FTUE
   StudioPath: bank:/FTUE
-  lastModified: 638521629007851860
+  lastModified: 638521671136321862
   FileSizes:
   - Name: Desktop
     Value: 1284224
@@ -1565,7 +1565,7 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/GAME.bank
   Name: GAME
   StudioPath: bank:/GAME
-  lastModified: 638521635283521295
+  lastModified: 638521648825586706
   FileSizes:
   - Name: Desktop
     Value: 1654336
@@ -1744,7 +1744,7 @@ MonoBehaviour:
   Path: FMOD/FMOD SCOPA/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638521604381336257
+  lastModified: 638521648825682176
   FileSizes:
   - Name: Desktop
     Value: 3894

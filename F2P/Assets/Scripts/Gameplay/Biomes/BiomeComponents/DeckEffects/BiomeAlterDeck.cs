@@ -1,3 +1,4 @@
+using com.isartdigital.f2p.gameplay.quest;
 using Com.IsartDigital.F2P.Biomes.Effects;
 
 using Unity.VisualScripting;
@@ -27,7 +28,11 @@ namespace Com.IsartDigital.F2P.Biomes
         public void ImmediateAlteration()
         {
             if (_Type == DeckEffect.AlterationType.Positive)
+            {
                 HandManager.GetInstance().AddCardToDeck(_NbAffected);
+                if (TryGetComponent<FieldQuest>(out FieldQuest fq)) fq.CheckWin(_NbAffected);
+
+            }
             else
                 HandManager.GetInstance().BurnCard(_NbAffected);
 
