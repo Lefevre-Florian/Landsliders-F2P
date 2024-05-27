@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9092595ced0a804d857333d7588f546, type: 3}
+  m_Name: FTUE-3
+  m_EditorClassIdentifier: 
+  _FTUEPhase: 3
+  _Decks:
+  - turn: 0
+    deck:
+      cards:
+      - type: 0
+        quantity: 1
+      - type: 1
+        quantity: 3
+      - type: 4
+        quantity: 2
+    updateHand: 1
+  - turn: 1
+    deck:
+      cards:
+      - type: 1
+        quantity: 1
+      - type: 4
+        quantity: 1
+    updateHand: 0
+  - turn: 2
+    deck:
+      cards:
+      - type: 1
+        quantity: 2
+    updateHand: 0
+  _StartNBCards: 4
+  _StartPosition: {x: 1, y: 1}
+  _Phases:
+  - triggerTurn: 0
+    position: {x: 0, y: 0}
+    type: 4
+    isLinkedBiomeEffect: 0
+    effectID: -1
+  - triggerTurn: 0
+    position: {x: 0, y: 1}
+    type: 4
+    isLinkedBiomeEffect: 0
+    effectID: -1
+  - triggerTurn: 0
+    position: {x: 1, y: 0}
+    type: 4
+    isLinkedBiomeEffect: 0
+    effectID: -1
+  - triggerTurn: 0
+    position: {x: 2, y: 0}
+    type: 4
+    isLinkedBiomeEffect: 0
+    effectID: -1
+  - triggerTurn: 0
+    position: {x: 2, y: 1}
+    type: 4
+    isLinkedBiomeEffect: 0
+    effectID: -1
+  - triggerTurn: 0
+    position: {x: 1, y: 1}
+    type: 2
+    isLinkedBiomeEffect: 0
+    effectID: 1
+  - triggerTurn: 1
+    position: {x: 2, y: 1}
+    type: 2
+    isLinkedBiomeEffect: 1
+    effectID: 10
+  - triggerTurn: 2
+    position: {x: 0, y: 1}
+    type: 2
+    isLinkedBiomeEffect: 1
+    effectID: 10
+  - triggerTurn: 3
+    position: {x: 1, y: 0}
+    type: 2
+    isLinkedBiomeEffect: 1
+    effectID: 10
+  _DialogueFlow:
+  - {fileID: 11400000, guid: 723fd27331974144dbd3fb4bcdc3e501, type: 2}

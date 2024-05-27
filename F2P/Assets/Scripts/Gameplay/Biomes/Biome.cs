@@ -1,6 +1,6 @@
 using com.isartdigital.f2p.gameplay.manager;
 using Com.IsartDigital.F2P.Cards;
-
+using Com.IsartDigital.F2P.Sound;
 using System;
 
 using UnityEngine;
@@ -22,6 +22,9 @@ namespace Com.IsartDigital.F2P.Biomes
         [SerializeField] private bool _CanBeReplaced = true;
         [SerializeField] private bool _IsWalkable = true;
         [SerializeField] private bool _CanBeRemoved = true;
+
+        [Header("Sound")]
+        [SerializeField] private SoundEmitter _AwakeSoundEmitter = null;
 
         // Variables
         private GameManager _GameManager = null;
@@ -46,6 +49,11 @@ namespace Com.IsartDigital.F2P.Biomes
         // Events
         public event Action OnReady;
 
+        public event Action<bool> OnWalkableStateChanged;
+        public event Action<bool> OnRemovableStateChanged;
+
+        public UnityEvent OnLocked = new UnityEvent();
+
         private void Start()
         {
             TEMPCard lCard = GetComponent<TEMPCard>();
@@ -53,18 +61,36 @@ namespace Com.IsartDigital.F2P.Biomes
             if (!lCard.isActiveAndEnabled)
                 Enable();
             else
+            {
                 lCard.OnPlaced += Enable;
+                if (_AwakeSoundEmitter != null)
+                    lCard.OnPlaced += PlaySoundAwake;
+            }
+                
+        }
+        public void Lock()
+        {
+            locked = true;
+            OnLocked?.Invoke();
         }
 
-        public void PreciseSwitchWalkableState(bool pState) => _IsWalkable = pState;
+        public void PreciseSwitchWalkableState(bool pState)
+        {
+            OnWalkableStateChanged?.Invoke(pState);
+            _IsWalkable = pState;
+        }
 
         public void PreciseSwitchReplacabilityState(bool pState) => _CanBeReplaced = pState;
 
-        public void PreciseSwitchRemoveByHandState(bool pState) => _CanBeRemoved = pState;
-
-        public void Remove()
+        public void PreciseSwitchRemoveByHandState(bool pState)
         {
-            GridManager.GetInstance().RemoveAtIndex(_GridPosition);
+            OnRemovableStateChanged?.Invoke(pState);
+            _CanBeRemoved = pState;
+        }
+
+        public void Remove(int x, int y)
+        {
+            GridManager.GetInstance().RemoveAtIndex(new Vector2(x,y));
             Destroy(gameObject);
         }
 
@@ -82,15 +108,22 @@ namespace Com.IsartDigital.F2P.Biomes
                                        .GetGridCoordinate(transform.position);
 
             _GameManager = GameManager.GetInstance();
+
             if (_Priority != 0)
                 _GameManager.OnEffectPlayed += TriggerPriority;
 
             _Renderer = transform.GetChild(0)
                                  .GetComponent<CardRenderer>();
-            _Renderer.EnableAnimation();
 
+            if(_Renderer != null)
+            {
+                _Renderer.EnableAnimation();
+                _Renderer.SetSortingLayer(-(int)(_GridPosition.x + _GridPosition.y));
+            }
             OnReady?.Invoke();
         }
+
+        private void PlaySoundAwake() => _AwakeSoundEmitter.PlaySFXOnShot();
 
         private void TriggerPriority(int pGamePriority) 
         {
@@ -102,8 +135,13 @@ namespace Com.IsartDigital.F2P.Biomes
         {
             GetComponent<TEMPCard>().OnPlaced -= Enable;
 
+            if (_AwakeSoundEmitter != null)
+                GetComponent<TEMPCard>().OnPlaced -= PlaySoundAwake;
+
             if(_Priority != 0 && _GameManager != null)
                 _GameManager.OnEffectPlayed -= TriggerPriority;
+
+            OnLocked.RemoveAllListeners();
 
             onTriggered = null;
             _GameManager = null;

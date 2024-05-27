@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,10 +25,31 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
         [Header("Sub-screens")]
         [SerializeField] private Transform _PauseScreen = null;
         [SerializeField] private Transform _LoseScreen = null;
+        [SerializeField] private Transform _WinScreen = null;
+        [SerializeField] private Transform _CodexScreen = null;
+
+        [Header("Sign")]
+        [SerializeField] private GameObject _HandTurnMask = null;
+        [SerializeField] private GameObject _PlayerTurnMask = null;
 
         [Header("Scene management")]
         [SerializeField] private int _MainMenuIDX = 0;
         [SerializeField] private bool _UseLoadingScreen = false;
+
+        [Header("Utils")]
+        [SerializeField] private DeckLifebar _HealthUI = null;
+
+        // Variables
+        private GameManager _GameManager = null;
+
+        private GameObject _CurrentActiveLayer = null;
+
+        [Header("End Screen label")]
+        [HideInInspector] public int _GoldBonus = 0;
+        [SerializeField] private TextMeshProUGUI winGoldLabel;
+
+        // Get & Set
+        public DeckLifebar Lifebar { get { return _HealthUI; } }
 
         private void Awake()
         {
@@ -39,28 +61,67 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
             _Instance = this;
         }
 
-        private void Start() => _PauseScreen.gameObject.SetActive(false);
+        private void Start()
+        {
+            _GameManager = GameManager.GetInstance();
+            _GameManager.OnGameover += DisplayGameEndPanel;
+
+            _PauseScreen.gameObject.SetActive(false);
+
+            // Flow (Renderer)
+            SwitchToCardMode();
+
+            _GameManager.OnAllEffectPlayed += SwitchToCardMode;
+            GameManager.CardPlaced.AddListener(SwitchToMoveMode);
+        }
 
         public void Pause()
         {
+            GameFlowManager.Paused?.Invoke();
+
             Time.timeScale = 0f;
             _PauseScreen.gameObject.SetActive(true);
         }
 
         public void Resume()
         {
-            Time.timeScale = 1f;
+            GameFlowManager.Resumed?.Invoke();
+
+            Time.timeScale = 0f;
             _PauseScreen.gameObject.SetActive(false);
+        }
+
+        public void OpenCodex()
+        {
+            GameFlowManager.Paused?.Invoke();
+
+            Time.timeScale = 1f;
+            _CodexScreen.gameObject.SetActive(true);
+        }
+
+        public void CloseCodex()
+        {
+            GameFlowManager.Resumed?.Invoke();
+
+            Time.timeScale = 1f;
+            _CodexScreen.gameObject.SetActive(false);
         }
 
         public void Retry() => LoadScene(SceneManager.GetActiveScene().buildIndex);
 
         public void MainMenu() => LoadScene(_MainMenuIDX);
 
-        public void Lose()
+        private void DisplayGameEndPanel(bool pStatus)
         {
             _PauseButton.SetActive(false);
-            _LoseScreen.gameObject.SetActive(true);
+
+            if (pStatus)
+            {
+                _WinScreen.gameObject.SetActive(true);
+                winGoldLabel.text = "+ " + (60 + _GoldBonus).ToString();
+            }
+            else
+                _LoseScreen.gameObject.SetActive(true);
         }
 
         private void LoadScene(int pSceneIDX)
@@ -72,11 +133,43 @@ namespace Com.IsartDigital.F2P.UI.UIHUD
                 LoadManager.GetInstance().StartLoading(pSceneIDX);
         }
 
+        /// Rendering turn phases
+        private void SwitchToMoveMode()
+        {
+            TEMPCard.OnFocus -= SwitchCurrentLayerState;
+
+            SwitchLayerState(_HandTurnMask, true);
+            SwitchLayerState(_PlayerTurnMask, false);
+
+            _CurrentActiveLayer = _HandTurnMask;
+        }
+
+        private void SwitchToCardMode()
+        {
+            SwitchLayerState(_HandTurnMask, false);
+            SwitchLayerState(_PlayerTurnMask, true);
+
+            _CurrentActiveLayer = _PlayerTurnMask;
+            TEMPCard.OnFocus += SwitchCurrentLayerState;
+        }
+
+        private void SwitchLayerState(GameObject pLayer, bool pState) => pLayer.SetActive(pState);
+
+        private void SwitchCurrentLayerState(bool pState) => _CurrentActiveLayer.SetActive(!pState);
+
         private void OnDestroy()
         {
             if (_Instance == this)
+            {
                 _Instance = null;
-        }
 
+                _GameManager.OnGameover -= DisplayGameEndPanel;
+                _GameManager.OnAllEffectPlayed -= SwitchToCardMode;
+                _GameManager = null;
+
+                GameManager.CardPlaced.RemoveListener(SwitchToMoveMode);
+                TEMPCard.OnFocus -= SwitchCurrentLayerState;
+            }
+        }
     }
 }

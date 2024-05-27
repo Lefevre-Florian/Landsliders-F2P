@@ -1,6 +1,7 @@
 using System.Collections;
 
 using UnityEngine;
+using UnityEngine.Rendering;
 
 // Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.Cards
@@ -11,6 +12,7 @@ namespace Com.IsartDigital.F2P.Cards
 
         [Header("Animation")]
         [SerializeField][Range(.01f, 1.0f)] private float _AnimationSpeedRatio = 0.5f;
+        [SerializeField] private string _EntranceTrigger = "Entrance";
 
         [Header("Juiciness")]
         [SerializeField] private float _FlipAnimationSpeed = 0.25f;
@@ -29,6 +31,8 @@ namespace Com.IsartDigital.F2P.Cards
         {
             _Animator.enabled = true;
             _Animator.speed = _AnimationSpeedRatio;
+
+            //_Animator.SetTrigger(_EntranceTrigger);
         }
 
         public void DisableAnimation()
@@ -44,6 +48,8 @@ namespace Com.IsartDigital.F2P.Cards
 
             DisableAnimation();
         }
+
+        public void SetSortingLayer(int pLayer) => GetComponent<SortingGroup>().sortingOrder = pLayer;
 
         private IEnumerator FlipAnimation(bool pAnimationStatus = false)
         {

@@ -1,14 +1,30 @@
 using System;
-using System.Collections;
+
 using com.isartdigital.f2p.gameplay.manager;
+using Com.IsartDigital.F2P.Sound;
+
 using UnityEngine;
 
 // Author (CR): Dorian Husson
 namespace Com.IsartDigital.F2P.Gameplay
 {
     public enum Direction { Up = 0, Down = 1, Right = 2, Left = 3 }
+
     public class Dragon : MonoBehaviour
     {
+        private const int NB_DIRECTION_CHECK = 3;
+
+        [Header("Settings")]
+        [SerializeField] int _NbCardsBurnt = 4;
+
+        [Header("Sound")]
+        [SerializeField] private SoundEmitter _FlySFXEmitter = null;
+        [SerializeField] private SoundEmitter _BreathSFXEmitter = null;
+
+        [Header("Juiciness")]
+        [SerializeField] private GameObject _Particles;
+
+        // Variables
         private Direction[] _Directions;
         private int _RandomIndex;
         private GridManager _GridManager;
@@ -16,23 +32,22 @@ namespace Com.IsartDigital.F2P.Gameplay
         private HandManager _HandManager;
         private Player _Player;
 
-
         private Vector2 _NextDirection;
         private Vector2 _ToPosition;
         private Quaternion _ToRotation;
 
         private bool _CardBurnt;
-        [SerializeField] int _NbCardsBurnt = 4;
-
+        
         private bool _IsDone;
-
-        public bool IsDone { get { return _IsDone; } }
 
         private bool _CanMove;
         private float _Speed = 5f;
         private float _RotateSpeed = 100f;
 
         private Action _DoAction;
+        
+        // Get & Set
+        public bool IsDone { get { return _IsDone; } }
 
         private void Start()
         {
@@ -69,13 +84,14 @@ namespace Com.IsartDigital.F2P.Gameplay
             _DoAction = DoActionVoid;
         }
 
-        private void DoActionVoid()
-        {
-
-        }
+        private void DoActionVoid() { }
 
         private void SetModeMove()
         {
+            // Start sound
+            if (_FlySFXEmitter != null)
+                _FlySFXEmitter.PlaySFXLooping();
+
             _DoAction = DoActionMove;
         }
 
@@ -83,10 +99,17 @@ namespace Com.IsartDigital.F2P.Gameplay
         {
             float t = _Speed * Time.deltaTime;
 
-            transform.position = Vector3.MoveTowards(transform.position, _GridManager.GetWorldCoordinate((int)_ToPosition.x, (int)_ToPosition.y), t);
+            Vector3 lToPosition = _GridManager.GetWorldCoordinate((int)_ToPosition.x, (int)_ToPosition.y);
+            lToPosition.z = transform.position.z;
 
-            if (transform.position == (Vector3)_GridManager.GetWorldCoordinate((int)_ToPosition.x, (int)_ToPosition.y))
+            transform.position = Vector3.MoveTowards(transform.position, lToPosition, t);
+
+            if (transform.position == lToPosition)
             {
+                // Cut sound effect (Fade effect)
+                if (_FlySFXEmitter != null)
+                    _FlySFXEmitter.StopSFXLoopingFade();
+
                 CheckDirection();
                 _CanMove = false;
                 SetModeRotate();
@@ -116,7 +139,7 @@ namespace Com.IsartDigital.F2P.Gameplay
             _NextDirection = RandomDirection(GetRandomDirection());
             _ToPosition = _GridManager.GetGridCoordinate(transform.position) + _NextDirection;
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < NB_DIRECTION_CHECK; i++)
             {
 
                 if (_ToPosition.x >= 0f  && _ToPosition.x < _GridManager._NumCard.x && _ToPosition.y >= 0f && _ToPosition.y < _GridManager._NumCard.y)
@@ -170,8 +193,13 @@ namespace Com.IsartDigital.F2P.Gameplay
 
         private void OnPlayerPosition()
         {
+            if (_BreathSFXEmitter != null)
+                _BreathSFXEmitter.PlaySFXOnShot();
+
             _HandManager.BurnCard(_NbCardsBurnt);
             _CardBurnt = true;
+            _HandManager.BurnCard(_NbCardsBurnt);
+            Instantiate(_Particles, transform.position, Quaternion.identity);
         }
 
         private void OnDestroy()

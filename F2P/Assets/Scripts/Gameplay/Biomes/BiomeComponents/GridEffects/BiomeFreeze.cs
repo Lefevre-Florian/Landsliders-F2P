@@ -1,4 +1,5 @@
 using com.isartdigital.f2p.gameplay.manager;
+using Com.IsartDigital.F2P.Sound;
 
 using System;
 using System.Collections.Generic;
@@ -7,16 +8,18 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Author (CR) : Lefevre Florian
 namespace Com.IsartDigital.F2P.Biomes
 {
     [RequireComponent(typeof(Biome))]
-    public class BiomeFreeze : MonoBehaviour
+    public class BiomeFreeze : MonoBehaviour, IBiomeSupplier
     {
         [Header("Design")]
         [SerializeField] private BiomeType[] _StoppingBiome = new BiomeType[] { BiomeType.Canyon };
 
         [Header("Feedback & Juiciness")]
         [SerializeField] private Transform _VFXFrozen = null;
+        [SerializeField] private SoundEmitter _SFXFrozenEmitter = null;
 
         // Variables
         private GridManager _GridManager = null;
@@ -36,28 +39,55 @@ namespace Com.IsartDigital.F2P.Biomes
             _GridManager = GridManager.GetInstance();
         }
 
-        public void Spread()
+        public void Spread() => PerformSpreading(ComputeTarget());
+
+        public void Spread(MonoBehaviour pSupplier)
+        {
+            if (pSupplier is IBiomeSupplier)
+                PerformSpreading((pSupplier as IBiomeSupplier).SupplyBiomes()[0]);
+            else
+                Debug.LogError($"Must be of type : {typeof(IBiomeSupplier)}");
+        }
+
+        [HideInInspector]
+        public Vector2[] SupplyBiomes() => new Vector2[] { ComputeTarget() };
+
+        private void PerformSpreading(Vector2 pTarget)
+        {
+            if (pTarget == -Vector2.one)
+                return;
+
+            if (_SFXFrozenEmitter != null)
+                _SFXFrozenEmitter.PlaySFXOnShot();
+
+            Biome lBiome = _GridManager.GetCardByGridCoordinate(pTarget);
+
+            lBiome.AddComponent<BiomeFreeze>();
+            lBiome.GetComponent<Biome>().Lock();
+
+            Instantiate(_VFXFrozen, lBiome.transform);
+        }
+
+        private Vector2 ComputeTarget()
         {
             List<Biome> lBiomes = _GridManager.Biomes;
             if (lBiomes.Count == 0)
-                return;
+                return -Vector2.one;
 
             // Add condition to the spread
             lBiomes.RemoveAll(x => !x.CanBeReplaced);
             lBiomes.Remove(_GridManager.GetCardByGridCoordinate(Player.GetInstance().GridPosition));
             lBiomes.RemoveAll(x => x.Type == _Biome.Type);
             lBiomes.RemoveAll(x => x.GetComponent<BiomeFreeze>() != null);
+            lBiomes.RemoveAll(x => _StoppingBiome.Contains(x.Type));
+            lBiomes.RemoveAll(x => x == null);
 
             // Recheck biomes states after every conditions were applied
             if (lBiomes.Count == 0)
-                return;
+                return -Vector2.one;
 
             int lIdx = UnityEngine.Random.Range(0, lBiomes.Count);
-            
-            lBiomes[lIdx].AddComponent<BiomeFreeze>();
-            lBiomes[lIdx].GetComponent<Biome>().locked = true;
-
-            Instantiate(_VFXFrozen, lBiomes[lIdx].transform);
+            return lBiomes[lIdx].GridPosition;
         }
 
         private void Enable()
@@ -81,10 +111,10 @@ namespace Com.IsartDigital.F2P.Biomes
                                                 Mathf.RoundToInt(lPlayer.GridPosition.y + lDirection.y));
 
             // Check if the next position is valid
-            if (lNextPosition.x > _GridManager._GridSize.x
+            if (lNextPosition.x > _GridManager._NumCard.x - 1
                || lNextPosition.x < 0
                || lNextPosition.y < 0
-               || lNextPosition.y > _GridManager._GridSize.y)
+               || lNextPosition.y > _GridManager._NumCard.y - 1)
                 return;
 
             Biome lNextBiome = _GridManager.GetCardByGridCoordinate(lNextPosition);

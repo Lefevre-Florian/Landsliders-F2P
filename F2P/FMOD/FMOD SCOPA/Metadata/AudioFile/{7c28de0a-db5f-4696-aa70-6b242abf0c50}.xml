@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{7c28de0a-db5f-4696-aa70-6b242abf0c50}">
+		<property name="assetPath">
+			<value>MUS_Gameplay_Cardgame_AMB.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>64</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b96f2628-958f-4f43-aa99-54224e96a477}</destination>
+		</relationship>
+	</object>
+</objects>

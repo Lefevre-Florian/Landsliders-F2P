@@ -1,9 +1,17 @@
-using Com.IsartDigital.F2P.UI.UIHUD;
 using com.isartdigital.f2p.gameplay.quest;
+using com.isartdigital.f2p.manager;
 
-using System;
+using Com.IsartDigital.F2P.Biomes;
+using Com.IsartDigital.F2P;
+using Com.IsartDigital.F2P.Sound;
 
 using UnityEngine;
+using UnityEngine.Events;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 
 // Author (CR) : Elias Dridi
 public class HandManager : MonoBehaviour
@@ -18,6 +26,14 @@ public class HandManager : MonoBehaviour
         return _Instance;
     }
     #endregion
+
+    #region Tracking
+    private const string TRACKER_NAME = "biomeMostPlayed";
+
+    private const string TRACKER_BIOME_TYPE_PARAMETER = "biomeType";
+    #endregion
+
+    private const int MAX_CARD_IN_DECK = 12;
 
     private void Awake()
     {
@@ -51,31 +67,51 @@ public class HandManager : MonoBehaviour
     [SerializeField] private GameObject _DeckContainer;
     [SerializeField] private GameObject _HandContainer;
 
+    [Header("Sound")]
+    [SerializeField] private SoundEmitter _SFXEmitterDrawCards = null;
+    [SerializeField] private SoundEmitter _SFXEmitterLoseCards = null;
+    [SerializeField] private SoundEmitter _SFXEmitterGiveCards = null;
+
+    // Variables
     [HideInInspector] public Vector2 _ScreenSizeInGameUnit;
     [HideInInspector] public Vector2 _GridSize;
 
     [HideInInspector] public GameObject[] _CardsSlot;
     [HideInInspector] public bool[] _AvailableCardSlots;
+
     private GameObject[] _Deck;
+    
+    private List<Tuple<BiomeType, int>> _BiomePlayedTracking = new List<Tuple<BiomeType, int>>();
 
-    public int _TotalCards { get { return _Deck.Length + _CardInHand; } }
+    // Get & Set
+    public int _TotalCards { get { return DeckCount + _HandContainer.transform.childCount; } }
 
+    public int DeckCount { get { return _Deck != null ? _Deck.Length : (Save.data != null ? Save.data.startingdecknb : MAX_CARD_IN_DECK); } }
+
+    // Events
+    public static UnityEvent<int, BiomeType> OnDeckAltered = new UnityEvent<int, BiomeType>();
     
     private void Start()
     {
         CardSlot();
         CreateDeck();
-        for (int i = 0; i < _StartingCardNb; i++)
-        {
-            DrawCard();
-        }
+        CreateHand(_StartingCardNb);
+        
+
+        QuestManager.ValidQuest.AddListener(TrackWinCondition);
         GameManager.CardPlaced.AddListener(CardPlayedThenDraw);
+
+        GameFlowManager.HandLoaded.Invoke();
     }
 
+    #region Deck and hand alteration
     public void DrawCard()
     {
         if (_Deck.Length >= 1)
         {
+            if (_SFXEmitterDrawCards != null)
+                _SFXEmitterDrawCards.PlaySFXOnShot();
+
             for (int i = 0; i < _AvailableCardSlots.Length; i++)
             {
                 if (_AvailableCardSlots[i] == true)
@@ -96,19 +132,43 @@ public class HandManager : MonoBehaviour
         }
         else
         {
-            if (_CardInHand == 0) Hud.GetInstance().Lose();
+            if (_CardInHand == 0)
+            {
+                GameManager.GetInstance()
+                           .SetModeGameover();
+            }
+                
         }
+    }
+    
+    public void CardPlayedThenDraw()
+    {
+        _CardInHand--;
+        DrawCard();
     }
 
     public void BurnCard(int pNbCards = 1)
     {
+        Player.GetInstance().GetComponent<PlayerAnim>().SetAnimTrig(PlayerAnim.AnimTrig.LoseCard);
+
+        if (_SFXEmitterLoseCards != null)
+            _SFXEmitterLoseCards.PlaySFXOnShot();
+
         int lRemainingCardToRemove = pNbCards;
         if (lRemainingCardToRemove < _Deck.Length)
         {
-            for (int i = 0; i < lRemainingCardToRemove; i++)
-                Destroy(_DeckContainer.transform.GetChild(UnityEngine.Random.Range(0, _DeckContainer.transform.childCount)).gameObject);
+            List<GameObject> lDeck = _Deck.ToList();
+            int lIdx = 0;
 
-            Array.Resize(ref _Deck, _Deck.Length - lRemainingCardToRemove);
+            for (int i = 0; i < lRemainingCardToRemove; i++)
+            {
+                lIdx = UnityEngine.Random.Range(0, lDeck.Count);
+
+                Destroy(lDeck[lIdx]);
+                lDeck.RemoveAt(lIdx);
+            }
+                
+            _Deck = lDeck.ToArray();
         }
         else
         {
@@ -122,28 +182,37 @@ public class HandManager : MonoBehaviour
             lRemainingCardToRemove -= _Deck.Length;
             _Deck = new GameObject[0];
 
-
-            if (lRemainingCardToRemove > _CardInHand)
+            if (lRemainingCardToRemove >= _CardInHand)
+            {
                 GameManager.GetInstance().SetModeGameover();
+            }
             else
             {
                 for (int i = 0; i < lRemainingCardToRemove; i++)
-                    Destroy(_HandContainer.transform.GetChild(UnityEngine.Random.Range(0, _HandContainer.transform.childCount)));
+                    Destroy(_HandContainer.transform.GetChild(UnityEngine.Random.Range(0, _HandContainer.transform.childCount)).gameObject);
                 _CardInHand -= lRemainingCardToRemove;
             }
         }
     }
 
-    public void AddCardToDeck(int pNbCards)
+    public void AddCardToDeck(int pNbCards, bool pIsPredifined = false, BiomeType pType = default)
     {
-        int lStartIdx = _Deck.Length - 1;
-        Array.Resize(ref _Deck, _Deck.Length + pNbCards);
+        Player.GetInstance().GetComponent<PlayerAnim>().SetAnimTrig(PlayerAnim.AnimTrig.GainCard);
+
+        if (_SFXEmitterGiveCards != null)
+            _SFXEmitterGiveCards.PlaySFXOnShot();
+
+        List<GameObject> lDeck = _Deck.ToList();
+
+        if(lDeck.Count <= 0)
+            lDeck = new List<GameObject>();
 
         if (TryGetComponent<CardQuest>(out CardQuest cd)) cd.AddCard(pNbCards);
 
-        int lLength = _Deck.Length;
-        for (int i = lStartIdx; i < lLength; i++)
-            _Deck[i] = CreateCard();
+        for (int i = 0; i < pNbCards; i++)
+            lDeck.Add(CreateCard(pIsPredifined, pType));
+
+        _Deck = lDeck.ToArray();
     }
 
     public void RemoveAtDeck(int index)
@@ -151,22 +220,90 @@ public class HandManager : MonoBehaviour
         Array.Copy(_Deck, index + 1, _Deck, index, _Deck.Length - index - 1);
         Array.Resize(ref _Deck, _Deck.Length - 1);
     }
+    #endregion
 
+    #region Creation and Initialization
+    /// <summary>
+    /// Create a random deck
+    /// </summary>
     private void CreateDeck()
     {
-        _Deck = new GameObject[GameManager.GetInstance().cardStocked];
-        for (int i = 0; i < _Deck.Length; i++)
+        ClearDeck();
+
+        int lLength = Save.data != null ? Save.data.startingdecknb : MAX_CARD_IN_DECK;
+        _Deck = new GameObject[lLength];
+        for (int i = 0; i < lLength; i++)
             _Deck[i] = CreateCard();
     }
 
-    private GameObject CreateCard()
+    /// <summary>
+    /// Create a prediffined deck
+    /// </summary>
+    /// <param name="pDeck"></param>
+    [HideInInspector]
+    public void CreateDeck(Tuple<BiomeType, int>[] pDeck)
     {
-        GameObject lCard = Instantiate(CardPrefabDic.GetRandomPrefab());
+        ClearDeck();
+
+        int lLength = pDeck.Length;
+
+        int lTotal = 0;
+        for (int i = 0; i < lLength; i++)
+            lTotal += pDeck[i].Item2;
+
+        int lIdx = 0;
+        _Deck = new GameObject[lTotal];
+        for (int i = 0; i < lLength; i++)
+        {
+            for (int j = 0; j < pDeck[i].Item2; j++)
+            {
+                _Deck[lIdx] = CreateCard(true, pDeck[i].Item1);
+                lIdx++;
+            }
+        }
+    }
+
+    [HideInInspector]
+    public void CreateHand(int pNBCards)
+    {
+        ClearHand();
+        for (int i = 0; i < pNBCards; i++)
+            DrawCard();
+    }
+
+    /// <summary>
+    /// Create a card
+    /// </summary>
+    /// <param name="pIsDefined">If the card have a predifined biome attributed to it</param>
+    /// <param name="pType">The type of the biome that will be attached to this card depending of pIsDefined</param>
+    /// <returns></returns>
+    private GameObject CreateCard(bool pIsDefined = false, BiomeType pType = default)
+    {
+        GameObject lCard = Instantiate(pIsDefined ? CardPrefabDic.GetPrefab(pType) : CardPrefabDic.GetRandomPrefab());
         lCard.GetComponent<TEMPCard>().enabled = true;
         lCard.SetActive(false);
         lCard.transform.SetParent(_DeckContainer.transform, true);
-
         return lCard;
+    }
+
+    private void ClearDeck()
+    {
+        int lChildCount = _DeckContainer.transform.childCount;
+        for (int i = 0; i < lChildCount; i++)
+            Destroy(_DeckContainer.transform.GetChild(i).gameObject);
+    }
+
+    private void ClearHand()
+    {
+        _CardInHand = 0;
+
+        int lLength = _HandContainer.transform.childCount;
+        for (int i = 0; i < lLength; i++)
+            Destroy(_HandContainer.transform.GetChild(i).gameObject);
+
+        lLength = _AvailableCardSlots.Length;
+        for (int i = 0; i < lLength; i++)
+            _AvailableCardSlots[i] = true;
     }
 
     private void CardSlot()
@@ -198,21 +335,49 @@ public class HandManager : MonoBehaviour
             lXArrayIndex++;
         }
     }
+    #endregion
 
-    public void CardPlayedThenDraw()
+    #region Data tracking
+    public void TrackBiome(BiomeType pType)
     {
-        _CardInHand--;
-        DrawCard();
+        int lIndex = _BiomePlayedTracking.FindIndex(x => x.Item1 == pType);
+        if (lIndex == -1)
+            _BiomePlayedTracking.Add(new Tuple<BiomeType, int>(pType, 1));
+        else
+            _BiomePlayedTracking[lIndex] = new Tuple<BiomeType, int>(pType, _BiomePlayedTracking[lIndex].Item2 + 1);
     }
 
+    private void TrackWinCondition()
+    {
+        int lMax = 0;
+        int lLength = _BiomePlayedTracking.Count;
+
+        BiomeType lMaxUsed = default;
+        for (int i = 0; i < lLength; i++)
+        {
+            if (_BiomePlayedTracking[i].Item2 > lMax)
+            {
+                lMax = _BiomePlayedTracking[i].Item2;
+                lMaxUsed = _BiomePlayedTracking[i].Item1;
+            }
+        }
+
+        DataTracker.GetInstance().SendAnalytics(TRACKER_NAME, new Dictionary<string, object>() { { TRACKER_BIOME_TYPE_PARAMETER, lMaxUsed.ToString() } });
+    }
+    #endregion
 
     private void OnDestroy()
     {
         if (_Instance == this)
-            return;
+        {
 
-        _Instance = null;
-        GameManager.CardPlaced.RemoveListener(CardPlayedThenDraw);
+            _Instance = null;
+
+            QuestManager.ValidQuest.RemoveListener(TrackWinCondition);
+            GameManager.CardPlaced.RemoveListener(CardPlayedThenDraw);
+
+            OnDeckAltered.RemoveAllListeners();
+        }
     }
 }
 

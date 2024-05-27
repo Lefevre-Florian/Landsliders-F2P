@@ -1,6 +1,7 @@
 using com.isartdigital.f2p.gameplay.quest;
-using System;
+using Com.IsartDigital.F2P.Biomes.Effects;
 
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Author (CR) : Lefevre Florian
@@ -8,86 +9,79 @@ namespace Com.IsartDigital.F2P.Biomes
 {
     public class BiomeAlterDeck : MonoBehaviour
     {
-        private enum AffectingType
-        {
-            Continuious,
-            Immediate
-        }
-
         [Header("Design")]
         [SerializeField][Min(1)] private int _NbAffected = 1;
 
         [Space(2)]
-        [SerializeField] private bool _IsRemoving = true;
-        
-        [Space(2)]
-        [SerializeField][Range(0, 10)] private int _NbTurn = 0;
+        [SerializeField] private DeckEffect.AlterationType _Type = default;
+        [SerializeField] private bool _DestroyEffectWithInstance = false;
 
         // Variables
-        private int _Timer = 0;
+        private int _NbTurn = 1;
 
-        private GameManager _GameManager = null;
-        private HandManager _HandManager = null;
-
-        private Player _Player = null;
-
-        private void Start()
+        public void ContinuousAlteration(int pNbTurn = 1)
         {
-            _HandManager = HandManager.GetInstance();
-            _GameManager = GameManager.GetInstance();
-
-            _Player = Player.GetInstance();
+            _NbTurn = pNbTurn;
+            SetupDeckEffect();
         }
 
-        public void StartContinous()
+        public void ImmediateAlteration()
         {
-            _Timer = _NbTurn;
-            _GameManager.OnTurnPassed += UpdateTime;
+            if (_Type == DeckEffect.AlterationType.Positive)
+            {
+                HandManager.GetInstance().AddCardToDeck(_NbAffected);
+                if (TryGetComponent<FieldQuest>(out FieldQuest fq)) fq.CheckWin(_NbAffected);
+
+            }
+            else
+                HandManager.GetInstance().BurnCard(_NbAffected);
+
+            HandManager.OnDeckAltered.Invoke(_NbAffected, GetComponent<Biome>().Type);
         }
-
-        public void StopContinuous() => _GameManager.OnTurnPassed -= UpdateTime;
-
-        public void ImmediateAlteration() => UpdateDeck();
 
         public void ImmmediateAlteration(MonoBehaviour pBonus)
         {
             if (pBonus is IBiomeEnumerator)
             {
                 _NbAffected = (pBonus as IBiomeEnumerator).GetEnumertation();
-                UpdateDeck();
+                ImmediateAlteration();
             }
             else
                 Debug.LogError("Must be an" + typeof(IBiomeEnumerator));
         }
 
-        private void UpdateTime()
+        private void SetupDeckEffect()
         {
-            if (--_Timer <= 0)
-                _Timer = 0;
-            else
-                UpdateDeck();
-        }
-
-        private void UpdateDeck()
-        {
-            if (_IsRemoving && !_Player.isProtected)
-                _HandManager.BurnCard(_NbAffected);
-            else if (!_IsRemoving)
+            DeckEffect lEffect = null;
+            if (_DestroyEffectWithInstance)
             {
-                _HandManager.AddCardToDeck(_NbAffected);
-                if (TryGetComponent<FieldQuest>(out FieldQuest fq)) fq.CheckWin(_NbAffected);
+                lEffect = gameObject.AddComponent<DeckEffect>();
+                lEffect.SetEffect(_NbTurn,
+                                  _NbAffected,
+                                  _Type);
+
+                HandManager.OnDeckAltered.Invoke(_NbAffected * _NbTurn, GetComponent<Biome>().Type);
             }
-        }
+            else
+            {
+                Player lPlayer = Player.GetInstance();
+                if(lPlayer.GetComponent<DeckEffect>() == null)
+                {
+                    lEffect = lPlayer.AddComponent<DeckEffect>();
 
-        private void OnDestroy()
-        {
-            if (_GameManager != null)
-                StopContinuous();
+                    lEffect.SetEffect(_NbTurn,
+                                      _NbAffected,
+                                      _Type);
 
-            _HandManager = null;
-            _GameManager = null;
-
-            _Player = null;
+                    HandManager.OnDeckAltered.Invoke(_NbAffected * _NbTurn, GetComponent<Biome>().Type);
+                }
+                else
+                {
+                    lPlayer.GetComponent<DeckEffect>().IncrementTimer();
+                    HandManager.OnDeckAltered.Invoke(1, GetComponent<Biome>().Type);
+                }
+                    
+            }
         }
     }
 }

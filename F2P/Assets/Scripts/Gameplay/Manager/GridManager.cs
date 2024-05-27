@@ -1,10 +1,13 @@
 using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.quest;
+using com.isartdigital.f2p.manager;
 using Com.IsartDigital.F2P.Biomes;
 
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Rendering;
 
 // Author (CR): Paul Vincencini
 namespace com.isartdigital.f2p.gameplay.manager
@@ -30,9 +33,6 @@ namespace com.isartdigital.f2p.gameplay.manager
         [SerializeField] public Vector2 _GridSizePercent;
         [SerializeField] public Vector2 _Offset;
 
-        [Space(2)]
-        [SerializeField] private bool _IsGridPredefined = false;
-
         [Header("GameObject")]
 
         [SerializeField] public GameObject _CardBackgroundPrefab;
@@ -45,14 +45,16 @@ namespace com.isartdigital.f2p.gameplay.manager
 
         [HideInInspector] public GameObject[,] _Cards = new GameObject[3,3];
 
+        [HideInInspector] public UnityEvent GridGenerated = new UnityEvent();
+
         // Get / Set 
         public List<Biome> Biomes {
             get
             {
                 List<Biome> lBiomes = new List<Biome>();
-                for (int i = 0; i < (int)_NumCard.x; i++)
+                for (int i = 0; i < (int)_NumCard.x -1; i++)
                 {
-                    for (int j = 0; j < (int)_NumCard.y; j++)
+                    for (int j = 0; j < (int)_NumCard.y - 1; j++)
                         lBiomes.Add(_Cards[i, j].GetComponent<Biome>());
                 }
                 return lBiomes;
@@ -119,6 +121,8 @@ namespace com.isartdigital.f2p.gameplay.manager
                 }
                 lXArrayIndex++;
             }
+
+            GridGenerated?.Invoke();
         }
 
         #region Coordinates Utils
@@ -132,7 +136,6 @@ namespace com.isartdigital.f2p.gameplay.manager
         {
             if(pX > 2 || pX < 0 || pY > 2 || pY < 0)
             {
-                Debug.Log("Les parametres rentré sont : pX = " + pX.ToString() + ", pY = " + pY.ToString() + "Cependant la fonction a pour intervale x[0,2] et y[0,2]");
                 return Vector2.zero;
             }
 
@@ -171,14 +174,19 @@ namespace com.isartdigital.f2p.gameplay.manager
         /// </summary>
         /// <param name="pPosition">Grid position format</param>
         /// <returns></returns>
-        public Biome GetCardByGridCoordinate(Vector2 pPosition) => _Cards[(int)pPosition.x, (int)pPosition.y]?.GetComponent<Biome>();
+        public Biome GetCardByGridCoordinate(Vector2 pPosition)
+        {
+            int x = Mathf.RoundToInt(Mathf.Clamp(pPosition.x, 0, 2));
+            int y = Mathf.RoundToInt(Mathf.Clamp(pPosition.y, 0, 2));
+            return _Cards[x, y]?.GetComponent<Biome>(); 
+        }
         #endregion
 
         #region Grid management
         public void ReplaceAtIndex(Vector2 pGridPosition, Transform pTransform) 
         {
-            int x = (int)pGridPosition.x;
-            int y = (int)pGridPosition.y;
+            int x = Mathf.RoundToInt(pGridPosition.x);
+            int y = Mathf.RoundToInt(pGridPosition.y);
 
             Vector3 lWorldPosition = _Cards[x, y].transform.position;
 
@@ -194,12 +202,15 @@ namespace com.isartdigital.f2p.gameplay.manager
             lCard.GetComponent<CardContainer>().gridPosition = new Vector2(x, y);
 
             if (_Cards[x, y].GetComponent<Biome>().Type == BiomeType.Canyon) CanyonQuest.ValidSignal.Invoke();
-            _Cards[x, y].GetComponent<Biome>().Remove();
+            _Cards[x, y].GetComponent<Biome>().Remove(x, y);
             _Cards[x, y] = lBiome.gameObject;
             _Cards[x, y].transform.position = lWorldPosition;
         }
 
-        public void RemoveAtIndex(Vector2 pGridPosition) => _Cards[(int)pGridPosition.x, (int)pGridPosition.y] = null;
+        public void RemoveAtIndex(Vector2 pGridPosition)
+        {   
+            _Cards[Mathf.RoundToInt(pGridPosition.x), Mathf.RoundToInt(pGridPosition.y)] = null;
+        }
         #endregion
 
         private void OnDestroy()

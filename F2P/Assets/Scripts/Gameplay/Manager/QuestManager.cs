@@ -1,20 +1,30 @@
-using Com.IsartDigital.F2P.Biomes;
+using Com.IsartDigital.F2P;
+using Com.IsartDigital.F2P.Sound;
+
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEngine;
+using System.Linq;
 
+using UnityEngine;
+using UnityEngine.Events;
+
+// Author (CR) : Paul Vincencini
 namespace com.isartdigital.f2p.manager
 {
     public class QuestManager : MonoBehaviour
     {
-        [SerializeField] QuestDic questsDic;
-        Dictionary<QuestsEnum, MonoBehaviour> _QuestDic;
 
         public static QuestsEnum currentQuest;
 
         [SerializeField] private QuestsEnum currentQuestDebug;
+
+        public static UnityEvent ValidQuest = new UnityEvent();
+
+        [SerializeField] private QuestLabelsDic _QuestLabelsDic = new QuestLabelsDic();
+        private static Dictionary<QuestsEnum, QuestText> questDic;
+
+        [Header("Sound")]
+        [SerializeField] private SoundEmitter _QuestCompletedSFXEmitter = null;
 
         public enum QuestsEnum
         {
@@ -24,50 +34,62 @@ namespace com.isartdigital.f2p.manager
             FieldQuest,
             FlyingIslandQuest,
             CardQuest,
-            VortexQuest
+            VortexQuest,
+            WitchQuest,
+
+            FTUE
         }
 
         private void Awake()
         {
             currentQuest = currentQuestDebug;
             GameFlowManager.LoadMap.AddListener(Init);
-            _QuestDic = questsDic.ToDic();
+            ValidQuest.AddListener(WinDebug);
+            questDic = _QuestLabelsDic.ToDic();
+
+            if (currentQuestDebug == QuestsEnum.NONE)
+            {
+                string[] lQuestsArray = Enum.GetNames(typeof(QuestsEnum));
+                lQuestsArray.ToList().Remove(QuestsEnum.FTUE.ToString());
+
+                int rand = UnityEngine.Random.Range(1, lQuestsArray.Length - 1);
+
+                currentQuest = (QuestsEnum)Enum.Parse(typeof(QuestsEnum), lQuestsArray[rand]);
+
+            }
         }
 
         private void Init()
         {
-            if(currentQuestDebug == QuestsEnum.NONE)
-            {
-                string[] lQuestsArray = Enum.GetNames(typeof(QuestsEnum));
-                int rand = UnityEngine.Random.Range(1, lQuestsArray.Length);
+            
+           if(questDic.ContainsKey(currentQuest)) QuestUiManager.GetInstance().SetQuestName(questDic[currentQuest].name);
+           if (questDic.ContainsKey(currentQuest)) QuestUiManager.GetInstance().SetQuestDesc(questDic[currentQuest].desc);
+        }
 
-                currentQuest = (QuestsEnum)Enum.Parse(typeof(QuestsEnum), lQuestsArray[rand]);
-            }
-
-            if(_QuestDic.ContainsKey(currentQuest)) gameObject.AddComponent(_QuestDic[currentQuest].GetType());
-
-            Debug.Log(currentQuest);
-
+        private void WinDebug()
+        {
+            if (_QuestCompletedSFXEmitter != null)
+                _QuestCompletedSFXEmitter.PlaySFXOnShot();
+            GameManager.GetInstance().SetModeWin();
         }
 
         private void OnDestroy()
         {
             GameFlowManager.LoadMap.RemoveListener(Init);
+            ValidQuest.RemoveListener(WinDebug);
         }
-
-
     }
 
     [Serializable]
-    public class QuestDic
+    public class QuestLabelsDic
     {
-        [SerializeField] private QuestItem[] questArray;
+        [SerializeField] QuestLabelItem[] _Dict;
 
-        public Dictionary<QuestManager.QuestsEnum, MonoBehaviour> ToDic()
+        public Dictionary<QuestManager.QuestsEnum, QuestText> ToDic()
         {
-            Dictionary<QuestManager.QuestsEnum, MonoBehaviour> newDic = new Dictionary<QuestManager.QuestsEnum, MonoBehaviour>();
+            Dictionary<QuestManager.QuestsEnum, QuestText> newDic = new Dictionary<QuestManager.QuestsEnum, QuestText>();
 
-            foreach (QuestItem item in questArray)
+            foreach (QuestLabelItem item in _Dict)
             {
                 newDic.Add(item.key, item.value);
             }
@@ -77,13 +99,20 @@ namespace com.isartdigital.f2p.manager
     }
 
     [Serializable]
-    public class QuestItem
+    public class QuestLabelItem
     {
         [SerializeField]
         public QuestManager.QuestsEnum key;
 
         [SerializeField]
-        public MonoBehaviour value;
+        public QuestText value;
+    }
+
+    [Serializable]
+    public struct QuestText
+    {
+        public string name;
+        public string desc;
     }
 }
 

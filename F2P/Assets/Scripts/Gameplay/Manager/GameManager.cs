@@ -1,10 +1,16 @@
 using com.isartdigital.f2p.gameplay.manager;
+using Com.IsartDigital.F2P;
+using Com.IsartDigital.F2P.FileSystem;
+using Com.IsartDigital.F2P.Biomes;
 using Com.IsartDigital.F2P.Gameplay;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Events;
+using Com.IsartDigital.F2P.Sound;
 
 // Author (CR): Elias Dridi
 public class GameManager : MonoBehaviour
@@ -20,6 +26,13 @@ public class GameManager : MonoBehaviour
     }
 
     private GameManager() : base() { }
+    #endregion
+
+    #region Tracking   
+    private const string TRACKER_NAME = "gameDuration";
+
+    private const string TRACKER_GAME_DURATION_REALTIME_PARAMETER = "timeInSecondMinute";
+    private const string TRACKER_GAME_DURATION_TURN_PARAMETER = "numberOfTurn";
     #endregion
 
     private void Awake()
@@ -52,6 +65,10 @@ public class GameManager : MonoBehaviour
     [Header("Game flow")]
     [SerializeField][Range(0.1f, 1f)] private float _SecondsBetweenEachPriorityExecution = 0.5f;
 
+    [Header("Sound")]
+    [SerializeField] private SoundEmitter _WinJingle = null;
+    [SerializeField] private SoundEmitter _LooseJingle = null;
+
     // Variables
     private int _CurrentPriority = 1;
     private int _MaxPriority = 12;
@@ -59,9 +76,9 @@ public class GameManager : MonoBehaviour
     private int _TurnNumber = 1;
     private int _CardStocked = 12;
 
-    private Vector3 _BasePlayerGridPosToPixel;
-
     private Coroutine _EffectTimer = null;
+
+    private DateTime _GameStartTime = default;
 
     [HideInInspector] public bool cardPlayed;
     [HideInInspector] public bool playerMoved;
@@ -86,22 +103,31 @@ public class GameManager : MonoBehaviour
         }
     }
     public int Turn { get { return _TurnNumber; } }
+
+    public float EffectDuration { get { return _SecondsBetweenEachPriorityExecution; } }
+
     // Events
     public event Action OnTurnPassed;
+
     public event Action<int> OnEffectPlayed;
     public event Action OnAllEffectPlayed;
+
+    public event Action<bool> OnGameover;
 
     public static UnityEvent CardPlaced = new UnityEvent();
     public static UnityEvent PlayerMoved = new UnityEvent();
 
     private void Start()
     {
-        _BasePlayerGridPosToPixel = GridManager.GetInstance().GetWorldCoordinate((int)_BasePlayerGridPos.x, (int)_BasePlayerGridPos.y);
-        Instantiate(_Player, _BasePlayerGridPosToPixel, Quaternion.identity);
+        Vector3 lWorldPosition = GridManager.GetInstance().GetWorldCoordinate(_BasePlayerGridPos);
+        Instantiate(_Player, lWorldPosition, Quaternion.identity);
         _Player.GetComponent<Player>().baseGridPos = _BasePlayerGridPos;
 
         CardPlaced.AddListener(SetModeMovingPlayer);
         PlayerMoved.AddListener(SetModeBiomeEffect);
+        OnAllEffectPlayed += OnTurnPassed;
+
+        _GameStartTime = DateTime.UtcNow;
     }
 
     public void NextTurn()
@@ -141,10 +167,38 @@ public class GameManager : MonoBehaviour
 
     public void SetModeGameover()
     {
+        if (_LooseJingle != null)
+            _LooseJingle.PlaySFXOnShot();
+
         currentState = State.GameEnd;
         playerCanMove = false;
-        
-        ///TODO Trigger popup
+        Save.data.softcurrency += 20;
+        DatabaseManager.GetInstance().WriteDataToSaveFile();
+        OnGameover?.Invoke(false);
+    }
+
+    public void SetModeWin()
+    {
+        if (_WinJingle != null)
+            _WinJingle.PlaySFXOnShot();
+
+        currentState = State.GameEnd;
+        playerCanMove = false;
+
+        Save.data.exp += Save.data.xpdoubled ? 6 : 3;
+        Save.data.softcurrency += 60;
+        DatabaseManager.GetInstance().WriteDataToSaveFile();
+        // Track game duration
+        TimeSpan lDuration = (DateTime.UtcNow - _GameStartTime).Duration();
+        DataTracker.GetInstance().SendAnalytics(TRACKER_NAME, 
+                                                new Dictionary<string, object>() {
+                                                    { TRACKER_GAME_DURATION_TURN_PARAMETER, _TurnNumber},
+                                                    {TRACKER_GAME_DURATION_REALTIME_PARAMETER,  lDuration.Minutes + ":" + lDuration.Seconds}
+                                                });
+
+       
+
+        OnGameover?.Invoke(true);
     }
     #endregion
 
@@ -153,6 +207,7 @@ public class GameManager : MonoBehaviour
     {
         while (_CurrentPriority != _MaxPriority + 1)
         {
+
             OnEffectPlayed?.Invoke(_CurrentPriority);
             _CurrentPriority += 1;
 
@@ -187,6 +242,22 @@ public class GameManager : MonoBehaviour
 
         NextTurn();
     }
+
+    private void CheckDesertLose()
+    {
+        GameObject[,] lCard = GridManager.GetInstance()._Cards;
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if (lCard[i, j].GetComponent<Biome>().Type != BiomeType.desert) return;
+            }
+        }
+
+        SetModeGameover();
+    }
+
     #endregion
 
     private void OnDestroy()
@@ -199,5 +270,7 @@ public class GameManager : MonoBehaviour
 
         CardPlaced.RemoveAllListeners();
         PlayerMoved.RemoveAllListeners();
+
+        OnAllEffectPlayed -= OnTurnPassed;
     }
 }

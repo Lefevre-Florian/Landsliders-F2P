@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{67fefef2-ec48-435d-97fe-2627987dabe2}">
+		<property name="name">
+			<value>FTE PHASES</value>
+		</property>
+		<relationship name="folder">
+			<destination>{bc1a8f77-e0c1-4407-9043-8f56b4b3669a}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{5356d54e-bbfb-409b-8652-51d8c524df4c}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{5356d54e-bbfb-409b-8652-51d8c524df4c}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>12</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>TEXT1</value>
+			<value>TEXT2</value>
+			<value>TEXT3</value>
+			<value>TEXT4</value>
+			<value>GUARD</value>
+			<value>BID1</value>
+			<value>BID2</value>
+			<value>BID3</value>
+			<value>FIN FTUE1</value>
+			<value>FIN FTUE2</value>
+			<value>FIN FTUE3</value>
+			<value>FIN FTUE4</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

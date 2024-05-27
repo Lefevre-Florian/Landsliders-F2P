@@ -1,9 +1,12 @@
 using com.isartdigital.f2p.gameplay.card;
 using com.isartdigital.f2p.gameplay.manager;
+
 using Com.IsartDigital.F2P.Biomes;
+using Com.IsartDigital.F2P.Sound;
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using UnityEngine;
 
@@ -14,24 +17,37 @@ public class TEMPCard : MonoBehaviour
     {
         InHand,
         Moving,
-        Played
+        Played,
+        Focus
     }
     
     private const string CARDPLAYED_TAG = "CardPlayed";
     private const string PLAYER_NAME = "Player";
-    
-    // Variables
+    [SerializeField] private GameObject _Explication;
+
+    private float _HoldThreshold = 0.075f; 
+
+    private bool _IsHolding = false;
+    private float _HoldTimer = 0.0f;
+
+    // Inspector
+    [Header("Card")]
     public int handIndex;
     public State currentState;
+
+    [Space(2)]
+    [SerializeField] private BiomeType[] _ForbiddenBiome = new BiomeType[] { BiomeType.Canyon, BiomeType.Myst};
+
+    [Header("Sound")]
+    [SerializeField] private SoundEmitter _SoundEmitter = null;
     
+    // Variables
     private RaycastHit2D _Hit;
 
     private bool _Snapable;
     [HideInInspector]public Vector3 snapPos;
     private GameObject _SnapParent;
     private GameObject _ClosestSnapParent;
-
-    private Vector3 _GridPlacement;
 
     private HandManager _HandManager = null;
     private Action DoAction = null;
@@ -41,9 +57,14 @@ public class TEMPCard : MonoBehaviour
     // Event
     public event Action OnPlaced;
 
-    void Start()
+    public static event Action<bool> OnFocus;
+
+    private void Start()
     {
-        _HandManager = HandManager.GetInstance();      
+        _HandManager = HandManager.GetInstance();
+
+        GameFlowManager.Paused.AddListener(OnPause);
+        GameFlowManager.Resumed.AddListener(OnResume);
     }
 
     private void Update()
@@ -51,11 +72,15 @@ public class TEMPCard : MonoBehaviour
       if(DoAction!=null)   
         DoAction();
     }
+
+    private void OnPause() => GetComponent<Collider2D>().enabled = false;
+
+    private void OnResume() => GetComponent<Collider2D>().enabled = true;
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.name != PLAYER_NAME && collision.GetComponent<TEMPCard>().currentState != State.InHand && collision.GetComponent<Biome>().Type != GetComponent<Biome>().Type && 
-            collision.GetComponent<Biome>().Type != BiomeType.Canyon && collision.GetComponent<CardContainer>().gridPosition != Player.GetInstance()._ActualGridPos)
+            !_ForbiddenBiome.Contains(collision.GetComponent<Biome>().Type)  && collision.GetComponent<CardContainer>().gridPosition != Player.GetInstance()._ActualGridPos)
         {
             _CollidingObjects.Add(collision);
             _Snapable = true;
@@ -78,8 +103,8 @@ public class TEMPCard : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.name != PLAYER_NAME && collision.GetComponent<TEMPCard>().currentState != State.InHand && collision.GetComponent<Biome>().Type != GetComponent<Biome>().Type
-            && collision.GetComponent<Biome>().Type != BiomeType.Canyon && collision.GetComponent<CardContainer>().gridPosition != Player.GetInstance()._ActualGridPos)
+        if (collision.name != PLAYER_NAME && collision.GetComponent<TEMPCard>().currentState != State.InHand
+            && !_ForbiddenBiome.Contains(collision.GetComponent<Biome>().Type) && collision.GetComponent<CardContainer>().gridPosition != Player.GetInstance()._ActualGridPos)
         {
             if (_CollidingObjects.Count > 1)
             {
@@ -112,6 +137,7 @@ public class TEMPCard : MonoBehaviour
     {
         currentState = State.InHand;
         gameObject.SetActive(true);
+        GetComponent<BoxCollider2D>().enabled = true;
         DoAction = DoActionInHand;        
     }
 
@@ -121,15 +147,71 @@ public class TEMPCard : MonoBehaviour
          _Hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         
         if (!_Hit) return;
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (_Hit.collider.transform == transform)
+            {
+                // Start the hold timer
+                _IsHolding = true;
+                _HoldTimer = 0.0f;
+            }
+        }
 
-        if (Input.GetMouseButtonDown(0) && _Hit.collider.transform == transform)
-            SetModeMoving();
+        if (Input.GetMouseButton(0) && _IsHolding && _Hit.collider.transform == transform)
+        {
+            _HoldTimer += Time.deltaTime;
+
+            if (_HoldTimer > _HoldThreshold)
+            {
+                SetModeMoving();
+                _IsHolding = false;
+            }
+        }
+
+        else if (Input.GetMouseButtonUp(0) && _IsHolding && _Hit.collider.transform == transform)
+        {
+            if (_HoldTimer <= _HoldThreshold)
+            {
+                // It's a single tap action, enter focus mode
+                SetModeFocus();
+            }
+
+            // Reset the holding state
+            _IsHolding = false;
+            _HoldTimer = 0.0f;
+        }
+
+       
+    }
+
+    public void SetModeFocus()
+    {
+        currentState = State.Focus;
+        GetComponent<BoxCollider2D>().enabled = false;
+        transform.localScale = new Vector3(5,5,1); transform.localPosition = new Vector3(0,0,-8);
+        DoAction = DoActionFocus;
+    }
+
+    private void DoActionFocus()
+    {
+        if (Input.GetMouseButtonDown(0)) 
+        { 
+            transform.localScale = new Vector3(1, 1, 1); 
+            transform.localPosition = snapPos; 
+            SetModeInHand();
+        }
+
     }
 
     public void SetModeMoving()
     {
+        OnFocus?.Invoke(true);
+
         currentState = State.Moving;
         DoAction = DoActionMoving;
+
+        if (_SoundEmitter != null)
+            _SoundEmitter.PlaySFXOnShot();
     }
 
     private void DoActionMoving()
@@ -137,13 +219,11 @@ public class TEMPCard : MonoBehaviour
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + Vector3.forward * 2);
         if (Input.GetMouseButtonUp(0) 
             && _Snapable 
-            && _SnapParent.GetComponent<Biome>().Type != GetComponent<Biome>().Type
             && _SnapParent.GetComponent<Biome>().CanBeRemoved)
         {
             CardContainer lContainer = GetComponent<CardContainer>();
             GridManager lGridManager = GridManager.GetInstance();
 
-            _GridPlacement = _SnapParent.GetComponent<CardContainer>().gridPosition;
             transform.position = snapPos;
             _HandManager._AvailableCardSlots[handIndex] = true;
             lContainer.gridPosition = _SnapParent.GetComponent<CardContainer>().gridPosition;
@@ -151,22 +231,35 @@ public class TEMPCard : MonoBehaviour
             Destroy(_SnapParent.transform.gameObject);
             GameManager.GetInstance()._LastCardPlayed = transform.gameObject;
             transform.SetParent(lGridManager.transform);
-            
+
             GameManager.CardPlaced.Invoke();
             tag = CARDPLAYED_TAG;
             
             SetModePlayed();
         }
-        else if (Input.GetMouseButtonUp(0) && !_Snapable) 
+        else if (Input.GetMouseButtonUp(0)) 
         {
+            OnFocus?.Invoke(false);
+            snapPos = _HandManager._CardsSlot[handIndex].transform.position;
+
             transform.position = snapPos;
             SetModeInHand();
         }
     }
     public void SetModePlayed()
     {
+        if(_HandManager != null)
+            _HandManager.TrackBiome(GetComponent<Biome>().Type);
+
         currentState |= State.Played;
         OnPlaced?.Invoke();
+        /*if (_Explication != null) _Explication.SetActive(false);*/
         enabled = false;
+    }
+
+    private void OnDestroy()
+    {
+        GameFlowManager.Paused.RemoveListener(OnPause);
+        GameFlowManager.Resumed.RemoveListener(OnResume);
     }
 }

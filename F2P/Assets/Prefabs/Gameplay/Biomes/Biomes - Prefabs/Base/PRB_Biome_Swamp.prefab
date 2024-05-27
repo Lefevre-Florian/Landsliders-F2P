@@ -8,6 +8,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2707025486543356891, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _Explication
+      value: 
+      objectReference: {fileID: 6806443813000750535}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Path
+      value: event:/GAME/played_swamp
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data1
+      value: 662988399
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data2
+      value: 1287057924
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data3
+      value: -1103102546
+      objectReference: {fileID: 0}
+    - target: {fileID: -799997449162001414, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      propertyPath: _SoundReference.Guid.Data4
+      value: 101246815
+      objectReference: {fileID: 0}
     - target: {fileID: 1303455310275192841, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: m_Color.b
       value: 0.13654797
@@ -62,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: m_Name
-      value: Swamp
+      value: PRB_Biome_Swamp
       objectReference: {fileID: 0}
     - target: {fileID: 8295392945309103686, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       propertyPath: _Type
@@ -142,6 +166,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8513031664465252616}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3948805105576187820}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1387325106111761800}
+    - targetCorrespondingSourceObject: {fileID: 4523184677986655507, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4741213307172422200}
   m_SourcePrefab: {fileID: 100100000, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
 --- !u!1 &7305934453097383714 stripped
 GameObject:
@@ -161,8 +194,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _NbAffected: 1
-  _IsRemoving: 1
-  _NbTurn: 3
+  _Type: -1
+  _DestroyEffectWithInstance: 0
 --- !u!114 &8513031664465252616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,16 +213,83 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6831918459987649218}
         m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeAlterDeck, Assembly-CSharp
-        m_MethodName: StartContinous
-        m_Mode: 1
+        m_MethodName: ContinuousAlteration
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3948805105576187820}
+        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Sound.SoundEmitter, Assembly-CSharp
+        m_MethodName: PlaySFXOnShot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4741213307172422200}
+        m_TargetAssemblyTypeName: Com.IsartDigital.F2P.Biomes.BiomeParticles, Assembly-CSharp
+        m_MethodName: PlayOneshotParticles
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 4539710516849750065, guid: 334971d2e083d6f49be303ee64b59dcb, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3948805105576187820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305934453097383714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fc792bc4fe56144a799e741c21170d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SoundReference:
+    Guid:
+      Data1: -1382910182
+      Data2: 1215336893
+      Data3: -372627036
+      Data4: -1632157102
+    Path: event:/GAME/poison_damage
+--- !u!114 &1387325106111761800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305934453097383714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eccfdfd00d20eb41bca697c12b76e14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4741213307172422200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305934453097383714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c043bdba33b6140a0af83f6a311a2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8002503781277092192 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3794540079045137233, guid: f61d5c9c197d8464aa24efabe213ea51, type: 3}
@@ -203,6 +303,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8002503781277092192}
     m_Modifications:
+    - target: {fileID: 1812685563798391936, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2205531200771009733, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811055539957516654, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3258832892507336386, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558005352204004270, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428055572505223894, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6001513207080209692, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.15
@@ -255,9 +379,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6198640056099210072, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547785207359876460, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7619695827168415958, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8118460152122114975, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
       propertyPath: m_Name
       value: PRB_Swamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8335900255331999197, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8399214837599911942, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -267,5 +411,10 @@ PrefabInstance:
 --- !u!4 &4400763812517215160 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6001513207080209692, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
+  m_PrefabInstance: {fileID: 7951966239842088612}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6806443813000750535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3471808828087931747, guid: 6e6c844498e48564d955f8b25fbc8307, type: 3}
   m_PrefabInstance: {fileID: 7951966239842088612}
   m_PrefabAsset: {fileID: 0}

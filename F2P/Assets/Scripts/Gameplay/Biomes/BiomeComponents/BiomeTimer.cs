@@ -56,10 +56,25 @@ namespace Com.IsartDigital.F2P.Biomes
 
         public void StopTicking() => _GameManager.OnTurnPassed -= ClockTicking;
 
+        public void ResetTicking()
+        {
+            StopTicking();
+
+            _InternalTimer = _Timer;
+            ClockTicking();
+            _InternalTimer = _Timer;
+        }
+
+        public void SetCurrentTimer(int pTick)
+        {
+            while (_InternalTimer != pTick)
+                ClockTicking();
+            _InternalTimer = pTick;
+        }
+
         private void ClockTicking()
         {
             --_InternalTimer;
-
             int lLength = _TimedActions.Length;
             for (int i = 0; i < lLength; i++)
             {
@@ -71,7 +86,11 @@ namespace Com.IsartDigital.F2P.Biomes
                 _InternalTimer = _Timer;
 
             if (_Label != null)
+            {
+                _Label.transform.parent.GetComponent<Canvas>().worldCamera = Camera.main;
                 _Label.text = _InternalTimer.ToString();
+            }
+                
         }
 
         private void OnDestroy()
