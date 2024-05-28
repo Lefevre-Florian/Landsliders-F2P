@@ -52,9 +52,9 @@ namespace com.isartdigital.f2p.gameplay.manager
             get
             {
                 List<Biome> lBiomes = new List<Biome>();
-                for (int i = 0; i < (int)_NumCard.x -1; i++)
+                for (int i = 0; i < (int)_NumCard.x; i++)
                 {
-                    for (int j = 0; j < (int)_NumCard.y - 1; j++)
+                    for (int j = 0; j < (int)_NumCard.y; j++)
                         lBiomes.Add(_Cards[i, j].GetComponent<Biome>());
                 }
                 return lBiomes;
